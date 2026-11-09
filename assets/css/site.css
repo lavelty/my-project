@@ -2,14 +2,14 @@
 :root{
   --green:#00AB84; --green-deep:#007F62; --orange:#FF7F41; --yellow:#FFB81C;
   --ink:#1C1F1D; --ink2:#38413C; --ink3:#5E6862;
-  --lime:#F2EEE3;            /* limestone surface */
-  --lime2:#E8E2D2; --white:#FFFFFF; --line:rgba(28,31,29,.1); --mint:#DDF3EB;
+  --lime:#F7F6F3;            /* clean soft limestone surface */
+  --lime2:#ECEAE4; --white:#FFFFFF; --line:rgba(28,31,29,.08); --mint:#E1F4EC;
   --accent-ink:#04241C; --amber:#E8A33C;
-  --d0:#14201B; --d1:#0E3B30; --dline:rgba(255,255,255,.14); --t2:#BFD8CE; --t3:#93B5A7;
+  --d0:#121815; --d1:#0B2E25; --dline:rgba(255,255,255,.1); --t2:#A3B5AC; --t3:#7A8D84;
   --font-h:'Plus Jakarta Sans','Figtree',system-ui,sans-serif;
   --font-b:'Figtree',system-ui,sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
-  --shadow:0 1px 2px rgba(28,31,29,.04),0 12px 32px -12px rgba(28,31,29,.14);
+  --shadow:0 4px 20px -4px rgba(28,31,29,.05),0 16px 40px -12px rgba(28,31,29,.08);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:96px}
@@ -168,24 +168,20 @@ section{padding:112px 0}
 .empty{padding:64px 24px;text-align:center;background:#fff;border:1px solid var(--line);border-radius:24px}
 .empty p{font-family:var(--font-h);font-weight:600;font-size:22px;line-height:30px;margin-bottom:16px}
 
-/* food */
-.food-grid{display:grid;grid-template-columns:5fr 6fr;gap:72px;align-items:center}
-.food-photo{position:relative;border-radius:28px;overflow:hidden;aspect-ratio:4/5;background:var(--mint)}
-.food-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s var(--ease)}
-.food-photo img.on{opacity:1}
-.ftabs{margin-top:32px;border-top:1px solid var(--line)}
-.ftab{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:20px 0;cursor:pointer;color:var(--ink3);transition:color .3s var(--ease)}
-.ftab:hover{color:var(--ink)}
-.ftab b{font-family:var(--font-h);font-weight:600;font-size:clamp(26px,2.8vw,36px);line-height:1.1;letter-spacing:-.03em}
-.ftab em{font-style:normal;font-size:15px}
-.ftab[aria-selected=true]{color:var(--ink)}
-.ftab[aria-selected=true] em{color:var(--green-deep)}
-.fpanel{display:none;padding:8px 0 24px;border-bottom:1px solid var(--line)}
-.fpanel.on{display:block}
-.fpanel ul{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
-.fpanel li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid var(--line);font-weight:500}
-.fpanel li span{color:var(--ink3);font-weight:400;font-size:14px;white-space:nowrap}
-.food-cta{margin-top:32px}
+/* gourmet showcase: Kanyon style rich cards */
+.gourmet-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.gourmet-card{background:#FFFFFF;border-radius:28px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);display:flex;flex-direction:column;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.gourmet-card:hover{transform:translateY(-6px);box-shadow:0 20px 48px -12px rgba(28,31,29,.16);border-color:rgba(28,31,29,.2)}
+.g-img{position:relative;aspect-ratio:16/11;overflow:hidden;background:#EAE8E3}
+.g-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease)}
+.gourmet-card:hover .g-img img{transform:scale(1.05)}
+.g-tag{position:absolute;top:16px;left:16px;background:rgba(255,255,255,.94);color:var(--ink);font-family:var(--font-h);font-size:12px;font-weight:700;padding:6px 14px;border-radius:999px;box-shadow:0 4px 12px rgba(0,0,0,.15);letter-spacing:.02em}
+.g-body{padding:24px;display:flex;flex-direction:column;flex:1;justify-content:space-between;gap:12px}
+.g-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink3);font-weight:500}
+.g-meta .g-floor{color:var(--green-deep);font-weight:600}
+.g-body h3{font-family:var(--font-h);font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--ink);margin:0}
+.g-body p{font-size:14.5px;line-height:22px;color:var(--ink2);margin:0}
+.g-btn{margin-top:8px;align-self:flex-start}
 
 /* culture & life: editorial showcase */
 .cul{display:grid;grid-template-columns:7fr 5fr;gap:24px;align-items:stretch}
@@ -362,10 +358,7 @@ footer{background:var(--d0);color:var(--t2);padding:96px 0 32px}
 .legal{margin-top:64px;padding-top:24px;border-top:1px solid var(--dline);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#9AA6AE}
 
 @media (max-width:1100px){
-  .kx{grid-template-columns:1fr;gap:32px}
-  .schema{position:static}
-  .food-grid{grid-template-columns:1fr;gap:40px}
-  .food-photo{aspect-ratio:16/10}
+  .gourmet-grid{grid-template-columns:1fr 1fr}
   .cul{grid-template-columns:1fr}
   .feature{min-height:520px}
   .visit{grid-template-columns:1fr}
@@ -397,7 +390,12 @@ footer{background:var(--d0);color:var(--t2);padding:96px 0 32px}
   .strip ul{gap:20px 28px}
   .strip li{width:88px}
   .strip img{max-height:24px;max-width:88px}
+  .gourmet-grid{grid-template-columns:1fr}
   .bgrid{grid-template-columns:1fr}
+  .kp-viewport{min-height:460px}
+  .kp-canvas-wrapper{padding:20px 10px 90px}
+  .kp-bottom-card{left:12px;right:12px;bottom:12px;padding:12px 16px}
+  .kp-card-meta h4{font-size:17px}
   .search{flex:1 1 100%}
   .fpanel ul{grid-template-columns:1fr}
   .feature{padding:24px;min-height:480px}

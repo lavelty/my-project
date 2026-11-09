@@ -4,8 +4,8 @@ const {esc,low,pad,FL,FORDER,CATS,stores,byName,ist}=KF;
 const $=s=>document.querySelector(s);
 const U=(p,w)=>`https://images.unsplash.com${p}?auto=format&fit=crop&q=75&w=${w}`;
 const IMG={
-  atrium:'/photo-1772760224872-db7c8f49404a',fashion:'/photo-1483985988355-763728e1935b',cafe:'/photo-1764489307253-da5c9c311fa2',
-  barista:'/photo-1604552914267-90a8d81a4254',food:'/photo-1600891964599-f61ba0e24092',food2:'/photo-1755811248324-c70c1f10a7fd',trees:'/photo-1757585920915-c5a388d16e44'
+  atrium:'/photo-1519567241046-7f570eee3ce6',fashion:'/photo-1483985988355-763728e1935b',cafe:'/photo-1764489307253-da5c9c311fa2',
+  barista:'/photo-1509042239860-f550ce710b93',food:'/photo-1592861956120-e524fc739696',food2:'/photo-1568901346375-23c9450c58cd',trees:'/photo-1757585920915-c5a388d16e44'
 };
 const ARR=KF.IC.arr;
 
@@ -49,7 +49,7 @@ if(brandList){
 /* ========================================================
    KANYON STYLE ARCHITECTURAL 2D FLOOR PLAN
    ======================================================== */
-const st={f:'K',c:'all',q:'',sel:null,lim:20}; // default to K (Koru Katı - Giriş)
+const st={f:'K',c:'all',q:'',sel:null,lim:8}; // default to K (Koru Katı - Giriş)
 const FLOOR_KEYS=['C','P','K','O'];
 const FLOOR_DEFS={
   'C':{id:'C',num:'2',title:'Cadde Katı',sub:'2. Kat'},
@@ -230,11 +230,11 @@ if(segEl) segEl.addEventListener('click',e=>{const b=e.target.closest('button');
 if(pillsEl) pillsEl.addEventListener('click',e=>{const b=e.target.closest('.pill');if(b)setCat(b.dataset.c)});
 
 const qInput=$('#q');
-if(qInput) qInput.addEventListener('input',e=>{st.q=low(e.target.value.trim());st.lim=20;drawKanyonFloor(st.f);renderStoreList()});
+if(qInput) qInput.addEventListener('input',e=>{st.q=low(e.target.value.trim());st.lim=8;drawKanyonFloor(st.f);renderStoreList()});
 const clearBtn=$('#clearBtn');
 if(clearBtn) clearBtn.addEventListener('click',()=>{if(qInput)qInput.value='';st.q='';st.sel=null;setCat('all');setFloor('K')});
 const moreBtn=$('#moreBtn');
-if(moreBtn) moreBtn.addEventListener('click',()=>{st.lim+=20;renderStoreList()});
+if(moreBtn) moreBtn.addEventListener('click',()=>{st.lim+=8;renderStoreList()});
 
 // Klavye Kısayolları (Ctrl+K)
 document.addEventListener('keydown',e=>{
@@ -307,6 +307,23 @@ if(ftabs) ftabs.addEventListener('click',e=>{
 });
 const allFood=$('#allFood');
 if(allFood) allFood.addEventListener('click',()=>{setCat('Yeme & İçme');setFloor('K');$('#rehber').scrollIntoView({behavior:KF.reduce?'auto':'smooth'})});
+
+// Gourmet kartlarındaki "Kat planında gör" butonları
+document.addEventListener('click', e=>{
+  const b=e.target.closest('[data-store-link]');
+  if(!b) return;
+  e.preventDefault();
+  const name=b.dataset.storeLink;
+  st.sel=name;
+  const store=byName[name];
+  if(store && store.fl && !store.fl.includes(st.f)){
+    setFloor(store.fl[0]);
+  } else {
+    drawKanyonFloor(st.f);
+  }
+  renderStoreList();
+  $('#kanyonWidget').scrollIntoView({behavior:KF.reduce?'auto':'smooth',block:'center'});
+});
 
 /* ---------- culture & life ---------- */
 (function(){
