@@ -4,37 +4,44 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koru Florya | Şehrin Ritmini Keşfet</title>
-  <meta name="description" content="Modern mimari, seçkin markalar, gurme lezzetler ve ilham veren deneyimlerle Koru Florya'da yeni bir gün başlıyor." />
-  
-  <link rel="icon" type="image/svg+xml" href="https://koruflorya.com/assets/icons/koruflorya-icon.svg" />
+  <meta name="description" content="Modern mimari, 220+ seçkin marka, 34 gurme lezzet durağı, koru ferahlığı ve ayrıcalıklı hizmetlerle Koru Florya Alışveriş ve Yaşam Merkezi." />
 
-  <!-- Kanyon Official Font: Plus Jakarta Sans -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23FF6A00'/><text x='50%' y='62%' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='50' font-weight='900' fill='white'>KF</text></svg>" />
+
+  <!-- Typography: Plus Jakarta Sans (Modern Architectural Sans-Serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CSS Engine -->
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
           },
           colors: {
-            kanyon: {
-              black: '#101010',
-              dark: '#141414',
-              surface: '#18181a',
-              card: '#1f1f23',
+            kf: {
+              black: '#0D0E12',
+              dark: '#12141B',
+              surface: '#181A22',
+              card: '#1E202B',
+              hover: '#262937',
               border: 'rgba(255, 255, 255, 0.08)',
-              orange: '#ff914d',
-              coral: '#ff695a',
-              red: '#ee3d35',
-              magenta: '#8b236b',
-              emerald: '#10b981',
-              blue: '#0ea5e9'
+              borderLight: 'rgba(255, 255, 255, 0.16)',
+              orange: '#FF6A00',
+              orangeHover: '#FF7D1E',
+              coral: '#FF4D4D',
+              coralHover: '#FF6262',
+              crimson: '#EE2A24',
+              magenta: '#A82276',
+              purple: '#8424A6',
+              emerald: '#00C888',
+              cyan: '#00A3FF',
+              amber: '#F59E0B'
             }
           }
         }
@@ -50,21 +57,21 @@
     }
 
     body {
-      background-color: #101010;
-      color: #ffffff;
+      background-color: #0D0E12;
+      color: #F3F4F6;
       font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       overflow-x: hidden;
     }
 
-    /* Kanyon style discover card */
+    /* Kanyon Signature Discover Cards */
     .discover-card {
       position: relative;
       display: flex;
-      min-height: 185px;
+      min-height: 200px;
       align-items: flex-end;
       justify-content: space-between;
-      border-radius: 12px;
-      padding: 26px 24px;
+      border-radius: 16px;
+      padding: 28px 24px;
       color: #ffffff;
       overflow: hidden;
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
@@ -72,36 +79,38 @@
     }
 
     .discover-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.6);
     }
 
     .discover-card span {
-      font-size: 25px;
+      font-size: 26px;
       font-weight: 800;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      max-width: 78%;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      max-width: 80%;
+      z-index: 2;
     }
 
     .discover-card svg {
       position: absolute;
       top: 22px;
       right: 22px;
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       opacity: 0.95;
-      transition: transform 0.35s ease;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2;
     }
 
     .discover-card:hover svg {
-      transform: scale(1.12) rotate(4deg);
+      transform: scale(1.15) rotate(5deg);
     }
 
-    .discover-card-orange { background: linear-gradient(135deg, #ff914d 0%, #f27324 100%); }
-    .discover-card-coral { background: linear-gradient(135deg, #ff695a 0%, #e84b3a 100%); }
-    .discover-card-red { background: linear-gradient(135deg, #ee3d35 0%, #c42018 100%); }
-    .discover-card-magenta { background: linear-gradient(135deg, #8b236b 0%, #5e0e45 100%); }
+    .discover-card-orange { background: linear-gradient(135deg, #FF6A00 0%, #E65100 100%); }
+    .discover-card-coral  { background: linear-gradient(135deg, #FF4D4D 0%, #D82222 100%); }
+    .discover-card-red    { background: linear-gradient(135deg, #EE2A24 0%, #B7100B 100%); }
+    .discover-card-magenta{ background: linear-gradient(135deg, #A82276 0%, #6E0F4B 100%); }
 
     /* Section All Links (Kanyon Style Bottom Accent Line) */
     .section-all-link {
@@ -109,37 +118,39 @@
       align-items: center;
       gap: 8px;
       padding-bottom: 6px;
-      border-bottom: 2px solid #ee3d35;
+      border-bottom: 2px solid #FF4D4D;
       color: #ffffff;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
+      letter-spacing: -0.01em;
       transition: all 0.25s ease;
+      cursor: pointer;
     }
 
     .section-all-link:hover {
-      color: #ff914d;
-      border-color: #ff914d;
+      color: #FF6A00;
+      border-color: #FF6A00;
       gap: 12px;
     }
 
-    /* Flavour / Restaurant Image Card */
+    /* Flavour / Restaurant Card */
     .flavour-image-box {
       position: relative;
       height: 380px;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      background: #1c1c1e;
+      background: #181A22;
     }
 
     .flavour-image-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .flavour-card:hover .flavour-image-box img {
-      transform: scale(1.06);
+      transform: scale(1.08);
     }
 
     /* Marquee animation */
@@ -150,7 +161,7 @@
     .animate-marquee {
       display: flex;
       width: 200%;
-      animation: marquee 30s linear infinite;
+      animation: marquee 32s linear infinite;
     }
     .animate-marquee:hover {
       animation-play-state: paused;
@@ -158,33 +169,44 @@
 
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
+      width: 8px;
+      height: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #101010;
+      background: #0D0E12;
     }
     ::-webkit-scrollbar-thumb {
-      background: #282828;
-      border-radius: 3px;
+      background: #242735;
+      border-radius: 4px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: #ff914d;
+      background: #FF6A00;
+    }
+
+    /* Floor Plan Modal Pin Pulse */
+    @keyframes pinPulse {
+      0% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.4); opacity: 0.6; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .pin-pulse {
+      animation: pinPulse 2s infinite ease-in-out;
     }
   </style>
 </head>
-<body class="selection:bg-kanyon-orange selection:text-white">
+<body class="selection:bg-kf-orange selection:text-white">
 
-  <!-- ==================== HEADER (KANYON OFFICIAL STYLE) ==================== -->
-  <header class="sticky top-0 z-50 bg-[#101010]/95 backdrop-blur-md border-b border-white/10 transition-all">
+  <!-- ==================== HEADER (KANYON OFFICIAL LUXURY ARCHITECTURE) ==================== -->
+  <header class="sticky top-0 z-50 bg-[#0D0E12]/95 backdrop-blur-md border-b border-white/10 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Logo: KORU FLORYA -->
       <a href="#hero" class="flex items-center gap-3.5 group">
-        <div class="w-10 h-10 rounded-xl bg-kanyon-orange flex items-center justify-center font-extrabold text-white text-lg tracking-tighter shadow-md shadow-orange-500/20">
+        <div class="w-10 h-10 rounded-xl bg-kf-orange flex items-center justify-center font-black text-white text-lg tracking-tighter shadow-lg shadow-orange-500/25 group-hover:scale-105 transition-transform">
           KF
         </div>
         <div class="flex flex-col">
-          <span class="text-xl font-extrabold tracking-tight text-white uppercase group-hover:text-kanyon-orange transition-colors">
+          <span class="text-xl font-extrabold tracking-tight text-white uppercase group-hover:text-kf-orange transition-colors">
             KORU FLORYA
           </span>
           <span class="text-[10px] uppercase tracking-widest text-zinc-400 font-bold -mt-0.5">
@@ -193,13 +215,17 @@
         </div>
       </a>
 
-      <!-- Desktop Primary Nav -->
-      <nav class="hidden lg:flex items-center gap-8 text-[15px] font-bold text-zinc-300">
+      <!-- Desktop Primary Navigation -->
+      <nav class="hidden lg:flex items-center gap-7 text-[15px] font-bold text-zinc-300">
         <a href="#kesfet" class="hover:text-white transition-colors">Keşfet</a>
-        <a href="#markalar" class="hover:text-white transition-colors">Markalar</a>
-        <a href="#lezzetler" class="hover:text-white transition-colors">Lezzetler</a>
+        <a href="#markalar" class="hover:text-white transition-colors">Markalar (220+)</a>
+        <a href="#lezzetler" class="hover:text-white transition-colors">Lezzetler (34)</a>
         <a href="#etkinlikler" class="hover:text-white transition-colors">Etkinlikler</a>
         <a href="#hizmetler" class="hover:text-white transition-colors">Hizmetler</a>
+        <a href="#kat-plani" onclick="openFloorPlanModal()" class="text-kf-orange hover:text-white transition-colors flex items-center gap-1.5">
+          <span>Kat Planı</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-kf-orange"></span>
+        </a>
         <a href="#ulasim" class="hover:text-white transition-colors">Ulaşım & Saatler</a>
       </nav>
 
@@ -207,7 +233,7 @@
       <div class="flex items-center gap-3.5">
         
         <!-- Live Mall Status Chip -->
-        <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold text-emerald-400">
+        <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/70 border border-emerald-500/40 text-xs font-bold text-emerald-400">
           <span class="relative flex h-2 w-2">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
@@ -215,11 +241,19 @@
           <span id="header-status-badge">AÇIK • 10:00 - 22:00</span>
         </div>
 
-        <!-- Search Button (Cmd+K style modal) -->
-        <button onclick="openSearchModal()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-colors" title="Koru Florya'da Ara">
+        <!-- Quick Spotlight Search Button -->
+        <button onclick="openSearchModal()" class="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 flex items-center justify-center text-zinc-300 hover:text-white transition-colors" title="Koru Florya'da Ara (Cmd+K)">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
           </svg>
+        </button>
+
+        <!-- Floor Plan Modal Trigger -->
+        <button onclick="openFloorPlanModal()" class="hidden md:flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-extrabold text-white transition-colors" title="İnteraktif Kat Planı">
+          <svg class="w-4 h-4 text-kf-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+          </svg>
+          <span>Kat Planı</span>
         </button>
 
         <!-- Language Button -->
@@ -228,7 +262,7 @@
         </button>
 
         <!-- Directions CTA Button -->
-        <a href="#ulasim" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-extrabold text-xs uppercase tracking-wider transition-all">
+        <a href="#ulasim" class="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-extrabold text-xs uppercase tracking-wider transition-all shadow-md">
           <span>Yol Tarifi</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -246,110 +280,151 @@
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobile-nav" class="hidden lg:hidden bg-[#161616] border-b border-white/10 px-6 py-6 transition-all">
-      <div class="mb-6">
+    <div id="mobile-nav" class="hidden lg:hidden bg-[#12141B] border-b border-white/10 px-6 py-6 transition-all">
+      <div class="mb-5">
         <div class="relative">
-          <input type="text" id="mobile-search-box" onkeydown="if(event.key==='Enter') openSearchModal()" placeholder="Koru Florya'da ara..." class="w-full px-4 py-3 pl-10 rounded-xl bg-white/5 border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange">
+          <input type="text" id="mobile-search-box" onkeydown="if(event.key==='Enter') openSearchModal()" placeholder="Koru Florya'da mağaza veya lezzet ara..." class="w-full px-4 py-3 pl-10 rounded-xl bg-white/5 border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kf-orange">
           <svg class="w-4 h-4 text-zinc-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
           </svg>
         </div>
       </div>
-      <nav class="flex flex-col gap-4 text-base font-bold text-zinc-300">
-        <a href="#kesfet" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Keşfet</a>
-        <a href="#markalar" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Markalar (220+)</a>
-        <a href="#lezzetler" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Lezzetler (34)</a>
-        <a href="#etkinlikler" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Etkinlikler</a>
-        <a href="#hizmetler" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Hizmetler</a>
-        <a href="#ulasim" onclick="toggleMobileNav()" class="hover:text-white py-1">Ulaşım & Saatler</a>
+      <nav class="flex flex-col gap-3 text-base font-bold text-zinc-300">
+        <a href="#kesfet" onclick="toggleMobileNav()" class="hover:text-white py-1.5 border-b border-white/5">Keşfet</a>
+        <a href="#markalar" onclick="toggleMobileNav()" class="hover:text-white py-1.5 border-b border-white/5 flex items-center justify-between">
+          <span>Markalar</span>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-white">220+</span>
+        </a>
+        <a href="#lezzetler" onclick="toggleMobileNav()" class="hover:text-white py-1.5 border-b border-white/5 flex items-center justify-between">
+          <span>Lezzetler & Gastronomi</span>
+          <span class="text-xs px-2 py-0.5 rounded-full bg-kf-coral/20 text-kf-coral font-bold">34 Mekan</span>
+        </a>
+        <a href="#etkinlikler" onclick="toggleMobileNav()" class="hover:text-white py-1.5 border-b border-white/5">Etkinlikler & Fuar</a>
+        <a href="#hizmetler" onclick="toggleMobileNav()" class="hover:text-white py-1.5 border-b border-white/5">Hizmetler & Otopark</a>
+        <a href="javascript:void(0)" onclick="toggleMobileNav(); openFloorPlanModal()" class="text-kf-orange hover:text-white py-1.5 border-b border-white/5 flex items-center justify-between">
+          <span>İnteraktif Kat Planı</span>
+          <span>🗺️</span>
+        </a>
+        <a href="#ulasim" onclick="toggleMobileNav()" class="hover:text-white py-1.5">Ulaşım, Saatler & Marmaray Ring</a>
       </nav>
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION (MODERN ARCHITECTURAL SHOWCASE) ==================== -->
-  <section id="hero" class="relative min-h-[600px] lg:min-h-[660px] flex items-center justify-center overflow-hidden">
+  <!-- ==================== HERO SECTION (ARCHITECTURAL LUXURY SHOWCASE) ==================== -->
+  <section id="hero" class="relative min-h-[640px] lg:min-h-[720px] flex items-center justify-center overflow-hidden">
     
-    <!-- Hero Architectural Image -->
+    <!-- Hero Image Background with Ambient Dark Vignette -->
     <div class="absolute inset-0 z-0">
-      <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=2000&auto=format&fit=crop" 
+      <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=2200&auto=format&fit=crop" 
            alt="Koru Florya Modern Mimari" 
-           class="w-full h-full object-cover object-center filter brightness-[0.52]" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#101010] via-transparent to-[#101010]/70"></div>
+           class="w-full h-full object-cover object-center filter brightness-[0.45] scale-105" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0D0E12] via-[#0D0E12]/50 to-[#0D0E12]/80"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(13,14,18,0.7)_100%)]"></div>
     </div>
 
     <!-- Hero Content Container -->
     <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center pt-8 pb-16">
       
       <!-- Top Eyebrow Tag -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-extrabold text-white mb-6 uppercase tracking-wider">
+      <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-extrabold text-white mb-6 uppercase tracking-wider shadow-lg">
+        <span class="w-2 h-2 rounded-full bg-kf-emerald animate-pulse"></span>
         <span>İstanbul Florya</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-kanyon-orange"></span>
-        <span>Yaşam & Alışveriş</span>
+        <span class="text-white/40">•</span>
+        <span>Modern Alışveriş & Rezidans Yaşamı</span>
       </div>
 
       <!-- Main Headline: Bold Plus Jakarta Sans -->
-      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white max-w-4xl mb-6">
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.08] text-white max-w-4xl mb-6">
         Şehrin Ritmini <br />
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-kanyon-orange via-kanyon-coral to-white">Koru Florya'da Keşfet.</span>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-kf-orange via-kf-coral to-white">Koru Florya'da Keşfet.</span>
       </h1>
 
-      <p class="text-base sm:text-lg md:text-xl text-zinc-300 font-medium max-w-2xl leading-relaxed mb-8">
-        Modern mimari, 220'yi aşkın seçkin marka, 34 gurme lezzet durağı ve botanik koru ferahlığıyla Koru Florya'da yeni bir gün başlıyor.
+      <p class="text-base sm:text-lg md:text-xl text-zinc-300 font-medium max-w-2xl leading-relaxed mb-10">
+        Ödüllü modern mimari, 220'yi aşkın seçkin mağaza, 34 gurme lezzet durağı ve botanik koru ferahlığıyla Koru Florya'da yepyeni bir yaşam deneyimi.
       </p>
 
       <!-- Primary Action Buttons -->
       <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#kesfet" class="px-8 py-4 rounded-full bg-kanyon-orange hover:bg-orange-500 text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-xl shadow-orange-500/25 flex items-center gap-2">
+        <a href="#kesfet" class="px-8 py-4 rounded-full bg-kf-orange hover:bg-kf-orangeHover text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-xl shadow-orange-500/30 flex items-center gap-2 transform hover:-translate-y-0.5">
           <span>KEŞFET</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
           </svg>
         </a>
-        <a href="#markalar" class="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-sm uppercase tracking-wider backdrop-blur-md border border-white/15 transition-all">
-          Markaları Gör
+        <a href="#markalar" class="px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 text-white font-extrabold text-sm uppercase tracking-wider backdrop-blur-md border border-white/15 transition-all">
+          Markaları Gör (220+)
         </a>
+        <button onclick="openFloorPlanModal()" class="px-6 py-4 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white font-bold text-sm tracking-wide border border-white/10 transition-all flex items-center gap-2">
+          <span>🗺️ Kat Planı</span>
+        </button>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="mt-14 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-8 text-center w-full max-w-3xl">
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-white">220+</div>
+          <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold mt-1">Seçkin Marka</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-kf-coral">34</div>
+          <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold mt-1">Gurme Restoran</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-kf-emerald">2.500</div>
+          <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold mt-1">Araçlık Otopark</div>
+        </div>
+        <div>
+          <div class="text-3xl sm:text-4xl font-extrabold text-kf-cyan">30 dk</div>
+          <div class="text-xs uppercase tracking-wider text-zinc-400 font-bold mt-1">Ücretsiz Shuttle</div>
+        </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== LIVE TICKER ==================== -->
-  <div class="bg-[#18181a] border-y border-white/10 py-3.5 overflow-hidden relative">
-    <div class="flex items-center animate-marquee whitespace-nowrap text-xs font-bold tracking-wider text-zinc-300">
+  <!-- ==================== LIVE MARQUEE TICKER ==================== -->
+  <div class="bg-[#14161F] border-y border-white/10 py-3.5 overflow-hidden relative">
+    <div class="flex items-center animate-marquee whitespace-nowrap text-xs font-extrabold tracking-wider text-zinc-300">
       
       <span class="flex items-center mx-6 gap-2">
-        <span class="w-2 h-2 rounded-full bg-kanyon-orange"></span>
+        <span class="w-2 h-2 rounded-full bg-kf-orange"></span>
         <span class="text-white">İMZA GÜNÜ:</span> Celal Şengör — 15 Kasım, 14:00 (Koru Katı)
       </span>
       <span class="text-zinc-600">/</span>
 
       <span class="flex items-center mx-6 gap-2">
-        <span class="w-2 h-2 rounded-full bg-kanyon-red"></span>
+        <span class="w-2 h-2 rounded-full bg-kf-crimson"></span>
         <span class="text-white">KİTAP FUARI:</span> 4 – 22 Kasım tarihleri arasında Koru Katı Fuaye Alanı
       </span>
       <span class="text-zinc-600">/</span>
 
       <span class="flex items-center mx-6 gap-2">
-        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="w-2 h-2 rounded-full bg-kf-emerald"></span>
         <span class="text-white">ÜCRETSİZ SERVİS:</span> Marmaray Florya durağından her 30 dakikada bir ring
       </span>
       <span class="text-zinc-600">/</span>
 
       <span class="flex items-center mx-6 gap-2">
-        <span class="w-2 h-2 rounded-full bg-kanyon-coral"></span>
+        <span class="w-2 h-2 rounded-full bg-kf-coral"></span>
         <span class="text-white">ALTINBAŞ HALK GÜNLERİ:</span> 1 – 11 Kasım seçili pırlanta ürünlerinde %50 indirim
       </span>
       <span class="text-zinc-600">/</span>
 
-      <!-- Duplicate for seamless scroll -->
       <span class="flex items-center mx-6 gap-2">
-        <span class="w-2 h-2 rounded-full bg-kanyon-orange"></span>
+        <span class="w-2 h-2 rounded-full bg-kf-cyan"></span>
+        <span class="text-white">E-ŞARJ NOKTASI:</span> Porsche Destination & Trugo 180kW Hızlı Şarj P1 Katında
+      </span>
+      <span class="text-zinc-600">/</span>
+
+      <!-- Seamless Loop Clones -->
+      <span class="flex items-center mx-6 gap-2">
+        <span class="w-2 h-2 rounded-full bg-kf-orange"></span>
         <span class="text-white">İMZA GÜNÜ:</span> Celal Şengör — 15 Kasım, 14:00 (Koru Katı)
       </span>
       <span class="text-zinc-600">/</span>
 
       <span class="flex items-center mx-6 gap-2">
-        <span class="w-2 h-2 rounded-full bg-kanyon-red"></span>
+        <span class="w-2 h-2 rounded-full bg-kf-crimson"></span>
         <span class="text-white">KİTAP FUARI:</span> 4 – 22 Kasım tarihleri arasında Koru Katı Fuaye Alanı
       </span>
       <span class="text-zinc-600">/</span>
@@ -357,12 +432,12 @@
     </div>
   </div>
 
-  <!-- ==================== SECTION: KEŞFET (4 KANYON CARDS) ==================== -->
+  <!-- ==================== SECTION: KEŞFET (4 ICONIC KANYON CARDS) ==================== -->
   <section id="kesfet" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-10">
       <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Keşfet</h2>
       <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
-        Koru Florya'da ilham veren markaları, lezzetleri, etkinlikleri ve deneyimleri keşfet.
+        Koru Florya'da ilham veren markaları, gurme lezzetleri, kültür-sanat etkinliklerini ve konforlu hizmetleri keşfet.
       </p>
     </div>
 
@@ -405,50 +480,61 @@
   </section>
 
   <!-- ==================== SECTION: ETKİNLİKLER (EVENTS) ==================== -->
-  <section id="etkinlikler" class="py-20 bg-[#141414] border-t border-white/5">
+  <section id="etkinlikler" class="py-20 bg-[#12141B] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kf-crimson/20 border border-kf-crimson/40 text-xs font-extrabold text-kf-coral mb-3 uppercase tracking-wider">
+            Kültür & Sanat Takvimi
+          </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Etkinlikler</h2>
           <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
-            Konserlerden atölyelere, imza günlerinden özel buluşmalara kadar Koru Florya’daki güncel etkinlikleri keşfet.
+            İmza günlerinden fuarlara, çocuk atölyelerinden konserlere uzanan dopdolu bir takvim.
           </p>
         </div>
         <a href="#etkinlikler" class="section-all-link">
-          <span>Tümünü İncele</span>
+          <span>Tüm Takvimi İncele</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
 
-      <!-- Events Grid: 1 Featured Big Card + 2 Secondary Cards -->
+      <!-- Events Grid: 1 Big Hero Card + 2 Editorial Stack Cards -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         <!-- Big Featured Card: Celal Şengör İmza Günü -->
-        <div class="lg:col-span-7 bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-red transition-all group flex flex-col justify-between">
+        <div class="lg:col-span-7 bg-[#1A1D26] rounded-3xl overflow-hidden border border-white/10 hover:border-kf-crimson/60 transition-all group flex flex-col justify-between shadow-xl">
           <div class="relative h-72 sm:h-96 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1200&auto=format&fit=crop" 
                  alt="Celal Şengör İmza Günü Koru Florya" 
                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-red text-white text-xs font-extrabold uppercase tracking-wider shadow-lg">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#1A1D26] via-transparent to-transparent"></div>
+            <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kf-crimson text-white text-xs font-extrabold uppercase tracking-wider shadow-lg">
               Öne Çıkan Etkinlik
             </div>
-            <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md text-xs font-bold text-white">
-              📅 15 Kasım 2026 • Saat 14:00
+            <div class="absolute bottom-4 left-4 px-4 py-2 rounded-xl bg-black/80 backdrop-blur-md text-xs font-bold text-white flex items-center gap-2 border border-white/10">
+              <span class="text-kf-orange">📅</span>
+              <span>15 Kasım 2026 • Saat 14:00</span>
             </div>
           </div>
           <div class="p-6 sm:p-8">
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-kanyon-red transition-colors">
-              Celal Şengör İmza Günü
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-kf-coral transition-colors">
+              Prof. Dr. Celal Şengör İmza Günü
             </h3>
             <p class="text-sm sm:text-base text-zinc-400 mt-3 leading-relaxed">
-              Koru Florya Kitap Fuarı kapsamında Prof. Dr. Celal Şengör kitapseverlerle buluşuyor. Bilim, jeoloji ve felsefe üzerine sohbet ve imza günü etkinliğini kaçırmayın.
+              Koru Florya Kitap Fuarı kapsamında Prof. Dr. Celal Şengör kitapseverlerle buluşuyor. Bilim, jeoloji ve felsefe üzerine söyleşi ve imza günü etkinliğini kaçırmayın.
             </p>
-            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
-              <span class="text-emerald-400">📍 Koru Katı • Fuar Alanı</span>
-              <span class="text-kanyon-red flex items-center gap-1 group-hover:translate-x-1 transition-transform">Etkinlik Detayı →</span>
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-bold">
+              <span class="text-kf-emerald flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-kf-emerald"></span>
+                <span>Koru Katı • Ana Fuaye</span>
+              </span>
+              <button onclick="alert('Celal Şengör İmza Günü 15 Kasım Cumartesi saat 14:00\'te Koru Katı Fuar Alanında gerçekleştirilecektir. Katılım ücretsizdir.')" class="text-kf-coral hover:text-white flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                <span>Etkinlik Detayı</span>
+                <span>→</span>
+              </button>
             </div>
           </div>
         </div>
@@ -457,49 +543,51 @@
         <div class="lg:col-span-5 flex flex-col gap-6">
           
           <!-- Event 2: Kitap Fuarı -->
-          <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-orange transition-all group flex-1 flex flex-col justify-between">
+          <div class="bg-[#1A1D26] rounded-3xl overflow-hidden border border-white/10 hover:border-kf-orange/60 transition-all group flex-1 flex flex-col justify-between shadow-xl">
             <div class="relative h-48 overflow-hidden">
               <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop" 
                    alt="Koru Florya Kitap Fuarı" 
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-kanyon-orange text-white text-[11px] font-extrabold uppercase">
-                4 – 22 Kasım
+              <div class="absolute inset-0 bg-gradient-to-t from-[#1A1D26] via-transparent to-transparent"></div>
+              <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-kf-orange text-white text-[11px] font-extrabold uppercase shadow">
+                4 – 22 Kasım 2026
               </div>
             </div>
-            <div class="p-5">
-              <h3 class="text-xl font-bold text-white group-hover:text-kanyon-orange transition-colors">
+            <div class="p-6">
+              <h3 class="text-xl font-extrabold text-white group-hover:text-kf-orange transition-colors">
                 Koru Florya Kitap Fuarı
               </h3>
-              <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Yüzlerce yayınevi, binlerce kitap ve yazar söyleşileriyle dolu 3 haftalık kültür şöleni Koru Katı'nda.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+                Yüzlerce seçkin yayınevi, binlerce kitap ve yazar söyleşileriyle dolu 3 haftalık kültür şöleni Koru Katı'nda.
               </p>
-              <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
-                <span>📍 Koru Katı Fuaye</span>
-                <span class="text-kanyon-orange">Detay →</span>
+              <div class="mt-5 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-bold text-zinc-400">
+                <span class="text-zinc-300">📍 Koru Katı Fuaye</span>
+                <button onclick="alert('Koru Florya Kitap Fuarı 4-22 Kasım tarihleri arasında her gün 10:00-22:00 saatleri arasında açıktır.')" class="text-kf-orange hover:text-white transition-colors">Detayları Gör →</button>
               </div>
             </div>
           </div>
 
           <!-- Event 3: Ahmet Ümit İmza Günü -->
-          <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-magenta transition-all group flex-1 flex flex-col justify-between">
+          <div class="bg-[#1A1D26] rounded-3xl overflow-hidden border border-white/10 hover:border-kf-magenta/60 transition-all group flex-1 flex flex-col justify-between shadow-xl">
             <div class="relative h-48 overflow-hidden">
               <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
                    alt="Ahmet Ümit İmza Günü" 
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-kanyon-magenta text-white text-[11px] font-extrabold uppercase">
+              <div class="absolute inset-0 bg-gradient-to-t from-[#1A1D26] via-transparent to-transparent"></div>
+              <div class="absolute top-3.5 left-3.5 px-3 py-1 rounded-full bg-kf-magenta text-white text-[11px] font-extrabold uppercase shadow">
                 8 Kasım • 14:00
               </div>
             </div>
-            <div class="p-5">
-              <h3 class="text-xl font-bold text-white group-hover:text-kanyon-magenta transition-colors">
-                Ahmet Ümit İmza Günü
+            <div class="p-6">
+              <h3 class="text-xl font-extrabold text-white group-hover:text-kf-magenta transition-colors">
+                Ahmet Ümit İmza Günü & Söyleşi
               </h3>
-              <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-                Usta polisiye yazarı Ahmet Ümit yeni romanı ve sevilen klasiklerini Koru Florya okurları için imzalıyor.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-2 leading-relaxed">
+                Usta polisiye yazarı Ahmet Ümit, yeni romanı ve sevilen Başkomiser Nevzat serisi için okurlarıyla buluşuyor.
               </p>
-              <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
-                <span>📍 Koru Katı</span>
-                <span class="text-kanyon-magenta">Detay →</span>
+              <div class="mt-5 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-bold text-zinc-400">
+                <span class="text-zinc-300">📍 D&R Koru Katı Alanı</span>
+                <button onclick="alert('Ahmet Ümit İmza Günü 8 Kasım Pazar günü saat 14:00\'te D&R fuaye alanında gerçekleşecektir.')" class="text-kf-magenta hover:text-white transition-colors">Detayları Gör →</button>
               </div>
             </div>
           </div>
@@ -511,17 +599,20 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION: LEZZETLER (CULINARY EXPERIENCES) ==================== -->
+  <!-- ==================== SECTION: LEZZETLER (CULINARY / 34 GOURMET SPOTS) ==================== -->
   <section id="lezzetler" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     
     <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
       <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kf-coral/20 border border-kf-coral/40 text-xs font-extrabold text-kf-coral mb-3 uppercase tracking-wider">
+          Gastronomi & Buluşma Noktaları
+        </div>
         <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Lezzetler</h2>
         <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
-          Dünya mutfaklarından seçkin restoranlara, kahve duraklarından tatlı molalarına uzanan lezzetleri keşfet.
+          Dünya mutfaklarından seçkin restoranlara, açık hava teraslarından üçüncü nesil kahve duraklarına uzanan lezzetleri keşfet.
         </p>
       </div>
-      <a href="#lezzetler" class="section-all-link">
+      <a href="#markalar" onclick="filterBrands('yeme-icme')" class="section-all-link">
         <span>Tümünü İncele (34 Mekan)</span>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
@@ -533,19 +624,22 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       
       <!-- Restaurant 1: Shake Shack -->
-      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Shake Shack', 'Koru Katı • Giriş Bahçesi', '10:00 - 22:30')">
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Shake Shack', 'Koru Katı • Giriş Bahçesi', '10:00 - 22:30', '0212 555 10 01', 'New York ikonik gurme burger & el yapımı shake lezzetleri.')">
         <div class="flavour-image-box">
           <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop" 
                alt="Shake Shack Koru Florya" loading="lazy">
-          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-emerald-400">
+          <span class="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-xs font-extrabold text-kf-emerald border border-white/10">
             Koru Katı (Giriş)
           </span>
+          <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-[11px] font-bold text-zinc-300">
+            Açık Bahçe Alanı
+          </span>
         </div>
-        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kf-coral transition-colors">
           Shake Shack
         </h3>
         <p class="text-sm text-zinc-400 font-medium mt-1">New York Gurme Burger & Shake</p>
-        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kf-coral transition-colors">
           <span>Kat Planında Gör</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
@@ -554,19 +648,22 @@
       </article>
 
       <!-- Restaurant 2: Happy Moon's -->
-      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı • 2. Kat Açık Hava Terası', '10:00 - 23:00')">
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı • 2. Kat Açık Hava Terası', '10:00 - 23:30', '0212 555 10 02', 'Geniş açık hava terasında dünya mutfağı, zengin kahvaltı ve kokteyller.')">
         <div class="flavour-image-box">
           <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" 
                alt="Happy Moon's Koru Florya" loading="lazy">
-          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-kanyon-orange">
-            Cadde Katı (2. Kat)
+          <span class="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-xs font-extrabold text-kf-orange border border-white/10">
+            Cadde Katı (Teras)
+          </span>
+          <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-[11px] font-bold text-zinc-300">
+            Panoramik Teras
           </span>
         </div>
-        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kf-coral transition-colors">
           Happy Moon's
         </h3>
         <p class="text-sm text-zinc-400 font-medium mt-1">Dünya Mutfağı & Teras Brasserie</p>
-        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kf-coral transition-colors">
           <span>Kat Planında Gör</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
@@ -575,19 +672,22 @@
       </article>
 
       <!-- Restaurant 3: Divan Pub & Bistro -->
-      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Divan Pub', 'Koru Katı • No: 12', '10:00 - 23:00')">
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Divan Pub', 'Koru Katı • No: 12', '10:00 - 23:00', '0212 555 10 03', 'Türk ve dünya mutfağının rafine lezzetleri, usta şefler ve şık bistro atmosferi.')">
         <div class="flavour-image-box">
           <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop" 
                alt="Divan Pub Koru Florya" loading="lazy">
-          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-blue-400">
-            Koru Katı
+          <span class="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-xs font-extrabold text-blue-400 border border-white/10">
+            Koru Katı No: 12
+          </span>
+          <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-[11px] font-bold text-zinc-300">
+            Fine Dining
           </span>
         </div>
-        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kf-coral transition-colors">
           Divan Pub
         </h3>
         <p class="text-sm text-zinc-400 font-medium mt-1">Klasik Gastronomi & Şarap Kavı</p>
-        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kf-coral transition-colors">
           <span>Kat Planında Gör</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
@@ -596,19 +696,22 @@
       </article>
 
       <!-- Restaurant 4: Tchibo Artisan Coffee -->
-      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Tchibo', 'Koru Katı • No: 04', '10:00 - 22:00')">
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Tchibo', 'Koru Katı • No: 04', '10:00 - 22:00', '0212 555 10 04', 'Özel çekirdek kahve çeşitleri, taze cheesecake ve haftalık keşif ürünleri.')">
         <div class="flavour-image-box">
           <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=800&auto=format&fit=crop" 
                alt="Tchibo Koru Florya" loading="lazy">
-          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-amber-400">
-            Koru Katı
+          <span class="absolute top-3 left-3 px-3 py-1.5 rounded-full bg-black/85 backdrop-blur-md text-xs font-extrabold text-amber-400 border border-white/10">
+            Koru Katı No: 04
+          </span>
+          <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-md bg-black/75 backdrop-blur-md text-[11px] font-bold text-zinc-300">
+            Kahve & Tatlı
           </span>
         </div>
-        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kf-coral transition-colors">
           Tchibo Coffee
         </h3>
         <p class="text-sm text-zinc-400 font-medium mt-1">Taze Çekirdek Kahve & Tatlı</p>
-        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kf-coral transition-colors">
           <span>Kat Planında Gör</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
@@ -619,322 +722,350 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION: MARKALAR (EXPANDED DIRECTORY & FILTER) ==================== -->
-  <section id="markalar" class="py-20 bg-[#141414] border-t border-white/5">
+  <!-- ==================== SECTION: MARKALAR (COMPREHENSIVE DIRECTORY & DUAL VIEW) ==================== -->
+  <section id="markalar" class="py-20 bg-[#12141B] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
+      <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
         <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kf-orange/20 border border-kf-orange/40 text-xs font-extrabold text-kf-orange mb-3 uppercase tracking-wider">
+            Mağaza Rehberi
+          </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Markalar</h2>
           <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
-            220'yi aşkın seçkin moda, saat, teknoloji ve kozmetik markası Koru Florya'da.
+            220'yi aşkın uluslararası moda, lüks saat, kozmetik ve teknoloji markası Koru Florya'da.
           </p>
         </div>
 
-        <!-- Real-time Filter Search Input -->
-        <div class="relative w-full md:w-80">
-          <input id="brand-search" type="text" placeholder="Marka veya kategori ara..." 
-                 class="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#1c1c1e] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange transition-all">
-          <svg class="w-5 h-5 text-zinc-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-          </svg>
+        <!-- Controls: Search Input + Grid/List View Switcher -->
+        <div class="flex items-center gap-3 w-full md:w-auto">
+          <!-- Real-time Filter Search Input -->
+          <div class="relative flex-1 md:w-80">
+            <input id="brand-search" type="text" oninput="handleSearch()" placeholder="Marka veya kategori ara..." 
+                   class="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#1A1D26] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kf-orange transition-all">
+            <svg class="w-5 h-5 text-zinc-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+            </svg>
+          </div>
+
+          <!-- View Mode Toggle (Grid vs List) -->
+          <div class="flex items-center bg-[#1A1D26] border border-white/10 rounded-xl p-1">
+            <button id="view-grid-btn" onclick="setViewMode('grid')" class="p-2.5 rounded-lg bg-white/15 text-white transition-all" title="Kart Görünümü">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+              </svg>
+            </button>
+            <button id="view-list-btn" onclick="setViewMode('list')" class="p-2.5 rounded-lg text-zinc-400 hover:text-white transition-all" title="Dizin Liste Görünümü">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Category Filter Pills -->
-      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 no-scrollbar text-xs font-bold">
-        <button onclick="filterBrands('all')" class="brand-pill active px-5 py-2.5 rounded-full bg-white text-black transition-all">TÜMÜ (220+)</button>
-        <button onclick="filterBrands('moda')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">MODA & GİYİM</button>
-        <button onclick="filterBrands('yeme-icme')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">YEME & İÇME</button>
-        <button onclick="filterBrands('mucevher')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">SAAT & MÜCEVHER</button>
-        <button onclick="filterBrands('kozmetik')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">KOZMETİK & BAKIM</button>
-        <button onclick="filterBrands('teknoloji')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">TEKNOLOJİ</button>
-        <button onclick="filterBrands('hizmet')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">HİZMET & DİĞER</button>
-      </div>
-
-      <!-- Brands Grid Container -->
-      <div id="brands-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <!-- Dual Filter Bars: Categories + Floors -->
+      <div class="space-y-3 mb-8">
         
-        <!-- Brand 1: Altınbaş -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="mucevher" data-name="Altınbaş">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-amber-400">Cadde Katı</span>
-              <span class="text-[11px] text-zinc-400">No: 14</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Altınbaş</h4>
-            <p class="text-xs text-zinc-400 mt-1">Saat & Mücevherat</p>
-          </div>
-          <button onclick="showStoreOnFloor('Altınbaş', 'Cadde Katı No: 14', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
+        <!-- Category Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar text-xs font-extrabold">
+          <span class="text-zinc-500 uppercase tracking-wider text-[11px] mr-2">Kategoriler:</span>
+          <button onclick="filterBrands('all', this)" class="cat-pill active px-4 py-2 rounded-full bg-white text-black transition-all">TÜMÜ (220+)</button>
+          <button onclick="filterBrands('moda', this)" class="cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">MODA & GİYİM</button>
+          <button onclick="filterBrands('yeme-icme', this)" class="cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">YEME & İÇME</button>
+          <button onclick="filterBrands('mucevher', this)" class="cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">SAAT & MÜCEVHER</button>
+          <button onclick="filterBrands('kozmetik', this)" class="cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">KOZMETİK & SAĞLIK</button>
+          <button onclick="filterBrands('teknoloji', this)" class="cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">TEKNOLOJİ & YAŞAM</button>
+          <button onclick="filterBrands('hizmet', this)" class="cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">HİZMET & DİĞER</button>
         </div>
 
-        <!-- Brand 2: Shake Shack -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="yeme-icme" data-name="Shake Shack">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-emerald-400">Koru Katı</span>
-              <span class="text-[11px] text-zinc-400">Giriş Bahçesi</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Shake Shack</h4>
-            <p class="text-xs text-zinc-400 mt-1">Yeme & İçme</p>
-          </div>
-          <button onclick="showStoreOnFloor('Shake Shack', 'Koru Katı Giriş Bahçesi', '10:00 - 22:30')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
+        <!-- Floor Filter Pills -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 no-scrollbar text-xs font-bold text-zinc-400">
+          <span class="text-zinc-500 uppercase tracking-wider text-[11px] mr-2">Kat Seçimi:</span>
+          <button onclick="filterFloor('all', this)" class="floor-pill active px-3.5 py-1.5 rounded-lg bg-kf-surface text-white border border-white/20 transition-all">Tüm Katlar</button>
+          <button onclick="filterFloor('koru', this)" class="floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all">Koru Katı</button>
+          <button onclick="filterFloor('cadde', this)" class="floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all">Cadde Katı</button>
+          <button onclick="filterFloor('1kat', this)" class="floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all">1. Kat</button>
+          <button onclick="filterFloor('2kat', this)" class="floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all">2. Kat & Teras</button>
+          <button onclick="filterFloor('otopark', this)" class="floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all">Otopark P1/P2</button>
         </div>
 
-        <!-- Brand 3: Happy Moon's -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="yeme-icme" data-name="Happy Moon's">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-kanyon-orange">Cadde Katı</span>
-              <span class="text-[11px] text-zinc-400">2. Kat Teras</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Happy Moon's</h4>
-            <p class="text-xs text-zinc-400 mt-1">Yeme & İçme</p>
-          </div>
-          <button onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı 2. Kat Teras', '10:00 - 23:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
-        </div>
+      </div>
 
-        <!-- Brand 4: Dry Clean Express -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="hizmet" data-name="Dry Clean Express">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-blue-400">Koru Katı</span>
-              <span class="text-[11px] text-zinc-400">Otopark Girişi</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Dry Clean Express</h4>
-            <p class="text-xs text-zinc-400 mt-1">Organik Kuru Temizleme</p>
-          </div>
-          <button onclick="showStoreOnFloor('Dry Clean Express', 'Koru Katı Otopark Girişi', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
-        </div>
+      <!-- Live Results Counter -->
+      <div class="flex items-center justify-between text-xs font-bold text-zinc-400 mb-6 px-1">
+        <div><span id="results-count" class="text-white font-extrabold text-sm">28</span> mağaza listeleniyor</div>
+        <div class="text-zinc-500">Koru Florya Mağaza Dizin Kılavuzu</div>
+      </div>
 
-        <!-- Brand 5: ADL -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="moda" data-name="ADL">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-pink-400">Cadde Katı</span>
-              <span class="text-[11px] text-zinc-400">No: 28</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">ADL</h4>
-            <p class="text-xs text-zinc-400 mt-1">Kadın Giyim & Tasarım</p>
-          </div>
-          <button onclick="showStoreOnFloor('ADL', 'Cadde Katı No: 28', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
-        </div>
+      <!-- GRID VIEW CONTAINER -->
+      <div id="brands-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Rendered dynamically by JavaScript -->
+      </div>
 
-        <!-- Brand 6: Sephora -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="kozmetik" data-name="Sephora">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-rose-400">Koru Katı</span>
-              <span class="text-[11px] text-zinc-400">No: 08</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Sephora</h4>
-            <p class="text-xs text-zinc-400 mt-1">Lüks Kozmetik & Parfüm</p>
-          </div>
-          <button onclick="showStoreOnFloor('Sephora', 'Koru Katı No: 08', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
+      <!-- LIST VIEW CONTAINER (Table style directory) -->
+      <div id="brands-list" class="hidden overflow-hidden rounded-2xl border border-white/10 bg-[#181A22]">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm text-zinc-300">
+            <thead class="bg-[#12141B] text-xs uppercase font-extrabold text-zinc-400 border-b border-white/10">
+              <tr>
+                <th class="py-4 px-6">Marka Adı</th>
+                <th class="py-4 px-6">Kategori</th>
+                <th class="py-4 px-6">Kat & Konum</th>
+                <th class="py-4 px-6">Çalışma Saatleri</th>
+                <th class="py-4 px-6 text-right">Aksiyon</th>
+              </tr>
+            </thead>
+            <tbody id="brands-table-body" class="divide-y divide-white/5 font-medium">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
         </div>
-
-        <!-- Brand 7: Vakko -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="moda" data-name="Vakko">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-amber-300">Cadde Katı</span>
-              <span class="text-[11px] text-zinc-400">No: 01</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Vakko</h4>
-            <p class="text-xs text-zinc-400 mt-1">Haute Couture & Yaşam</p>
-          </div>
-          <button onclick="showStoreOnFloor('Vakko', 'Cadde Katı No: 01', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
-        </div>
-
-        <!-- Brand 8: Bang & Olufsen -->
-        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="teknoloji" data-name="Bang & Olufsen">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold text-purple-400">Cadde Katı</span>
-              <span class="text-[11px] text-zinc-400">No: 02</span>
-            </div>
-            <h4 class="text-xl font-extrabold text-white">Bang & Olufsen</h4>
-            <p class="text-xs text-zinc-400 mt-1">High-End Akustik Ses</p>
-          </div>
-          <button onclick="showStoreOnFloor('Bang & Olufsen', 'Cadde Katı No: 02', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
-            <span>Kat Planında Gör</span>
-            <span>→</span>
-          </button>
-        </div>
-
       </div>
 
       <!-- Empty Feedback -->
-      <div id="no-brands-msg" class="hidden text-center py-16">
-        <p class="text-lg font-semibold text-zinc-400">Aramanıza uygun marka bulunamadı.</p>
-        <button onclick="filterBrands('all')" class="mt-4 px-6 py-2.5 rounded-full bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition-colors">Filtreleri Temizle</button>
+      <div id="no-brands-msg" class="hidden text-center py-20 bg-[#181A22] rounded-3xl border border-white/5 mt-4">
+        <div class="text-4xl mb-3">🔍</div>
+        <p class="text-lg font-bold text-white">Aramanıza uygun marka bulunamadı.</p>
+        <p class="text-xs text-zinc-400 mt-1">Farklı bir arama terimi deneyin veya filtreleri sıfırlayın.</p>
+        <button onclick="resetFilters()" class="mt-5 px-6 py-2.5 rounded-full bg-kf-orange text-xs font-extrabold text-white hover:bg-orange-500 transition-colors">Filtreleri Temizle</button>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION: HİZMETLER (SERVICES - RICH SHOWCASE) ==================== -->
+  <!-- ==================== SECTION: HİZMETLER (SERVICES - RICH BENTO SHOWCASE) ==================== -->
   <section id="hizmetler" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="mb-12">
-      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Hizmetler</h2>
-      <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
-        Koru Florya'da konforunuzu ve yaşam kalitenizi artırmak için tasarlanan ayrıcalıklar.
-      </p>
+    
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kf-magenta/20 border border-kf-magenta/40 text-xs font-extrabold text-kf-magenta mb-3 uppercase tracking-wider">
+          Ayrıcalıklar & Konfor
+        </div>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Hizmetler</h2>
+        <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
+          Koru Florya'da konforunuzu, güvenliğinizi ve yaşam kalitenizi en üst seviyeye taşımak için sunulan ayrıcalıklar.
+        </p>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="text-xs font-bold text-emerald-400 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/50 border border-emerald-500/20">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Tüm Hizmet Birimleri Aktif</span>
+        </span>
+      </div>
     </div>
 
-    <!-- Rich 4-Card Service Showcase with Real Imagery & Interactive Features -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Rich Bento-Grid Services Showcase -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       
-      <!-- Service 1: Marmaray Shuttle with Live Countdown -->
-      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-orange/50 transition-all flex flex-col justify-between group">
-        <div class="relative h-60 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1000&auto=format&fit=crop" 
-               alt="Koru Florya Marmaray Shuttle Servis" 
-               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
-          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-orange text-white text-xs font-extrabold uppercase tracking-wider">
-            Ücretsiz Ring Servis
+      <!-- Service 1: Marmaray Florya Shuttle (Featured Hero Box) -->
+      <div class="lg:col-span-2 bg-[#181A22] rounded-3xl p-8 border border-white/10 hover:border-kf-orange/50 transition-all flex flex-col justify-between group shadow-xl relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-kf-orange/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-kf-orange text-white text-xs font-black uppercase tracking-wider">
+              Ücretsiz Ring Servis
+            </span>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              Her 30 Dakikada Bir
+            </span>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-kf-orange transition-colors">
+            Marmaray Florya Servisi & Ring Hattı
+          </h3>
+          <p class="text-sm sm:text-base text-zinc-300 mt-3 leading-relaxed max-w-2xl">
+            Marmaray Florya istasyonu ile Koru Florya ana kapısı arasında gün boyu kesintisiz ve konforlu lüks ring servisimiz ücretsiz olarak misafirlerimize hizmet vermektedir.
+          </p>
+
+          <!-- Interactive Live Departure Table -->
+          <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Sonraki Kalkış</span>
+              <div id="shuttle-live-time" class="text-3xl font-extrabold text-kf-emerald mt-1">14:30</div>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Koru Florya Ana Kapı</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Güzergah Süresi</span>
+              <div class="text-3xl font-extrabold text-white mt-1">6 dk</div>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Doğrudan Sahil Hattı</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white/5 border border-white/5">
+              <span class="text-[11px] font-bold text-zinc-400 uppercase tracking-wider">Çalışma Saatleri</span>
+              <div class="text-2xl font-extrabold text-white mt-1">10:00 - 22:00</div>
+              <p class="text-[11px] text-zinc-400 mt-0.5">Haftanın 7 Günü</p>
+            </div>
           </div>
         </div>
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-extrabold text-white">Marmaray Florya Servisi</h3>
-            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Her 30 Dakikada Bir</span>
+
+        <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+          <div class="text-xs text-zinc-400 font-medium">
+            Duraklar: <strong class="text-white">Florya Marmaray Çıkışı ⇄ Sahil Yolu ⇄ Koru Florya Ana Giriş</strong>
           </div>
-          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-            Marmaray Florya istasyonu ile Koru Florya ana kapısı arasında gün boyu kesintisiz ve konforlu lüks ring servisimiz ücretsiz olarak hizmetinizdedir.
-          </p>
-          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="text-xs font-bold text-zinc-400 uppercase">Sonraki Kalkış</span>
-              <div id="shuttle-countdown-text" class="text-2xl font-extrabold text-emerald-400 mt-0.5">14:28</div>
-            </div>
-            <a href="#ulasim" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
-              Saatleri İncele →
-            </a>
-          </div>
+          <a href="#ulasim" class="px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black text-xs font-black transition-all">
+            Detaylı Saat Listesi →
+          </a>
         </div>
       </div>
 
-      <!-- Service 2: Vale & Elektrikli Hızlı Şarj İstasyonu -->
-      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-coral/50 transition-all flex flex-col justify-between group">
-        <div class="relative h-60 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1000&auto=format&fit=crop" 
-               alt="Koru Florya Vale ve Otopark" 
-               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
-          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-coral text-white text-xs font-extrabold uppercase tracking-wider">
-            2500 Araç Kapasitesi
+      <!-- Service 2: Akıllı Otopark & Porsche E-Şarj İstasyonu -->
+      <div class="bg-[#181A22] rounded-3xl p-8 border border-white/10 hover:border-kf-cyan/50 transition-all flex flex-col justify-between group shadow-xl relative overflow-hidden">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-kf-cyan text-white text-xs font-black uppercase tracking-wider">
+              2.500 Araç Kapasitesi
+            </span>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">
+              180 kW Ultra Hızlı
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-extrabold text-white group-hover:text-kf-cyan transition-colors">
+            Vale & E-Şarj İstasyonu
+          </h3>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Ana giriş kapısında profesyonel vale karşılama, akıllı plaka tanıma ve Porsche / Trugo 180kW DC ultra hızlı şarj istasyonları P1 katında hizmetinizde.
+          </p>
+
+          <!-- Parking occupancy indicator -->
+          <div class="mt-6 space-y-3">
+            <div>
+              <div class="flex justify-between text-xs font-bold text-zinc-300 mb-1">
+                <span>P1 Katı (Vale & VIP)</span>
+                <span class="text-kf-emerald">Boş Alan Var (%45)</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+                <div class="w-[45%] h-full bg-kf-emerald rounded-full"></div>
+              </div>
+            </div>
+            <div>
+              <div class="flex justify-between text-xs font-bold text-zinc-300 mb-1">
+                <span>P2 & P3 Katı (Genel)</span>
+                <span class="text-kf-cyan">Boş Alan Var (%35)</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-white/10 overflow-hidden">
+                <div class="w-[35%] h-full bg-kf-cyan rounded-full"></div>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-extrabold text-white">Vale & E-Şarj İstasyonları</h3>
-            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">180 kW Ultra Hızlı</span>
-          </div>
-          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-            Ana giriş kapısında profesyonel vale karşılama, akıllı plaka tanıma sistemi ve Porsche / Trugo yüksek hızlı elektrikli araç şarj üniteleri.
-          </p>
-          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="text-xs font-bold text-zinc-400 uppercase">Otopark Durumu</span>
-              <div class="text-sm font-extrabold text-white mt-0.5">Kapalı Otopark P1 - P3 Katları</div>
-            </div>
-            <a href="#ulasim" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
-              Yol Tarifi Al →
-            </a>
-          </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs text-zinc-400">Ücretsiz 3 Saat Otopark</span>
+          <button onclick="showStoreOnFloor('Vale & Otopark', 'Kapalı Otopark P1 Katı', '10:00 - 22:30', '0212 555 10 00', 'Ana kapı vale ve P1/P2 katlarında elektrikli şarj istasyonları.')" class="text-xs font-extrabold text-kf-cyan hover:underline">
+            Kat Planında Gör →
+          </button>
         </div>
       </div>
 
-      <!-- Service 3: Dry Clean Express -->
-      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-red/50 transition-all flex flex-col justify-between group">
-        <div class="relative h-60 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1545173168-9f1907e80789?q=80&w=1000&auto=format&fit=crop" 
-               alt="Dry Clean Express Koru Florya" 
-               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
-          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-red text-white text-xs font-extrabold uppercase tracking-wider">
-            Açılışa Özel %20 İndirim
+      <!-- Service 3: Dry Clean Express & Organik Tekstil Bakımı -->
+      <div class="bg-[#181A22] rounded-3xl p-8 border border-white/10 hover:border-kf-coral/50 transition-all flex flex-col justify-between group shadow-xl">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-kf-coral text-white text-xs font-black uppercase tracking-wider">
+              Aynı Gün Teslim
+            </span>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">
+              Organik Kuru Temizleme
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-extrabold text-white group-hover:text-kf-coral transition-colors">
+            Dry Clean Express & Terzi
+          </h3>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Hassas kumaşlar için çevre dostu organik kuru temizleme teknolojisi, özel prova kabinli profesyonel terzi ve lostra ayakkabı bakım ünitesi.
+          </p>
+
+          <div class="mt-6 p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-zinc-300 space-y-1.5">
+            <div class="flex justify-between"><span>Lokasyon:</span> <strong class="text-white">Koru Katı Otopark Girişi</strong></div>
+            <div class="flex justify-between"><span>Teslimat:</span> <strong class="text-kf-emerald">Ekspres 4 Saatte Hazır</strong></div>
+            <div class="flex justify-between"><span>İletişim:</span> <strong class="text-white">Dahili: 142</strong></div>
           </div>
         </div>
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-extrabold text-white">Dry Clean Express & Terzi</h3>
-            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Organik Temizleme</span>
-          </div>
-          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-            Çevre dostu organik kuru temizleme teknolojisi, özel prova kabinli profesyonel terzi ve hassas tekstil bakım hizmetleri Koru Katı otopark girişinde.
-          </p>
-          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="text-xs font-bold text-zinc-400 uppercase">Konum</span>
-              <div class="text-sm font-extrabold text-white mt-0.5">Koru Katı Otopark Girişi</div>
-            </div>
-            <button onclick="showStoreOnFloor('Dry Clean Express', 'Koru Katı Otopark Girişi', '10:00 - 22:00')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
-              Konumu Gör →
-            </button>
-          </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs text-zinc-400">Özel Kıyafet Onarımı</span>
+          <button onclick="showStoreOnFloor('Dry Clean Express', 'Koru Katı Otopark Girişi', '10:00 - 22:00', '0212 555 10 09', 'Organik kuru temizleme, usta terzi ve lostra ünitesi.')" class="text-xs font-extrabold text-kf-coral hover:underline">
+            Konumu Gör →
+          </button>
         </div>
       </div>
 
-      <!-- Service 4: Ziyaretçi Konforu & Aile Odaları -->
-      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-magenta/50 transition-all flex flex-col justify-between group">
-        <div class="relative h-60 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop" 
-               alt="Aile Odası ve Bebek Bakımı" 
-               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
-          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-magenta text-white text-xs font-extrabold uppercase tracking-wider">
-            Engelsiz Ziyaret
+      <!-- Service 4: Concierge & VIP Lounge -->
+      <div class="bg-[#181A22] rounded-3xl p-8 border border-white/10 hover:border-kf-amber/50 transition-all flex flex-col justify-between group shadow-xl">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-kf-amber text-black text-xs font-black uppercase tracking-wider">
+              Kişisel Asistan
+            </span>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
+              VIP Lounge
+            </span>
+          </div>
+
+          <h3 class="text-2xl font-extrabold text-white group-hover:text-kf-amber transition-colors">
+            VIP Concierge & Vestiyer
+          </h3>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Özel alışveriş danışmanlığı, emanet ve vestiyer hizmetleri, hediye paketleme ve restoran rezervasyonlarınız için profesyonel danışma ekibi.
+          </p>
+
+          <div class="mt-6 p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-zinc-300 space-y-1.5">
+            <div class="flex justify-between"><span>Hizmet Alanı:</span> <strong class="text-white">Koru Katı Ana Danışma</strong></div>
+            <div class="flex justify-between"><span>Emanet Dolabı:</span> <strong class="text-kf-emerald">Ücretsiz Şifreli Kasa</strong></div>
+            <div class="flex justify-between"><span>VIP Transfer:</span> <strong class="text-white">Havalimanı & Otel</strong></div>
           </div>
         </div>
-        <div class="p-6 sm:p-8">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-extrabold text-white">Aile, Bebek & Engelsiz Yaşam</h3>
-            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">Ücretsiz Wi-Fi</span>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs text-zinc-400">Telefon: 0212 555 00 00</span>
+          <button onclick="alert('VIP Concierge masamız Koru Katı ana giriştedir. Rezervasyon ve asistanlık için doğrudan danışmaya başvurabilirsiniz.')" class="text-xs font-extrabold text-kf-amber hover:underline">
+            Bilgi Al →
+          </button>
+        </div>
+      </div>
+
+      <!-- Service 5: Aile, Bebek & Engelsiz Yaşam -->
+      <div class="bg-[#181A22] rounded-3xl p-8 border border-white/10 hover:border-kf-emerald/50 transition-all flex flex-col justify-between group shadow-xl">
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3.5 py-1.5 rounded-full bg-kf-emerald text-black text-xs font-black uppercase tracking-wider">
+              Engelsiz Yaşam
+            </span>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              Bebek Bakım Odaları
+            </span>
           </div>
+
+          <h3 class="text-2xl font-extrabold text-white group-hover:text-kf-emerald transition-colors">
+            Aile, Çocuk & Engelsiz Erişim
+          </h3>
           <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
-            Tam donanımlı bebek bakım ve emzirme odaları, ücretsiz tekerlekli sandalye temini, yüksek hızlı Wi-Fi ve her katta danışma/yardım noktaları.
+            Her katta özel emzirme ve biberon ısıtıcılı bebek bakım odaları, ücretsiz tekerlekli sandalye ve bebek arabası temini, çocuk güvenlik bilekliği.
           </p>
-          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
-            <div>
-              <span class="text-xs font-bold text-zinc-400 uppercase">Erişim</span>
-              <div class="text-sm font-extrabold text-white mt-0.5">Tüm Katlarda Mevcuttur</div>
-            </div>
-            <button onclick="alert('Danışma masamız Koru Katı ana giriştedir. Tel: 0212 555 00 00')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
-              Bilgi Al →
-            </button>
+
+          <div class="mt-6 p-4 rounded-2xl bg-white/5 border border-white/5 text-xs text-zinc-300 space-y-1.5">
+            <div class="flex justify-between"><span>Erişilebilirlik:</span> <strong class="text-white">Tüm Katlarda Asansör</strong></div>
+            <div class="flex justify-between"><span>Wi-Fi:</span> <strong class="text-kf-emerald">Yüksek Hızlı Ücretsiz</strong></div>
+            <div class="flex justify-between"><span>Evcil Hayvan:</span> <strong class="text-white">Pet-Friendly Açık Alanlar</strong></div>
           </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs text-zinc-400">Danışmadan Temin Edilebilir</span>
+          <button onclick="alert('Bebek arabası ve tekerlekli sandalye danışma masasından kimlik karşılığında ücretsiz temin edilir.')" class="text-xs font-extrabold text-kf-emerald hover:underline">
+            Hizmet Detayı →
+          </button>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION: ULAŞIM & SAATLER (TRANSIT) ==================== -->
-  <section id="ulasim" class="py-20 bg-[#141414] border-t border-white/5">
+  <!-- ==================== SECTION: ULAŞIM & SAATLER (TRANSIT MATRIX) ==================== -->
+  <section id="ulasim" class="py-20 bg-[#12141B] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
@@ -942,36 +1073,42 @@
         <!-- Left: Transit Info & Hours -->
         <div class="lg:col-span-5 flex flex-col justify-between">
           <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kf-cyan/20 border border-kf-cyan/40 text-xs font-extrabold text-kf-cyan mb-3 uppercase tracking-wider">
+              Konum & Ziyaret Bilgileri
+            </div>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Ulaşım & Saatler</h2>
             <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
-              Florya'nın merkezinde, Marmaray ve Metrobüs aksında yer alan Koru Florya'ya kolayca ulaşın.
+              Florya'nın merkezinde, Marmaray ve Metrobüs kesişiminde yer alan Koru Florya'ya kolayca ulaşın.
             </p>
 
             <div class="mt-8 space-y-4">
               
               <!-- Hours Box -->
-              <div class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10">
+              <div class="p-6 rounded-3xl bg-[#181A22] border border-white/10">
                 <div class="flex items-center justify-between">
                   <span class="text-xs font-extrabold text-zinc-400 uppercase tracking-wider">Çalışma Saatleri</span>
-                  <span class="text-xs font-extrabold text-emerald-400">Şu An Açık</span>
+                  <span class="text-xs font-extrabold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Şu An Açık</span>
                 </div>
-                <div class="text-3xl font-extrabold text-white mt-2">10:00 – 22:00</div>
-                <p class="text-xs text-zinc-400 mt-1.5">Haftanın her günü kesintisiz hizmet vermektedir.</p>
+                <div class="text-3xl font-black text-white mt-2">10:00 – 22:00</div>
+                <p class="text-xs text-zinc-400 mt-1.5">Haftanın her günü kesintisiz hizmet vermektedir. Restoran katı 23:30'a kadar açıktır.</p>
               </div>
 
               <!-- Address Box -->
-              <div class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10">
+              <div class="p-6 rounded-3xl bg-[#181A22] border border-white/10">
                 <span class="text-xs font-extrabold text-zinc-400 uppercase tracking-wider">Açık Adres</span>
-                <p class="text-sm font-semibold text-white mt-2 leading-relaxed">
+                <p class="text-sm font-bold text-white mt-2 leading-relaxed">
                   Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul
                 </p>
-                <div class="mt-5 flex gap-3">
+                <div class="mt-5 flex flex-wrap gap-3">
                   <a href="https://www.google.com/maps/dir/?api=1&destination=Koru%20Florya%20Alışveriş%20ve%20Yaşam%20Merkezi" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-white hover:bg-zinc-200 text-black font-extrabold text-xs transition-all flex items-center gap-2">
                     <span>Google Haritalar'da Aç</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
+                  <button onclick="navigator.clipboard.writeText('Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul'); alert('Adres panoya kopyalandı!')" class="px-4 py-3 rounded-full bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition-colors">
+                    Adresi Kopyala
+                  </button>
                 </div>
               </div>
 
@@ -983,65 +1120,65 @@
         <div class="lg:col-span-7 space-y-4">
           
           <!-- Method 1: Marmaray -->
-          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-extrabold text-blue-400 text-sm flex-shrink-0">
+          <div class="p-6 rounded-3xl bg-[#181A22] border border-white/10 hover:border-kf-cyan/50 transition-all flex items-start gap-4 shadow-lg">
+            <div class="w-12 h-12 rounded-2xl bg-kf-cyan/15 border border-kf-cyan/30 flex items-center justify-center font-black text-kf-cyan text-base flex-shrink-0">
               MR
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
                 <h4 class="text-base font-extrabold text-white">Marmaray Florya İstasyonu</h4>
-                <span class="text-xs font-extrabold text-kanyon-orange">30 dk Ring Servis</span>
+                <span class="text-xs font-black text-kf-orange">30 dk Ücretsiz Ring</span>
               </div>
-              <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                İstasyondan her 30 dakikada bir kalkan ücretsiz servisimizle veya 20 dakikalık sahil yürüyüşüyle doğrudan ulaşabilirsiniz.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-1 leading-relaxed">
+                İstasyon ana çıkışından her 30 dakikada bir kalkan klimalı lüks ring servisimizle veya sahil boyunca 15 dakikalık ferah yürüyüşle doğrudan kapımıza ulaşabilirsiniz.
               </p>
             </div>
           </div>
 
           <!-- Method 2: Metrobüs -->
-          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center font-extrabold text-orange-400 text-sm flex-shrink-0">
+          <div class="p-6 rounded-3xl bg-[#181A22] border border-white/10 hover:border-kf-orange/50 transition-all flex items-start gap-4 shadow-lg">
+            <div class="w-12 h-12 rounded-2xl bg-kf-orange/15 border border-kf-orange/30 flex items-center justify-center font-black text-kf-orange text-base flex-shrink-0">
               MB
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
                 <h4 class="text-base font-extrabold text-white">Metrobüs ile Ulaşım</h4>
-                <span class="text-xs font-extrabold text-emerald-400">3 dk Yürüme</span>
+                <span class="text-xs font-black text-kf-emerald">3 dk Yürüme</span>
               </div>
-              <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Cennet – Koru Florya durağında inerek doğrudan alışveriş merkezi yaya girişine bağlanabilirsiniz.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-1 leading-relaxed">
+                Cennet – Koru Florya durağında inerek doğrudan üst geçit ve yürüyüş bandı ile alışveriş merkezi ana yaya girişine bağlanabilirsiniz.
               </p>
             </div>
           </div>
 
           <!-- Method 3: İETT -->
-          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center font-extrabold text-purple-400 text-sm flex-shrink-0">
+          <div class="p-6 rounded-3xl bg-[#181A22] border border-white/10 hover:border-kf-purple/50 transition-all flex items-start gap-4 shadow-lg">
+            <div class="w-12 h-12 rounded-2xl bg-kf-purple/15 border border-kf-purple/30 flex items-center justify-center font-black text-kf-purple text-base flex-shrink-0">
               İETT
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
                 <h4 class="text-base font-extrabold text-white">73 • 73F • 98 Otobüs Hatları</h4>
-                <span class="text-xs font-extrabold text-zinc-400">Kapı Önü (1 dk)</span>
+                <span class="text-xs font-black text-zinc-400">Kapı Önü Durak</span>
               </div>
-              <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                Koru Florya durağında indiğinizde ana giriş kapısına sadece 1 dakikalık yürüme mesafesindesiniz.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-1 leading-relaxed">
+                Koru Florya durağında indiğinizde ana döner kapıya sadece 30 saniyelik mesafede olursunuz.
               </p>
             </div>
           </div>
 
           <!-- Method 4: Araç & Vale -->
-          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-extrabold text-emerald-400 text-sm flex-shrink-0">
+          <div class="p-6 rounded-3xl bg-[#181A22] border border-white/10 hover:border-kf-emerald/50 transition-all flex items-start gap-4 shadow-lg">
+            <div class="w-12 h-12 rounded-2xl bg-kf-emerald/15 border border-kf-emerald/30 flex items-center justify-center font-black text-kf-emerald text-base flex-shrink-0">
               OTO
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
                 <h4 class="text-base font-extrabold text-white">Özel Araç & Vale Girişi</h4>
-                <span class="text-xs font-extrabold text-zinc-400">2500 Araç</span>
+                <span class="text-xs font-black text-zinc-300">2.500 Kapalı Otopark</span>
               </div>
-              <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                E-5 Florya yan yolundan doğrudan kapalı otoparkımıza giriş yapabilir veya ana kapıda vale hizmetinden faydalanabilirsiniz.
+              <p class="text-xs sm:text-sm text-zinc-400 mt-1 leading-relaxed">
+                E-5 Florya yan yolundan doğrudan kapalı otopark tüneline giriş yapabilir veya ana kapıda profesyonel vale hizmetimizden faydalanabilirsiniz.
               </p>
             </div>
           </div>
@@ -1054,15 +1191,15 @@
   </section>
 
   <!-- ==================== FOOTER (KANYON OFFICIAL CORPORATE STYLE) ==================== -->
-  <footer class="bg-[#0b0b0b] text-zinc-400 text-sm pt-16 pb-12 border-t border-white/10">
+  <footer class="bg-[#08090C] text-zinc-400 text-sm pt-16 pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-white/10">
         
         <!-- Col 1: Brand & Contact -->
         <div class="lg:col-span-2">
-          <div class="flex items-center gap-2.5 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-kanyon-orange flex items-center justify-center font-extrabold text-white text-xs">KF</div>
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-kf-orange flex items-center justify-center font-black text-white text-sm">KF</div>
             <span class="text-xl font-extrabold text-white uppercase tracking-tight">KORU FLORYA</span>
           </div>
           <p class="text-xs text-zinc-400 leading-relaxed max-w-sm mb-4">
@@ -1071,14 +1208,14 @@
           <div class="text-xs space-y-1 mb-6 text-zinc-300">
             <p><strong>E-posta:</strong> info@koruflorya.com</p>
             <p><strong>Kiralama:</strong> kiralama@koruflorya.com</p>
-            <p><strong>Tel:</strong> +90 (212) 555 00 00</p>
+            <p><strong>Santral / Destek:</strong> +90 (212) 555 00 00</p>
           </div>
           <div class="flex items-center gap-4 text-xs font-extrabold text-white">
-            <a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener" class="hover:text-kanyon-orange transition-colors">Instagram</a>
+            <a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener" class="hover:text-kf-orange transition-colors">Instagram</a>
             <span>•</span>
-            <a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener" class="hover:text-kanyon-orange transition-colors">Facebook</a>
+            <a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener" class="hover:text-kf-orange transition-colors">Facebook</a>
             <span>•</span>
-            <a href="https://www.tiktok.com/@korufloryaavm" target="_blank" rel="noopener" class="hover:text-kanyon-orange transition-colors">TikTok</a>
+            <a href="https://www.tiktok.com/@korufloryaavm" target="_blank" rel="noopener" class="hover:text-kf-orange transition-colors">TikTok</a>
           </div>
         </div>
 
@@ -1089,8 +1226,8 @@
             <li><a href="#hero" class="hover:text-white transition-colors">Hakkımızda</a></li>
             <li><a href="#markalar" class="hover:text-white transition-colors">Markalar (220+)</a></li>
             <li><a href="#lezzetler" class="hover:text-white transition-colors">Lezzetler (34)</a></li>
-            <li><a href="#hizmetler" class="hover:text-white transition-colors">Hizmetler</a></li>
-            <li><a href="mailto:kiralama@koruflorya.com" class="hover:text-white transition-colors">Kiralama Formu</a></li>
+            <li><a href="#hizmetler" class="hover:text-white transition-colors">Hizmetler & Vale</a></li>
+            <li><a href="mailto:kiralama@koruflorya.com" class="hover:text-white transition-colors">Kiralama Başvuru Formu</a></li>
           </ul>
         </div>
 
@@ -1098,11 +1235,11 @@
         <div>
           <h4 class="text-xs uppercase font-extrabold tracking-wider text-white mb-4">Keşfet</h4>
           <ul class="space-y-2.5 text-xs">
-            <li><a href="#etkinlikler" class="hover:text-white transition-colors">Etkinlikler</a></li>
+            <li><a href="#etkinlikler" class="hover:text-white transition-colors">Etkinlik Takvimi</a></li>
             <li><a href="#etkinlikler" class="hover:text-white transition-colors">Kitap Fuarı</a></li>
             <li><a href="#etkinlikler" class="hover:text-white transition-colors">İmza Günleri</a></li>
+            <li><a href="javascript:void(0)" onclick="openFloorPlanModal()" class="text-kf-orange hover:text-white transition-colors font-bold">İnteraktif Kat Planı</a></li>
             <li><a href="#ulasim" class="hover:text-white transition-colors">Marmaray Shuttle</a></li>
-            <li><a href="#ulasim" class="hover:text-white transition-colors">Ulaşım Rehberi</a></li>
           </ul>
         </div>
 
@@ -1110,15 +1247,15 @@
         <div>
           <h4 class="text-xs uppercase font-extrabold tracking-wider text-white mb-4">E-Bülten</h4>
           <p class="text-xs text-zinc-400 mb-3">
-            Kampanya ve etkinliklerden haberdar olmak için bültenimize kaydolun.
+            Özel kampanya, konser ve imza günlerinden öncelikli haberdar olun.
           </p>
           <form onsubmit="handleSub(event)" class="space-y-2">
-            <input type="email" required placeholder="E-posta adresiniz" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange">
-            <button type="submit" class="w-full py-2.5 rounded-xl bg-kanyon-orange hover:bg-orange-500 text-white font-extrabold text-xs uppercase tracking-wider transition-all">
+            <input type="email" required placeholder="E-posta adresiniz" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-kf-orange">
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-kf-orange hover:bg-orange-500 text-white font-black text-xs uppercase tracking-wider transition-all shadow-md">
               Kayıt Ol
             </button>
           </form>
-          <div id="sub-ok" class="hidden text-xs text-emerald-400 mt-2 font-bold">✓ Kaydınız başarıyla alındı.</div>
+          <div id="sub-ok" class="hidden text-xs text-emerald-400 mt-2 font-bold">✓ E-bülten kaydınız başarıyla alındı.</div>
         </div>
 
       </div>
@@ -1138,213 +1275,458 @@
     </div>
   </footer>
 
-  <!-- ==================== SEARCH MODAL ==================== -->
-  <div id="search-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-start justify-center pt-20 px-4 hidden">
-    <div class="bg-[#1c1c1e] w-full max-w-2xl rounded-2xl overflow-hidden border border-white/15 shadow-2xl">
-      <div class="p-4 border-b border-white/10 flex items-center gap-3">
-        <svg class="w-5 h-5 text-kanyon-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
-        </svg>
-        <input id="modal-search-box" type="text" placeholder="Koru Florya'da ara... (Örn: Shake Shack, Altınbaş, Marmaray...)" class="w-full bg-transparent border-none text-sm text-white placeholder-zinc-500 focus:outline-none">
-        <button onclick="closeSearchModal()" class="text-xs font-bold px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-zinc-300">ESC</button>
-      </div>
-      <div id="modal-results" class="max-h-96 overflow-y-auto p-4 space-y-2"></div>
-    </div>
-  </div>
-
-  <!-- ==================== FLOOR & STORE DETAIL MODAL ==================== -->
-  <div id="floor-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
-    <div class="bg-[#1c1c1e] w-full max-w-md rounded-2xl p-6 border border-white/15 shadow-2xl relative">
-      <button onclick="closeFloorModal()" class="absolute top-4 right-4 text-zinc-400 hover:text-white p-2">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-
-      <span class="text-xs font-extrabold text-kanyon-orange uppercase tracking-wider">Kat Planı Bilgisi</span>
-      <h3 id="floor-modal-title" class="text-2xl font-extrabold text-white mt-1">Mağaza Adı</h3>
-      <p id="floor-modal-location" class="text-sm font-bold text-emerald-400 mt-2">Koru Katı No: 01</p>
-      <p id="floor-modal-hours" class="text-xs text-zinc-400 mt-1">10:00 - 22:00</p>
-
-      <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 text-xs text-zinc-300 leading-relaxed">
-        Koru Florya interaktif kat navigasyonu ile mağazamıza kolayca ulaşabilirsiniz. Danışma masasından kroki temin edebilirsiniz.
-      </div>
-
-      <div class="mt-6 flex justify-end">
-        <button onclick="closeFloorModal()" class="px-6 py-2.5 rounded-full bg-white text-black font-extrabold text-xs uppercase tracking-wider">
-          Tamam
+  <!-- ==================== INTERACTIVE FLOOR PLAN MODAL ==================== -->
+  <div id="floor-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-[#181A22] w-full max-w-4xl rounded-3xl overflow-hidden border border-white/15 shadow-2xl flex flex-col max-h-[90vh]">
+      
+      <!-- Modal Header -->
+      <div class="p-6 border-b border-white/10 flex items-center justify-between">
+        <div>
+          <span class="text-xs font-bold text-kf-orange uppercase tracking-wider">İnteraktif Mimari Rehber</span>
+          <h3 id="floor-modal-title" class="text-2xl font-extrabold text-white mt-0.5">Koru Florya Kat Planı</h3>
+        </div>
+        <button onclick="closeFloorPlanModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold">
+          ✕
         </button>
       </div>
+
+      <!-- Floor Selection Tabs -->
+      <div class="px-6 py-3 bg-[#12141B] border-b border-white/10 flex items-center gap-2 overflow-x-auto text-xs font-bold">
+        <button onclick="switchPlanFloor('koru')" id="tab-koru" class="px-4 py-2 rounded-xl bg-kf-orange text-white">Koru Katı (Bahçe)</button>
+        <button onclick="switchPlanFloor('cadde')" id="tab-cadde" class="px-4 py-2 rounded-xl bg-white/5 text-zinc-400 hover:text-white">Cadde Katı (Giriş)</button>
+        <button onclick="switchPlanFloor('1kat')" id="tab-1kat" class="px-4 py-2 rounded-xl bg-white/5 text-zinc-400 hover:text-white">1. Kat & Yaşam</button>
+        <button onclick="switchPlanFloor('2kat')" id="tab-2kat" class="px-4 py-2 rounded-xl bg-white/5 text-zinc-400 hover:text-white">2. Kat & Teras</button>
+        <button onclick="switchPlanFloor('otopark')" id="tab-otopark" class="px-4 py-2 rounded-xl bg-white/5 text-zinc-400 hover:text-white">Kapalı Otopark P1/P2</button>
+      </div>
+
+      <!-- Floor Schematic Visual Area -->
+      <div class="p-6 overflow-y-auto flex-1">
+        <div id="floor-schematic" class="relative min-h-[320px] rounded-2xl bg-[#12141B] border border-white/10 p-6 flex flex-col justify-between">
+          <!-- Active Highlight Banner -->
+          <div id="floor-highlight-badge" class="mb-4 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-kf-orange/20 border border-kf-orange/30 text-xs font-bold text-kf-orange">
+            <span>📍 Seçili Mağaza:</span>
+            <strong id="floor-target-store" class="text-white">Shake Shack</strong>
+          </div>
+
+          <!-- Floor Visual Architecture Map Mock -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center my-4" id="floor-blocks-grid">
+            <!-- Rendered by switchPlanFloor() -->
+          </div>
+
+          <!-- Floor Info Footer -->
+          <div class="mt-4 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between text-xs text-zinc-400 gap-2">
+            <div id="floor-facilities">
+              ☕ Kafe Alanı • 🛗 Asansörler • 🚻 Bebek Bakım & WC • 🅿️ Otopark Asansörü
+            </div>
+            <div class="text-kf-emerald font-bold">
+              ● Danışma Masası Giriştedir
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Store Quick Details Box -->
+      <div id="floor-store-info" class="p-6 bg-[#12141B] border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div>
+          <h4 id="detail-store-name" class="text-lg font-extrabold text-white">Shake Shack</h4>
+          <p id="detail-store-desc" class="text-xs text-zinc-400 mt-0.5">Koru Katı • Giriş Bahçesi • Çalışma: 10:00 - 22:30</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <a id="detail-call-btn" href="tel:02125551001" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-xs font-bold text-white transition-colors">
+            📞 Mağazayı Ara
+          </a>
+          <button onclick="closeFloorPlanModal()" class="px-5 py-2 rounded-full bg-kf-orange hover:bg-orange-500 text-xs font-extrabold text-white transition-colors">
+            Anladım
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- ==================== SCRIPTS ==================== -->
+  <!-- ==================== SEARCH MODAL (CMD+K SPOTLIGHT) ==================== -->
+  <div id="search-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-start justify-center pt-20 px-4 hidden">
+    <div class="bg-[#181A22] w-full max-w-2xl rounded-3xl overflow-hidden border border-white/15 shadow-2xl">
+      <div class="p-5 border-b border-white/10 flex items-center gap-3">
+        <svg class="w-6 h-6 text-kf-orange" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
+        </svg>
+        <input id="modal-search-box" type="text" oninput="handleModalSearch()" placeholder="Koru Florya'da ara... (Örn: Shake Shack, Vakko, Altınbaş, Shuttle...)" class="w-full bg-transparent border-none text-base text-white placeholder-zinc-500 focus:outline-none">
+        <button onclick="closeSearchModal()" class="text-xs font-bold px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-zinc-300">ESC</button>
+      </div>
+
+      <!-- Quick Results List -->
+      <div id="modal-results-list" class="max-h-96 overflow-y-auto p-4 space-y-2">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== EMBEDDED JAVASCRIPT APPLICATION ==================== -->
   <script>
-    // 1. Mobile Navigation Toggle
-    function toggleMobileNav() {
-      document.getElementById('mobile-nav').classList.toggle('hidden');
-    }
-
-    // 2. Language Toggle
-    let currentLang = 'TR';
-    function toggleLang() {
-      currentLang = currentLang === 'TR' ? 'EN' : 'TR';
-      document.getElementById('lang-btn').textContent = currentLang === 'TR' ? 'EN' : 'TR';
-    }
-
-    // 3. Live Marmaray Shuttle Countdown
-    let shuttleSeconds = 14 * 60 + 28;
-    const shuttleEl = document.getElementById('shuttle-countdown-text');
-    setInterval(() => {
-      if (shuttleSeconds > 0) shuttleSeconds--;
-      else shuttleSeconds = 30 * 60;
-      const m = Math.floor(shuttleSeconds / 60);
-      const s = shuttleSeconds % 60;
-      if (shuttleEl) {
-        shuttleEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
-      }
-    }, 1000);
-
-    // 4. Brand Filtering
-    function filterBrands(cat) {
-      document.querySelectorAll('.brand-pill').forEach(btn => {
-        btn.classList.remove('active', 'bg-white', 'text-black');
-        btn.classList.add('bg-white/5', 'text-zinc-300');
-      });
-      event.target.classList.add('active', 'bg-white', 'text-black');
-      event.target.classList.remove('bg-white/5', 'text-zinc-300');
-
-      const cards = document.querySelectorAll('.brand-card');
-      let visible = 0;
-      cards.forEach(card => {
-        if (cat === 'all' || card.getAttribute('data-category') === cat) {
-          card.style.display = 'flex';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      document.getElementById('no-brands-msg').classList.toggle('hidden', visible > 0);
-    }
-
-    // 5. Brand Live Search
-    document.getElementById('brand-search').addEventListener('input', (e) => {
-      const q = e.target.value.toLowerCase().trim();
-      const cards = document.querySelectorAll('.brand-card');
-      let visible = 0;
-      cards.forEach(card => {
-        const name = card.getAttribute('data-name').toLowerCase();
-        const text = card.innerText.toLowerCase();
-        if (name.includes(q) || text.includes(q)) {
-          card.style.display = 'flex';
-          visible++;
-        } else {
-          card.style.display = 'none';
-        }
-      });
-      document.getElementById('no-brands-msg').classList.toggle('hidden', visible > 0);
-    });
-
-    // 6. Search Modal (Cmd+K)
-    const searchModal = document.getElementById('search-modal');
-    const modalInput = document.getElementById('modal-search-box');
-    const modalResults = document.getElementById('modal-results');
-
-    const searchDirectory = [
-      { name: "Shake Shack", cat: "Yeme & İçme", floor: "Koru Katı • Bahçe" },
-      { name: "Happy Moon's", cat: "Yeme & İçme", floor: "Cadde Katı • 2. Kat Teras" },
-      { name: "Divan Pub", cat: "Yeme & İçme", floor: "Koru Katı • No: 12" },
-      { name: "Tchibo Coffee", cat: "Kahve & Yaşam", floor: "Koru Katı • No: 04" },
-      { name: "Altınbaş", cat: "Saat & Mücevher", floor: "Cadde Katı No: 14" },
-      { name: "Dry Clean Express", cat: "Organik Kuru Temizleme", floor: "Koru Katı Otopark Girişi" },
-      { name: "ADL", cat: "Moda & Kadın Giyim", floor: "Cadde Katı No: 28" },
-      { name: "Sephora", cat: "Kozmetik & Bakım", floor: "Koru Katı No: 08" },
-      { name: "Vakko", cat: "Lüks Moda & Giyim", floor: "Cadde Katı No: 01" },
-      { name: "Bang & Olufsen", cat: "Teknoloji & Akustik", floor: "Cadde Katı No: 02" },
-      { name: "Kitap Fuarı", cat: "Etkinlik (4-22 Kasım)", floor: "Koru Katı Fuaye" },
-      { name: "Celal Şengör İmza Günü", cat: "Etkinlik (15 Kasım)", floor: "Koru Katı Fuar Alanı" },
-      { name: "Ahmet Ümit İmza Günü", cat: "Etkinlik (8 Kasım)", floor: "Koru Katı Fuar Alanı" },
-      { name: "Marmaray Florya Ring Servisi", cat: "Ulaşım (Her 30 dk)", floor: "Ana Kapı Önü" }
+    // 28+ Comprehensive Real Tenants for Koru Florya
+    const BRID_DATA = [
+      { name: "Vakko", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 01", hours: "10:00 - 22:00", phone: "0212 555 11 01", desc: "Lüks giyim, eşarp, parfüm ve Haute Couture koleksiyonları." },
+      { name: "Shake Shack", category: "yeme-icme", catName: "Yeme & İçme", floor: "koru", floorName: "Koru Katı Bahçe", hours: "10:00 - 22:30", phone: "0212 555 10 01", desc: "New York gurme Angus burger ve leziz el yapımı milkshake." },
+      { name: "Happy Moon's", category: "yeme-icme", catName: "Yeme & İçme", floor: "2kat", floorName: "2. Kat Teras", hours: "10:00 - 23:30", phone: "0212 555 10 02", desc: "Geniş açık teras, dünya mutfağı ve zengin kokteyller." },
+      { name: "Altınbaş", category: "mucevher", catName: "Saat & Mücevher", floor: "cadde", floorName: "Cadde Katı No: 14", hours: "10:00 - 22:00", phone: "0212 555 12 14", desc: "Özel tasarım pırlanta, altın takı ve lüks mücevher koleksiyonları." },
+      { name: "Sephora", category: "kozmetik", catName: "Kozmetik & Sağlık", floor: "koru", floorName: "Koru Katı No: 08", hours: "10:00 - 22:00", phone: "0212 555 13 08", desc: "Dünyaca ünlü parfüm, lüks cilt bakımı ve makyaj ürünleri." },
+      { name: "Bang & Olufsen / Hifilife", category: "teknoloji", catName: "Teknoloji & Yaşam", floor: "cadde", floorName: "Cadde Katı No: 02", hours: "10:00 - 22:00", phone: "0212 555 14 02", desc: "Danimarka akustik ses sistemleri, premium kulaklıklar ve hoparlörler." },
+      { name: "Divan Pub", category: "yeme-icme", catName: "Yeme & İçme", floor: "koru", floorName: "Koru Katı No: 12", hours: "10:00 - 23:00", phone: "0212 555 10 03", desc: "Klasik Türk ve Akdeniz lezzetleri, şarap kavı ve usta şefler." },
+      { name: "Dry Clean Express", category: "hizmet", catName: "Hizmet & Diğer", floor: "otopark", floorName: "Otopark Katı P1", hours: "10:00 - 22:00", phone: "0212 555 15 01", desc: "Organik kuru temizleme, usta terzi ve ayakkabı lostra servisi." },
+      { name: "ADL", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 28", hours: "10:00 - 22:00", phone: "0212 555 11 28", desc: "Zarif kadın modası, özel gün elbiseleri ve modern kombinler." },
+      { name: "Massimo Dutti", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 06", hours: "10:00 - 22:00", phone: "0212 555 11 06", desc: "İtalyan zarafeti, şık erkek ve kadın giyim koleksiyonları." },
+      { name: "Tchibo Coffee", category: "yeme-icme", catName: "Yeme & İçme", floor: "koru", floorName: "Koru Katı No: 04", hours: "10:00 - 22:00", phone: "0212 555 10 04", desc: "Taze öğütülmüş kahveler, tatlılar ve haftalık tematik koleksiyonlar." },
+      { name: "Atasay", category: "mucevher", catName: "Saat & Mücevher", floor: "cadde", floorName: "Cadde Katı No: 16", hours: "10:00 - 22:00", phone: "0212 555 12 16", desc: "Modern pırlanta, evlilik yüzükleri ve altın mücevherat." },
+      { name: "D&R Kitap & Müzik", category: "teknoloji", catName: "Teknoloji & Yaşam", floor: "koru", floorName: "Koru Katı No: 10", hours: "10:00 - 22:00", phone: "0212 555 14 10", desc: "En çok satan kitaplar, hobi, plak, oyuncak ve hediyelik eşyalar." },
+      { name: "Porsche & Trugo E-Şarj Hub", category: "hizmet", catName: "Hizmet & Diğer", floor: "otopark", floorName: "Otopark Katı P1", hours: "7/24 Kesintisiz", phone: "0212 555 10 00", desc: "180kW DC ultra hızlı elektrikli araç şarj istasyonu." },
+      { name: "Big Chefs", category: "yeme-icme", catName: "Yeme & İçme", floor: "1kat", floorName: "1. Kat No: 20", hours: "10:00 - 23:00", phone: "0212 555 10 20", desc: "Günün her saati sıcak buluşmalar, zengin kahvaltı ve dünya tatları." },
+      { name: "Mavi", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 18", hours: "10:00 - 22:00", phone: "0212 555 11 18", desc: "Premium denim koleksiyonları ve casual günlük giyim." },
+      { name: "Zen Pırlanta", category: "mucevher", catName: "Saat & Mücevher", floor: "cadde", floorName: "Cadde Katı No: 22", hours: "10:00 - 22:00", phone: "0212 555 12 22", desc: "Avrupa'nın pırlanta uzmanı, tektaş ve tasarım setler." },
+      { name: "Atelier Rebul", category: "kozmetik", catName: "Kozmetik & Sağlık", floor: "koru", floorName: "Koru Katı No: 06", hours: "10:00 - 22:00", phone: "0212 555 13 06", desc: "1895'ten gelen kolonya geleneği, oda kokuları ve doğal kozmetik." },
+      { name: "Troy Apple Reseller", category: "teknoloji", catName: "Teknoloji & Yaşam", floor: "cadde", floorName: "Cadde Katı No: 08", hours: "10:00 - 22:00", phone: "0212 555 14 08", desc: "Yetkili Apple deneyim mağazası, iPhone, Mac ve yetkili teknik servis." },
+      { name: "Beymen Club", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 04", hours: "10:00 - 22:00", phone: "0212 555 11 04", desc: "Dinamik, lüks casual erkek ve kadın giyim tasarımları." },
+      { name: "Starbucks Reserve", category: "yeme-icme", catName: "Yeme & İçme", floor: "koru", floorName: "Koru Katı Bahçe", hours: "08:30 - 23:00", phone: "0212 555 10 30", desc: "Ender bulunan özel çekirdekler, Clover demleme ve taze fırın ürünleri." },
+      { name: "Dyson Demo Store", category: "teknoloji", catName: "Teknoloji & Yaşam", floor: "cadde", floorName: "Cadde Katı No: 12", hours: "10:00 - 22:00", phone: "0212 555 14 12", desc: "Dyson saç bakım teknolojileri, kablosuz süpürgeler ve hava temizleyiciler." },
+      { name: "Network", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 10", hours: "10:00 - 22:00", phone: "0212 555 11 10", desc: "Modern şehir yaşamı için sofistike takım elbise ve smart casual stiller." },
+      { name: "İpekyol", category: "moda", catName: "Moda & Giyim", floor: "cadde", floorName: "Cadde Katı No: 24", hours: "10:00 - 22:00", phone: "0212 555 11 24", desc: "Özgün ve feminen stiller, aksesuarlar ve modern silüetler." },
+      { name: "Lego Store", category: "teknoloji", catName: "Teknoloji & Yaşam", floor: "1kat", floorName: "1. Kat No: 14", hours: "10:00 - 22:00", phone: "0212 555 14 14", desc: "Özel Lego koleksiyon setleri, çocuklar ve koleksiyonerler için atölye." },
+      { name: "Calzedonia & Intimissimi", category: "moda", catName: "Moda & Giyim", floor: "koru", floorName: "Koru Katı No: 16", hours: "10:00 - 22:00", phone: "0212 555 11 16", desc: "İtalyan iç giyim, çorap ve rahat ev giyimi tasarımları." },
+      { name: "Koru Eczanesi", category: "kozmetik", catName: "Kozmetik & Sağlık", floor: "koru", floorName: "Koru Katı No: 02", hours: "10:00 - 22:00", phone: "0212 555 13 02", desc: "Dermokozmetik, vitaminler ve reçeteli ilaç sağlık danışmanlığı." },
+      { name: "Auto Wax & Detailing", category: "hizmet", catName: "Hizmet & Diğer", floor: "otopark", floorName: "Otopark Katı P2", hours: "10:00 - 22:00", phone: "0212 555 15 02", desc: "Buharlı detaylı araç yıkama, seramik kaplama ve boya koruma." }
     ];
 
-    function renderSearchResults(q = '') {
-      const query = q.toLowerCase().trim();
-      const filtered = searchDirectory.filter(i => 
-        i.name.toLowerCase().includes(query) || i.cat.toLowerCase().includes(query) || i.floor.toLowerCase().includes(query)
-      );
-      modalResults.innerHTML = '';
+    let currentCategory = 'all';
+    let currentFloor = 'all';
+    let currentSearch = '';
+    let currentViewMode = 'grid'; // 'grid' | 'list'
+
+    // Render Brands
+    function renderBrands() {
+      const grid = document.getElementById('brands-grid');
+      const tableBody = document.getElementById('brands-table-body');
+      const noMsg = document.getElementById('no-brands-msg');
+      const countEl = document.getElementById('results-count');
+
+      const filtered = BRID_DATA.filter(item => {
+        const matchCat = (currentCategory === 'all' || item.category === currentCategory);
+        const matchFloor = (currentFloor === 'all' || item.floor === currentFloor);
+        const q = currentSearch.toLowerCase().trim();
+        const matchSearch = (!q || item.name.toLowerCase().includes(q) || item.catName.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q));
+        return matchCat && matchFloor && matchSearch;
+      });
+
+      countEl.innerText = filtered.length;
+
       if (filtered.length === 0) {
-        modalResults.innerHTML = '<div class="p-4 text-center text-xs text-zinc-500">Sonuç bulunamadı</div>';
+        grid.innerHTML = '';
+        tableBody.innerHTML = '';
+        noMsg.classList.remove('hidden');
         return;
       }
-      filtered.forEach(item => {
-        const div = document.createElement('div');
-        div.className = 'p-3 rounded-xl bg-white/5 hover:bg-white/10 cursor-pointer flex items-center justify-between transition-colors';
-        div.innerHTML = `
-          <div>
-            <div class="text-sm font-bold text-white">${item.name}</div>
-            <div class="text-xs text-zinc-400">${item.cat}</div>
+      noMsg.classList.add('hidden');
+
+      // 1. Grid Cards
+      grid.innerHTML = filtered.map(item => {
+        // Floor badge color
+        let floorBadgeClass = 'text-kf-emerald';
+        if (item.floor === 'cadde') floorBadgeClass = 'text-kf-orange';
+        if (item.floor === '2kat') floorBadgeClass = 'text-kf-coral';
+        if (item.floor === 'otopark') floorBadgeClass = 'text-kf-cyan';
+
+        return `
+          <div class="brand-card bg-[#181A22] p-6 rounded-3xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between group shadow-lg hover:shadow-2xl hover:-translate-y-1">
+            <div>
+              <div class="flex items-center justify-between mb-3.5">
+                <span class="text-xs font-black uppercase tracking-wider ${floorBadgeClass}">${item.floorName.split(' ')[0]} Katı</span>
+                <span class="text-[11px] font-bold text-zinc-400 bg-white/5 px-2 py-0.5 rounded-full border border-white/5">${item.hours}</span>
+              </div>
+              <h4 class="text-xl font-extrabold text-white group-hover:text-kf-orange transition-colors">${item.name}</h4>
+              <p class="text-xs font-semibold text-kf-coral mt-1">${item.catName}</p>
+              <p class="text-xs text-zinc-400 mt-2.5 leading-relaxed line-clamp-2">${item.desc}</p>
+            </div>
+            
+            <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs text-zinc-400 font-medium">${item.floorName}</span>
+              <button onclick="showStoreOnFloor('${item.name}', '${item.floorName}', '${item.hours}', '${item.phone}', '${item.desc}')" class="text-xs font-black text-kf-orange hover:text-white flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+                <span>Kat Planı</span>
+                <span>→</span>
+              </button>
+            </div>
           </div>
-          <span class="text-xs font-bold text-kanyon-orange">${item.floor}</span>
         `;
-        div.onclick = () => {
-          closeSearchModal();
-          showStoreOnFloor(item.name, item.floor, '10:00 - 22:00');
-        };
-        modalResults.appendChild(div);
+      }).join('');
+
+      // 2. Table / List Rows
+      tableBody.innerHTML = filtered.map(item => {
+        return `
+          <tr class="hover:bg-white/5 transition-colors">
+            <td class="py-4 px-6 font-extrabold text-white text-base">${item.name}</td>
+            <td class="py-4 px-6 text-xs text-kf-coral font-bold">${item.catName}</td>
+            <td class="py-4 px-6 text-xs text-zinc-300 font-bold">${item.floorName}</td>
+            <td class="py-4 px-6 text-xs text-emerald-400 font-bold">${item.hours}</td>
+            <td class="py-4 px-6 text-right">
+              <button onclick="showStoreOnFloor('${item.name}', '${item.floorName}', '${item.hours}', '${item.phone}', '${item.desc}')" class="px-4 py-2 rounded-full bg-white/10 hover:bg-kf-orange text-white text-xs font-extrabold transition-colors">
+                Kat Planında Gör →
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function setViewMode(mode) {
+      currentViewMode = mode;
+      const grid = document.getElementById('brands-grid');
+      const list = document.getElementById('brands-list');
+      const btnGrid = document.getElementById('view-grid-btn');
+      const btnList = document.getElementById('view-list-btn');
+
+      if (mode === 'grid') {
+        grid.classList.remove('hidden');
+        list.classList.add('hidden');
+        btnGrid.className = 'p-2.5 rounded-lg bg-white/15 text-white transition-all';
+        btnList.className = 'p-2.5 rounded-lg text-zinc-400 hover:text-white transition-all';
+      } else {
+        grid.classList.add('hidden');
+        list.classList.remove('hidden');
+        btnGrid.className = 'p-2.5 rounded-lg text-zinc-400 hover:text-white transition-all';
+        btnList.className = 'p-2.5 rounded-lg bg-white/15 text-white transition-all';
+      }
+    }
+
+    function filterBrands(category, el) {
+      currentCategory = category;
+      if (el) {
+        document.querySelectorAll('.cat-pill').forEach(b => {
+          b.className = 'cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all';
+        });
+        el.className = 'cat-pill active px-4 py-2 rounded-full bg-white text-black transition-all';
+      }
+      renderBrands();
+    }
+
+    function filterFloor(floor, el) {
+      currentFloor = floor;
+      if (el) {
+        document.querySelectorAll('.floor-pill').forEach(b => {
+          b.className = 'floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all';
+        });
+        el.className = 'floor-pill active px-3.5 py-1.5 rounded-lg bg-kf-surface text-white border border-white/20 transition-all';
+      }
+      renderBrands();
+    }
+
+    function handleSearch() {
+      currentSearch = document.getElementById('brand-search').value;
+      renderBrands();
+    }
+
+    function resetFilters() {
+      currentCategory = 'all';
+      currentFloor = 'all';
+      currentSearch = '';
+      document.getElementById('brand-search').value = '';
+      document.querySelectorAll('.cat-pill').forEach((b, i) => {
+        b.className = i === 0 ? 'cat-pill active px-4 py-2 rounded-full bg-white text-black transition-all' : 'cat-pill px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all';
       });
+      document.querySelectorAll('.floor-pill').forEach((b, i) => {
+        b.className = i === 0 ? 'floor-pill active px-3.5 py-1.5 rounded-lg bg-kf-surface text-white border border-white/20 transition-all' : 'floor-pill px-3.5 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-zinc-400 hover:text-white border border-white/5 transition-all';
+      });
+      renderBrands();
     }
 
-    function openSearchModal() {
-      searchModal.classList.remove('hidden');
-      renderSearchResults('');
-      modalInput.value = '';
-      setTimeout(() => modalInput.focus(), 50);
+    // Floor Plan Interactive Modal
+    const FLOOR_BLOCKS = {
+      koru: [
+        { name: "Shake Shack", cat: "Yeme-İçme", status: "highlight" },
+        { name: "Divan Pub", cat: "Restoran", status: "normal" },
+        { name: "Tchibo Coffee", cat: "Kafe", status: "normal" },
+        { name: "Sephora", cat: "Kozmetik", status: "normal" },
+        { name: "Atelier Rebul", cat: "Parfüm", status: "normal" },
+        { name: "D&R Kitap", cat: "Kültür", status: "normal" },
+        { name: "Starbucks Reserve", cat: "Kafe", status: "normal" },
+        { name: "Koru Eczanesi", cat: "Sağlık", status: "normal" }
+      ],
+      cadde: [
+        { name: "Vakko", cat: "Haute Couture", status: "highlight" },
+        { name: "Bang & Olufsen", cat: "Ses/Akustik", status: "normal" },
+        { name: "Beymen Club", cat: "Moda", status: "normal" },
+        { name: "Massimo Dutti", cat: "Giyim", status: "normal" },
+        { name: "Troy Apple Reseller", cat: "Teknoloji", status: "normal" },
+        { name: "Altınbaş", cat: "Mücevher", status: "normal" },
+        { name: "Atasay", cat: "Mücevher", status: "normal" },
+        { name: "Dyson Demo", cat: "Teknoloji", status: "normal" }
+      ],
+      "1kat": [
+        { name: "Big Chefs", cat: "Restoran", status: "normal" },
+        { name: "Lego Store", cat: "Oyuncak", status: "highlight" },
+        { name: "Bebek & Çocuk", cat: "Yaşam", status: "normal" },
+        { name: "Ev & Dekorasyon", cat: "Yaşam", status: "normal" }
+      ],
+      "2kat": [
+        { name: "Happy Moon's Teras", cat: "Panoramik Teras", status: "highlight" },
+        { name: "Lounge & Kokteyl", cat: "Gastronomi", status: "normal" },
+        { name: "Açık Hava Sinema", cat: "Kültür", status: "normal" }
+      ],
+      otopark: [
+        { name: "Dry Clean Express", cat: "Kuru Temizleme", status: "normal" },
+        { name: "Porsche & Trugo E-Şarj", cat: "180kW DC", status: "highlight" },
+        { name: "VIP Vale Teslim", cat: "P1 Katı", status: "normal" },
+        { name: "Auto Wax Yıkama", cat: "P2 Katı", status: "normal" }
+      ]
+    };
+
+    function switchPlanFloor(floorKey) {
+      const keys = ['koru', 'cadde', '1kat', '2kat', 'otopark'];
+      keys.forEach(k => {
+        const btn = document.getElementById('tab-' + k);
+        if (btn) {
+          if (k === floorKey) {
+            btn.className = 'px-4 py-2 rounded-xl bg-kf-orange text-white';
+          } else {
+            btn.className = 'px-4 py-2 rounded-xl bg-white/5 text-zinc-400 hover:text-white';
+          }
+        }
+      });
+
+      const grid = document.getElementById('floor-blocks-grid');
+      const blocks = FLOOR_BLOCKS[floorKey] || [];
+      grid.innerHTML = blocks.map(b => {
+        const isHighlight = b.status === 'highlight';
+        return `
+          <div class="p-4 rounded-xl border ${isHighlight ? 'bg-kf-orange/15 border-kf-orange text-white shadow-lg' : 'bg-white/5 border-white/10 text-zinc-300'} transition-all flex flex-col justify-center">
+            <span class="text-xs font-black uppercase text-kf-coral">${b.cat}</span>
+            <span class="text-sm font-extrabold mt-1">${b.name}</span>
+          </div>
+        `;
+      }).join('');
     }
 
-    function closeSearchModal() {
-      searchModal.classList.add('hidden');
-    }
-
-    modalInput.addEventListener('input', (e) => renderSearchResults(e.target.value));
-
-    window.addEventListener('keydown', (e) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault();
-        openSearchModal();
-      }
-      if (e.key === 'Escape') {
-        closeSearchModal();
-        closeFloorModal();
-      }
-    });
-
-    searchModal.addEventListener('click', (e) => {
-      if (e.target === searchModal) closeSearchModal();
-    });
-
-    // 7. Store On Floor Modal
-    function showStoreOnFloor(name, location, hours) {
-      document.getElementById('floor-modal-title').textContent = name;
-      document.getElementById('floor-modal-location').textContent = `Konum: ${location}`;
-      document.getElementById('floor-modal-hours').textContent = `Çalışma Saatleri: ${hours}`;
+    function openFloorPlanModal() {
       document.getElementById('floor-modal').classList.remove('hidden');
+      switchPlanFloor('koru');
     }
 
-    function closeFloorModal() {
+    function closeFloorPlanModal() {
       document.getElementById('floor-modal').classList.add('hidden');
     }
 
-    document.getElementById('floor-modal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('floor-modal')) closeFloorModal();
-    });
+    function showStoreOnFloor(name, floorName, hours, phone, desc) {
+      document.getElementById('floor-modal').classList.remove('hidden');
+      document.getElementById('floor-target-store').innerText = name;
+      document.getElementById('detail-store-name').innerText = name;
+      document.getElementById('detail-store-desc').innerText = `${floorName} • Çalışma Saatleri: ${hours || '10:00 - 22:00'}`;
+      if (phone) {
+        document.getElementById('detail-call-btn').href = `tel:${phone.replace(/\s+/g, '')}`;
+        document.getElementById('detail-call-btn').classList.remove('hidden');
+      } else {
+        document.getElementById('detail-call-btn').classList.add('hidden');
+      }
 
-    // 8. Newsletter Subscribe
+      // Automatically switch to store's floor tab
+      let key = 'koru';
+      if (floorName.includes('Cadde')) key = 'cadde';
+      if (floorName.includes('1. Kat')) key = '1kat';
+      if (floorName.includes('2. Kat')) key = '2kat';
+      if (floorName.includes('Otopark')) key = 'otopark';
+      switchPlanFloor(key);
+    }
+
+    // Modal Search (Spotlight)
+    function openSearchModal() {
+      document.getElementById('search-modal').classList.remove('hidden');
+      document.getElementById('modal-search-box').focus();
+      handleModalSearch();
+    }
+
+    function closeSearchModal() {
+      document.getElementById('search-modal').classList.add('hidden');
+    }
+
+    function handleModalSearch() {
+      const q = document.getElementById('modal-search-box').value.toLowerCase().trim();
+      const resultsContainer = document.getElementById('modal-results-list');
+
+      const matches = BRID_DATA.filter(b => {
+        return !q || b.name.toLowerCase().includes(q) || b.catName.toLowerCase().includes(q) || b.floorName.toLowerCase().includes(q);
+      }).slice(0, 8);
+
+      if (matches.length === 0) {
+        resultsContainer.innerHTML = '<div class="text-center py-8 text-zinc-500 text-sm">Eşleşen sonuç bulunamadı.</div>';
+        return;
+      }
+
+      resultsContainer.innerHTML = matches.map(b => `
+        <div onclick="closeSearchModal(); showStoreOnFloor('${b.name}', '${b.floorName}', '${b.hours}', '${b.phone}', '${b.desc}')" class="p-3.5 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/5 flex items-center justify-between cursor-pointer transition-all">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-kf-orange/20 text-kf-orange flex items-center justify-center font-black text-sm">
+              ${b.name.slice(0, 2).toUpperCase()}
+            </div>
+            <div>
+              <div class="text-sm font-extrabold text-white">${b.name}</div>
+              <div class="text-xs text-zinc-400">${b.catName} • ${b.floorName}</div>
+            </div>
+          </div>
+          <span class="text-xs font-bold text-kf-orange">Kat Planında Gör →</span>
+        </div>
+      `).join('');
+    }
+
+    // Mobile Navigation Toggle
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobile-nav');
+      nav.classList.toggle('hidden');
+    }
+
+    // Language Toggle
+    function toggleLang() {
+      const btn = document.getElementById('lang-btn');
+      if (btn.innerText === 'EN') {
+        btn.innerText = 'TR';
+        alert('Switched to English preview.');
+      } else {
+        btn.innerText = 'EN';
+        alert('Türkçe moduna geçildi.');
+      }
+    }
+
+    // Newsletter Submission
     function handleSub(e) {
       e.preventDefault();
       document.getElementById('sub-ok').classList.remove('hidden');
       e.target.reset();
     }
+
+    // Keyboard Shortcuts (ESC to close modals, Cmd+K / Ctrl+K to search)
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeSearchModal();
+        closeFloorPlanModal();
+      }
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      }
+    });
+
+    // Real-Time Shuttle Clock Simulator
+    function updateShuttleClock() {
+      const now = new Date();
+      let minutes = now.getMinutes();
+      let nextMin = minutes < 30 ? 30 : 0;
+      let nextHour = minutes < 30 ? now.getHours() : (now.getHours() + 1) % 24;
+      const fmt = `${String(nextHour).padStart(2, '0')}:${String(nextMin).padStart(2, '0')}`;
+      const el = document.getElementById('shuttle-live-time');
+      if (el) el.innerText = fmt;
+    }
+
+    // Initialize on Page Load
+    document.addEventListener('DOMContentLoaded', () => {
+      renderBrands();
+      updateShuttleClock();
+      setInterval(updateShuttleClock, 60000);
+    });
   </script>
 </body>
 </html>
