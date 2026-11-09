@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Etkinlikler | Koru Florya</title>
+<meta name="description" content="Koru Florya'da yaklaşan etkinlikler, imza günleri, fuarlar ve mağaza kampanyaları." />
+<meta name="theme-color" content="#00AB84" />
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/logo/koruflorya-icon-hq.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body data-page="events">
+<main id="main">
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Ana sayfa</a> / Etkinlikler</p>
+      <span class="eyebrow">Kültür, Sanat &amp; Yaşam</span>
+      <h1 class="h" style="font-size:clamp(40px,5.6vw,76px)">Etkinlikler</h1>
+      <p class="lead">İmza günleri, fuarlar ve mağaza kampanyaları. Ücretsiz etkinlikler kartın üzerinde işaretli</p>
+    </div>
+  </div>
+  <section style="padding-top:56px">
+    <div class="wrap">
+      <div class="etabs" id="etabs" role="tablist" aria-label="Zaman"></div>
+      <div class="ecards" id="ecards" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+<script src="assets/js/stores.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/cards.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script>
+(function(){
+const $=s=>document.querySelector(s);
+const keys=KF.TABS.map(t=>t[0]);
+let tab=keys.includes(location.hash.slice(1))?location.hash.slice(1):'upcoming';
+function render(){
+  $('#etabs').innerHTML=KF.TABS.map(([k,l,f])=>`<button class="etab" role="tab" type="button" data-k="${k}" aria-selected="${k===tab}">${l}<em>${f().length}</em></button>`).join('');
+  const list=KF.sortEv(KF.TABS.find(t=>t[0]===tab)[2]());
+  $('#ecards').innerHTML=list.length?list.map(KF.cardHtml).join(''):`<div class="eempty"><p>${tab==='past'?'Geçmiş etkinlik yok':'Bu dönemde etkinlik yok'}</p>${tab==='upcoming'?'':'<button class="btn btn-dark" type="button" data-k="upcoming">Yaklaşan etkinlikleri gör</button>'}</div>`;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;tab=b.dataset.k;history.replaceState(null,'','#'+tab);render()});
+addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(keys.includes(k)){tab=k;render()}});
+render();
+})();
+</script>
+</body>
+</html>

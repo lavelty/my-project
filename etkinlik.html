@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Etkinlik | Koru Florya</title>
+<meta name="description" content="Koru Florya etkinlik detayı" />
+<meta name="theme-color" content="#00AB84" />
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/logo/koruflorya-icon-hq.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body data-page="event">
+<main id="main"><div id="page"></div></main>
+<script src="assets/js/stores.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/cards.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script>
+(function(){
+const {esc,IC}=KF;
+const $=s=>document.querySelector(s);
+const id=new URLSearchParams(location.search).get('e');
+const e=KF.evById(id);
+const page=$('#page');
+if(!e){
+  document.title='Etkinlik bulunamadı | Koru Florya';
+  page.innerHTML=`<div class="pagehead"><div class="wrap"><p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="etkinlikler.html">Etkinlikler</a></p><h1 class="h" style="font-size:clamp(36px,5vw,64px)">Etkinlik bulunamadı</h1><p class="lead">Bağlantı değişmiş ya da etkinlik kaldırılmış olabilir</p><p style="margin-top:32px"><a class="btn btn-dark" href="etkinlikler.html">Tüm etkinliklere dön ${IC.arr}</a></p></div></div>`;
+  return;
+}
+document.title=`${e.title} | Koru Florya`;
+document.querySelector('meta[name=description]').content=e.short;
+const past=KF.isPast(e),dt=KF.dateText(e),l=KF.calLinks(e);
+const camp=e.type==='campaign';
+const chips=[dt?`<span>${IC.cal}${esc(dt)}</span>`:'',e.time?`<span>${IC.clock}${esc(e.time)}</span>`:'',`<span>${IC.pin}${esc((e.venue?e.venue+', ':'')+(e.place||''))}</span>`].join('');
+const rows=[dt?['Tarih',esc(dt)]:null,e.time?['Saat',esc(e.time)]:null,['Mekân',`${e.venue?esc(e.venue)+'<br>':''}${esc(e.place||'')}`],e.who?['Konuk',esc(e.who.name)]:null,e.audience?['Kimler için',esc(e.audience)]:null,!camp?['Katılım',e.free?'Ücretsiz':'—']:null].filter(Boolean);
+const inits=n=>n.replace(/(Prof\.|Dr\.)\s*/g,'').split(' ').map(w=>w[0]).slice(0,2).join('');
+const goEventHall=!camp&&/^Koru Katı/.test(e.place||'');
+const similar=(e.related||KF.EVENTS.filter(x=>x.id!==e.id&&x.type===e.type).map(x=>x.id)).map(KF.evById).filter(Boolean).slice(0,3);
+page.innerHTML=`
+<div class="ev-hero">
+  <img src="assets/events/${e.img}" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" />
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="etkinlikler.html">Etkinlikler</a> / ${esc(e.title)}</p>
+    <span class="eyebrow" style="color:#9CE8D2">${esc(e.kicker||'')}${past?' · Sona erdi':''}</span>
+    <h1>${esc(e.title)}</h1>
+    <p>${esc(e.short)}</p>
+    <div class="ev-chips">${chips}</div>
+  </div>
+</div>
+<section>
+  <div class="wrap evd">
+    <article>
+      <div class="poster"><img src="assets/events/${e.img}" alt="${esc(e.title)} afişi" width="1920" height="1080" loading="lazy" decoding="async" /></div>
+      <h2>${camp?'Kampanya hakkında':'Etkinlik hakkında'}</h2>
+      ${e.about.map(p=>`<p>${esc(p)}</p>`).join('')}
+      ${e.who?`<h2>Konuk hakkında</h2><div class="bio"><span class="av" aria-hidden="true">${esc(inits(e.who.name))}</span><div><h3>${esc(e.who.name)}</h3><p>${esc(e.who.bio)}</p></div></div>`:''}
+      ${e.schedule?`<h2>${e.schedule.length>1?'Etkinlik çizelgesi':'Saat'}</h2><ul class="tl">${e.schedule.map(s=>`<li class="${s.hot?'hot':''}"><b>${esc(s.t)}</b><span>${esc(s.d)}</span></li>`).join('')}</ul>`:''}
+    </article>
+    <aside class="sidecard">
+      <div class="box"><h3>${camp?'Kampanya bilgileri':'Etkinlik bilgileri'}</h3><dl class="info">${rows.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl></div>
+      ${l&&!past?`<div class="box" id="takvim"><h3>Takvime ekle</h3><div class="calbtns"><a class="btn btn-outline" target="_blank" rel="noopener" href="${l.google}"><span style="display:inline-flex;gap:10px;align-items:center">${IC.cal}Google Takvim</span>${IC.arr}</a><a class="btn btn-outline" href="${l.ics}" download="${e.id}.ics"><span style="display:inline-flex;gap:10px;align-items:center">${IC.cal}Apple Takvim (.ics)</span>${IC.arr}</a><a class="btn btn-outline" target="_blank" rel="noopener" href="${l.outlook}"><span style="display:inline-flex;gap:10px;align-items:center">${IC.cal}Outlook</span>${IC.arr}</a></div><p class="note">Tarih, saat ve konum takvim kaydına otomatik eklenir</p></div>`:(past?`<div class="box"><h3>Bu etkinlik sona erdi</h3><p class="note" style="margin-top:0">Yaklaşan etkinlikler için etkinlik takvimine göz atabilirsin</p><p style="margin-top:16px"><a class="btn btn-dark btn-sm" href="etkinlikler.html">Yaklaşan etkinlikler ${IC.arr}</a></p></div>`:'')}
+      <div class="box"><h3>Yol tarifi</h3><div class="calbtns"><a class="btn btn-primary" target="_blank" rel="noopener" href="${KF.MAPS}"><span>${goEventHall?'Koru Katı etkinlik alanına yol tarifi':'Koru Florya’ya yol tarifi'}</span>${IC.arr}</a>${camp&&e.store&&KF.byName[e.store]?`<a class="btn btn-outline" href="index.html?magaza=${encodeURIComponent(e.store)}#rehber"><span>Mağazayı kat rehberinde gör</span>${IC.arr}</a>`:''}</div>${goEventHall?'<p class="note">Etkinlik alanı giriş katta, ana girişten ulaşılır</p>':''}</div>
+    </aside>
+  </div>
+</section>
+${similar.length?`<section class="bg-lime" style="padding-top:80px"><div class="wrap"><div class="sec-head"><h2 class="h">${camp?'Diğer kampanyalar':'Benzer etkinlikler'}</h2><a class="btn btn-outline" href="etkinlikler.html">Tümü ${IC.arr}</a></div><div class="sim">${similar.map(KF.cardHtml).join('')}</div></div></section>`:''}`;
+if(location.hash==='#takvim')setTimeout(()=>{const t=$('#takvim');if(t)t.scrollIntoView({behavior:'smooth',block:'center'})},300);
+})();
+</script>
+</body>
+</html>

@@ -11,1007 +11,149 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-:root{
-  /* Koru Florya brand colors (from koruflorya.com) */
-  --green:#00AB84; --green-deep:#007F62; --orange:#FF7F41; --yellow:#FFB81C;
-  --ink:#1C242B; --ink2:#333F48; --ink3:#5F656E;
-  --paper:#F2EEE3; --white:#FFFFFF; --line:rgba(28,36,43,.12); --mint:#DDF3EB;
-  --accent:var(--green); --accent-ink:#04241C;
-  --d1:#0E3B30; --dline:rgba(255,255,255,.14); --t2:#BFD8CE; --t3:#93B5A7;
-  --ease:cubic-bezier(.22,1,.36,1);
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:88px}
-body{font-family:'Figtree',system-ui,sans-serif;font-size:17px;line-height:1.6;font-weight:400;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-variant-numeric:tabular-nums}
-body.lock{overflow:hidden}
-a{color:inherit;text-decoration:none}
-button,input{font:inherit;color:inherit}
-ul{list-style:none}
-img{display:block;max-width:100%}
-::selection{background:var(--green);color:var(--accent-ink)}
-:focus-visible{outline:2px solid var(--green-deep);outline-offset:3px;border-radius:4px}
-.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.skip{position:absolute;left:-999px;top:8px;z-index:400;background:var(--ink);color:#fff;padding:8px 12px;border-radius:8px}
-.skip:focus{left:8px}
-.wrap{width:min(1280px,100% - 48px);margin-inline:auto}
-.h{font-family:'Bricolage Grotesque',sans-serif;font-weight:500;line-height:1.06;letter-spacing:-.02em}
-h2.h{font-size:clamp(40px,5vw,64px);letter-spacing:-.03em}
-.lead{color:var(--ink2);font-size:18px;line-height:28px;max-width:36rem;margin-top:16px}
-section{padding:112px 0}
-.paper{background:var(--paper)}
-.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:48px}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 20px;border-radius:10px;font-weight:500;font-size:15px;border:1px solid transparent;cursor:pointer;transition:background-color .16s var(--ease),color .16s var(--ease),border-color .16s var(--ease),transform .16s var(--ease)}
-.btn:active{transform:scale(.98)}
-.btn-primary{background:var(--green);color:var(--accent-ink)}
-.btn-primary:hover{background:#12BC95}
-.btn-dark{background:var(--ink);color:#fff}
-.btn-dark:hover{background:#2D3A44}
-.btn-light{background:#fff;color:var(--ink)}
-.btn-light:hover{background:var(--paper)}
-.btn-line{border-color:currentColor;background:transparent}
-.btn-line:hover{background:rgba(127,127,127,.14)}
-.btn-outline{border-color:var(--line);background:#fff}
-.btn-outline:hover{border-color:var(--ink)}
-.btn-sm{height:40px;font-size:14px;padding:0 16px}
-.btn svg{width:18px;height:18px}
-
-/* nav */
-.nav{position:fixed;inset:0 0 auto;z-index:100;color:#fff;transition:background-color .16s var(--ease),color .16s var(--ease)}
-.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:80px}
-.nav.solid{background:var(--white);color:var(--ink);box-shadow:0 1px 0 var(--line)}
-.brand{display:flex;align-items:center}
-.brand img{height:44px;width:auto}
-.logo-d{display:none}
-.nav.solid .logo-w{display:none}
-.nav.solid .logo-d{display:block}
-.links{display:flex;gap:4px}
-.links a{padding:8px 16px;border-radius:8px;font-weight:500;font-size:15px;transition:background-color .16s var(--ease)}
-.links a:hover{background:rgba(255,255,255,.16)}
-.nav.solid .links a:hover{background:var(--paper)}
-.nav-r{display:flex;align-items:center;gap:16px}
-.live{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:500;white-space:nowrap}
-.dot{width:8px;height:8px;border-radius:50%;background:#35D39F}
-.dot.closed{background:#E5484D}
-.menu-btn{display:none;border:1px solid currentColor;background:none;border-radius:10px;height:40px;padding:0 16px;font-weight:500;font-size:14px;cursor:pointer}
-
-/* hero */
-.hero{position:relative;height:min(100svh,920px);min-height:640px;color:#fff;overflow:hidden;background:var(--d1);padding:0}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity .8s var(--ease);pointer-events:none}
-.slide.on{opacity:1;pointer-events:auto}
-.slide img{width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,26,20,.56) 0%,rgba(8,26,20,0) 60%),linear-gradient(180deg,rgba(8,26,20,.56) 0%,rgba(8,26,20,.08) 28%,rgba(8,26,20,.28) 52%,rgba(8,26,20,.84) 100%);pointer-events:none}
-.hero-in{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:32px}
-.hero h1{font-size:clamp(40px,5.6vw,72px);line-height:1.04;letter-spacing:-.03em;max-width:16ch}
-.hero p.sub{font-size:20px;line-height:28px;margin-top:16px;max-width:36rem;color:rgba(255,255,255,.92)}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
-.dots{display:flex;gap:8px;position:absolute;right:max(24px,calc((100% - 1280px)/2));top:50%;transform:translateY(-50%);flex-direction:column;z-index:3}
-.dots button{width:8px;height:32px;border-radius:4px;border:0;background:rgba(255,255,255,.4);cursor:pointer;transition:background-color .16s var(--ease),height .3s var(--ease)}
-.dots button[aria-current=true]{background:#fff;height:48px}
-.infobar{position:relative;z-index:3;margin-top:48px;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;color:var(--ink);border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
-.infobar>div{padding:16px 24px;border-right:1px solid var(--line);min-width:0}
-.infobar>div:last-child{border-right:0}
-.infobar small{display:block;font-size:13px;line-height:20px;color:var(--ink3)}
-.infobar b{display:block;font-family:'Bricolage Grotesque';font-size:20px;font-weight:500;line-height:28px}
-
-/* logo strip */
-.strip{background:var(--white);border-bottom:1px solid var(--line);padding:40px 0}
-.strip ul{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:24px 56px}
-.strip img{height:28px;width:auto;max-width:112px;object-fit:contain;filter:grayscale(1);opacity:.62;transition:filter .16s var(--ease),opacity .16s var(--ease)}
-.strip li:hover img{filter:none;opacity:1}
-
-/* category rail */
-.rail-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:40px}
-.arrows{display:flex;gap:8px}
-.arrows button{width:48px;height:48px;border-radius:12px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;transition:border-color .16s var(--ease)}
-.arrows button:hover{border-color:var(--ink)}
-.arrows svg{width:20px;height:20px}
-.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px;margin-right:calc((100vw - min(1280px,100vw - 48px))/-2)}
-.rail::-webkit-scrollbar{display:none}
-.cat{position:relative;flex:none;width:288px;height:400px;border-radius:20px;overflow:hidden;color:#fff;scroll-snap-align:start;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;isolation:isolate;text-align:left;border:0;cursor:pointer}
-.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
-.cat::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,20,15,0) 40%,rgba(8,20,15,.78))}
-.cat b{font-family:'Bricolage Grotesque';font-weight:500;font-size:28px;line-height:32px;letter-spacing:-.02em}
-.cat span{font-size:14px;line-height:20px;color:rgba(255,255,255,.88);margin-top:4px;display:flex;justify-content:space-between;align-items:center}
-.cat span svg{width:20px;height:20px;transition:transform .16s var(--ease)}
-.cat:hover span svg{transform:translateX(4px)}
-
-/* directory */
-.dir-grid{display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:start}
-.filters{position:sticky;top:104px}
-.filters h2{font-size:clamp(36px,3.4vw,48px)}
-.search{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid transparent;border-radius:12px;padding:0 16px;height:52px;margin-top:32px;transition:border-color .16s var(--ease),background-color .16s var(--ease)}
-.search:focus-within{border-color:var(--green-deep);background:#fff}
-.search svg{width:20px;height:20px;color:var(--ink3);flex:none}
-.search input{flex:1;min-width:0;border:0;background:none;outline:none;height:100%;font-size:16px}
-.search input::placeholder{color:var(--ink3)}
-.search kbd{font-size:12px;line-height:16px;color:var(--ink3);border:1px solid var(--line);border-radius:4px;padding:2px 8px;background:#fff}
-.flabel{font-size:14px;line-height:20px;color:var(--ink3);margin:32px 0 8px}
-.floors{display:grid;gap:4px}
-.floor{display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:12px;width:100%;text-align:left;border:0;background:transparent;border-radius:10px;padding:8px 12px 8px 8px;cursor:pointer;transition:background-color .16s var(--ease)}
-.floor:hover{background:var(--paper)}
-.floor i{font-style:normal;width:32px;height:32px;border-radius:8px;background:var(--paper);display:grid;place-items:center;font-family:'Bricolage Grotesque';font-weight:500;font-size:16px}
-.floor b{font-weight:500}
-.floor em{font-style:normal;color:var(--ink3);font-size:14px}
-.floor[aria-pressed=true]{background:var(--ink);color:#fff}
-.floor[aria-pressed=true] i{background:rgba(255,255,255,.16)}
-.floor[aria-pressed=true] em{color:var(--t2)}
-.chips{display:flex;gap:8px;flex-wrap:wrap}
-.chip{border:1px solid var(--line);background:#fff;border-radius:8px;height:32px;padding:0 12px;font-size:14px;font-weight:500;cursor:pointer;color:var(--ink2);transition:background-color .16s var(--ease),border-color .16s var(--ease),color .16s var(--ease)}
-.chip:hover{border-color:var(--ink)}
-.chip[aria-pressed=true]{background:var(--mint);border-color:var(--green-deep);color:var(--green-deep)}
-.count{display:flex;justify-content:space-between;align-items:center;gap:16px;color:var(--ink3);font-size:15px;min-height:32px;margin-bottom:8px}
-.count b{color:var(--ink);font-weight:500}
-.link{background:none;border:0;color:var(--green-deep);font-weight:500;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
-.grp{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:24px 0;border-top:1px solid var(--line)}
-.grp h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:40px;line-height:1;letter-spacing:-.02em;color:var(--green-deep)}
-.grp ul{columns:3;column-gap:24px}
-.grp li{break-inside:avoid}
-.st{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;padding:8px 12px 8px 0;border-radius:10px;cursor:pointer;transition:background-color .16s var(--ease)}
-.st:hover{background:var(--paper)}
-.lg{width:48px;height:36px;display:grid;place-items:center;border-radius:8px;background:var(--paper)}
-.lg img{max-width:40px;max-height:24px;object-fit:contain}
-.lg i{font-style:normal;font-family:'Bricolage Grotesque';font-weight:500;color:var(--ink3);font-size:14px}
-.st b{display:block;font-weight:500;font-size:16px;line-height:22px;overflow-wrap:anywhere}
-.st span{display:block;font-size:13px;line-height:18px;color:var(--ink3)}
-.st mark{background:#FFE19A;color:var(--ink);border-radius:4px;padding:0 2px}
-.listwrap{position:relative}
-.listwrap.collapsed #list{max-height:880px;overflow:hidden}
-.listwrap.collapsed::after{content:"";position:absolute;left:0;right:0;bottom:64px;height:200px;background:linear-gradient(rgba(255,255,255,0),#fff);pointer-events:none}
-.expand{display:flex;justify-content:center;margin-top:16px}
-.empty{padding:48px 0;border-top:1px solid var(--line)}
-.empty p{font-size:20px;line-height:28px;margin-bottom:16px}
-
-/* floor plan */
-.plan{background:#fff;border:1px solid var(--line);border-radius:24px;display:grid;grid-template-columns:104px 1fr 360px;min-height:680px;overflow:hidden}
-.pfloors{border-right:1px solid var(--line);padding:16px;display:grid;gap:8px;align-content:start;background:var(--paper)}
-.pf{display:grid;justify-items:center;gap:0;border:1px solid transparent;background:transparent;border-radius:14px;padding:12px 4px;cursor:pointer;transition:background-color .16s var(--ease),color .16s var(--ease)}
-.pf b{font-family:'Bricolage Grotesque';font-weight:500;font-size:32px;line-height:36px}
-.pf small{font-size:12px;line-height:16px;color:var(--ink3);text-align:center}
-.pf:hover{background:#fff}
-.pf[aria-pressed=true]{background:var(--ink);color:#fff}
-.pf[aria-pressed=true] small{color:var(--t2)}
-.pmain{padding:24px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.pcol{position:relative}
-.psearch{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid transparent;border-radius:12px;padding:0 16px;height:52px}
-.psearch:focus-within{border-color:var(--green-deep);background:#fff}
-.psearch svg{width:20px;height:20px;color:var(--ink3);flex:none}
-.psearch input{flex:1;min-width:0;border:0;background:none;outline:none;height:100%;font-size:16px}
-.pres{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:20;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);padding:8px;max-height:320px;overflow:auto}
-.pres[hidden]{display:none}
-.pres button{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:8px;cursor:pointer}
-.pres button:hover,.pres button:focus-visible{background:var(--paper)}
-.pres b{display:block;font-weight:500;line-height:20px}
-.pres span{display:block;font-size:13px;color:var(--ink3);line-height:18px}
-.pres p{padding:12px;color:var(--ink3);font-size:15px}
-.fhead h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:28px;line-height:32px;letter-spacing:-.02em}
-.fhead p{color:var(--ink2);font-size:16px;margin-top:4px}
-.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;align-content:start;overflow:auto;max-height:520px;padding:2px}
-.tile{display:grid;grid-template-rows:56px auto;gap:8px;justify-items:center;text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 8px;cursor:pointer;transition:border-color .16s var(--ease),background-color .16s var(--ease)}
-.tile:hover{border-color:var(--ink)}
-.tile[aria-pressed=true]{border-color:var(--green-deep);background:var(--mint)}
-.tile .im{display:grid;place-items:center;width:100%;height:56px}
-.tile img{max-width:88px;max-height:40px;object-fit:contain}
-.tile .im i{font-style:normal;font-family:'Bricolage Grotesque';font-weight:500;font-size:20px;color:var(--ink3)}
-.tile b{font-weight:500;font-size:14px;line-height:18px;overflow-wrap:anywhere}
-.pnote{font-size:13px;line-height:20px;color:var(--ink3)}
-.plan-svg{border:1px solid var(--line);border-radius:12px;padding:8px;background:var(--paper)}
-.plan-svg svg{width:100%;height:auto}
-.plan-svg [data-store]{cursor:pointer;transition:fill .16s var(--ease)}
-.plan-svg [data-store]:hover,.plan-svg [data-store].on{fill:var(--green)}
-.pside{border-left:1px solid var(--line);padding:24px;background:var(--paper);display:flex;flex-direction:column;gap:16px}
-.pside .logo-box{height:96px;border-radius:16px;background:#fff;display:grid;place-items:center;padding:16px}
-.pside .logo-box img{max-height:64px;max-width:200px;object-fit:contain}
-.pside .logo-box i{font-style:normal;font-family:'Bricolage Grotesque';font-weight:500;font-size:32px;color:var(--ink3)}
-.pside h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:32px;line-height:36px;letter-spacing:-.02em}
-.pside dl{display:grid;gap:0}
-.pside dl div{display:grid;grid-template-columns:96px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
-.pside dt{color:var(--ink3)}
-.pside dd{font-weight:500}
-.pside .acts{display:grid;gap:8px;margin-top:auto}
-.pside .hint{color:var(--ink2);font-size:16px}
-.tag{display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:6px;font-size:13px;font-weight:500;background:var(--mint);color:var(--green-deep)}
-
-/* food */
-.food-grid{display:grid;grid-template-columns:5fr 6fr;gap:64px;align-items:center}
-.food-photo{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:4/5;background:var(--mint)}
-.food-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .5s var(--ease)}
-.food-photo img.on{opacity:1}
-.ftabs{margin-top:32px;border-top:1px solid var(--line)}
-.ftab{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:20px 0;cursor:pointer;color:var(--ink3);transition:color .16s var(--ease)}
-.ftab:hover{color:var(--ink)}
-.ftab b{font-family:'Bricolage Grotesque';font-weight:500;font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.02em}
-.ftab em{font-style:normal;font-size:16px}
-.ftab[aria-selected=true]{color:var(--ink)}
-.ftab[aria-selected=true] em{color:var(--green-deep)}
-.fpanel{display:none;padding:8px 0 24px;border-bottom:1px solid var(--line)}
-.fpanel.on{display:block}
-.fpanel ul{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
-.fpanel li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:12px 0;border-bottom:1px solid var(--line);font-weight:500}
-.fpanel li span{color:var(--ink3);font-weight:400;font-size:14px;white-space:nowrap}
-.food-cta{margin-top:32px}
-
-/* events */
-.etabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}
-.etab{height:44px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background-color .16s var(--ease),border-color .16s var(--ease),color .16s var(--ease)}
-.etab em{font-style:normal;color:var(--ink3);font-size:14px}
-.etab:hover{border-color:var(--ink)}
-.etab[aria-selected=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-.etab[aria-selected=true] em{color:var(--t2)}
-.ecards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.ecard{background:#fff;border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
-.eimg{position:relative;aspect-ratio:16/9;background:var(--mint);overflow:hidden}
-.eimg img{width:100%;height:100%;object-fit:cover}
-.ecard.past .eimg img{filter:grayscale(1);opacity:.7}
-.edate{position:absolute;top:16px;left:16px;background:#fff;color:var(--ink);border-radius:10px;padding:8px 12px;line-height:1;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
-.edate b{display:block;font-family:'Bricolage Grotesque';font-size:28px;font-weight:500;line-height:32px}
-.edate small{font-size:12px;line-height:16px;color:var(--ink3)}
-.ebadge{position:absolute;top:16px;left:16px;background:var(--orange);color:#fff;border-radius:10px;padding:8px 12px;font-family:'Bricolage Grotesque';font-weight:500;font-size:20px;line-height:24px}
-.ebody{padding:24px;display:flex;flex-direction:column;gap:12px;flex:1}
-.etags{display:flex;gap:8px;flex-wrap:wrap}
-.tag.y{background:#FFEFC2;color:#7A5200}
-.tag.o{background:#FFE3D6;color:#A8421A}
-.tag.g{background:#E6E8EA;color:var(--ink2)}
-.ebody h3{font-family:'Bricolage Grotesque';font-weight:500;font-size:26px;line-height:30px;letter-spacing:-.02em}
-.ebody p{color:var(--ink2);font-size:16px;line-height:24px}
-.emeta{display:grid;gap:4px;font-size:14px;color:var(--ink2);margin-top:auto}
-.emeta div{display:grid;grid-template-columns:20px 1fr;gap:8px;align-items:start}
-.emeta svg{width:18px;height:18px;margin-top:2px;color:var(--ink3)}
-.eacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.eempty{grid-column:1/-1;background:#fff;border:1px dashed var(--line);border-radius:20px;padding:48px 24px;text-align:center}
-.eempty p{font-size:20px;line-height:28px;margin-bottom:16px}
-
-/* visit */
-.sh-switch{display:inline-grid;grid-template-columns:1fr 1fr;gap:4px;background:rgba(255,255,255,.14);border-radius:12px;padding:4px;margin-bottom:24px}
-.sh-switch button{height:40px;padding:0 16px;border-radius:8px;border:0;background:transparent;color:#fff;font-weight:500;font-size:14px;cursor:pointer;transition:background-color .16s var(--ease),color .16s var(--ease)}
-.sh-switch button[aria-pressed=true]{background:#fff;color:var(--green-deep)}
-.visit{display:grid;grid-template-columns:1.15fr 1fr;gap:16px;align-items:stretch}
-.map{position:relative;border-radius:24px;overflow:hidden;min-height:680px;background:var(--mint)}
-.map img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:var(--mint)}
-.side{display:grid;gap:16px;align-content:start}
-.shuttle{background:var(--green-deep);color:#fff;border-radius:24px;padding:32px}
-.shuttle small{color:#CBEBE0;font-size:15px}
-.shuttle .big{font-family:'Bricolage Grotesque';font-weight:500;font-size:88px;line-height:1;letter-spacing:-.04em;margin:12px 0;color:#fff}
-.shuttle .big span:last-child{font-size:28px;color:#CBEBE0;font-weight:400;letter-spacing:0}
-.shuttle>p{color:#CBEBE0;font-size:15px}
-.times{display:flex;gap:6px;margin-top:16px;flex-wrap:wrap}
-.times span{border:1px solid rgba(255,255,255,.28);border-radius:8px;padding:2px 10px;font-weight:500;font-size:14px;line-height:24px}
-.times span.past{opacity:.4;text-decoration:line-through}
-.times span.next{background:#fff;border-color:#fff;color:var(--green-deep)}
-.routes{background:var(--paper);border-radius:24px;padding:8px 24px}
-.routes li{display:grid;grid-template-columns:48px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
-.routes li:last-child{border-bottom:0}
-.routes .ic{width:48px;height:48px;border-radius:12px;background:#fff;display:grid;place-items:center;color:var(--ink)}
-.routes svg{width:24px;height:24px}
-.routes b{display:block;font-weight:500;font-size:17px;line-height:24px}
-.routes span{color:var(--ink2);font-size:15px;line-height:24px}
-.addr{background:var(--paper);border-radius:24px;padding:24px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.addr p{max-width:24ch;font-weight:500}
-
-footer{background:var(--ink);color:var(--t2);padding:96px 0 32px}
-.foot{display:grid;grid-template-columns:2fr 1fr 1fr 1fr 1fr;gap:40px}
-.foot .brand img{height:64px}
-.foot p{margin-top:16px;max-width:28rem;color:#9AA6AE}
-.foot h3{font-size:14px;line-height:20px;color:#9AA6AE;font-weight:500;margin-bottom:12px}
-.foot a,.foot button.fl{display:block;padding:4px 0;transition:color .16s var(--ease);background:none;border:0;text-align:left;color:inherit;cursor:pointer;font-size:inherit}
-.foot a:hover,.foot button.fl:hover{color:#fff}
-.legal{margin-top:64px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:14px;color:#9AA6AE}
-
-/* sheet */
-.scrim{position:fixed;inset:0;z-index:300;background:rgba(16,22,26,.5);opacity:0;transition:opacity .3s var(--ease)}
-.scrim.on{opacity:1}
-.sheet{position:fixed;top:0;right:0;bottom:0;z-index:310;width:min(600px,100%);background:#fff;transform:translateX(100%);transition:transform .35s var(--ease);display:flex;flex-direction:column;box-shadow:-8px 0 32px rgba(0,0,0,.16)}
-.sheet.on{transform:none}
-.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 24px;border-bottom:1px solid var(--line)}
-.sheet-head h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:22px;line-height:28px;letter-spacing:-.01em}
-.sheet-head button{width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;flex:none}
-.sheet-head button:hover{border-color:var(--ink)}
-.sheet-head svg{width:20px;height:20px}
-.sheet-body{overflow:auto;padding:24px;flex:1}
-.sheet-body .simg{border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:var(--mint);margin-bottom:24px}
-.sheet-body .simg img{width:100%;height:100%;object-fit:cover}
-.sheet-body h3.t{font-family:'Bricolage Grotesque';font-weight:500;font-size:32px;line-height:36px;letter-spacing:-.02em;margin:12px 0 8px}
-.sheet-body h4{font-family:'Bricolage Grotesque';font-weight:500;font-size:20px;line-height:28px;margin:32px 0 8px}
-.sheet-body p{color:var(--ink2)}
-.info{display:grid;margin-top:8px}
-.info div{display:grid;grid-template-columns:120px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
-.info dt{color:var(--ink3)}
-.info dd{font-weight:500}
-.calbtns{display:grid;gap:8px;margin-top:8px}
-.calbtns .btn{justify-content:flex-start}
-.mini{display:grid;gap:8px;margin-top:8px}
-.mini button{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:center;text-align:left;background:var(--paper);border:0;border-radius:14px;padding:8px;cursor:pointer}
-.mini button img{width:96px;height:64px;object-fit:cover;border-radius:10px}
-.mini b{display:block;font-weight:500;line-height:22px}
-.mini span{font-size:13px;color:var(--ink3)}
-/* legal doc */
-.doc .meta{color:var(--ink3);font-size:14px;margin-bottom:8px}
-.doc h2{font-family:'Bricolage Grotesque';font-weight:500;font-size:24px;line-height:30px;letter-spacing:-.01em;margin:32px 0 8px}
-.doc h2:first-of-type{margin-top:8px}
-.doc p{margin:8px 0;color:var(--ink2)}
-.doc dl{margin:8px 0}
-.doc dl>div{display:grid;grid-template-columns:168px 1fr;gap:16px;padding:12px 0;border-top:1px solid var(--line);font-size:15px}
-.doc dt{font-weight:500}
-.doc dd{color:var(--ink2)}
-.doc ul{margin:8px 0}
-.doc li{padding:8px 0 8px 20px;position:relative;color:var(--ink2);font-size:15px}
-.doc li::before{content:"";position:absolute;left:0;top:18px;width:6px;height:6px;border-radius:50%;background:var(--green)}
-.doc li:has(>div){display:grid;grid-template-columns:64px 1fr;gap:12px;padding-left:0}
-.doc li:has(>div)::before{display:none}
-.doc li>span:first-child:not(:only-child){font-size:13px;font-weight:500;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;background:var(--mint);color:var(--green-deep)}
-.doc li>span.no{background:#FFE3D6;color:#A8421A}
-.doc li h3{font-size:16px;font-weight:500;color:var(--ink)}
-
-@media (max-width:1100px){
-  .dir-grid{grid-template-columns:1fr;gap:32px}
-  .filters{position:static}
-  .grp ul{columns:2}
-  .plan{grid-template-columns:1fr}
-  .pfloors{grid-template-columns:repeat(4,1fr);border-right:0;border-bottom:1px solid var(--line)}
-  .pside{border-left:0;border-top:1px solid var(--line)}
-  .food-grid{grid-template-columns:1fr;gap:40px}
-  .food-photo{aspect-ratio:16/10}
-  .ecards{grid-template-columns:1fr 1fr}
-  .visit{grid-template-columns:1fr}
-  .map{min-height:400px}
-  .foot{grid-template-columns:1fr 1fr 1fr}
-  .foot>div:first-child{grid-column:1/-1}
-}
-@media (max-width:1000px){
-  .links,.nav .live{display:none}
-  .menu-btn{display:block}
-  .links.open{display:flex;position:fixed;inset:80px 0 auto;flex-direction:column;gap:0;background:var(--white);color:var(--ink);padding:8px 24px 24px;box-shadow:0 8px 24px rgba(0,0,0,.08)}
-  .links.open a{font-family:'Bricolage Grotesque';font-size:28px;font-weight:500;padding:16px 0;border-bottom:1px solid var(--line);border-radius:0}
-  .infobar{grid-template-columns:1fr 1fr}
-  .infobar>div:nth-child(2){border-right:0}
-  .infobar>div:nth-child(-n+2){border-bottom:1px solid var(--line)}
-  .dots{display:none}
-  section{padding:80px 0}
-  .listwrap.collapsed #list{max-height:720px}
-}
-@media (max-width:640px){
-  .wrap{width:calc(100% - 32px)}
-  .brand img{height:36px}
-  .hero{min-height:704px}
-  .hero-in{padding-bottom:16px}
-  .hero p.sub{font-size:18px}
-  .infobar{margin-top:32px}
-  .infobar>div{padding:12px 16px}
-  .infobar b{font-size:17px;line-height:24px}
-  .strip ul{gap:20px 32px}
-  .strip img{height:24px;max-width:88px}
-  .rail{margin-right:-16px}
-  .cat{width:248px;height:340px}
-  .arrows{display:none}
-  .grp{grid-template-columns:40px 1fr}
-  .grp h3{font-size:32px}
-  .grp ul{columns:1}
-  .pfloors{padding:12px;gap:4px}
-  .pf b{font-size:24px}
-  .pmain,.pside{padding:16px}
-  .tiles{grid-template-columns:repeat(2,1fr);max-height:480px}
-  .fpanel ul{grid-template-columns:1fr}
-  .ecards{grid-template-columns:1fr}
-  .shuttle{padding:24px}
-  .shuttle .big{font-size:64px}
-  .routes{padding:8px 16px}
-  .foot{grid-template-columns:1fr 1fr}
-  .foot>div:first-child{grid-column:1/-1}
-  .sheet-body{padding:16px}
-  .info div,.doc dl>div{grid-template-columns:1fr;gap:2px}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}.slide img{transform:none}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/site.css" />
 </head>
-<body>
-<a class="skip" href="#main">İçeriğe geç</a>
-
-<nav class="nav" id="nav" aria-label="Ana menü">
-  <div class="wrap">
-    <a class="brand" href="#top" aria-label="Koru Florya, başa dön">
-      <img class="logo-w" src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="133" height="44" />
-      <img class="logo-d" src="assets/logo/koruflorya.svg" alt="" width="133" height="44" />
-    </a>
-    <div class="links" id="links">
-      <a href="#rehber">Mağazalar</a>
-      <a href="#plan">Kat planı</a>
-      <a href="#yeme-icme">Yeme içme</a>
-      <a href="#etkinlikler">Etkinlikler</a>
-      <a href="#ulasim">Ulaşım</a>
-    </div>
-    <div class="nav-r">
-      <div class="live" role="status"><span class="dot" id="navDot"></span><span id="navStatus">Açık</span></div>
-      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="links">Menü</button>
-    </div>
-  </div>
-</nav>
+<body data-page="home">
 
 <main id="main">
-<header class="hero" id="top">
+<div class="hero" id="top">
   <div id="slides"></div>
+  <span class="hero-end" id="heroEnd" aria-hidden="true"></span>
   <div class="dots" id="dots" role="group" aria-label="Slayt seç"></div>
   <div class="hero-in">
     <div class="wrap">
       <h1 class="h">Florya'da alışveriş, kahve ve koru</h1>
       <p class="sub" id="heroSub">Her gün 10:00 ile 22:00 arası açığız.</p>
       <div class="hero-cta">
-        <a class="btn btn-primary" href="#rehber" id="findBtn">Mağaza ara</a>
-        <a class="btn btn-line" href="#ulasim">Nasıl gelirim</a>
+        <a class="btn btn-primary" href="#rehber" id="findBtn">Mağaza ara <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a class="btn btn-line" href="#ulasim">Nasıl gelirim <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
       </div>
-      <div class="infobar">
-        <div><small>Durum</small><b id="ibStatus">Açık</b></div>
-        <div><small>Bugün</small><b id="ibDay">10:00 – 22:00</b></div>
-        <div><small>Sıradaki servis</small><b id="ibShuttle">--:--</b></div>
-        <div><small>Sıradaki etkinlik</small><b id="ibEvent">Takvime bak</b></div>
-      </div>
+      <aside class="today" aria-label="Bugün Koru Florya">
+        <h2>Bugün Koru Florya</h2>
+        <div class="row"><span class="dot" id="tDot"></span><b id="tStatus">Açık · 22:00'ye kadar</b></div>
+        <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg><span>Marmaray Shuttle: <b id="tShuttle">--</b></span></div>
+      </aside>
     </div>
   </div>
-</header>
+</div>
 
 <div class="strip" aria-label="Öne çıkan markalar"><div class="wrap"><ul id="brandList"></ul></div></div>
 
-<section class="paper" aria-labelledby="hKat">
-  <div class="wrap">
-    <div class="rail-head">
-      <div>
-        <h2 class="h" id="hKat">Kategoriye göre keşfet</h2>
-        <p class="lead">Bir kategori seç, o kategorideki tüm mağazaları gör</p>
-      </div>
-      <div class="arrows">
-        <button type="button" id="prev" aria-label="Geri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></button>
-        <button type="button" id="next" aria-label="İleri"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-      </div>
-    </div>
-    <div class="rail" id="rail"></div>
-  </div>
-</section>
-
-<section id="rehber">
-  <div class="wrap dir-grid">
-    <div class="filters">
-      <h2 class="h">Mağaza rehberi</h2>
-      <label class="search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/></svg>
-        <span class="sr">Mağaza ara</span>
-        <input id="q" type="search" placeholder="Mağaza veya marka ara" autocomplete="off" />
-        <kbd>/</kbd>
-      </label>
-      <p class="flabel">Kat</p>
-      <div class="floors" id="floors" role="group" aria-label="Kat"></div>
-      <p class="flabel">Kategori</p>
-      <div class="chips" id="chips" role="group" aria-label="Kategori"></div>
-    </div>
-    <div>
-      <p class="count" aria-live="polite"><span id="resultText"></span><button class="link" id="clearBtn" type="button" hidden>Filtreleri temizle</button></p>
-      <div class="listwrap collapsed" id="listwrap">
-        <div id="list"></div>
-        <div class="expand"><button class="btn btn-outline" id="expandBtn" type="button">Tüm mağazaları göster</button></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="paper" id="plan">
+<section id="rehber" aria-labelledby="hRehber">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <h2 class="h">Kat planı</h2>
-        <p class="lead">Katı seç, o kattaki mağazaları gör. Bir mağazaya dokununca bilgilerini ve yol tarifini aç</p>
+        <span class="eyebrow">Kat ve mağaza rehberi</span>
+        <h2 class="h" id="hRehber">Aradığın mağaza hangi katta</h2>
+        <p class="lead">Katı seç, kategoriye göre süz ya da adını yaz</p>
       </div>
     </div>
-    <div class="plan">
-      <div class="pfloors" id="pfloors" role="group" aria-label="Kat seç"></div>
-      <div class="pmain">
-        <div class="pcol">
-          <label class="psearch">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/></svg>
-            <span class="sr">Nereye gitmek istersiniz</span>
-            <input id="pq" type="search" placeholder="Nereye gitmek istersiniz" autocomplete="off" />
-          </label>
-          <div class="pres" id="pres" hidden></div>
-        </div>
-        <div class="fhead" id="fhead"></div>
-        <div id="pcanvas"></div>
-        <p class="pnote" id="pnote"></p>
+    <div class="kx-top">
+      <div class="seg" id="seg" role="group" aria-label="Kat"></div>
+      <div class="kx-row2">
+        <label class="search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/></svg>
+          <span class="sr">Mağaza ara</span>
+          <input id="q" type="search" placeholder="Mağaza veya marka ara" autocomplete="off" />
+          <kbd id="kbd">Ctrl K</kbd>
+        </label>
+        <div class="pills" id="pills" role="group" aria-label="Kategori"></div>
       </div>
-      <aside class="pside" id="pside" aria-live="polite"></aside>
+    </div>
+    <div class="kx">
+      <aside class="schema" id="schema" aria-label="Bina kesiti">
+        <h3>Bina kesiti <small>Şematik, ölçekli değildir</small></h3>
+        <svg id="scSvg" viewBox="0 0 352 372" role="group" aria-label="Katlar"></svg>
+        <div class="sc-sel empty" id="scSel">Bir mağazada "Haritada göster"e bas, bulunduğu kat işaretlensin</div>
+        <p class="sc-note">Mağazaların kat içindeki tam konumları, mimari kat planı çizimi eklendiğinde işaretlenecek.</p>
+      </aside>
+      <div>
+        <div class="res-top"><span id="resText"></span><button class="link" id="clearBtn" type="button" hidden>Filtreleri temizle</button></div>
+        <div class="bgrid" id="bgrid" aria-live="polite"></div>
+        <div class="more"><button class="btn btn-outline" id="moreBtn" type="button" hidden>Daha fazla göster</button></div>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="yeme-icme">
+<section class="bg-lime" id="yeme-icme">
   <div class="wrap">
     <div class="food-grid">
       <div class="food-photo" id="foodPhoto"></div>
       <div>
+        <span class="eyebrow">Yeme içme</span>
         <h2 class="h">Bir kahveyle başla, sofrayla bitir</h2>
         <p class="lead" id="foodLead">Sabah kahvesinden akşam yemeğine</p>
         <div class="ftabs" id="ftabs" role="tablist"></div>
-        <div class="food-cta"><button class="btn btn-dark" type="button" id="allFood">Rehberde hepsini gör</button></div>
+        <div class="food-cta"><button class="btn btn-dark" type="button" id="allFood">Rehberde hepsini gör <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button></div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="paper" id="etkinlikler">
+<section id="etkinlikler" aria-labelledby="hEtk">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <h2 class="h">Neler oluyor</h2>
-        <p class="lead">İmza günleri, fuarlar ve mağaza kampanyaları. Ücretsiz etkinlikler kartın üzerinde işaretli</p>
+        <span class="eyebrow">Kültür, Sanat &amp; Yaşam</span>
+        <h2 class="h" id="hEtk">Koru Florya'da neler oluyor</h2>
       </div>
+      <a class="btn btn-outline" href="etkinlikler.html">Tüm etkinlikler <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
     </div>
-    <div class="etabs" id="etabs" role="tablist" aria-label="Zaman"></div>
-    <div class="ecards" id="ecards" aria-live="polite"></div>
+    <div class="cul" id="cul"></div>
   </div>
 </section>
 
-<section id="ulasim">
+<section class="bg-lime" id="ulasim" aria-labelledby="hUlasim">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <h2 class="h">Nasıl gelirim</h2>
+        <span class="eyebrow">Ulaşım</span>
+        <h2 class="h" id="hUlasim">Nasıl gelirim</h2>
         <p class="lead">Marmaray, metrobüs, otobüs ve metro. Kapalı otoparkımız da var</p>
       </div>
     </div>
     <div class="visit">
-      <div class="map">
-        <img id="mapBg" alt="" loading="lazy" />
-        <iframe title="Koru Florya haritası" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Koru%20Florya%20Al%C4%B1%C5%9Fveri%C5%9F%20ve%20Ya%C5%9Fam%20Merkezi%2C%20Ek%C5%9Finar%20Sokak%20No%3A46%2F1%2C%20%C5%9Eenlikk%C3%B6y%2C%20Bak%C4%B1rk%C3%B6y%2C%20%C4%B0stanbul&output=embed"></iframe>
+      <div class="map" id="map" role="img" aria-label="Koru Florya ile Florya Marmaray istasyonunu gösteren harita">
+        <div class="map-canvas" id="mapCanvas"></div>
+        <svg class="map-svg" id="mapSvg" aria-hidden="true"></svg>
+        <div class="map-leg" id="mapLeg"></div>
+        <div class="map-attr"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></div>
+        <div class="map-actions">
+          <a class="btn btn-dark btn-sm" target="_blank" rel="noopener" href="#" id="gmaps">Google Maps'te aç <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-light btn-sm" target="_blank" rel="noopener" href="#" id="amaps">Apple Maps'te aç <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
       </div>
-      <div class="side">
-        <div class="shuttle">
-          <div class="sh-switch" role="group" aria-label="Servis yönü">
-            <button type="button" data-d="MF" aria-pressed="true">Marmaray Florya'dan</button>
-            <button type="button" data-d="KF" aria-pressed="false">KoruFlorya'dan</button>
-          </div>
-          <small>Ücretsiz servis, sıradaki sefer</small>
-          <div class="big"><span id="shMin">--</span> <span id="shUnit">dk</span></div>
-          <p id="shNote">sonra kalkıyor</p>
-          <div class="times" id="shTimes" aria-label="Bugünün seferleri"></div>
-        </div>
-        <ul class="routes">
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg></span><div><b>Marmaray</b><span>Florya durağı, 20 dakika yürüme ya da ücretsiz servis</span></div></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="13" rx="2"/><path d="M4 11h16M7 20v-3M17 20v-3"/></svg></span><div><b>Metrobüs</b><span>Cennet, Koru Florya durağı</span></div></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg></span><div><b>Otobüs: 73, 73F, 98</b><span>Koru Florya durağı, 1 dakika yürüme</span></div></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17h18M5 17V9l4-4h6l4 4v8M8 13h.01M16 13h.01"/></svg></span><div><b>M1A metro</b><span>Yenibosna durağı</span></div></li>
-          <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M10 16V8h3a2.5 2.5 0 0 1 0 5h-3"/></svg></span><div><b>Otopark</b><span>-1 Otopark Katı, kapalı otopark</span></div></li>
-        </ul>
-        <div class="addr">
-          <p>Şenlikköy Mah. Ekşinar Sok. No: 46/1, Florya, Bakırköy, İstanbul</p>
-          <a class="btn btn-primary" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Koru%20Florya%20Al%C4%B1%C5%9Fveri%C5%9F%20ve%20Ya%C5%9Fam%20Merkezi%2C%20Ek%C5%9Finar%20Sokak%20No%3A46%2F1%2C%20%C5%9Eenlikk%C3%B6y%2C%20Bak%C4%B1rk%C3%B6y%2C%20%C4%B0stanbul">Yol tarifi al</a>
-        </div>
+      <div class="stack">
+        <article class="tcard">
+          <div class="tcard-h"><span class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg></span><h3>Marmaray ve ücretsiz ring servis</h3></div>
+          <p class="sub">Marmaray Florya istasyonu ile AVM arasında ücretsiz ring servisi çalışır. Seferler yaklaşık 30 dakikada bir, istasyondan yürüyerek 20 dakika.</p>
+          <div class="badge"><span class="dot" id="shDot"></span><span id="shBadge">--</span></div>
+          <div><div class="sw" role="group" aria-label="Servis yönü"><button type="button" data-d="MF" aria-pressed="true">Marmaray'dan</button><button type="button" data-d="KF" aria-pressed="false">KoruFlorya'dan</button></div></div>
+          <details class="tt"><summary>Tüm seferler</summary><div class="times" id="shTimes"></div></details>
+        </article>
+        <article class="tcard">
+          <div class="tcard-h"><span class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="13" rx="2"/><path d="M4 11h16M7 20v-3M17 20v-3"/></svg></span><h3>Metrobüs ve metro</h3></div>
+          <p class="sub"><b>Metrobüs:</b> Cennet, Koru Florya durağı. Durak ile AVM arasında doğrudan bağlantı var.<br><b>M1A metro:</b> Yenibosna durağı.</p>
+        </article>
+        <article class="tcard">
+          <div class="tcard-h"><span class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg></span><h3>Otobüs: 73, 73F, 98</h3></div>
+          <p class="sub">Koru Florya durağı doğrudan ana girişin önünde, 1 dakika yürüme.</p>
+        </article>
+        <article class="tcard">
+          <div class="tcard-h"><span class="tic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M10 16V8h3a2.5 2.5 0 0 1 0 5h-3"/></svg></span><h3>Özel araç ve otopark</h3></div>
+          <p class="sub">Kapalı otopark -1 Otopark Katı'nda. Şenlikköy Mah. Ekşinar Sok. No: 46/1, Bakırköy.</p>
+        </article>
       </div>
     </div>
   </div>
 </section>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="foot">
-      <div>
-        <a class="brand" href="#top"><img src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="192" height="64" /></a>
-        <p>Florya'nın alışveriş ve yaşam merkezi, her gün 10:00 - 22:00</p>
-      </div>
-      <div><h3>Gezin</h3><a href="#rehber">Mağazalar</a><a href="#plan">Kat planı</a><a href="#yeme-icme">Yeme içme</a><a href="#etkinlikler">Etkinlikler</a><a href="#ulasim">Ulaşım</a></div>
-      <div><h3>İletişim</h3><a href="mailto:info@koruflorya.com">info@koruflorya.com</a><a href="mailto:info@koruflorya.com?subject=Kiralama">Kiralama</a></div>
-      <div><h3>Takip edin</h3><a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener">Facebook</a><a href="https://www.tiktok.com/@korufloryaavm" target="_blank" rel="noopener">TikTok</a></div>
-      <div><h3>Yasal</h3><button class="fl" type="button" data-doc="kvkk">KVKK aydınlatma metni</button><button class="fl" type="button" data-doc="sartlar">Kullanım şartları</button></div>
-    </div>
-    <div class="legal"><span>Koru Florya için hazırlanmış bir tasarım çalışması</span><span>2026</span></div>
-  </div>
-</footer>
-
-<div class="scrim" id="scrim" hidden></div>
-<aside class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle" hidden>
-  <div class="sheet-head">
-    <h2 id="sheetTitle"></h2>
-    <button type="button" id="sheetClose" aria-label="Kapat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  </div>
-  <div class="sheet-body" id="sheetBody"></div>
-</aside>
-
-<template id="tpl-kvkk">
-<p class="meta">Son güncelleme: 15 Mayıs 2026 · v3.2</p>
-<p>Kişisel verilerinizi nasıl topladığımızı, hangi amaçlarla işlediğimizi ve haklarınızı nasıl kullanabileceğinizi açıkça anlatıyoruz.</p>
-<h2>Veri sorumlusu</h2>
-<p>6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca veri sorumlusu sıfatıyla, kişisel verilerinizi aşağıda açıklanan koşullarda işliyoruz.</p>
-<dl><div><dt>Veri sorumlusu</dt><dd>Koru Gayrimenkul Yatırım A.Ş.</dd></div><div><dt>Adres</dt><dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=Koru%20Florya%20Al%C4%B1%C5%9Fveri%C5%9F%20ve%20Ya%C5%9Fam%20Merkezi%2C%20Ek%C5%9Finar%20Sokak%20No%3A46%2F1%2C%20%C5%9Eenlikk%C3%B6y%2C%20Bak%C4%B1rk%C3%B6y%2C%20%C4%B0stanbul" target="_blank" rel="noopener">Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul</a></dd></div><div><dt>Telefon</dt><dd><a href="tel:+902120000000">0212 000 00 00</a></dd></div><div><dt>E-posta</dt><dd><a href="mailto:info@koruflorya.com">info@koruflorya.com</a></dd></div></dl>
-<h2>Topladığımız veriler</h2>
-<p>Sizinle olan ilişkimiz çerçevesinde aşağıdaki kategorilerde kişisel verilerinizi işliyoruz.</p>
-<dl><div><dt>Kimlik verileri</dt><dd>Ad, soyad ve yalnızca yasal zorunluluk hâlinde kimlik numarası.</dd></div><div><dt>İletişim verileri</dt><dd>E-posta adresi, telefon numarası ve posta adresi.</dd></div><div><dt>Müşteri işlem verileri</dt><dd>Etkinlik kaydı, kampanya katılımı ve talep kayıtları.</dd></div><div><dt>Görsel ve işitsel veriler</dt><dd>Güvenlik kamerası görüntüleri ve izin verilmesi hâlinde etkinlik fotoğrafları.</dd></div><div><dt>İşlem güvenliği verileri</dt><dd>IP adresi, cihaz ve tarayıcı bilgileri, site kullanım kayıtları.</dd></div></dl>
-<h2>İşlenme amacı</h2>
-<dl><div><dt>Hizmet sunumu</dt><dd>Mağaza dizini, etkinlik kaydı ve ziyaretçi hizmetleri.</dd></div><div><dt>İletişim</dt><dd>Sorularınıza yanıt vermek; açık rızanız varsa bülten ve duyuru göndermek.</dd></div><div><dt>Güvenlik</dt><dd>Alışveriş merkezi içi güvenlik ve acil durum yönetimi.</dd></div><div><dt>Yasal yükümlülükler</dt><dd>Resmî makamlara raporlama ve mevzuattan doğan kayıt yükümlülükleri.</dd></div><div><dt>İstatistik ve analiz</dt><dd>Anonimleştirilmiş kullanım analizi ve kullanıcı deneyimi iyileştirmesi.</dd></div></dl>
-<h2>Çerezler</h2>
-<p>Sitenin çalışması için zorunlu çerezler ile, izniniz olduğunda ölçümleme çerezleri kullanılır. Tarayıcı ayarlarınızdan çerezleri yönetebilirsiniz.</p>
-<dl><div><dt>Zorunlu çerezler</dt><dd>Oturum yönetimi, güvenlik doğrulaması ve dil tercihi.</dd></div><div><dt>Ölçümleme çerezleri</dt><dd>Sayfa görüntüleme ve kullanım istatistikleri; izne bağlıdır.</dd></div></dl>
-<h2>Haklarınız</h2>
-<p>KVKK'nın 11. maddesi kapsamında aşağıdaki haklara sahipsiniz.</p>
-<ul><li><span>Kişisel verilerinizin işlenip işlenmediğini öğrenme</span></li><li><span>İşlenmişse buna ilişkin bilgi talep etme</span></li><li><span>İşlenme amacını ve amaca uygun kullanılıp kullanılmadığını öğrenme</span></li><li><span>Yurt içinde veya yurt dışında verilerin aktarıldığı üçüncü kişileri bilme</span></li><li><span>Eksik veya yanlış işlenmiş verilerin düzeltilmesini isteme</span></li><li><span>Silinmesini veya yok edilmesini isteme</span></li><li><span>Düzeltme, silme veya yok etme işlemlerinin üçüncü kişilere bildirilmesini isteme</span></li><li><span>Otomatik sistemlerle analiz sonucu aleyhinize bir sonuç doğması hâlinde itiraz etme</span></li><li><span>Kanuna aykırı işleme sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</span></li></ul>
-<p>Taleplerinizi info@koruflorya.com adresine iletebilirsiniz. Başvurunuz en geç 30 gün içinde yanıtlanır.</p>
-<h2>Veri güvenliği</h2>
-<p>Kişisel verilerinizi yetkisiz erişime, kayba ve değiştirilmeye karşı korumak için idari ve teknik önlemler alıyoruz.</p>
-<ul><li><span>Aktarımlarda şifreli bağlantı (HTTPS) kullanımı</span></li><li><span>Yetki bazlı erişim ve düzenli erişim gözden geçirmesi</span></li><li><span>Saklama süresi biten verilerin düzenli olarak silinmesi</span></li><li><span>Çalışanlar için gizlilik taahhüdü ve farkındalık eğitimi</span></li></ul>
-<h2>İletişim</h2>
-<p>Bu metin hakkındaki soru ve talepleriniz için bize aşağıdaki kanallardan ulaşabilirsiniz.</p>
-<dl><div><dt>Veri sorumlusu</dt><dd>Koru Gayrimenkul Yatırım A.Ş.</dd></div><div><dt>E-posta</dt><dd><a href="mailto:info@koruflorya.com">info@koruflorya.com</a></dd></div></dl>
-</template>
-
-<template id="tpl-sartlar">
-<p class="meta">Son güncelleme: 15 Mayıs 2026 · v2.1</p>
-<p>Bu web sitesini kullanırken geçerli olan kurallar, sorumluluklar ve haklar.</p>
-<h2>Genel hükümler</h2>
-<p>Bu web sitesini ziyaret ederek ve kullanarak aşağıdaki şartları kabul etmiş sayılırsınız. Şartları kabul etmiyorsanız siteyi kullanmamanızı rica ederiz.</p>
-<p>Site; mağaza dizini, etkinlik takvimi, ziyaretçi bilgileri ve iletişim olanakları sunar. İçerik bilgilendirme amaçlıdır ve önceden bildirim yapılmaksızın değiştirilebilir.</p>
-<h2>Kullanım kuralları</h2>
-<dl><div><dt>Yasal kullanım</dt><dd>Sitenin yasalara aykırı veya başkalarına zarar verecek şekilde kullanılması yasaktır.</dd></div><div><dt>Otomatik araç kullanımı</dt><dd>Bot, veri kazıyıcı veya otomatik toplama araçlarıyla erişim önceden izin gerektirir.</dd></div><div><dt>Güvenlik testleri</dt><dd>Sitenin güvenliğini test etme girişimleri izinsiz yapılamaz. Bir açık tespit ederseniz bizimle iletişime geçin.</dd></div><div><dt>Hesap güvenliği</dt><dd>Bülten veya etkinlik kaydı oluşturduğunuzda giriş bilgilerinizin güvenliğinden siz sorumlusunuz.</dd></div><div><dt>Bilgi doğruluğu</dt><dd>Formlar üzerinden gönderdiğiniz bilgilerin doğru ve güncel olması beklenir.</dd></div></dl>
-<h2>Fikri mülkiyet</h2>
-<p>Sitedeki tüm metin, görsel, logo, video, ses, yazılım ve kod bize veya lisans sahiplerine aittir. İzinsiz kopyalama, dağıtma, türev eser üretme veya ticari kullanım yasaktır.</p>
-<ul><li><span>Serbest</span><div><h3>Kişisel görüntüleme</h3><p>Kişisel kullanım için makul miktarda içeriği görüntüleyebilirsiniz.</p></div></li><li><span>Serbest</span><div><h3>Bağlantı paylaşımı</h3><p>Sosyal medyada sayfa bağlantısı paylaşabilirsiniz.</p></div></li><li><span>Serbest</span><div><h3>Basın kiti kullanımı</h3><p>Basın bültenleri ve logo paketi haber ve eğitim amacıyla kullanılabilir.</p></div></li><li><span>Yasak</span><div><h3>Ticari kullanım</h3><p>Site görsellerini veya metinlerini ticari amaçla kullanmak yasaktır.</p></div></li><li><span>Yasak</span><div><h3>Yetkisiz marka kullanımı</h3><p>Marka adı veya logonun izinsiz reklamlarda kullanılması yasaktır.</p></div></li><li><span>Yasak</span><div><h3>Tersine mühendislik</h3><p>Türev yazılım üretmek veya tersine mühendislik yapmak yasaktır.</p></div></li></ul>
-<h2>Sorumluluk sınırı</h2>
-<p>Site içeriği "olduğu gibi" sunulur. Bilgilerin doğruluğu için makul özen gösterilse de aşağıdaki konularda sorumluluk kabul edilmez.</p>
-<ul><li><span>Mağaza saatleri, telefon veya kat bilgilerinde oluşabilecek geçici değişiklikler</span></li><li><span>Üçüncü taraf sitelere yönlendiren bağlantılarda erişim sorunları</span></li><li><span>Sitenin kesintisiz ve hatasız çalışması</span></li><li><span>Kullanıcı cihazında oluşabilecek teknik sorunlar</span></li></ul>
-<h2>Yasal düzenleme</h2>
-<p>Bu şartlar Türkiye Cumhuriyeti kanunlarına tabidir. Doğabilecek uyuşmazlıklarda İstanbul mahkemeleri yetkilidir.</p>
-<h2>Değişiklikler</h2>
-<p>Kullanım şartları gerektiğinde güncellenebilir. Güncel sürüm her zaman bu sayfada yayımlanır ve sayfa başındaki tarih güncellenir.</p>
-<dl><div><dt>Veri sorumlusu</dt><dd>Koru Gayrimenkul Yatırım A.Ş.</dd></div><div><dt>E-posta</dt><dd><a href="mailto:info@koruflorya.com">info@koruflorya.com</a></dd></div></dl>
-</template>
-
-<script>
-const STORES=[{"n":"ADL","f":"C","c":["Moda & Giyim"],"l":"adl.png"},{"n":"AJA","f":"P","c":["Saat & Mücevher"],"l":"aja.png"},{"n":"Alix Avien","f":"P","c":["Kozmetik & Bakım"],"l":"alix-avien.png"},{"n":"Altın İğne Terzi","f":"O","c":["Hizmet & Banka"],"l":"altin-igne-terzi.png"},{"n":"Altınbaş","f":"P","c":["Saat & Mücevher"],"l":"altinbas.png"},{"n":"Altınyıldız Classics","f":"P","c":["Moda & Giyim"],"l":"altinyildiz-classics.png"},{"n":"Amasya Et Ürünleri","f":"K","c":["Market & Gıda"],"l":"amasya-et-urunleri.png"},{"n":"Arby's","f":"K","c":["Yeme & İçme"],"l":"arby-s.png"},{"n":"Armağan Oyuncak","f":"K","c":["Çocuk"],"l":"armagan-oyuncak.png"},{"n":"Asuman","f":"C","c":["Yeme & İçme"],"l":""},{"n":"Atasay","f":"C","c":["Saat & Mücevher"],"l":"atasay.png"},{"n":"Atasun Optik","f":"K","c":["Sağlık & Optik"],"l":"atasun-optik.png"},{"n":"AVVA","f":"P","c":["Moda & Giyim"],"l":"avva.png"},{"n":"B&G Store","f":"C","c":["Moda & Giyim"],"l":"b-g-store.png"},{"n":"Bağdat Döviz","f":"P","c":["Hizmet & Banka"],"l":"bagdat-doviz.png"},{"n":"Bambi","f":"P","c":["Moda & Giyim"],"l":""},{"n":"Barbour","f":"C","c":["Moda & Giyim"],"l":"barbour.png"},{"n":"Başak Altın","f":"P","c":["Saat & Mücevher"],"l":"basak-altin.png"},{"n":"Bershka","f":"P","c":["Moda & Giyim"],"l":"bershka.png"},{"n":"Beymen Club","f":"C","c":["Moda & Giyim"],"l":"beymen-club.png"},{"n":"Bisse","f":"C","c":["Moda & Giyim"],"l":"bisse.png"},{"n":"Blue Diamond","f":"P","c":["Saat & Mücevher"],"l":"blue-diamond.png"},{"n":"Bolero","f":"P","c":["Moda & Giyim"],"l":"bolero.png"},{"n":"Bosch","f":"K","c":["Ev & Yaşam"],"l":"bosch.png"},{"n":"Boyner","f":"PC","c":["Moda & Giyim"],"l":"boyner.png"},{"n":"Burger King","f":"K","c":["Yeme & İçme"],"l":"burger-king.png"},{"n":"Burger Yiyelim","f":"K","c":["Yeme & İçme"],"l":"burger-yiyelim.png"},{"n":"Cacharel","f":"C","c":["Moda & Giyim"],"l":""},{"n":"Caffè Nero","f":"P","c":["Yeme & İçme"],"l":"caffe-nero.png"},{"n":"Coffee Crafters","f":"C","c":["Yeme & İçme"],"l":"coffee-crafters.png"},{"n":"Colin's","f":"K","c":["Moda & Giyim"],"l":"colin-s.png"},{"n":"Columbia","f":"P","c":["Spor & Outdoor"],"l":"columbia.png"},{"n":"Crocs","f":"P","c":["Spor & Outdoor"],"l":"crocs.png"},{"n":"Cups and Clouds","f":"C","c":["Yeme & İçme"],"l":"cups-cloud.png"},{"n":"Çift Geyik Karaca","f":"P","c":["Moda & Giyim"],"l":"karaca.png"},{"n":"Damat Tween","f":"C","c":["Moda & Giyim"],"l":"damat-tween.png"},{"n":"DeFacto","f":"C","c":["Moda & Giyim"],"l":"defacto.png"},{"n":"Derimod","f":"P","c":["Moda & Giyim"],"l":"derimod.png"},{"n":"Diesel","f":"C","c":["Moda & Giyim"],"l":"diesel.png"},{"n":"Dore Müzik","f":"K","c":["Kırtasiye & Kitap"],"l":"dore-music.png"},{"n":"Dry Clean Express","f":"O","c":["Hizmet & Banka"],"l":"dry-clean.png"},{"n":"Dürümle","f":"K","c":["Yeme & İçme"],"l":"durumle.png"},{"n":"Eczane","f":"P","c":["Sağlık & Optik"],"l":""},{"n":"Edwards Marine","f":"C","c":["Moda & Giyim"],"l":"edwards-marine.png"},{"n":"Efor","f":"P","c":["Moda & Giyim"],"l":"efor.png"},{"n":"Ekol","f":"P","c":["Moda & Giyim"],"l":"ekol.png"},{"n":"Elle","f":"P","c":["Moda & Giyim"],"l":"elle.png"},{"n":"Elle Cafe","f":"C","c":["Yeme & İçme"],"l":"elle-cafe.png"},{"n":"Emo Optik","f":"C","c":["Sağlık & Optik"],"l":"emo-optik.png"},{"n":"Enka","f":"K","c":["Ev & Yaşam"],"l":"enka.png"},{"n":"Espressolab","f":"P","c":["Yeme & İçme"],"l":"espressolab.png"},{"n":"Faik Sönmez","f":"P","c":["Moda & Giyim"],"l":"faik-sonmez.png"},{"n":"Fenerium","f":"K","c":["Spor & Outdoor"],"l":"fenerium.png"},{"n":"Flormar","f":"K","c":["Kozmetik & Bakım"],"l":"flormar.png"},{"n":"G-Star RAW","f":"C","c":["Moda & Giyim"],"l":"g-star-raw.png"},{"n":"Gameport","f":"K","c":["Çocuk"],"l":"gameport.png"},{"n":"Gant","f":"C","c":["Moda & Giyim"],"l":"gant.png"},{"n":"GAP","f":"C","c":["Moda & Giyim"],"l":"gap.png"},{"n":"Getmobil","f":"K","c":["Teknoloji"],"l":"getmobil.png"},{"n":"Gratis","f":"K","c":["Kozmetik & Bakım"],"l":"gratis.png"},{"n":"Green Salads","f":"K","c":["Yeme & İçme"],"l":"green-salads.png"},{"n":"Greyder","f":"K","c":["Moda & Giyim"],"l":"greyder.png"},{"n":"GS Store","f":"K","c":["Spor & Outdoor"],"l":"gs-store.png"},{"n":"Guess","f":"C","c":["Moda & Giyim"],"l":"guess.png"},{"n":"Happy Moon's","f":"C","c":["Yeme & İçme"],"l":"happy-moon-s.png"},{"n":"Hays","f":"P","c":["Moda & Giyim"],"l":"hays.png"},{"n":"Hemington","f":"C","c":["Moda & Giyim"],"l":"hemington.png"},{"n":"Hotiç","f":"P","c":["Moda & Giyim"],"l":"hotic.png"},{"n":"İpekyol","f":"C","c":["Moda & Giyim"],"l":"ipekyol.png"},{"n":"Jack & Jones","f":"K","c":["Moda & Giyim"],"l":"jack-jones.png"},{"n":"Jimmy Key","f":"P","c":["Moda & Giyim"],"l":"jimmy-key.png"},{"n":"Joyart","f":"P","c":["Yeme & İçme"],"l":"joyart.png"},{"n":"Kayra","f":"P","c":["Moda & Giyim"],"l":"kayra.png"},{"n":"Kayseri Mutfağı","f":"K","c":["Yeme & İçme"],"l":"kayseri-mutfagi.png"},{"n":"Ketroy","f":"C","c":["Moda & Giyim"],"l":"ketroy.png"},{"n":"KFC","f":"K","c":["Yeme & İçme"],"l":"kfc.png"},{"n":"Kiğılı","f":"P","c":["Moda & Giyim"],"l":"kigili.png"},{"n":"Koçak Gold","f":"P","c":["Saat & Mücevher"],"l":"kocak.png"},{"n":"Konyalı Saat","f":"C","c":["Saat & Mücevher"],"l":"konyali-saat.png"},{"n":"Korkmaz","f":"K","c":["Ev & Yaşam"],"l":"korkmaz.png"},{"n":"Koton","f":"C","c":["Moda & Giyim"],"l":"koton.png"},{"n":"Küppeli","f":"K","c":["Aksesuar & Takı"],"l":"kuppeli.png"},{"n":"Lacoste","f":"C","c":["Moda & Giyim"],"l":"lacoste.png"},{"n":"LC Waikiki","f":"PC","c":["Moda & Giyim"],"l":"lc-waikiki.png"},{"n":"Lefties","f":"P","c":["Moda & Giyim"],"l":"lefties.png"},{"n":"LEGO Store","f":"K","c":["Çocuk"],"l":"lego.png"},{"n":"Levi's","f":"P","c":["Moda & Giyim"],"l":"levi-s.png"},{"n":"Lillo","f":"K","c":["Çocuk"],"l":""},{"n":"Liu Jo Milano","f":"C","c":["Moda & Giyim"],"l":"liu-jo.png"},{"n":"Lizay Pırlanta","f":"P","c":["Saat & Mücevher"],"l":"lizay-pirlanta.png"},{"n":"Love My Body","f":"C","c":["Moda & Giyim"],"l":"love-my-body.png"},{"n":"LTB","f":"K","c":["Moda & Giyim"],"l":"ltb.png"},{"n":"Lulu's Friends","f":"K","c":["Çocuk"],"l":"lulu-s-friends.png"},{"n":"M Club","f":"P","c":["Moda & Giyim"],"l":"m-club.png"},{"n":"Macro Center","f":"K","c":["Market & Gıda"],"l":""},{"n":"MAD Parfümeri","f":"K","c":["Kozmetik & Bakım"],"l":"mad-parfumeur.png"},{"n":"Mango","f":"P","c":["Moda & Giyim"],"l":"mango.png"},{"n":"Manuka","f":"P","c":["Moda & Giyim"],"l":"manuka.png"},{"n":"Maqas Kuaför","f":"O","c":["Hizmet & Banka"],"l":""},{"n":"Marlet Pastaneleri","f":"P","c":["Yeme & İçme"],"l":"marlet-pastaneleri.png"},{"n":"Massimo Dutti","f":"C","c":["Moda & Giyim"],"l":"massimo-dutti.png"},{"n":"Mavi","f":"C","c":["Moda & Giyim"],"l":"mavi.png"},{"n":"MediaMarkt","f":"K","c":["Teknoloji"],"l":"mediamarkt.png"},{"n":"Michetta","f":"K","c":["Yeme & İçme"],"l":"michetta.png"},{"n":"Miniso","f":"K","c":["Ev & Yaşam"],"l":"miniso.png"},{"n":"Minycenter","f":"C","c":["Çocuk"],"l":"minycenter.png"},{"n":"Mira Mira","f":"P","c":["Aksesuar & Takı"],"l":"mira-mira.png"},{"n":"Modest","f":"P","c":["Moda & Giyim"],"l":"modest.png"},{"n":"MR.DIY","f":"K","c":["Ev & Yaşam"],"l":"mr-diy.png"},{"n":"Mudo","f":"P","c":["Moda & Giyim"],"l":"mudo.png"},{"n":"Muscent","f":"P","c":["Kozmetik & Bakım"],"l":"muscent.png"},{"n":"Network","f":"C","c":["Moda & Giyim"],"l":"network.png"},{"n":"Nocturne","f":"C","c":["Moda & Giyim"],"l":"nocturne.png"},{"n":"North Sails","f":"C","c":["Moda & Giyim"],"l":"north-sails.png"},{"n":"Opmar Optik","f":"K","c":["Sağlık & Optik"],"l":"opmar-optik.png"},{"n":"Oysho","f":"C","c":["Moda & Giyim"],"l":"oysho.png"},{"n":"Panço","f":"K","c":["Çocuk"],"l":"panco.png"},{"n":"Pandora","f":"P","c":["Saat & Mücevher"],"l":"pandora.png"},{"n":"Parfois","f":"P","c":["Moda & Giyim"],"l":"parfois.png"},{"n":"Pastofino","f":"K","c":["Yeme & İçme"],"l":"pastofino.png"},{"n":"Penelope","f":"K","c":["Ev & Yaşam"],"l":"penelope.png"},{"n":"Penti","f":"P","c":["Moda & Giyim"],"l":"penti.png"},{"n":"Pierre Cardin","f":"P","c":["Moda & Giyim"],"l":"pierre-cardin.png"},{"n":"Popeyes","f":"K","c":["Yeme & İçme"],"l":"popeyes.png"},{"n":"Pull&Bear","f":"P","c":["Moda & Giyim"],"l":"pull-bear.png"},{"n":"Puma","f":"K","c":["Spor & Outdoor"],"l":"puma.png"},{"n":"Quick China","f":"P","c":["Yeme & İçme"],"l":"quick-china.png"},{"n":"Ramsey","f":"C","c":["Moda & Giyim"],"l":"ramsey.png"},{"n":"Rossmann","f":"K","c":["Kozmetik & Bakım"],"l":"rossmann.png"},{"n":"Saat & Saat","f":"P","c":["Saat & Mücevher"],"l":"saat-saat.png"},{"n":"Saat & Saat Exclusive","f":"C","c":["Saat & Mücevher"],"l":"saat-saat.png"},{"n":"Samsung","f":"K","c":["Teknoloji"],"l":"samsung.png"},{"n":"Sbarro","f":"K","c":["Yeme & İçme"],"l":"sbarro.png"},{"n":"Schafer","f":"K","c":["Ev & Yaşam"],"l":"schafer.png"},{"n":"Shake Shack","f":"K","c":["Yeme & İçme"],"l":"shake-shack.png"},{"n":"Siemens","f":"K","c":["Ev & Yaşam"],"l":"siemens.png"},{"n":"Sirello Aksesuar","f":"K","c":["Aksesuar & Takı"],"l":""},{"n":"Skechers","f":"P","c":["Spor & Outdoor"],"l":"skechers.png"},{"n":"Sneaks Up","f":"P","c":["Spor & Outdoor"],"l":"sneaks-up.png"},{"n":"So Chic","f":"P","c":["Aksesuar & Takı"],"l":"so-chic.png"},{"n":"Starbucks","f":"K","c":["Yeme & İçme"],"l":"starbucks.png"},{"n":"Stefanel","f":"C","c":["Moda & Giyim"],"l":"stefanel.png"},{"n":"Stradivarius","f":"P","c":["Moda & Giyim"],"l":"stradivarius.png"},{"n":"Style Aksesuar","f":"K","c":["Aksesuar & Takı"],"l":"style.png"},{"n":"Subway","f":"K","c":["Yeme & İçme"],"l":"subway.png"},{"n":"Sunglass Hut","f":"C","c":["Sağlık & Optik"],"l":"sunglass-hut.png"},{"n":"Superstep","f":"P","c":["Spor & Outdoor"],"l":"superstep.png"},{"n":"Suwen","f":"P","c":["Moda & Giyim"],"l":"suwen.png"},{"n":"Swarovski","f":"C","c":["Saat & Mücevher"],"l":"swarovski.png"},{"n":"TatilBudur","f":"O","c":["Hizmet & Banka"],"l":"tatilbudur.png"},{"n":"Tavuk Dünyası","f":"K","c":["Yeme & İçme"],"l":"tavuk-dunyasi.png"},{"n":"The Co Coffee Company","f":"K","c":["Yeme & İçme"],"l":"the-co-coffee.png"},{"n":"Tobacco","f":"P","c":["Hizmet & Banka"],"l":"select-tobacco.png"},{"n":"Toyzz Shop","f":"K","c":["Çocuk"],"l":"toyzz-shop.png"},{"n":"Troy","f":"P","c":["Teknoloji"],"l":"troy.png"},{"n":"Tudors","f":"P","c":["Moda & Giyim"],"l":"tudors.png"},{"n":"Turkcell","f":"K","c":["Teknoloji"],"l":""},{"n":"Türk Telekom","f":"K","c":["Teknoloji"],"l":"turk-telekom.png"},{"n":"U.S. Polo Assn.","f":"P","c":["Moda & Giyim"],"l":"u-s-polo-assn.png"},{"n":"Usta Dönerci","f":"K","c":["Yeme & İçme"],"l":"usta-donerci.png"},{"n":"Valmenti","f":"P","c":["Moda & Giyim"],"l":"valmenti.png"},{"n":"Vicco","f":"K","c":["Çocuk"],"l":"vicco.png"},{"n":"Victoria's Secret","f":"C","c":["Moda & Giyim"],"l":"victoria-s-secret.png"},{"n":"Vodafone","f":"K","c":["Teknoloji"],"l":"vodafone.png"},{"n":"Voi","f":"C","c":["Yeme & İçme"],"l":""},{"n":"Watsons","f":"K","c":["Kozmetik & Bakım"],"l":"watsons.png"},{"n":"Weeni Woo","f":"K","c":["Çocuk"],"l":"weeni-woo.png"},{"n":"White Burger","f":"P","c":["Yeme & İçme"],"l":"white-burger.png"},{"n":"Xenon Smart","f":"K","c":["Teknoloji"],"l":"xenon-smart.png"},{"n":"Xside","f":"K","c":["Moda & Giyim"],"l":"xside.png"},{"n":"Yargıcı","f":"C","c":["Moda & Giyim"],"l":"yargici.png"},{"n":"Yves Rocher","f":"P","c":["Kozmetik & Bakım"],"l":"yves-rocher.png"},{"n":"Zara","f":"PC","c":["Moda & Giyim"],"l":"zara.png"},{"n":"Zara Home","f":"C","c":["Ev & Yaşam"],"l":"zara-home.png"},{"n":"Zeki","f":"C","c":["Moda & Giyim"],"l":"zeki.png"},{"n":"Zen Diamond","f":"C","c":["Saat & Mücevher"],"l":"zen-pirlanta.png"},{"n":"Zsa Zsa Zsu","f":"K","c":["Ev & Yaşam"],"l":"zsa-zsa-zsu.png"}];
-const $=s=>document.querySelector(s);
-const U=(p,w)=>`https://images.unsplash.com${p}?auto=format&fit=crop&q=75&w=${w}`;
-const BR=l=>`assets/brands/${l}`;
-const EVI=f=>`assets/events/${f}`;
-const IMG={
-  atrium:'/photo-1772760224872-db7c8f49404a', fashion:'/photo-1483985988355-763728e1935b',
-  cafe:'/photo-1764489307253-da5c9c311fa2', barista:'/photo-1604552914267-90a8d81a4254',
-  food:'/photo-1600891964599-f61ba0e24092', food2:'/photo-1755811248324-c70c1f10a7fd',
-  trees:'/photo-1757585920915-c5a388d16e44', canopy:'/photo-1639661572705-f87a3b8105be',
-  tech:'/photo-1505740420928-5e560c06d30e', beauty:'/photo-1587055682234-853183f4523c',
-  kids:'/photo-1560859251-d563a49c5e4a', jewel:'/photo-1650389236412-e7413cbcf2fe',
-  shoes:'/photo-1768225286074-9039931bb9d3', home:'/photo-1618220179428-22790b461013'
-};
-
-/* ---------- data ---------- */
-const FL={
-  K:{lv:'0',n:'Koru Katı',sub:'Giriş Kat',d:'Ana giriş, danışma, bankalar ve hızlı erişimli mağazalar'},
-  P:{lv:'1',n:'Podyum Katı',sub:'1. Kat',d:'Moda ve giyim katı; kadın, erkek ve aksesuar markaları'},
-  C:{lv:'2',n:'Cadde Katı',sub:'2. Kat',d:'Restoranlar, kafeler ve teknoloji markaları'},
-  O:{lv:'-1',n:'Otopark Katı',sub:'-1',d:'Kapalı otopark ve hizmetler'}
-};
-const FORDER=['C','P','K','O'];
-const CATS=['Moda & Giyim','Yeme & İçme','Saat & Mücevher','Çocuk','Ev & Yaşam','Spor & Outdoor','Kozmetik & Bakım','Teknoloji','Hizmet & Banka','Aksesuar & Takı','Sağlık & Optik','Market & Gıda','Kırtasiye & Kitap'];
-const RAILCATS=[['Moda & Giyim',IMG.fashion],['Yeme & İçme',IMG.food],['Teknoloji',IMG.tech],['Kozmetik & Bakım',IMG.beauty],['Çocuk',IMG.kids],['Ev & Yaşam',IMG.home],['Saat & Mücevher',IMG.jewel],['Spor & Outdoor',IMG.shoes]];
-const FOODG={'Kahve':['Caffè Nero','Coffee Crafters','Cups and Clouds','Elle Cafe','Espressolab','Starbucks','The Co Coffee Company'],'Sofra':["Happy Moon's",'Kayseri Mutfağı','Pastofino','Green Salads','Quick China'],'Hızlı lezzet':["Arby's",'Burger King','Burger Yiyelim','Dürümle','KFC','Popeyes','Sbarro','Shake Shack','Subway','Tavuk Dünyası','Usta Dönerci','White Burger'],'Tatlı ve fırın':['Marlet Pastaneleri','Michetta']};
-const FOODIMG={'Kahve':IMG.barista,'Sofra':IMG.food,'Hızlı lezzet':IMG.food2,'Tatlı ve fırın':IMG.cafe,'Diğer':IMG.cafe};
-const BRANDS=['Zara','Mango','Beymen Club','Starbucks','LEGO Store','Pandora','MediaMarkt','Shake Shack','Lacoste','Swarovski','Boyner','Puma',"Levi's",'Samsung'];
-const SLIDES=[
-  {img:IMG.atrium,alt:'Koru Florya iç mekânı'},{img:IMG.fashion,alt:'Alışveriş poşetleriyle bir kadın'},
-  {img:IMG.cafe,alt:'Akşam ışığında kafe'},{img:IMG.trees,alt:'Florya korusundan ağaçlar'}
-];
-/* shuttle timetable, from the official "Ücretsiz Servis Saatleri" visual */
-const SHUTTLE={
-  MF:['10:30','11:00','11:30','12:00','12:30','13:00','13:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00'],
-  KF:['11:00','11:30','12:00','12:30','13:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30']
-};
-/* events: dates in Istanbul local time */
-const EVENTS=[
-  {id:'kitap-fuari',type:'event',title:'Kitap Fuarı KoruFlorya’da!',short:'4–22 Kasım tarihleri arasında kitapseverleri KoruFlorya’ya bekliyoruz.',about:['Kitap Fuarı boyunca pek çok yayınevinin kitapları KoruFlorya’da.','Fuar kapsamında 8 Kasım’da Ahmet Ümit, 15 Kasım’da Celal Şengör imza günleriyle okurlarıyla buluşuyor.'],start:'2026-11-04',end:'2026-11-22',allDay:true,time:'AVM açılış saatleri içinde',venue:'KoruFlorya',place:'Koru Katı (Giriş Kat)',audience:'Herkese açık',free:true,img:'hero-kitap-fuari.jpg',cat:'Sanat'},
-  {id:'celal-sengor-imza-gunu',type:'event',title:'Celal Şengör İmza Günü',short:'Prof. Dr. Celal Şengör, KoruFlorya Kitap Fuarı’nda okurlarıyla buluşuyor.',about:['Celal Şengör, Kitap Fuarı kapsamında kitaplarını imzalayacak ve okurlarıyla bir araya gelecek.'],start:'2026-11-15T14:00',end:'2026-11-15T15:00',time:'14.00',venue:'Kitap Fuarı alanı',place:'Koru Katı (Giriş Kat)',audience:'Herkese açık',free:true,img:'hero-celal-sengor.jpg',cat:'Sanat',who:'Prof. Dr. Celal Şengör'},
-  {id:'ahmet-umit-imza-gunu',type:'event',title:'Ahmet Ümit İmza Günü',short:'Kitap Fuarı kapsamında okurlarıyla buluştu.',about:['Kitap Fuarı kapsamında 8 Kasım’da düzenlenen imza günü.'],start:'2026-11-08',end:'2026-11-08',allDay:true,time:null,venue:'Kitap Fuarı',place:'Koru Katı (Giriş Kat)',audience:'Herkese açık',free:true,img:'hero-kitap-fuari.jpg',cat:'Sanat',who:'Ahmet Ümit'},
-  {id:'altinbas-halk-gunleri',type:'campaign',title:'Altınbaş Halk Günleri',short:'Seçili pırlanta ürünlerinde %50’ye varan indirim',about:['Seçili pırlanta ürünlerinde %50’ye varan indirim. Kaçırılmayacak fırsatlar.'],start:'2026-11-01',end:'2026-11-11',allDay:true,store:'Altınbaş',place:'Podyum Katı (1. Kat)',img:'hero-altinbas-halk-gunleri.jpg',badge:'%50’ye varan'},
-  {id:'pierre-cardin-sale',type:'campaign',title:'The Cardin Sale',short:'Pierre Cardin’de ikonik Kasım indirimi, net %50',about:['Pierre Cardin The Cardin Sale: İkonik Kasım indirimi, net %50 indirim.','Smokin, aksesuar ve basic ürün grupları kampanyaya dahil değildir.'],start:'2026-11-05',end:'2026-12-01',allDay:true,store:'Pierre Cardin',place:'Podyum Katı (1. Kat)',img:'hero-pierre-cardin.jpg',badge:'Net %50'},
-  {id:'dry-clean-express',type:'campaign',title:'Dry Clean Express açıldı',short:'Açılışa özel %20 indirim, organik kuru temizleme',about:['Açılışa özel %20 indirim.','Organik kuru temizleme: kokusuz, kimyasal içermez, hassas ciltlere özel.','Konum: -1 Otopark çıkışı, MediaMarkt alt katı. Telefon: 0554 585 10 37, 0212 424 10 37.'],start:null,end:null,store:'Dry Clean Express',place:'-1 Otopark Katı',img:'hero-dry-clean-express.jpg',badge:'%20'},
-  {id:'happy-moons',type:'campaign',title:'Happy Moon’s',short:'Koccaman lezzetler sizi bekliyor',about:['Koccaman lezzetler sizi bekliyor.'],start:null,end:null,store:"Happy Moon's",place:'Cadde Katı (2. Kat)',img:'hero-happy-moons.jpg',tag:'Mekân'},
-  {id:'shake-shack',type:'campaign',title:'Shake Shack',short:'KoruFlorya’da buluşmanın tadı başka',about:['KoruFlorya’da buluşmanın tadı başka.'],start:null,end:null,store:'Shake Shack',place:'Koru Katı (Giriş Kat)',img:'hero-shake-shack.jpg',tag:'Mekân'}
-];
-
-/* ---------- helpers ---------- */
-const low=s=>s.toLocaleLowerCase('tr');
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const pad=n=>String(n).padStart(2,'0');
-const DAYS=['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'];
-const MONTHS=['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'];
-const ist=()=>new Date(new Date().toLocaleString('en-US',{timeZone:'Europe/Istanbul'}));
-const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const P=s=>{if(!s)return null;const[a,b]=s.split('T');const[y,m,d]=a.split('-').map(Number);const[hh,mm]=(b||'00:00').split(':').map(Number);return new Date(y,m-1,d,hh,mm)};
-const startOfDay=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
-const ARROW='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
-const IC={
-  cal:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>',
-  clock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
-  pin:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>'
-};
-const MAPS='https://www.google.com/maps/dir/?api=1&destination=Koru%20Florya%20Al%C4%B1%C5%9Fveri%C5%9F%20ve%20Ya%C5%9Fam%20Merkezi%2C%20Ek%C5%9Finar%20Sokak%20No%3A46%2F1%2C%20%C5%9Eenlikk%C3%B6y%2C%20Bak%C4%B1rk%C3%B6y%2C%20%C4%B0stanbul';
-
-STORES.forEach(s=>{s.fl=s.f==='PC'?['P','C']:[s.f];s.cs=s.c});
-STORES.sort((a,b)=>a.n.localeCompare(b.n,'tr'));
-const byName=Object.fromEntries(STORES.map(s=>[s.n,s]));
-const floorLabel=s=>s.fl.map(k=>FL[k].n).join(' ve ');
-const initials=n=>{const w=n.replace(/[^\p{L}\p{N} ]/gu,'').split(' ').filter(Boolean);return(w.length>1?w[0][0]+w[1][0]:w[0].slice(0,2)).toLocaleUpperCase('tr')};
-const logoHtml=(s,cls)=>s.l?`<img src="${BR(s.l)}" alt="" loading="lazy" />`:`<i>${esc(initials(s.n))}</i>`;
-const FOODN=STORES.filter(s=>s.c.includes('Yeme & İçme')).length;
-$('#heroSub').textContent=`${STORES.length} mağaza, ${FOODN} yeme içme durağı ve ücretsiz Marmaray servisi. Her gün 10:00 ile 22:00 arası açığız.`;
-$('#foodLead').textContent=`Sabah kahvesinden akşam yemeğine ${FOODN} durak`;
-
-/* ---------- hero slider ---------- */
-$('#slides').innerHTML=SLIDES.map((s,i)=>`<div class="slide${i?'':' on'}"><img src="${U(s.img,2000)}" alt="${s.alt}" ${i?'loading="lazy"':'fetchpriority="high"'} /></div>`).join('');
-$('#dots').innerHTML=SLIDES.map((s,i)=>`<button type="button" aria-label="Slayt ${i+1}" aria-current="${i===0}"></button>`).join('');
-let cur=0,timer;
-function go(i){cur=(i+SLIDES.length)%SLIDES.length;document.querySelectorAll('.slide').forEach((el,k)=>el.classList.toggle('on',k===cur));document.querySelectorAll('#dots button').forEach((b,k)=>b.setAttribute('aria-current',k===cur))}
-function play(){clearInterval(timer);if(!reduce)timer=setInterval(()=>go(cur+1),7000)}
-$('#dots').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;go([...b.parentNode.children].indexOf(b));play()});
-$('#top').addEventListener('mouseenter',()=>clearInterval(timer));
-$('#top').addEventListener('mouseleave',play);
-play();
-
-/* ---------- brand strip ---------- */
-$('#brandList').innerHTML=BRANDS.map(n=>byName[n]).filter(s=>s&&s.l).map(s=>`<li><img src="${BR(s.l)}" alt="${esc(s.n)}" loading="lazy" /></li>`).join('');
-
-/* ---------- category rail ---------- */
-const catCount=c=>STORES.filter(s=>s.c.includes(c)).length;
-$('#rail').innerHTML=RAILCATS.map(([c,img])=>`<button class="cat" type="button" data-c="${esc(c)}"><img src="${U(img,700)}" alt="" loading="lazy" /><b>${esc(c)}</b><span>${catCount(c)} mağaza ${ARROW}</span></button>`).join('');
-$('#rail').addEventListener('click',e=>{const b=e.target.closest('.cat');if(!b)return;setCat(b.dataset.c);setFloor('all');$('#rehber').scrollIntoView({behavior:reduce?'auto':'smooth'})});
-$('#next').addEventListener('click',()=>$('#rail').scrollBy({left:600,behavior:'smooth'}));
-$('#prev').addEventListener('click',()=>$('#rail').scrollBy({left:-600,behavior:'smooth'}));
-
-/* ---------- status + shuttle ---------- */
-const isOpen=h=>h>=10&&h<22;
-const shuttleSecs=t=>{const[h,m]=t.split(':').map(Number);return h*3600+m*60};
-let sdir='MF';
-function live(){
-  const d=ist(),h=d.getHours()+d.getMinutes()/60,open=isOpen(h);
-  $('#navDot').classList.toggle('closed',!open);
-  $('#navStatus').textContent=open?'Şu an açık':'Şu an kapalı';
-  $('#ibStatus').textContent=open?'Açık, 22:00\'ye kadar':(h<10?'Kapalı, 10:00\'da açılır':'Kapalı, yarın 10:00');
-  $('#ibDay').textContent=`${DAYS[d.getDay()]}, 10:00 – 22:00`;
-  const secNow=d.getHours()*3600+d.getMinutes()*60+d.getSeconds();
-  const nextOf=k=>SHUTTLE[k].find(t=>shuttleSecs(t)>secNow);
-  const nMF=nextOf('MF');
-  $('#ibShuttle').textContent=nMF?`${nMF} (${Math.ceil((shuttleSecs(nMF)-secNow)/60)} dk)`:`Yarın ${SHUTTLE.MF[0]}`;
-  const list=SHUTTLE[sdir],nx=nextOf(sdir);
-  if(nx){$('#shMin').textContent=Math.ceil((shuttleSecs(nx)-secNow)/60);$('#shUnit').textContent='dk';$('#shNote').textContent=`sonra kalkıyor, saat ${nx}`}
-  else{$('#shMin').textContent=list[0];$('#shUnit').textContent='';$('#shNote').textContent='Bugünkü seferler bitti, ilk sefer yarın'}
-  $('#shTimes').innerHTML=list.map(t=>`<span class="${t===nx?'next':(shuttleSecs(t)<=secNow?'past':'')}">${t}</span>`).join('');
-  const nowE=eventNow();
-  const up=EVENTS.filter(e=>e.type==='event'&&P(e.start)>nowE).sort((a,b)=>P(a.start)-P(b.start))[0];
-  const on=EVENTS.filter(e=>e.type==='event'&&inRange(e,nowE))[0];
-  $('#ibEvent').textContent=up?`${P(up.start).getDate()} ${MONTHS[P(up.start).getMonth()]}, ${up.title.replace(' İmza Günü','')}`:(on?on.title.replace('KoruFlorya’da!','').trim():'Takvime bak');
-}
-document.querySelectorAll('.sh-switch button').forEach(b=>b.addEventListener('click',()=>{sdir=b.dataset.d;document.querySelectorAll('.sh-switch button').forEach(x=>x.setAttribute('aria-pressed',x===b));live()}));
-
-/* ---------- directory ---------- */
-const state={q:'',f:'all',c:'all',open:false};
-$('#expandBtn').addEventListener('click',()=>{state.open=!state.open;render()});
-const floorHtml=(k,lv,n,cnt)=>`<button class="floor" type="button" data-f="${k}" aria-pressed="${k==='all'}"><i>${lv}</i><b>${n}</b><em>${cnt}</em></button>`;
-$('#floors').innerHTML=floorHtml('all','·','Tüm katlar',STORES.length)+FORDER.map(k=>floorHtml(k,FL[k].lv,FL[k].n,STORES.filter(s=>s.fl.includes(k)).length)).join('');
-$('#chips').innerHTML=`<button class="chip" type="button" data-c="all" aria-pressed="true">Hepsi</button>`+CATS.map(c=>`<button class="chip" type="button" data-c="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
-function setFloor(f){state.f=f;document.querySelectorAll('.floor').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===f));render()}
-function setCat(c){state.c=c;document.querySelectorAll('.chip').forEach(b=>b.setAttribute('aria-pressed',b.dataset.c===c));render()}
-$('#floors').addEventListener('click',e=>{const b=e.target.closest('.floor');if(b)setFloor(b.dataset.f)});
-$('#chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(b)setCat(b.dataset.c)});
-$('#q').addEventListener('input',e=>{state.q=low(e.target.value.trim());render()});
-$('#clearBtn').addEventListener('click',clearAll);
-function clearAll(){$('#q').value='';state.q='';setCat('all');setFloor('all')}
-document.addEventListener('keydown',e=>{if(e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName)&&$('#sheet').hidden){e.preventDefault();$('#rehber').scrollIntoView();$('#q').focus({preventScroll:true})}});
-$('#findBtn').addEventListener('click',()=>setTimeout(()=>$('#q').focus({preventScroll:true}),600));
-function hl(name){if(!state.q)return esc(name);const i=low(name).indexOf(state.q);if(i<0)return esc(name);return esc(name.slice(0,i))+'<mark>'+esc(name.slice(i,i+state.q.length))+'</mark>'+esc(name.slice(i+state.q.length))}
-function render(){
-  const list=STORES.filter(s=>(state.f==='all'||s.fl.includes(state.f))&&(state.c==='all'||s.c.includes(state.c))&&(!state.q||low(s.n).includes(state.q)||s.c.some(c=>low(c).includes(state.q))));
-  const filtered=state.q||state.f!=='all'||state.c!=='all';
-  $('#clearBtn').hidden=!filtered;
-  $('#listwrap').classList.toggle('collapsed',!filtered&&!state.open);
-  $('.expand').hidden=filtered;
-  $('#expandBtn').textContent=state.open?'Listeyi daralt':'Tüm mağazaları göster';
-  $('#resultText').innerHTML=`<b>${list.length}</b> mağaza ${state.f==='all'?'tüm katlarda':FL[state.f].n+'\'nda'}`;
-  if(!list.length){
-    $('#list').innerHTML=`<div class="empty"><p>${state.q?'“'+esc(state.q)+'” için mağaza bulunamadı':'Bu filtrelerle eşleşen mağaza yok'}</p><button class="btn btn-dark" type="button" onclick="clearAll()">Filtreleri temizle</button></div>`;
-    return;
-  }
-  const groups={};list.forEach(s=>{const L=s.n[0].toLocaleUpperCase('tr');(groups[L]=groups[L]||[]).push(s)});
-  $('#list').innerHTML=Object.entries(groups).map(([L,a])=>`<div class="grp"><h3>${L}</h3><ul>${a.map(s=>`<li><button class="st" type="button" data-n="${esc(s.n)}"><span class="lg">${logoHtml(s)}</span><span><b>${hl(s.n)}</b><span>${floorLabel(s)} · ${esc(s.c[0]||'')}</span></span></button></li>`).join('')}</ul></div>`).join('');
-}
-$('#list').addEventListener('click',e=>{const b=e.target.closest('.st');if(b)selectStore(b.dataset.n,true)});
-render();
-
-/* ---------- floor plan ---------- */
-/* Add real plan drawings here, e.g. PLAN_FILES.K='assets/plans/koru-kati.svg'. Units need data-store="Store name". */
-const PLAN_FILES={};
-const planState={f:'K',sel:null};
-$('#pfloors').innerHTML=FORDER.map(k=>`<button class="pf" type="button" data-f="${k}" aria-pressed="${k==='K'}"><b>${FL[k].lv}</b><small>${FL[k].n}</small></button>`).join('');
-$('#pfloors').addEventListener('click',e=>{const b=e.target.closest('.pf');if(b){planState.f=b.dataset.f;planState.sel=null;renderPlan()}});
-function statusNow(){const d=ist(),h=d.getHours()+d.getMinutes()/60;return isOpen(h)?'Şu an açık, 22:00\'ye kadar':'Şu an kapalı'}
-async function renderPlan(){
-  const k=planState.f;
-  document.querySelectorAll('.pf').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===k));
-  const list=STORES.filter(s=>s.fl.includes(k));
-  $('#fhead').innerHTML=`<h3>${FL[k].n} <span style="color:var(--ink3);font-weight:400">· ${FL[k].sub}</span></h3><p>${FL[k].d}. ${list.length} mağaza ve hizmet</p>`;
-  if(PLAN_FILES[k]){
-    try{const t=await (await fetch(PLAN_FILES[k])).text();$('#pcanvas').innerHTML=`<div class="plan-svg">${t}</div>`;
-      $('#pcanvas').querySelectorAll('[data-store]').forEach(el=>{el.setAttribute('tabindex','0');el.classList.toggle('on',el.dataset.store===planState.sel);el.addEventListener('click',()=>selectStore(el.dataset.store,false))});
-      $('#pnote').textContent='';return}catch{}
-  }
-  $('#pcanvas').innerHTML=`<div class="tiles">${list.map(s=>`<button class="tile" type="button" data-n="${esc(s.n)}" aria-pressed="${s.n===planState.sel}"><span class="im">${logoHtml(s)}</span><b>${esc(s.n)}</b></button>`).join('')}</div>`;
-  $('#pnote').textContent='Mimari kat planı çizimi eklendiğinde mağaza konumları haritada işaretlenecek.';
-  renderSide();
-}
-function renderSide(){
-  const s=planState.sel?byName[planState.sel]:null;
-  if(!s){$('#pside').innerHTML=`<p class="hint">Bir mağaza seç, kat, kategori ve çalışma saati burada görünsün.</p><dl><div><dt>Kat</dt><dd>${FL[planState.f].n}</dd></div><div><dt>Mağaza</dt><dd>${STORES.filter(x=>x.fl.includes(planState.f)).length}</dd></div><div><dt>Çalışma saati</dt><dd>Her gün 10:00 – 22:00</dd></div></dl><div class="acts"><a class="btn btn-primary" target="_blank" rel="noopener" href="${MAPS}">Yol tarifi al</a></div>`;return}
-  $('#pside').innerHTML=`<div class="logo-box">${logoHtml(s)}</div><div><h3>${esc(s.n)}</h3><div class="etags" style="margin-top:8px">${s.c.map(c=>`<span class="tag">${esc(c)}</span>`).join('')}</div></div><dl><div><dt>Kat</dt><dd>${floorLabel(s)}</dd></div><div><dt>Çalışma saati</dt><dd>Her gün 10:00 – 22:00</dd></div><div><dt>Durum</dt><dd>${statusNow()}</dd></div></dl><div class="acts"><a class="btn btn-primary" target="_blank" rel="noopener" href="${MAPS}">Yol tarifi al</a><button class="btn btn-outline" type="button" id="seeList">Mağaza listesinde gör</button></div>`;
-  const b=$('#seeList');if(b)b.onclick=()=>{$('#q').value=s.n;state.q=low(s.n);state.f='all';state.c='all';setCat('all');setFloor('all');$('#rehber').scrollIntoView({behavior:reduce?'auto':'smooth'})};
-}
-function selectStore(name,scroll){
-  const s=byName[name];if(!s)return;
-  planState.f=s.fl.includes(planState.f)?planState.f:s.fl[0];planState.sel=name;
-  renderPlan();
-  if(scroll)$('#plan').scrollIntoView({behavior:reduce?'auto':'smooth'});
-}
-$('#pcanvas').addEventListener('click',e=>{const t=e.target.closest('.tile');if(t){planState.sel=t.dataset.n;document.querySelectorAll('.tile').forEach(x=>x.setAttribute('aria-pressed',x===t));renderSide()}});
-const pq=$('#pq'),pres=$('#pres');
-pq.addEventListener('input',()=>{
-  const q=low(pq.value.trim());if(!q){pres.hidden=true;return}
-  const m=STORES.filter(s=>low(s.n).includes(q)||s.c.some(c=>low(c).includes(q))).slice(0,8);
-  pres.innerHTML=m.length?m.map(s=>`<button type="button" data-n="${esc(s.n)}"><span class="lg">${logoHtml(s)}</span><span><b>${esc(s.n)}</b><span>${floorLabel(s)} · ${esc(s.c[0]||'')}</span></span></button>`).join(''):`<p>“${esc(pq.value.trim())}” için sonuç yok</p>`;
-  pres.hidden=false;
-});
-pres.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;pq.value='';pres.hidden=true;selectStore(b.dataset.n,false)});
-document.addEventListener('click',e=>{if(!e.target.closest('.pcol'))pres.hidden=true});
-pq.addEventListener('keydown',e=>{if(e.key==='Escape'){pres.hidden=true}});
-renderPlan();
-
-/* ---------- food ---------- */
-const fg={};Object.entries(FOODG).forEach(([k,a])=>fg[k]=a.filter(n=>byName[n]));
-const known=new Set(Object.values(fg).flat());
-const other=STORES.filter(s=>s.c.includes('Yeme & İçme')&&!known.has(s.n)).map(s=>s.n);
-if(other.length)fg['Diğer']=other;
-const fk=Object.keys(fg);
-$('#foodPhoto').innerHTML=fk.map((k,i)=>`<img data-k="${i}" class="${i?'':'on'}" src="${U(FOODIMG[k]||IMG.cafe,1000)}" alt="" loading="lazy" />`).join('');
-$('#ftabs').innerHTML=fk.map((k,i)=>`<button class="ftab" role="tab" type="button" data-i="${i}" aria-selected="${i===0}"><b>${k}</b><em>${fg[k].length} mekân</em></button><div class="fpanel${i?'':' on'}" data-i="${i}"><ul>${fg[k].map(n=>`<li>${esc(n)}<span>${floorLabel(byName[n])}</span></li>`).join('')}</ul></div>`).join('');
-$('#ftabs').addEventListener('click',e=>{const b=e.target.closest('.ftab');if(!b)return;const i=b.dataset.i;
-  document.querySelectorAll('.ftab').forEach(t=>t.setAttribute('aria-selected',t===b));
-  document.querySelectorAll('.fpanel').forEach(p=>p.classList.toggle('on',p.dataset.i===i));
-  document.querySelectorAll('#foodPhoto img').forEach(im=>im.classList.toggle('on',im.dataset.k===i));
-});
-$('#allFood').addEventListener('click',()=>{setCat('Yeme & İçme');setFloor('all');$('#rehber').scrollIntoView()});
-
-/* ---------- events & campaigns ---------- */
-const eventNow=()=>startOfDay(ist());
-const endOf=e=>{const x=P(e.end||e.start);return e.allDay||!(e.end||e.start).includes('T')?new Date(x.getFullYear(),x.getMonth(),x.getDate(),23,59,59):x};
-const startOf=e=>{const x=P(e.start);return e.allDay||!e.start.includes('T')?startOfDay(x):x};
-const inRange=(e,now)=>e.start&&startOf(e)<=new Date(now.getFullYear(),now.getMonth(),now.getDate(),23,59,59)&&endOf(e)>=now;
-const isPast=e=>e.end&&endOf(e)<ist();
-function weekBounds(){const n=eventNow();const dow=(n.getDay()+6)%7;const a=new Date(n);a.setDate(n.getDate()-dow);const b=new Date(a);b.setDate(a.getDate()+6);b.setHours(23,59,59);return[a,b]}
-function monthBounds(){const n=eventNow();return[new Date(n.getFullYear(),n.getMonth(),1),new Date(n.getFullYear(),n.getMonth()+1,0,23,59,59)]}
-const overlaps=(e,a,b)=>startOf(e)<=b&&endOf(e)>=a;
-const TABS=[
-  ['upcoming','Yaklaşan',()=>EVENTS.filter(e=>e.type==='event'&&!isPast(e))],
-  ['week','Bu hafta',()=>{const[a,b]=weekBounds();return EVENTS.filter(e=>e.type==='event'&&!isPast(e)&&overlaps(e,a,b))}],
-  ['month','Bu ay',()=>{const[a,b]=monthBounds();return EVENTS.filter(e=>e.type==='event'&&!isPast(e)&&overlaps(e,a,b))}],
-  ['past','Geçmiş',()=>EVENTS.filter(e=>e.type==='event'&&isPast(e))],
-  ['campaigns','Kampanyalar',()=>EVENTS.filter(e=>e.type==='campaign'&&!isPast(e))]
-];
-let etab='upcoming';
-const fmtDay=d=>`${d.getDate()} ${MONTHS[d.getMonth()]}`;
-function dateText(e){
-  if(!e.start)return null;
-  const a=startOf(e),b=endOf(e);
-  if(a.toDateString()===b.toDateString())return `${fmtDay(a)} ${a.getFullYear()}, ${DAYS[a.getDay()]}`;
-  return `${fmtDay(a)} – ${fmtDay(b)} ${b.getFullYear()}`;
-}
-function renderTabs(){
-  $('#etabs').innerHTML=TABS.map(([k,l,f])=>`<button class="etab" role="tab" type="button" data-k="${k}" aria-selected="${k===etab}">${l}<em>${f().length}</em></button>`).join('');
-}
-function cardHtml(e){
-  const past=isPast(e),a=e.start?startOf(e):null;
-  const badge=e.type==='campaign'?(e.badge?`<div class="ebadge">${esc(e.badge)}</div>`:''):(a?`<div class="edate"><b>${a.getDate()}</b><small>${MONTHS[a.getMonth()].slice(0,3)}</small></div>`:'');
-  const tags=[];
-  if(e.type==='event'&&e.free)tags.push('<span class="tag">Ücretsiz</span>');
-  if(e.type==='event'&&e.audience)tags.push(`<span class="tag g">${esc(e.audience)}</span>`);
-  if(e.type==='campaign')tags.push(`<span class="tag ${e.badge?'o':'y'}">${e.tag||'Kampanya'}</span>`);
-  if(past)tags.push('<span class="tag g">Sona erdi</span>');
-  const dt=dateText(e);
-  const meta=[dt?`<div>${IC.cal}<span>${esc(dt)}</span></div>`:'',(e.time?`<div>${IC.clock}<span>${esc(e.time)}</span></div>`:''),`<div>${IC.pin}<span>${esc(e.venue?e.venue+', ':'')}${esc(e.place||'')}</span></div>`].join('');
-  const act=e.type==='event'?`<button class="btn btn-dark btn-sm" type="button" data-open="${e.id}">Detaylar</button>${past?'':`<button class="btn btn-outline btn-sm" type="button" data-cal="${e.id}">Takvime ekle</button>`}`:`<button class="btn btn-dark btn-sm" type="button" data-open="${e.id}">Detaylar</button>${e.store&&byName[e.store]?`<button class="btn btn-outline btn-sm" type="button" data-store="${esc(e.store)}">Mağazayı gör</button>`:''}`;
-  return `<article class="ecard${past?' past':''}"><div class="eimg"><img src="${EVI(e.img)}" alt="" loading="lazy" />${badge}</div><div class="ebody"><div class="etags">${tags.join('')}</div><h3>${esc(e.title)}</h3><p>${esc(e.short)}</p><div class="emeta">${meta}</div><div class="eacts">${act}</div></div></article>`;
-}
-function renderEvents(){
-  renderTabs();
-  const t=TABS.find(x=>x[0]===etab),list=t[2]();
-  $('#ecards').innerHTML=list.length?list.sort((a,b)=>(a.start?startOf(a):new Date(8.64e15))-(b.start?startOf(b):new Date(8.64e15))).map(cardHtml).join(''):`<div class="eempty"><p>${etab==='past'?'Geçmiş etkinlik yok':'Bu dönemde etkinlik yok'}</p>${etab==='upcoming'?'':'<button class="btn btn-dark" type="button" data-k="upcoming">Yaklaşan etkinlikleri gör</button>'}</div>`;
-}
-$('#etabs').addEventListener('click',e=>{const b=e.target.closest('.etab');if(b){etab=b.dataset.k;renderEvents()}});
-$('#ecards').addEventListener('click',e=>{
-  const o=e.target.closest('[data-open]');if(o){openEvent(o.dataset.open);return}
-  const c=e.target.closest('[data-cal]');if(c){openEvent(c.dataset.cal,true);return}
-  const s=e.target.closest('[data-store]');if(s){selectStore(s.dataset.store,true);return}
-  const k=e.target.closest('.eempty [data-k]');if(k){etab=k.dataset.k;renderEvents()}
-});
-/* calendar links */
-const ymd=d=>`${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}`;
-const ymdhms=d=>`${ymd(d)}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
-const iso=d=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:00`;
-function calLinks(e){
-  const a=startOf(e),b=endOf(e),allDay=e.allDay||!e.start.includes('T');
-  const loc=`Koru Florya Alışveriş ve Yaşam Merkezi, ${e.place||''}, Ekşinar Sokak No: 46/1, Şenlikköy, Bakırköy, İstanbul`;
-  const det=[e.short,e.venue?`Mekân: ${e.venue}`:''].filter(Boolean).join('\n');
-  let gDates,oS,oE,icsS,icsE;
-  if(allDay){const e1=new Date(b.getFullYear(),b.getMonth(),b.getDate()+1);gDates=`${ymd(a)}/${ymd(e1)}`;oS=iso(a).slice(0,10);oE=iso(e1).slice(0,10);icsS=`DTSTART;VALUE=DATE:${ymd(a)}`;icsE=`DTEND;VALUE=DATE:${ymd(e1)}`}
-  else{gDates=`${ymdhms(a)}/${ymdhms(b)}`;oS=iso(a);oE=iso(b);icsS=`DTSTART;TZID=Europe/Istanbul:${ymdhms(a)}`;icsE=`DTEND;TZID=Europe/Istanbul:${ymdhms(b)}`}
-  const google=`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(e.title)}&dates=${gDates}&ctz=Europe/Istanbul&details=${encodeURIComponent(det)}&location=${encodeURIComponent(loc)}`;
-  const outlook=`https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose&rru=addevent&subject=${encodeURIComponent(e.title)}&startdt=${encodeURIComponent(oS)}&enddt=${encodeURIComponent(oE)}${allDay?'&allday=true':''}&location=${encodeURIComponent(loc)}&body=${encodeURIComponent(det)}`;
-  const esc2=s=>s.replace(/[\\,;]/g,m=>'\\'+m).replace(/\n/g,'\\n');
-  const ics='data:text/calendar;charset=utf-8,'+encodeURIComponent(['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Koru Florya//TR','BEGIN:VEVENT',`UID:${e.id}@koruflorya`,`DTSTAMP:${ymdhms(new Date())}Z`,icsS,icsE,`SUMMARY:${esc2(e.title)}`,`DESCRIPTION:${esc2(det)}`,`LOCATION:${esc2(loc)}`,'END:VEVENT','END:VCALENDAR'].join('\r\n'));
-  return{google,outlook,ics};
-}
-
-/* ---------- sheet ---------- */
-let lastFocus=null;
-function openSheet(title,html,cls){
-  lastFocus=document.activeElement;
-  $('#sheetTitle').textContent=title;$('#sheetBody').className='sheet-body '+(cls||'');$('#sheetBody').innerHTML=html;$('#sheetBody').scrollTop=0;
-  $('#scrim').hidden=false;$('#sheet').hidden=false;document.body.classList.add('lock');
-  requestAnimationFrame(()=>{$('#scrim').classList.add('on');$('#sheet').classList.add('on');$('#sheetClose').focus()});
-}
-function closeSheet(updateHash=true){
-  if($('#sheet').hidden)return;
-  $('#scrim').classList.remove('on');$('#sheet').classList.remove('on');document.body.classList.remove('lock');
-  setTimeout(()=>{$('#scrim').hidden=true;$('#sheet').hidden=true},reduce?0:320);
-  if(updateHash&&/^#(kvkk|sartlar|etkinlik-)/.test(location.hash))history.replaceState(null,'',location.pathname+location.search);
-  if(lastFocus&&lastFocus.focus)lastFocus.focus();
-}
-$('#sheetClose').addEventListener('click',()=>closeSheet());
-$('#scrim').addEventListener('click',()=>closeSheet());
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
-function openEvent(id,focusCal){
-  const e=EVENTS.find(x=>x.id===id);if(!e)return;
-  const l=e.start?calLinks(e):null,past=isPast(e),dt=dateText(e);
-  const rows=[dt?['Tarih',dt]:null,e.time?['Saat',e.time]:null,e.venue||e.place?['Mekân',`${e.venue?esc(e.venue)+'<br>':''}${esc(e.place||'')}`]:null,e.who?['Konuk',esc(e.who)]:null,e.audience?['Kimler için',esc(e.audience)]:null,e.type==='event'?['Katılım',e.free?'Ücretsiz':'—']:null].filter(Boolean);
-  const similar=EVENTS.filter(x=>x.id!==e.id&&x.type===e.type&&!isPast(x)).slice(0,3);
-  const tagsHtml=[e.type==='event'&&e.free?'<span class="tag">Ücretsiz</span>':'',e.type==='campaign'?`<span class="tag ${e.badge?'o':'y'}">${e.tag||'Kampanya'}</span>`:'',past?'<span class="tag g">Sona erdi</span>':''].join('');
-  const html=`<div class="simg"><img src="${EVI(e.img)}" alt="" /></div><div class="etags">${tagsHtml}</div><h3 class="t">${esc(e.title)}</h3><p>${esc(e.short)}</p>
-  <h4>${e.type==='event'?'Etkinlik hakkında':'Kampanya hakkında'}</h4>${e.about.map(p=>`<p style="margin-bottom:8px">${esc(p)}</p>`).join('')}
-  <h4>${e.type==='event'?'Etkinlik bilgileri':'Kampanya bilgileri'}</h4><dl class="info">${rows.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
-  ${l&&!past?`<h4 id="calH">Takvime ekle</h4><div class="calbtns"><a class="btn btn-outline" target="_blank" rel="noopener" href="${l.google}">${IC.cal} Google Takvim</a><a class="btn btn-outline" href="${l.ics}" download="${e.id}.ics">${IC.cal} Apple Takvim (.ics)</a><a class="btn btn-outline" target="_blank" rel="noopener" href="${l.outlook}">${IC.cal} Outlook</a></div><p class="pnote" style="margin-top:8px">Tarih, saat ve konum takvim kaydına otomatik eklenir</p>`:''}
-  <div class="calbtns" style="margin-top:24px">${e.store&&byName[e.store]?`<button class="btn btn-primary" type="button" id="evStore">Mağazayı kat planında gör</button>`:''}<a class="btn btn-dark" target="_blank" rel="noopener" href="${MAPS}">Yol tarifi al</a></div>
-  ${similar.length?`<h4>Benzer ${e.type==='event'?'etkinlikler':'kampanyalar'}</h4><div class="mini">${similar.map(x=>`<button type="button" data-open="${x.id}"><img src="${EVI(x.img)}" alt="" /><span><b>${esc(x.title)}</b><span>${esc(dateText(x)||x.place||'')}</span></span></button>`).join('')}</div>`:''}`;
-  openSheet(e.type==='event'?'Etkinlik':'Kampanya',html,'');
-  if(history.replaceState)history.replaceState(null,'','#etkinlik-'+e.id);
-  const sb=$('#evStore');if(sb)sb.onclick=()=>{closeSheet();selectStore(e.store,true)};
-  if(focusCal)setTimeout(()=>{const h=$('#calH');if(h)h.scrollIntoView({behavior:'smooth'})},380);
-}
-$('#sheetBody').addEventListener('click',e=>{const o=e.target.closest('[data-open]');if(o)openEvent(o.dataset.open)});
-function openDoc(k){
-  const t=document.getElementById('tpl-'+k);if(!t)return;
-  const wrap=document.createElement('div');wrap.className='doc';wrap.appendChild(t.content.cloneNode(true));
-  wrap.querySelectorAll('li>span').forEach(s=>{if(s.textContent.trim()==='Yasak')s.classList.add('no')});
-  openSheet(k==='kvkk'?'KVKK aydınlatma metni':'Kullanım şartları',wrap.outerHTML,'');
-  history.replaceState(null,'','#'+k);
-}
-document.querySelectorAll('[data-doc]').forEach(b=>b.addEventListener('click',()=>openDoc(b.dataset.doc)));
-function route(){
-  const h=location.hash;
-  if(h==='#kvkk'||h==='#sartlar')openDoc(h.slice(1));
-  else if(h.startsWith('#etkinlik-'))openEvent(h.slice(10));
-}
-renderEvents();
-live();setInterval(live,1000);
-route();addEventListener('hashchange',route);
-
-/* ---------- nav ---------- */
-const nav=$('#nav');
-const onScroll=()=>nav.classList.toggle('solid',scrollY>40||$('#links').classList.contains('open'));
-addEventListener('scroll',onScroll,{passive:true});onScroll();
-function closeMenu(){$('#links').classList.remove('open');$('#menuBtn').setAttribute('aria-expanded',false);$('#menuBtn').textContent='Menü';onScroll()}
-$('#menuBtn').addEventListener('click',()=>{const o=$('#links').classList.toggle('open');$('#menuBtn').setAttribute('aria-expanded',o);$('#menuBtn').textContent=o?'Kapat':'Menü';onScroll()});
-document.querySelectorAll('#links a').forEach(a=>a.addEventListener('click',closeMenu));
-$('#mapBg').src=U(IMG.canopy,1200);
-</script>
+<script src="assets/js/stores.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script src="assets/js/home.js"></script>
 </body>
 </html>
