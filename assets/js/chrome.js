@@ -38,18 +38,27 @@ footer.innerHTML=`<div class="wrap">
 </div>`;
 document.body.appendChild(footer);
 
-/* header: smooth transition once 80% of the hero has passed */
-const sentinel=$('#heroEnd');
-const setSolid=v=>{if(!$('#links').classList.contains('open'))header.classList.toggle('solid',v)};
-if(home&&sentinel&&'IntersectionObserver' in window){
-  new IntersectionObserver(([e])=>{setSolid(!e.isIntersecting&&e.boundingClientRect.top<(e.rootBounds?e.rootBounds.top:0))},{rootMargin:'-80px 0px 0px 0px',threshold:0}).observe(sentinel);
-}else if(home){
-  const f=()=>setSolid(scrollY>innerHeight*.8);addEventListener('scroll',f,{passive:true});f();
+/* header: 100% transparent while over the hero photo, then smoothly animates to solid */
+if(home){
+  const hero=$('#top');
+  const updateNav=()=>{
+    if($('#links')&&$('#links').classList.contains('open'))return;
+    const heroRect=hero?hero.getBoundingClientRect():null;
+    // Hero fotoğraf alanı (yaklaşık 70px pay ile) tamamen geçilene kadar saydam kal
+    const pastHero=heroRect?(heroRect.bottom<=76):(scrollY>innerHeight*.85);
+    header.classList.toggle('solid',pastHero);
+  };
+  addEventListener('scroll',updateNav,{passive:true});
+  updateNav();
 }
 const links=$('#links'),mb=$('#menuBtn');
 mb.addEventListener('click',()=>{
   const o=links.classList.toggle('open');mb.setAttribute('aria-expanded',o);mb.textContent=o?'Kapat':'Menü';
-  if(o)header.classList.add('solid');else if(home&&sentinel){const r=sentinel.getBoundingClientRect();header.classList.toggle('solid',r.top<80)}
+  if(o)header.classList.add('solid');else if(home){
+    const hero=$('#top');
+    const heroRect=hero?hero.getBoundingClientRect():null;
+    header.classList.toggle('solid',heroRect?(heroRect.bottom<=76):(scrollY>innerHeight*.85));
+  }
 });
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');mb.setAttribute('aria-expanded',false);mb.textContent='Menü'}));
 

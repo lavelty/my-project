@@ -23,7 +23,8 @@
 (function(){
 const {esc,IC}=KF;
 const $=s=>document.querySelector(s);
-const id=new URLSearchParams(location.search).get('e');
+const qp=new URLSearchParams(location.search);
+const id=qp.get('e')||qp.get('id');
 const e=KF.evById(id);
 const page=$('#page');
 if(!e){
