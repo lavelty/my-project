@@ -8,7 +8,7 @@
   
   <link rel="icon" type="image/svg+xml" href="https://koruflorya.com/assets/icons/koruflorya-icon.svg" />
 
-  <!-- Fonts: Plus Jakarta Sans (Kanyon Official Font) -->
+  <!-- Kanyon Official Font: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,14 +26,15 @@
             kanyon: {
               black: '#101010',
               dark: '#141414',
-              surface: '#1c1c1e',
-              border: '#2c2c2e',
+              surface: '#18181a',
+              card: '#1f1f23',
+              border: 'rgba(255, 255, 255, 0.08)',
               orange: '#ff914d',
               coral: '#ff695a',
               red: '#ee3d35',
               magenta: '#8b236b',
               emerald: '#10b981',
-              blue: '#0284c7'
+              blue: '#0ea5e9'
             }
           }
         }
@@ -59,67 +60,89 @@
     .discover-card {
       position: relative;
       display: flex;
-      min-height: 190px;
+      min-height: 185px;
       align-items: flex-end;
       justify-content: space-between;
       border-radius: 12px;
-      padding: 24px;
+      padding: 26px 24px;
       color: #ffffff;
       overflow: hidden;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
       text-decoration: none;
     }
 
     .discover-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
     }
 
     .discover-card span {
-      font-size: 24px;
-      font-weight: 700;
-      line-height: 1.25;
+      font-size: 25px;
+      font-weight: 800;
+      line-height: 1.2;
       letter-spacing: -0.02em;
-      max-width: 75%;
+      max-width: 78%;
     }
 
     .discover-card svg {
       position: absolute;
       top: 22px;
       right: 22px;
-      width: 44px;
-      height: 44px;
-      opacity: 0.9;
-      transition: transform 0.3s ease;
+      width: 46px;
+      height: 46px;
+      opacity: 0.95;
+      transition: transform 0.35s ease;
     }
 
     .discover-card:hover svg {
-      transform: scale(1.1) rotate(4deg);
+      transform: scale(1.12) rotate(4deg);
     }
 
-    /* Kanyon Discover Card Gradients */
-    .discover-card-orange { background: linear-gradient(135deg, #ff914d 0%, #f77f32 100%); }
-    .discover-card-coral { background: linear-gradient(135deg, #ff695a 0%, #f04e3e 100%); }
-    .discover-card-red { background: linear-gradient(135deg, #ee3d35 0%, #cc261f 100%); }
-    .discover-card-magenta { background: linear-gradient(135deg, #8b236b 0%, #68124d 100%); }
+    .discover-card-orange { background: linear-gradient(135deg, #ff914d 0%, #f27324 100%); }
+    .discover-card-coral { background: linear-gradient(135deg, #ff695a 0%, #e84b3a 100%); }
+    .discover-card-red { background: linear-gradient(135deg, #ee3d35 0%, #c42018 100%); }
+    .discover-card-magenta { background: linear-gradient(135deg, #8b236b 0%, #5e0e45 100%); }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #101010;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #2a2a2a;
-      border-radius: 3px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #ff914d;
+    /* Section All Links (Kanyon Style Bottom Accent Line) */
+    .section-all-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #ee3d35;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 800;
+      transition: all 0.25s ease;
     }
 
-    /* Ticker animation */
+    .section-all-link:hover {
+      color: #ff914d;
+      border-color: #ff914d;
+      gap: 12px;
+    }
+
+    /* Flavour / Restaurant Image Card */
+    .flavour-image-box {
+      position: relative;
+      height: 380px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #1c1c1e;
+    }
+
+    .flavour-image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .flavour-card:hover .flavour-image-box img {
+      transform: scale(1.06);
+    }
+
+    /* Marquee animation */
     @keyframes marquee {
       0% { transform: translateX(0%); }
       100% { transform: translateX(-50%); }
@@ -132,31 +155,46 @@
     .animate-marquee:hover {
       animation-play-state: paused;
     }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #101010;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #282828;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff914d;
+    }
   </style>
 </head>
 <body class="selection:bg-kanyon-orange selection:text-white">
 
-  <!-- ==================== HEADER (KANYON STYLE) ==================== -->
+  <!-- ==================== HEADER (KANYON OFFICIAL STYLE) ==================== -->
   <header class="sticky top-0 z-50 bg-[#101010]/95 backdrop-blur-md border-b border-white/10 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Logo: KORU FLORYA (Bold, Architectural Modern) -->
-      <a href="#hero" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-lg bg-kanyon-orange flex items-center justify-center font-extrabold text-white text-lg tracking-tighter shadow-md">
+      <!-- Logo: KORU FLORYA -->
+      <a href="#hero" class="flex items-center gap-3.5 group">
+        <div class="w-10 h-10 rounded-xl bg-kanyon-orange flex items-center justify-center font-extrabold text-white text-lg tracking-tighter shadow-md shadow-orange-500/20">
           KF
         </div>
         <div class="flex flex-col">
           <span class="text-xl font-extrabold tracking-tight text-white uppercase group-hover:text-kanyon-orange transition-colors">
             KORU FLORYA
           </span>
-          <span class="text-[10px] uppercase tracking-widest text-zinc-400 font-semibold -mt-0.5">
+          <span class="text-[10px] uppercase tracking-widest text-zinc-400 font-bold -mt-0.5">
             Alışveriş & Yaşam Merkezi
           </span>
         </div>
       </a>
 
-      <!-- Desktop Primary Navigation Links -->
-      <nav class="hidden lg:flex items-center gap-7 text-[15px] font-semibold text-zinc-300">
+      <!-- Desktop Primary Nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-[15px] font-bold text-zinc-300">
         <a href="#kesfet" class="hover:text-white transition-colors">Keşfet</a>
         <a href="#markalar" class="hover:text-white transition-colors">Markalar</a>
         <a href="#lezzetler" class="hover:text-white transition-colors">Lezzetler</a>
@@ -165,12 +203,15 @@
         <a href="#ulasim" class="hover:text-white transition-colors">Ulaşım & Saatler</a>
       </nav>
 
-      <!-- Header Right Utilities -->
-      <div class="flex items-center gap-4">
+      <!-- Right Utility Actions -->
+      <div class="flex items-center gap-3.5">
         
         <!-- Live Mall Status Chip -->
-        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-emerald-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <div class="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-950/60 border border-emerald-500/30 text-xs font-bold text-emerald-400">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
           <span id="header-status-badge">AÇIK • 10:00 - 22:00</span>
         </div>
 
@@ -182,19 +223,19 @@
         </button>
 
         <!-- Language Button -->
-        <button id="lang-btn" onclick="toggleLang()" class="px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/30 text-xs font-bold text-zinc-300 hover:text-white transition-colors">
+        <button id="lang-btn" onclick="toggleLang()" class="px-3 py-1.5 rounded-lg border border-white/10 hover:border-white/30 text-xs font-extrabold text-zinc-300 hover:text-white transition-colors">
           EN
         </button>
 
         <!-- Directions CTA Button -->
-        <a href="#ulasim" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-bold text-xs uppercase tracking-wider transition-all">
+        <a href="#ulasim" class="hidden md:inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-extrabold text-xs uppercase tracking-wider transition-all">
           <span>Yol Tarifi</span>
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
 
-        <!-- Mobile Menu Hamburger -->
+        <!-- Mobile Menu Toggle Button -->
         <button onclick="toggleMobileNav()" class="lg:hidden p-2 text-white">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
@@ -206,14 +247,14 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-nav" class="hidden lg:hidden bg-[#161616] border-b border-white/10 px-6 py-6 transition-all">
-      <form onsubmit="handleSearch(event)" class="mb-6">
+      <div class="mb-6">
         <div class="relative">
-          <input type="text" id="mobile-search-box" placeholder="Koru Florya'da ara..." class="w-full px-4 py-3 pl-10 rounded-xl bg-white/5 border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange">
+          <input type="text" id="mobile-search-box" onkeydown="if(event.key==='Enter') openSearchModal()" placeholder="Koru Florya'da ara..." class="w-full px-4 py-3 pl-10 rounded-xl bg-white/5 border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange">
           <svg class="w-4 h-4 text-zinc-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
           </svg>
         </div>
-      </form>
+      </div>
       <nav class="flex flex-col gap-4 text-base font-bold text-zinc-300">
         <a href="#kesfet" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Keşfet</a>
         <a href="#markalar" onclick="toggleMobileNav()" class="hover:text-white py-1 border-b border-white/5">Markalar (220+)</a>
@@ -225,40 +266,40 @@
     </div>
   </header>
 
-  <!-- ==================== HERO SECTION (KANYON ARCHITECTURE STYLE) ==================== -->
-  <section id="hero" class="relative min-h-[580px] lg:min-h-[640px] flex items-center justify-center overflow-hidden">
+  <!-- ==================== HERO SECTION (MODERN ARCHITECTURAL SHOWCASE) ==================== -->
+  <section id="hero" class="relative min-h-[600px] lg:min-h-[660px] flex items-center justify-center overflow-hidden">
     
-    <!-- Hero Background Image (Clean, Modern Architectural Photography) -->
+    <!-- Hero Architectural Image -->
     <div class="absolute inset-0 z-0">
       <img src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?q=80&w=2000&auto=format&fit=crop" 
            alt="Koru Florya Modern Mimari" 
-           class="w-full h-full object-cover object-center filter brightness-[0.55]" />
-      <div class="absolute inset-0 bg-gradient-to-t from-[#101010] via-transparent to-[#101010]/60"></div>
+           class="w-full h-full object-cover object-center filter brightness-[0.52]" />
+      <div class="absolute inset-0 bg-gradient-to-t from-[#101010] via-transparent to-[#101010]/70"></div>
     </div>
 
     <!-- Hero Content Container -->
     <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center pt-8 pb-16">
       
-      <!-- Small Pill Tag -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-bold text-white mb-6 uppercase tracking-wider">
+      <!-- Top Eyebrow Tag -->
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs font-extrabold text-white mb-6 uppercase tracking-wider">
         <span>İstanbul Florya</span>
         <span class="w-1.5 h-1.5 rounded-full bg-kanyon-orange"></span>
         <span>Yaşam & Alışveriş</span>
       </div>
 
-      <!-- Main Headline: Modern, Bold Plus Jakarta Sans -->
+      <!-- Main Headline: Bold Plus Jakarta Sans -->
       <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] text-white max-w-4xl mb-6">
         Şehrin Ritmini <br />
         <span class="text-transparent bg-clip-text bg-gradient-to-r from-kanyon-orange via-kanyon-coral to-white">Koru Florya'da Keşfet.</span>
       </h1>
 
       <p class="text-base sm:text-lg md:text-xl text-zinc-300 font-medium max-w-2xl leading-relaxed mb-8">
-        Modern mimari, seçkin 220'yi aşkın marka, 34 gurme lezzet durağı ve botanik koru ferahlığıyla Koru Florya'da yeni bir gün başlıyor.
+        Modern mimari, 220'yi aşkın seçkin marka, 34 gurme lezzet durağı ve botanik koru ferahlığıyla Koru Florya'da yeni bir gün başlıyor.
       </p>
 
-      <!-- Primary Hero CTA -->
+      <!-- Primary Action Buttons -->
       <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#kesfet" class="px-8 py-4 rounded-full bg-kanyon-orange hover:bg-orange-500 text-white font-bold text-sm uppercase tracking-wider transition-all shadow-lg shadow-orange-500/30 flex items-center gap-2">
+        <a href="#kesfet" class="px-8 py-4 rounded-full bg-kanyon-orange hover:bg-orange-500 text-white font-extrabold text-sm uppercase tracking-wider transition-all shadow-xl shadow-orange-500/25 flex items-center gap-2">
           <span>KEŞFET</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
@@ -272,7 +313,7 @@
     </div>
   </section>
 
-  <!-- ==================== TICKER: LIVE UPDATES & EVENTS ==================== -->
+  <!-- ==================== LIVE TICKER ==================== -->
   <div class="bg-[#18181a] border-y border-white/10 py-3.5 overflow-hidden relative">
     <div class="flex items-center animate-marquee whitespace-nowrap text-xs font-bold tracking-wider text-zinc-300">
       
@@ -290,7 +331,7 @@
 
       <span class="flex items-center mx-6 gap-2">
         <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-        <span class="text-white">ÜCRETSİZ SERVİS:</span> Marmaray Florya durağından her 30 dakikada bir ücretsiz ring
+        <span class="text-white">ÜCRETSİZ SERVİS:</span> Marmaray Florya durağından her 30 dakikada bir ring
       </span>
       <span class="text-zinc-600">/</span>
 
@@ -300,7 +341,7 @@
       </span>
       <span class="text-zinc-600">/</span>
 
-      <!-- Duplicate for continuous scroll -->
+      <!-- Duplicate for seamless scroll -->
       <span class="flex items-center mx-6 gap-2">
         <span class="w-2 h-2 rounded-full bg-kanyon-orange"></span>
         <span class="text-white">İMZA GÜNÜ:</span> Celal Şengör — 15 Kasım, 14:00 (Koru Katı)
@@ -316,11 +357,11 @@
     </div>
   </div>
 
-  <!-- ==================== SECTION: KEŞFET (KANYON DISCOVER CARDS) ==================== -->
+  <!-- ==================== SECTION: KEŞFET (4 KANYON CARDS) ==================== -->
   <section id="kesfet" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-10">
-      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Keşfet</h2>
-      <p class="text-zinc-400 font-medium text-base mt-2">
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Keşfet</h2>
+      <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
         Koru Florya'da ilham veren markaları, lezzetleri, etkinlikleri ve deneyimleri keşfet.
       </p>
     </div>
@@ -367,109 +408,102 @@
   <section id="etkinlikler" class="py-20 bg-[#141414] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
         <div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Etkinlikler</h2>
-          <p class="text-zinc-400 font-medium text-base mt-2">
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Etkinlikler</h2>
+          <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
             Konserlerden atölyelere, imza günlerinden özel buluşmalara kadar Koru Florya’daki güncel etkinlikleri keşfet.
           </p>
         </div>
-        <a href="#etkinlikler" class="inline-flex items-center gap-1.5 text-sm font-bold text-kanyon-orange hover:text-white transition-colors">
+        <a href="#etkinlikler" class="section-all-link">
           <span>Tümünü İncele</span>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
           </svg>
         </a>
       </div>
 
-      <!-- Events Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Events Grid: 1 Featured Big Card + 2 Secondary Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- Event 1: Celal Şengör İmza Günü -->
-        <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-orange/50 transition-all group flex flex-col justify-between">
-          <div>
-            <div class="relative h-52 overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop" 
-                   alt="Celal Şengör İmza Günü" 
-                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-kanyon-red text-white text-xs font-bold uppercase tracking-wider">
-                İmza Günü
-              </div>
-              <div class="absolute bottom-3 left-4 text-xs font-semibold px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-white">
-                15 Kasım 2026 • 14:00
-              </div>
+        <!-- Big Featured Card: Celal Şengör İmza Günü -->
+        <div class="lg:col-span-7 bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-red transition-all group flex flex-col justify-between">
+          <div class="relative h-72 sm:h-96 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1200&auto=format&fit=crop" 
+                 alt="Celal Şengör İmza Günü Koru Florya" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+            <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-red text-white text-xs font-extrabold uppercase tracking-wider shadow-lg">
+              Öne Çıkan Etkinlik
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white group-hover:text-kanyon-orange transition-colors">
-                Celal Şengör İmza Günü
-              </h3>
-              <p class="text-sm text-zinc-400 mt-2 line-clamp-2">
-                Kitap Fuarı kapsamında Prof. Dr. Celal Şengör, Koru Florya Koru Katı'nda okurlarıyla buluşuyor.
-              </p>
+            <div class="absolute bottom-4 left-4 px-3 py-1.5 rounded-lg bg-black/80 backdrop-blur-md text-xs font-bold text-white">
+              📅 15 Kasım 2026 • Saat 14:00
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
-            <span>📍 Koru Katı Fuar Alanı</span>
-            <span class="text-kanyon-orange group-hover:translate-x-1 transition-transform">Detay →</span>
+          <div class="p-6 sm:p-8">
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white group-hover:text-kanyon-red transition-colors">
+              Celal Şengör İmza Günü
+            </h3>
+            <p class="text-sm sm:text-base text-zinc-400 mt-3 leading-relaxed">
+              Koru Florya Kitap Fuarı kapsamında Prof. Dr. Celal Şengör kitapseverlerle buluşuyor. Bilim, jeoloji ve felsefe üzerine sohbet ve imza günü etkinliğini kaçırmayın.
+            </p>
+            <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
+              <span class="text-emerald-400">📍 Koru Katı • Fuar Alanı</span>
+              <span class="text-kanyon-red flex items-center gap-1 group-hover:translate-x-1 transition-transform">Etkinlik Detayı →</span>
+            </div>
           </div>
         </div>
 
-        <!-- Event 2: Kitap Fuarı -->
-        <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-orange/50 transition-all group flex flex-col justify-between">
-          <div>
-            <div class="relative h-52 overflow-hidden">
+        <!-- 2 Secondary Event Cards -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+          
+          <!-- Event 2: Kitap Fuarı -->
+          <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-orange transition-all group flex-1 flex flex-col justify-between">
+            <div class="relative h-48 overflow-hidden">
               <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop" 
                    alt="Koru Florya Kitap Fuarı" 
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-kanyon-orange text-white text-xs font-bold uppercase tracking-wider">
-                Fuar & Sergi
-              </div>
-              <div class="absolute bottom-3 left-4 text-xs font-semibold px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-white">
-                4 – 22 Kasım 2026
+              <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-kanyon-orange text-white text-[11px] font-extrabold uppercase">
+                4 – 22 Kasım
               </div>
             </div>
-            <div class="p-6">
+            <div class="p-5">
               <h3 class="text-xl font-bold text-white group-hover:text-kanyon-orange transition-colors">
                 Koru Florya Kitap Fuarı
               </h3>
-              <p class="text-sm text-zinc-400 mt-2 line-clamp-2">
-                Birbirinden seçkin yayınevleri, yeni çıkan eserler ve özel indirimlerle kitapseverleri bekliyoruz.
+              <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+                Yüzlerce yayınevi, binlerce kitap ve yazar söyleşileriyle dolu 3 haftalık kültür şöleni Koru Katı'nda.
               </p>
+              <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
+                <span>📍 Koru Katı Fuaye</span>
+                <span class="text-kanyon-orange">Detay →</span>
+              </div>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
-            <span>📍 Koru Katı Fuaye Alanı</span>
-            <span class="text-kanyon-orange group-hover:translate-x-1 transition-transform">Detay →</span>
-          </div>
-        </div>
 
-        <!-- Event 3: Ahmet Ümit İmza Günü -->
-        <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-orange/50 transition-all group flex flex-col justify-between">
-          <div>
-            <div class="relative h-52 overflow-hidden">
+          <!-- Event 3: Ahmet Ümit İmza Günü -->
+          <div class="bg-[#1c1c1e] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-magenta transition-all group flex-1 flex flex-col justify-between">
+            <div class="relative h-48 overflow-hidden">
               <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" 
                    alt="Ahmet Ümit İmza Günü" 
                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-              <div class="absolute top-4 left-4 px-3 py-1 rounded-full bg-kanyon-magenta text-white text-xs font-bold uppercase tracking-wider">
-                Edebiyat Buluşması
-              </div>
-              <div class="absolute bottom-3 left-4 text-xs font-semibold px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-white">
-                8 Kasım 2026 • 14:00
+              <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-kanyon-magenta text-white text-[11px] font-extrabold uppercase">
+                8 Kasım • 14:00
               </div>
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-bold text-white group-hover:text-kanyon-orange transition-colors">
+            <div class="p-5">
+              <h3 class="text-xl font-bold text-white group-hover:text-kanyon-magenta transition-colors">
                 Ahmet Ümit İmza Günü
               </h3>
-              <p class="text-sm text-zinc-400 mt-2 line-clamp-2">
-                Usta yazar Ahmet Ümit ile polisiye edebiyat sohbeti ve kitap imza etkinliği.
+              <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
+                Usta polisiye yazarı Ahmet Ümit yeni romanı ve sevilen klasiklerini Koru Florya okurları için imzalıyor.
               </p>
+              <div class="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
+                <span>📍 Koru Katı</span>
+                <span class="text-kanyon-magenta">Detay →</span>
+              </div>
             </div>
           </div>
-          <div class="px-6 pb-6 pt-2 border-t border-white/5 flex items-center justify-between text-xs font-bold text-zinc-400">
-            <span>📍 Koru Katı Kitap Fuarı</span>
-            <span class="text-kanyon-orange group-hover:translate-x-1 transition-transform">Detay →</span>
-          </div>
+
         </div>
 
       </div>
@@ -477,149 +511,130 @@
     </div>
   </section>
 
-  <!-- ==================== SECTION: LEZZETLER (DINING & FLAVORS) ==================== -->
+  <!-- ==================== SECTION: LEZZETLER (CULINARY EXPERIENCES) ==================== -->
   <section id="lezzetler" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+    
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4">
       <div>
-        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Lezzetler</h2>
-        <p class="text-zinc-400 font-medium text-base mt-2">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Lezzetler</h2>
+        <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
           Dünya mutfaklarından seçkin restoranlara, kahve duraklarından tatlı molalarına uzanan lezzetleri keşfet.
         </p>
       </div>
-      <a href="#lezzetler" class="inline-flex items-center gap-1.5 text-sm font-bold text-kanyon-coral hover:text-white transition-colors">
+      <a href="#lezzetler" class="section-all-link">
         <span>Tümünü İncele (34 Mekan)</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7" />
         </svg>
       </a>
     </div>
 
-    <!-- Dining Grid (Kanyon style with 'Kat Planında Gör' buttons) -->
+    <!-- Authentic Kanyon Style Flavour Cards (Tall 380px Image Box + Title + 'Kat Planında Gör' Link) -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       
       <!-- Restaurant 1: Shake Shack -->
-      <div class="bg-[#18181a] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-coral transition-all flex flex-col justify-between group">
-        <div>
-          <div class="h-48 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop" 
-                 alt="Shake Shack Koru Florya" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-[11px] font-bold text-emerald-400">
-              Koru Katı (Giriş)
-            </span>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold text-white group-hover:text-kanyon-coral transition-colors">
-              Shake Shack
-            </h3>
-            <p class="text-xs text-zinc-400 mt-1 font-medium">New York Gurme Burger & Shake</p>
-            <p class="text-xs text-zinc-500 mt-2 line-clamp-2">Koru bahçesi açık hava terasında ikonik ShackBurger lezzetleri.</p>
-          </div>
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Shake Shack', 'Koru Katı • Giriş Bahçesi', '10:00 - 22:30')">
+        <div class="flavour-image-box">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop" 
+               alt="Shake Shack Koru Florya" loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-emerald-400">
+            Koru Katı (Giriş)
+          </span>
         </div>
-        <div class="p-5 pt-0">
-          <button onclick="showStoreOnFloor('Shake Shack', 'Koru Katı • Giriş Bahçesi', '10:00 - 22:30')" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white transition-colors">
-            Kat Planında Gör
-          </button>
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+          Shake Shack
+        </h3>
+        <p class="text-sm text-zinc-400 font-medium mt-1">New York Gurme Burger & Shake</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+          <span>Kat Planında Gör</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
         </div>
-      </div>
+      </article>
 
       <!-- Restaurant 2: Happy Moon's -->
-      <div class="bg-[#18181a] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-coral transition-all flex flex-col justify-between group">
-        <div>
-          <div class="h-48 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" 
-                 alt="Happy Moon's Koru Florya" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-[11px] font-bold text-kanyon-orange">
-              Cadde Katı (2. Kat)
-            </span>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold text-white group-hover:text-kanyon-coral transition-colors">
-              Happy Moon's
-            </h3>
-            <p class="text-xs text-zinc-400 mt-1 font-medium">Dünya Mutfağı & Brasserie</p>
-            <p class="text-xs text-zinc-500 mt-2 line-clamp-2">Koccaman lezzetler, keyifli buluşmalar ve açık hava terası.</p>
-          </div>
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı • 2. Kat Açık Hava Terası', '10:00 - 23:00')">
+        <div class="flavour-image-box">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=800&auto=format&fit=crop" 
+               alt="Happy Moon's Koru Florya" loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-kanyon-orange">
+            Cadde Katı (2. Kat)
+          </span>
         </div>
-        <div class="p-5 pt-0">
-          <button onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı • 2. Kat Teras', '10:00 - 23:00')" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white transition-colors">
-            Kat Planında Gör
-          </button>
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+          Happy Moon's
+        </h3>
+        <p class="text-sm text-zinc-400 font-medium mt-1">Dünya Mutfağı & Teras Brasserie</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+          <span>Kat Planında Gör</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
         </div>
-      </div>
+      </article>
 
       <!-- Restaurant 3: Divan Pub & Bistro -->
-      <div class="bg-[#18181a] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-coral transition-all flex flex-col justify-between group">
-        <div>
-          <div class="h-48 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop" 
-                 alt="Divan Pub Koru Florya" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-[11px] font-bold text-blue-400">
-              Koru Katı
-            </span>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold text-white group-hover:text-kanyon-coral transition-colors">
-              Divan Pub
-            </h3>
-            <p class="text-xs text-zinc-400 mt-1 font-medium">Klasik Lezzetler & Bar</p>
-            <p class="text-xs text-zinc-500 mt-2 line-clamp-2">Köklü Divan mutfağı lezzetleri ve seçkin şarap kavı.</p>
-          </div>
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Divan Pub', 'Koru Katı • No: 12', '10:00 - 23:00')">
+        <div class="flavour-image-box">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?q=80&w=800&auto=format&fit=crop" 
+               alt="Divan Pub Koru Florya" loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-blue-400">
+            Koru Katı
+          </span>
         </div>
-        <div class="p-5 pt-0">
-          <button onclick="showStoreOnFloor('Divan Pub', 'Koru Katı No: 12', '10:00 - 23:00')" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white transition-colors">
-            Kat Planında Gör
-          </button>
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+          Divan Pub
+        </h3>
+        <p class="text-sm text-zinc-400 font-medium mt-1">Klasik Gastronomi & Şarap Kavı</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+          <span>Kat Planında Gör</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
         </div>
-      </div>
+      </article>
 
-      <!-- Restaurant 4: Tchibo & Artisan Coffee -->
-      <div class="bg-[#18181a] rounded-2xl overflow-hidden border border-white/10 hover:border-kanyon-coral transition-all flex flex-col justify-between group">
-        <div>
-          <div class="h-48 overflow-hidden relative">
-            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=800&auto=format&fit=crop" 
-                 alt="Tchibo Koru Florya" 
-                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-black/70 backdrop-blur-md text-[11px] font-bold text-amber-400">
-              Koru Katı
-            </span>
-          </div>
-          <div class="p-5">
-            <h3 class="text-lg font-bold text-white group-hover:text-kanyon-coral transition-colors">
-              Tchibo Coffee
-            </h3>
-            <p class="text-xs text-zinc-400 mt-1 font-medium">Kahve & Yaşam Ürünleri</p>
-            <p class="text-xs text-zinc-500 mt-2 line-clamp-2">Özel çekirdek kahveler, tatlı atıştırmalıklar ve haftalık temalar.</p>
-          </div>
+      <!-- Restaurant 4: Tchibo Artisan Coffee -->
+      <article class="flavour-card group cursor-pointer" onclick="showStoreOnFloor('Tchibo', 'Koru Katı • No: 04', '10:00 - 22:00')">
+        <div class="flavour-image-box">
+          <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?q=80&w=800&auto=format&fit=crop" 
+               alt="Tchibo Koru Florya" loading="lazy">
+          <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/80 backdrop-blur-md text-xs font-bold text-amber-400">
+            Koru Katı
+          </span>
         </div>
-        <div class="p-5 pt-0">
-          <button onclick="showStoreOnFloor('Tchibo', 'Koru Katı No: 04', '10:00 - 22:00')" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-zinc-300 hover:text-white transition-colors">
-            Kat Planında Gör
-          </button>
+        <h3 class="text-2xl font-extrabold text-white mt-4 group-hover:text-kanyon-coral transition-colors">
+          Tchibo Coffee
+        </h3>
+        <p class="text-sm text-zinc-400 font-medium mt-1">Taze Çekirdek Kahve & Tatlı</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-white group-hover:text-kanyon-coral transition-colors">
+          <span>Kat Planında Gör</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 12h14m-6-6 6 6-6 6" />
+          </svg>
         </div>
-      </div>
+      </article>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION: MARKALAR (BRANDS DIRECTORY) ==================== -->
+  <!-- ==================== SECTION: MARKALAR (EXPANDED DIRECTORY & FILTER) ==================== -->
   <section id="markalar" class="py-20 bg-[#141414] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
         <div>
-          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Markalar</h2>
-          <p class="text-zinc-400 font-medium text-base mt-2">
-            Koru Florya'da yer alan 220'yi aşkın seçkin marka arasından dilediğinizi bulun.
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Markalar</h2>
+          <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
+            220'yi aşkın seçkin moda, saat, teknoloji ve kozmetik markası Koru Florya'da.
           </p>
         </div>
 
-        <!-- Live Instant Search Bar -->
+        <!-- Real-time Filter Search Input -->
         <div class="relative w-full md:w-80">
           <input id="brand-search" type="text" placeholder="Marka veya kategori ara..." 
-                 class="w-full px-4 py-3 pl-11 rounded-xl bg-[#1e1e20] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange transition-all">
+                 class="w-full px-4 py-3.5 pl-11 rounded-xl bg-[#1c1c1e] border border-white/10 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange transition-all">
           <svg class="w-5 h-5 text-zinc-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m1.85-5.65a7.5 7.5 0 11-15 0 7.5 7.5 0 0115 0z" />
           </svg>
@@ -637,132 +652,132 @@
         <button onclick="filterBrands('hizmet')" class="brand-pill px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-all">HİZMET & DİĞER</button>
       </div>
 
-      <!-- Brands Grid -->
+      <!-- Brands Grid Container -->
       <div id="brands-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <!-- Brand 1: Altınbaş -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="mucevher" data-name="Altınbaş">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="mucevher" data-name="Altınbaş">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-amber-400">Cadde Katı</span>
               <span class="text-[11px] text-zinc-400">No: 14</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Altınbaş</h4>
+            <h4 class="text-xl font-extrabold text-white">Altınbaş</h4>
             <p class="text-xs text-zinc-400 mt-1">Saat & Mücevherat</p>
           </div>
-          <button onclick="showStoreOnFloor('Altınbaş', 'Cadde Katı No: 14', '10:00 - 22:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Altınbaş', 'Cadde Katı No: 14', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 2: Shake Shack -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="yeme-icme" data-name="Shake Shack">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="yeme-icme" data-name="Shake Shack">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-emerald-400">Koru Katı</span>
               <span class="text-[11px] text-zinc-400">Giriş Bahçesi</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Shake Shack</h4>
+            <h4 class="text-xl font-extrabold text-white">Shake Shack</h4>
             <p class="text-xs text-zinc-400 mt-1">Yeme & İçme</p>
           </div>
-          <button onclick="showStoreOnFloor('Shake Shack', 'Koru Katı Giriş Bahçesi', '10:00 - 22:30')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Shake Shack', 'Koru Katı Giriş Bahçesi', '10:00 - 22:30')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 3: Happy Moon's -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="yeme-icme" data-name="Happy Moon's">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="yeme-icme" data-name="Happy Moon's">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-kanyon-orange">Cadde Katı</span>
               <span class="text-[11px] text-zinc-400">2. Kat Teras</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Happy Moon's</h4>
+            <h4 class="text-xl font-extrabold text-white">Happy Moon's</h4>
             <p class="text-xs text-zinc-400 mt-1">Yeme & İçme</p>
           </div>
-          <button onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı 2. Kat Teras', '10:00 - 23:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Happy Moon\'s', 'Cadde Katı 2. Kat Teras', '10:00 - 23:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 4: Dry Clean Express -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="hizmet" data-name="Dry Clean Express">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="hizmet" data-name="Dry Clean Express">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-blue-400">Koru Katı</span>
               <span class="text-[11px] text-zinc-400">Otopark Girişi</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Dry Clean Express</h4>
+            <h4 class="text-xl font-extrabold text-white">Dry Clean Express</h4>
             <p class="text-xs text-zinc-400 mt-1">Organik Kuru Temizleme</p>
           </div>
-          <button onclick="showStoreOnFloor('Dry Clean Express', 'Koru Katı Otopark Girişi', '10:00 - 22:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Dry Clean Express', 'Koru Katı Otopark Girişi', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 5: ADL -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="moda" data-name="ADL">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="moda" data-name="ADL">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-pink-400">Cadde Katı</span>
               <span class="text-[11px] text-zinc-400">No: 28</span>
             </div>
-            <h4 class="text-lg font-bold text-white">ADL</h4>
-            <p class="text-xs text-zinc-400 mt-1">Kadın Giyim & Moda</p>
+            <h4 class="text-xl font-extrabold text-white">ADL</h4>
+            <p class="text-xs text-zinc-400 mt-1">Kadın Giyim & Tasarım</p>
           </div>
-          <button onclick="showStoreOnFloor('ADL', 'Cadde Katı No: 28', '10:00 - 22:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('ADL', 'Cadde Katı No: 28', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 6: Sephora -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="kozmetik" data-name="Sephora">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="kozmetik" data-name="Sephora">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-rose-400">Koru Katı</span>
               <span class="text-[11px] text-zinc-400">No: 08</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Sephora</h4>
-            <p class="text-xs text-zinc-400 mt-1">Kozmetik & Parfüm</p>
+            <h4 class="text-xl font-extrabold text-white">Sephora</h4>
+            <p class="text-xs text-zinc-400 mt-1">Lüks Kozmetik & Parfüm</p>
           </div>
-          <button onclick="showStoreOnFloor('Sephora', 'Koru Katı No: 08', '10:00 - 22:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Sephora', 'Koru Katı No: 08', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 7: Vakko -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="moda" data-name="Vakko">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="moda" data-name="Vakko">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-amber-300">Cadde Katı</span>
               <span class="text-[11px] text-zinc-400">No: 01</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Vakko</h4>
-            <p class="text-xs text-zinc-400 mt-1">Lüks Giyim & Aksesuar</p>
+            <h4 class="text-xl font-extrabold text-white">Vakko</h4>
+            <p class="text-xs text-zinc-400 mt-1">Haute Couture & Yaşam</p>
           </div>
-          <button onclick="showStoreOnFloor('Vakko', 'Cadde Katı No: 01', '10:00 - 22:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Vakko', 'Cadde Katı No: 01', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
         </div>
 
         <!-- Brand 8: Bang & Olufsen -->
-        <div class="brand-card bg-[#1c1c1e] p-5 rounded-xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="teknoloji" data-name="Bang & Olufsen">
+        <div class="brand-card bg-[#1c1c1e] p-6 rounded-2xl border border-white/10 hover:border-white/30 transition-all flex flex-col justify-between" data-category="teknoloji" data-name="Bang & Olufsen">
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="text-xs font-bold text-purple-400">Cadde Katı</span>
               <span class="text-[11px] text-zinc-400">No: 02</span>
             </div>
-            <h4 class="text-lg font-bold text-white">Bang & Olufsen</h4>
-            <p class="text-xs text-zinc-400 mt-1">High-End Ses Sistemleri</p>
+            <h4 class="text-xl font-extrabold text-white">Bang & Olufsen</h4>
+            <p class="text-xs text-zinc-400 mt-1">High-End Akustik Ses</p>
           </div>
-          <button onclick="showStoreOnFloor('Bang & Olufsen', 'Cadde Katı No: 02', '10:00 - 22:00')" class="mt-4 pt-3 border-t border-white/5 text-xs font-bold text-kanyon-orange text-left flex items-center justify-between">
+          <button onclick="showStoreOnFloor('Bang & Olufsen', 'Cadde Katı No: 02', '10:00 - 22:00')" class="mt-6 pt-3 border-t border-white/5 text-xs font-extrabold text-kanyon-orange text-left flex items-center justify-between">
             <span>Kat Planında Gör</span>
             <span>→</span>
           </button>
@@ -773,136 +788,186 @@
       <!-- Empty Feedback -->
       <div id="no-brands-msg" class="hidden text-center py-16">
         <p class="text-lg font-semibold text-zinc-400">Aramanıza uygun marka bulunamadı.</p>
-        <button onclick="filterBrands('all')" class="mt-4 px-6 py-2 rounded-full bg-white/10 text-xs font-bold text-white">Filtreleri Temizle</button>
+        <button onclick="filterBrands('all')" class="mt-4 px-6 py-2.5 rounded-full bg-white/10 text-xs font-bold text-white hover:bg-white/20 transition-colors">Filtreleri Temizle</button>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION: HİZMETLER (SERVICES) ==================== -->
+  <!-- ==================== SECTION: HİZMETLER (SERVICES - RICH SHOWCASE) ==================== -->
   <section id="hizmetler" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="mb-12">
-      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Hizmetler</h2>
-      <p class="text-zinc-400 font-medium text-base mt-2">
-        Ziyaretinizi konforlu ve keyifli kılmak için sunulan ayrıcalıklar.
+      <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Hizmetler</h2>
+      <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
+        Koru Florya'da konforunuzu ve yaşam kalitenizi artırmak için tasarlanan ayrıcalıklar.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Rich 4-Card Service Showcase with Real Imagery & Interactive Features -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       
-      <!-- Service 1: Marmaray Shuttle -->
-      <div class="bg-[#18181a] p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-kanyon-orange/10 flex items-center justify-center text-kanyon-orange mb-5">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-            </svg>
+      <!-- Service 1: Marmaray Shuttle with Live Countdown -->
+      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-orange/50 transition-all flex flex-col justify-between group">
+        <div class="relative h-60 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?q=80&w=1000&auto=format&fit=crop" 
+               alt="Koru Florya Marmaray Shuttle Servis" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-orange text-white text-xs font-extrabold uppercase tracking-wider">
+            Ücretsiz Ring Servis
           </div>
-          <h3 class="text-lg font-bold text-white">Ücretsiz Marmaray Servisi</h3>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Marmaray Florya durağından Koru Florya kapısına 30 dakikada bir kalkan ücretsiz ring servisimiz mevcuttur.
-          </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-white/5">
-          <div class="text-[11px] font-bold text-emerald-400 flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span id="shuttle-countdown-text">Sonraki Servis: 14:28</span>
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-extrabold text-white">Marmaray Florya Servisi</h3>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Her 30 Dakikada Bir</span>
+          </div>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Marmaray Florya istasyonu ile Koru Florya ana kapısı arasında gün boyu kesintisiz ve konforlu lüks ring servisimiz ücretsiz olarak hizmetinizdedir.
+          </p>
+          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-zinc-400 uppercase">Sonraki Kalkış</span>
+              <div id="shuttle-countdown-text" class="text-2xl font-extrabold text-emerald-400 mt-0.5">14:28</div>
+            </div>
+            <a href="#ulasim" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
+              Saatleri İncele →
+            </a>
           </div>
         </div>
       </div>
 
-      <!-- Service 2: Vale & Otopark -->
-      <div class="bg-[#18181a] p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-kanyon-coral/10 flex items-center justify-center text-kanyon-coral mb-5">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
+      <!-- Service 2: Vale & Elektrikli Hızlı Şarj İstasyonu -->
+      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-coral/50 transition-all flex flex-col justify-between group">
+        <div class="relative h-60 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?q=80&w=1000&auto=format&fit=crop" 
+               alt="Koru Florya Vale ve Otopark" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-coral text-white text-xs font-extrabold uppercase tracking-wider">
+            2500 Araç Kapasitesi
           </div>
-          <h3 class="text-lg font-bold text-white">Vale & E-Şarj İstasyonu</h3>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            2500 araç kapasiteli kapalı otopark, profesyonel vale karşılama ve Porsche/Trugo ultra hızlı şarj istasyonları.
-          </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-white/5">
-          <span class="text-[11px] font-bold text-zinc-400">2500 Araç Kapasitesi</span>
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-extrabold text-white">Vale & E-Şarj İstasyonları</h3>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-amber-500/10 text-amber-300 border border-amber-500/20">180 kW Ultra Hızlı</span>
+          </div>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Ana giriş kapısında profesyonel vale karşılama, akıllı plaka tanıma sistemi ve Porsche / Trugo yüksek hızlı elektrikli araç şarj üniteleri.
+          </p>
+          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-zinc-400 uppercase">Otopark Durumu</span>
+              <div class="text-sm font-extrabold text-white mt-0.5">Kapalı Otopark P1 - P3 Katları</div>
+            </div>
+            <a href="#ulasim" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
+              Yol Tarifi Al →
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Service 3: Dry Clean & Terzi -->
-      <div class="bg-[#18181a] p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-kanyon-red/10 flex items-center justify-center text-kanyon-red mb-5">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
+      <!-- Service 3: Dry Clean Express -->
+      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-red/50 transition-all flex flex-col justify-between group">
+        <div class="relative h-60 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1545173168-9f1907e80789?q=80&w=1000&auto=format&fit=crop" 
+               alt="Dry Clean Express Koru Florya" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-red text-white text-xs font-extrabold uppercase tracking-wider">
+            Açılışa Özel %20 İndirim
           </div>
-          <h3 class="text-lg font-bold text-white">Dry Clean Express</h3>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Açılışa özel %20 indirimli organik kuru temizleme, tadilat ve hassas kıyafet bakım hizmeti.
-          </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-white/5">
-          <span class="text-[11px] font-bold text-zinc-400">Koru Katı Otopark Girişi</span>
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-extrabold text-white">Dry Clean Express & Terzi</h3>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20">Organik Temizleme</span>
+          </div>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Çevre dostu organik kuru temizleme teknolojisi, özel prova kabinli profesyonel terzi ve hassas tekstil bakım hizmetleri Koru Katı otopark girişinde.
+          </p>
+          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-zinc-400 uppercase">Konum</span>
+              <div class="text-sm font-extrabold text-white mt-0.5">Koru Katı Otopark Girişi</div>
+            </div>
+            <button onclick="showStoreOnFloor('Dry Clean Express', 'Koru Katı Otopark Girişi', '10:00 - 22:00')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
+              Konumu Gör →
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Service 4: Ziyaretçi Konforu -->
-      <div class="bg-[#18181a] p-6 rounded-2xl border border-white/10 flex flex-col justify-between">
-        <div>
-          <div class="w-12 h-12 rounded-xl bg-kanyon-magenta/10 flex items-center justify-center text-kanyon-magenta mb-5">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
+      <!-- Service 4: Ziyaretçi Konforu & Aile Odaları -->
+      <div class="bg-[#18181a] rounded-3xl overflow-hidden border border-white/10 hover:border-kanyon-magenta/50 transition-all flex flex-col justify-between group">
+        <div class="relative h-60 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=1000&auto=format&fit=crop" 
+               alt="Aile Odası ve Bebek Bakımı" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#18181a] via-transparent to-transparent"></div>
+          <div class="absolute top-4 left-4 px-3.5 py-1.5 rounded-full bg-kanyon-magenta text-white text-xs font-extrabold uppercase tracking-wider">
+            Engelsiz Ziyaret
           </div>
-          <h3 class="text-lg font-bold text-white">Aile & Engelsiz Yaşam</h3>
-          <p class="text-xs text-zinc-400 mt-2 leading-relaxed">
-            Bebek bakım odaları, tekerlekli sandalye desteği, yüksek hızlı ücretsiz Wi-Fi ve danışma masası.
-          </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-white/5">
-          <span class="text-[11px] font-bold text-zinc-400">Her Katta Erişilebilir</span>
+        <div class="p-6 sm:p-8">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-extrabold text-white">Aile, Bebek & Engelsiz Yaşam</h3>
+            <span class="text-xs font-extrabold px-3 py-1 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">Ücretsiz Wi-Fi</span>
+          </div>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Tam donanımlı bebek bakım ve emzirme odaları, ücretsiz tekerlekli sandalye temini, yüksek hızlı Wi-Fi ve her katta danışma/yardım noktaları.
+          </p>
+          <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-zinc-400 uppercase">Erişim</span>
+              <div class="text-sm font-extrabold text-white mt-0.5">Tüm Katlarda Mevcuttur</div>
+            </div>
+            <button onclick="alert('Danışma masamız Koru Katı ana giriştedir. Tel: 0212 555 00 00')" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-xs font-extrabold text-white transition-colors">
+              Bilgi Al →
+            </button>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ==================== SECTION: ULAŞIM & SAATLER (TRANSIT & HOURS) ==================== -->
+  <!-- ==================== SECTION: ULAŞIM & SAATLER (TRANSIT) ==================== -->
   <section id="ulasim" class="py-20 bg-[#141414] border-t border-white/5">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
         
-        <!-- Left: Transit Info -->
+        <!-- Left: Transit Info & Hours -->
         <div class="lg:col-span-5 flex flex-col justify-between">
           <div>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Ulaşım & Saatler</h2>
-            <p class="text-zinc-400 font-medium text-base mt-2">
-              Florya'nın merkezinde yer alan Koru Florya'ya ulaşmak çok kolay.
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">Ulaşım & Saatler</h2>
+            <p class="text-zinc-400 font-medium text-base sm:text-lg mt-2">
+              Florya'nın merkezinde, Marmaray ve Metrobüs aksında yer alan Koru Florya'ya kolayca ulaşın.
             </p>
 
             <div class="mt-8 space-y-4">
               
-              <!-- Hours Card -->
-              <div class="p-5 rounded-2xl bg-[#1c1c1e] border border-white/10">
+              <!-- Hours Box -->
+              <div class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10">
                 <div class="flex items-center justify-between">
-                  <span class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Çalışma Saatleri</span>
-                  <span class="text-xs font-bold text-emerald-400">Şu An Açık</span>
+                  <span class="text-xs font-extrabold text-zinc-400 uppercase tracking-wider">Çalışma Saatleri</span>
+                  <span class="text-xs font-extrabold text-emerald-400">Şu An Açık</span>
                 </div>
-                <div class="text-2xl font-extrabold text-white mt-1">10:00 – 22:00</div>
-                <p class="text-xs text-zinc-400 mt-1">Haftanın her günü kesintisiz hizmet vermektedir.</p>
+                <div class="text-3xl font-extrabold text-white mt-2">10:00 – 22:00</div>
+                <p class="text-xs text-zinc-400 mt-1.5">Haftanın her günü kesintisiz hizmet vermektedir.</p>
               </div>
 
-              <!-- Address Card -->
-              <div class="p-5 rounded-2xl bg-[#1c1c1e] border border-white/10">
-                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wider">Adres</span>
-                <p class="text-sm font-semibold text-white mt-1">
+              <!-- Address Box -->
+              <div class="p-6 rounded-2xl bg-[#1c1c1e] border border-white/10">
+                <span class="text-xs font-extrabold text-zinc-400 uppercase tracking-wider">Açık Adres</span>
+                <p class="text-sm font-semibold text-white mt-2 leading-relaxed">
                   Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul
                 </p>
-                <div class="mt-4 flex gap-3">
-                  <a href="https://www.google.com/maps/dir/?api=1&destination=Koru%20Florya%20Alışveriş%20ve%20Yaşam%20Merkezi" target="_blank" rel="noopener" class="px-5 py-2.5 rounded-full bg-white hover:bg-zinc-200 text-black font-bold text-xs transition-all flex items-center gap-1.5">
-                    <span>Google Haritalar</span>
+                <div class="mt-5 flex gap-3">
+                  <a href="https://www.google.com/maps/dir/?api=1&destination=Koru%20Florya%20Alışveriş%20ve%20Yaşam%20Merkezi" target="_blank" rel="noopener" class="px-6 py-3 rounded-full bg-white hover:bg-zinc-200 text-black font-extrabold text-xs transition-all flex items-center gap-2">
+                    <span>Google Haritalar'da Aç</span>
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
@@ -918,30 +983,30 @@
         <div class="lg:col-span-7 space-y-4">
           
           <!-- Method 1: Marmaray -->
-          <div class="p-5 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-bold text-blue-400 text-sm flex-shrink-0">
+          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center font-extrabold text-blue-400 text-sm flex-shrink-0">
               MR
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="text-base font-bold text-white">Marmaray Florya İstasyonu</h4>
-                <span class="text-xs font-bold text-kanyon-orange">30 dk Ring Servis</span>
+                <h4 class="text-base font-extrabold text-white">Marmaray Florya İstasyonu</h4>
+                <span class="text-xs font-extrabold text-kanyon-orange">30 dk Ring Servis</span>
               </div>
               <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
-                İstasyondan her 30 dakikada bir kalkan ücretsiz Koru Florya servisimizle veya 20 dakikalık sahil yürüyüşüyle ulaşabilirsiniz.
+                İstasyondan her 30 dakikada bir kalkan ücretsiz servisimizle veya 20 dakikalık sahil yürüyüşüyle doğrudan ulaşabilirsiniz.
               </p>
             </div>
           </div>
 
           <!-- Method 2: Metrobüs -->
-          <div class="p-5 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center font-bold text-orange-400 text-sm flex-shrink-0">
+          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center font-extrabold text-orange-400 text-sm flex-shrink-0">
               MB
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="text-base font-bold text-white">Metrobüs ile Ulaşım</h4>
-                <span class="text-xs font-bold text-emerald-400">3 dk Yürüme</span>
+                <h4 class="text-base font-extrabold text-white">Metrobüs ile Ulaşım</h4>
+                <span class="text-xs font-extrabold text-emerald-400">3 dk Yürüme</span>
               </div>
               <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
                 Cennet – Koru Florya durağında inerek doğrudan alışveriş merkezi yaya girişine bağlanabilirsiniz.
@@ -950,14 +1015,14 @@
           </div>
 
           <!-- Method 3: İETT -->
-          <div class="p-5 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center font-bold text-purple-400 text-sm flex-shrink-0">
+          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center font-extrabold text-purple-400 text-sm flex-shrink-0">
               İETT
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="text-base font-bold text-white">73 • 73F • 98 Otobüs Hatları</h4>
-                <span class="text-xs font-bold text-zinc-400">Kapı Önü (1 dk)</span>
+                <h4 class="text-base font-extrabold text-white">73 • 73F • 98 Otobüs Hatları</h4>
+                <span class="text-xs font-extrabold text-zinc-400">Kapı Önü (1 dk)</span>
               </div>
               <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
                 Koru Florya durağında indiğinizde ana giriş kapısına sadece 1 dakikalık yürüme mesafesindesiniz.
@@ -966,14 +1031,14 @@
           </div>
 
           <!-- Method 4: Araç & Vale -->
-          <div class="p-5 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
-            <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-bold text-emerald-400 text-sm flex-shrink-0">
+          <div class="p-5 sm:p-6 rounded-2xl bg-[#1c1c1e] border border-white/10 flex items-start gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center font-extrabold text-emerald-400 text-sm flex-shrink-0">
               OTO
             </div>
             <div class="flex-1">
               <div class="flex items-center justify-between">
-                <h4 class="text-base font-bold text-white">Özel Araç & Vale</h4>
-                <span class="text-xs font-bold text-zinc-400">2500 Araç</span>
+                <h4 class="text-base font-extrabold text-white">Özel Araç & Vale Girişi</h4>
+                <span class="text-xs font-extrabold text-zinc-400">2500 Araç</span>
               </div>
               <p class="text-xs text-zinc-400 mt-1 leading-relaxed">
                 E-5 Florya yan yolundan doğrudan kapalı otoparkımıza giriş yapabilir veya ana kapıda vale hizmetinden faydalanabilirsiniz.
@@ -988,7 +1053,7 @@
     </div>
   </section>
 
-  <!-- ==================== FOOTER (KANYON CORPORATE STYLE) ==================== -->
+  <!-- ==================== FOOTER (KANYON OFFICIAL CORPORATE STYLE) ==================== -->
   <footer class="bg-[#0b0b0b] text-zinc-400 text-sm pt-16 pb-12 border-t border-white/10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -996,8 +1061,8 @@
         
         <!-- Col 1: Brand & Contact -->
         <div class="lg:col-span-2">
-          <div class="flex items-center gap-2 mb-4">
-            <div class="w-7 h-7 rounded bg-kanyon-orange flex items-center justify-center font-black text-white text-xs">KF</div>
+          <div class="flex items-center gap-2.5 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-kanyon-orange flex items-center justify-center font-extrabold text-white text-xs">KF</div>
             <span class="text-xl font-extrabold text-white uppercase tracking-tight">KORU FLORYA</span>
           </div>
           <p class="text-xs text-zinc-400 leading-relaxed max-w-sm mb-4">
@@ -1008,7 +1073,7 @@
             <p><strong>Kiralama:</strong> kiralama@koruflorya.com</p>
             <p><strong>Tel:</strong> +90 (212) 555 00 00</p>
           </div>
-          <div class="flex items-center gap-4 text-xs font-bold text-white">
+          <div class="flex items-center gap-4 text-xs font-extrabold text-white">
             <a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener" class="hover:text-kanyon-orange transition-colors">Instagram</a>
             <span>•</span>
             <a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener" class="hover:text-kanyon-orange transition-colors">Facebook</a>
@@ -1049,11 +1114,11 @@
           </p>
           <form onsubmit="handleSub(event)" class="space-y-2">
             <input type="email" required placeholder="E-posta adresiniz" class="w-full px-3.5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-kanyon-orange">
-            <button type="submit" class="w-full py-2.5 rounded-xl bg-kanyon-orange hover:bg-orange-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-kanyon-orange hover:bg-orange-500 text-white font-extrabold text-xs uppercase tracking-wider transition-all">
               Kayıt Ol
             </button>
           </form>
-          <div id="sub-ok" class="hidden text-xs text-emerald-400 mt-2">✓ Kaydınız başarıyla alındı.</div>
+          <div id="sub-ok" class="hidden text-xs text-emerald-400 mt-2 font-bold">✓ Kaydınız başarıyla alındı.</div>
         </div>
 
       </div>
@@ -1096,9 +1161,9 @@
         </svg>
       </button>
 
-      <span class="text-xs font-bold text-kanyon-orange uppercase tracking-wider">Kat Planı Bilgisi</span>
+      <span class="text-xs font-extrabold text-kanyon-orange uppercase tracking-wider">Kat Planı Bilgisi</span>
       <h3 id="floor-modal-title" class="text-2xl font-extrabold text-white mt-1">Mağaza Adı</h3>
-      <p id="floor-modal-location" class="text-sm font-semibold text-emerald-400 mt-2">Koru Katı No: 01</p>
+      <p id="floor-modal-location" class="text-sm font-bold text-emerald-400 mt-2">Koru Katı No: 01</p>
       <p id="floor-modal-hours" class="text-xs text-zinc-400 mt-1">10:00 - 22:00</p>
 
       <div class="mt-6 p-4 rounded-xl bg-white/5 border border-white/5 text-xs text-zinc-300 leading-relaxed">
@@ -1106,7 +1171,7 @@
       </div>
 
       <div class="mt-6 flex justify-end">
-        <button onclick="closeFloorModal()" class="px-6 py-2.5 rounded-full bg-white text-black font-bold text-xs uppercase tracking-wider">
+        <button onclick="closeFloorModal()" class="px-6 py-2.5 rounded-full bg-white text-black font-extrabold text-xs uppercase tracking-wider">
           Tamam
         </button>
       </div>
@@ -1136,7 +1201,7 @@
       const m = Math.floor(shuttleSeconds / 60);
       const s = shuttleSeconds % 60;
       if (shuttleEl) {
-        shuttleEl.textContent = `Sonraki Servis: ${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        shuttleEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
       }
     }, 1000);
 
@@ -1187,17 +1252,19 @@
 
     const searchDirectory = [
       { name: "Shake Shack", cat: "Yeme & İçme", floor: "Koru Katı • Bahçe" },
-      { name: "Happy Moon's", cat: "Yeme & İçme", floor: "Cadde Katı • 2. Kat" },
+      { name: "Happy Moon's", cat: "Yeme & İçme", floor: "Cadde Katı • 2. Kat Teras" },
+      { name: "Divan Pub", cat: "Yeme & İçme", floor: "Koru Katı • No: 12" },
+      { name: "Tchibo Coffee", cat: "Kahve & Yaşam", floor: "Koru Katı • No: 04" },
       { name: "Altınbaş", cat: "Saat & Mücevher", floor: "Cadde Katı No: 14" },
       { name: "Dry Clean Express", cat: "Organik Kuru Temizleme", floor: "Koru Katı Otopark Girişi" },
       { name: "ADL", cat: "Moda & Kadın Giyim", floor: "Cadde Katı No: 28" },
       { name: "Sephora", cat: "Kozmetik & Bakım", floor: "Koru Katı No: 08" },
       { name: "Vakko", cat: "Lüks Moda & Giyim", floor: "Cadde Katı No: 01" },
       { name: "Bang & Olufsen", cat: "Teknoloji & Akustik", floor: "Cadde Katı No: 02" },
-      { name: "Kitap Fuarı", cat: "Etkinlik", floor: "Koru Katı Fuaye" },
+      { name: "Kitap Fuarı", cat: "Etkinlik (4-22 Kasım)", floor: "Koru Katı Fuaye" },
       { name: "Celal Şengör İmza Günü", cat: "Etkinlik (15 Kasım)", floor: "Koru Katı Fuar Alanı" },
       { name: "Ahmet Ümit İmza Günü", cat: "Etkinlik (8 Kasım)", floor: "Koru Katı Fuar Alanı" },
-      { name: "Marmaray Florya Ring Servisi", cat: "Ulaşım", floor: "Ana Kapı Önü" }
+      { name: "Marmaray Florya Ring Servisi", cat: "Ulaşım (Her 30 dk)", floor: "Ana Kapı Önü" }
     ];
 
     function renderSearchResults(q = '') {
@@ -1218,7 +1285,7 @@
             <div class="text-sm font-bold text-white">${item.name}</div>
             <div class="text-xs text-zinc-400">${item.cat}</div>
           </div>
-          <span class="text-xs font-semibold text-kanyon-orange">${item.floor}</span>
+          <span class="text-xs font-bold text-kanyon-orange">${item.floor}</span>
         `;
         div.onclick = () => {
           closeSearchModal();
