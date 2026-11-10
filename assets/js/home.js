@@ -1,4 +1,4 @@
-/* Home page logic */
+/* Home page logic - V2 Premium Upgrade */
 (function(){
 const {esc,low,pad,FL,FORDER,CATS,stores,byName,ist}=KF;
 const $=s=>document.querySelector(s);
@@ -12,17 +12,21 @@ const IMG={
 const ARR=KF.IC.arr;
 
 /* ========================================================
-   1. HERO SLIDESHOW
+   1. HERO SLIDESHOW (SMOOTH FADE + SUBTLE SCALE)
    ======================================================== */
 const SLIDES=[
   {img:IMG.atrium,alt:'Koru Florya iç mekânı'},
   {img:IMG.fashion,alt:'Alışveriş deneyimi'},
-  {img:IMG.cafe,alt:'Koru terasları ve kafeler'},
+  {img:IMG.cafe,alt:'Koru bahçe terasları'},
   {img:IMG.trees,alt:'Florya korusu ve doğa'}
 ];
 const slidesEl=$('#slides'), dotsEl=$('#dots');
 if(slidesEl){
-  slidesEl.innerHTML=SLIDES.map((s,i)=>`<div class="slide${i?'':' on'}"><img src="${U(s.img,2000)}" alt="${s.alt}" width="2000" height="1125" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" /></div>`).join('');
+  slidesEl.innerHTML=SLIDES.map((s,i)=>`
+    <div class="slide${i?'':' on'}">
+      <img src="${U(s.img,2000)}" alt="${s.alt}" width="2000" height="1125" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" />
+    </div>
+  `).join('');
 }
 if(dotsEl){
   dotsEl.innerHTML=SLIDES.map((s,i)=>`<button type="button" aria-label="Slayt ${i+1}" aria-current="${i===0}"></button>`).join('');
@@ -35,7 +39,12 @@ const go=i=>{
 };
 const play=()=>{clearInterval(timer);if(!KF.reduce)timer=setInterval(()=>go(cur+1),7000)};
 if(dotsEl){
-  dotsEl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;go([...b.parentNode.children].indexOf(b));play()});
+  dotsEl.addEventListener('click',e=>{
+    const b=e.target.closest('button');
+    if(!b) return;
+    go([...b.parentNode.children].indexOf(b));
+    play();
+  });
 }
 const topHero=$('#top');
 if(topHero){
@@ -48,47 +57,54 @@ play();
 const BRANDS=['Zara','Mango','Beymen Club','Starbucks','LEGO Store','Pandora','MediaMarkt','Shake Shack','Lacoste','Swarovski','Boyner','Puma',"Levi's",'Samsung'];
 const brandList=$('#brandList');
 if(brandList){
-  brandList.innerHTML=BRANDS.map(n=>byName[n]).filter(s=>s&&s.l).map(s=>`<li><img src="assets/brands/${s.l}" alt="${esc(s.n)}" loading="lazy" decoding="async" /></li>`).join('');
+  brandList.innerHTML=BRANDS.map(n=>byName[n]).filter(s=>s&&s.l).map(s=>`
+    <li><img src="assets/brands/${s.l}" alt="${esc(s.n)}" loading="lazy" decoding="async" /></li>
+  `).join('');
 }
 
 /* ========================================================
-   2. ARCHITECTURAL FLOOR & BRAND EXPLORER
+   2. ARCHITECTURAL FLOOR & BRAND EXPLORER (MULTI-CATEGORY)
    ======================================================== */
 const FLOOR_DATA={
   'all':{
     id:'all',title:'Tüm Katlarda 177 Seçkin Marka',badge:'Koru Florya Katları',
-    desc:'Açık hava terasları, ferah botanik atriyum ve dünya markalarıyla alışverişin en keyifli hali.',
+    desc:'Açık hava bahçe terasları, ferah botanik cam atriyum ve dünya markalarıyla alışverişin en keyifli hali.',
     count:177
   },
   'C':{
     id:'C',title:'Cadde Katı (2. Kat)',badge:'Açık Teras & Restoranlar',
-    desc:'Geniş bahçe terasları, dünya mutfaklarından seçkin restoranlar, bistrolar ve açık hava ferahlığı.',
+    desc:'Geniş bahçe terasları, dünya mutfaklarından seçkin restoranlar, gurme bistrolar ve açık hava ferahlığı.',
     count:34
   },
   'P':{
     id:'P',title:'Podyum Katı (1. Kat)',badge:'Moda & Kozmetik',
-    desc:'Dünyaca ünlü hazır giyim markaları, tasarım butikleri, kozmetik ve mücevher mağazaları.',
+    desc:'Dünyaca ünlü hazır giyim markaları, tasarım butikleri, kozmetik, saat ve mücevher mağazaları.',
     count:48
   },
   'K':{
     id:'K',title:'Koru Katı (Giriş Kat)',badge:'Giriş & Botanik Atriyum',
-    desc:'Yüksek cam tavanlı botanik atriyum, artisan kahve noktaları, hızlı lezzetler ve teknoloji.',
+    desc:'Yüksek cam tavanlı botanik atriyum, artisan kahve noktaları, hızlı lezzetler ve teknoloji mağazaları.',
     count:56
   },
   'O':{
     id:'O',title:'Otopark Katı (-1. Kat)',badge:'Hizmetler & Otopark',
-    desc:'1.200 araçlık kapalı otopark, oto yıkama & vale, terzi, kuru temizleme ve günlük hizmetler.',
+    desc:'1.200 araçlık kapalı otopark, oto yıkama & VIP vale, terzi, kuru temizleme ve günlük hizmet noktaları.',
     count:39
   }
 };
 
-const st={f:'all',c:'all',q:'',lim:12};
+const st={
+  f: 'all',
+  cats: new Set(), // Set of active categories (empty = all)
+  q: '',
+  lim: 12
+};
 
 // Render Category Pills
 const pillsEl=$('#pills');
 if(pillsEl){
-  pillsEl.innerHTML=`<button class="pill" type="button" data-c="all" aria-pressed="true">Tümü</button>`+
-    CATS.slice(0,8).map(c=>`<button class="pill" type="button" data-c="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
+  pillsEl.innerHTML=`<button class="pill on" type="button" data-c="all" aria-pressed="true">Tümü</button>`+
+    CATS.slice(0,9).map(c=>`<button class="pill" type="button" data-c="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
 }
 
 // Update Stage Banner
@@ -98,6 +114,41 @@ function updateStageBanner(fKey){
   if($('#sbTitle')) $('#sbTitle').textContent=d.title;
   if($('#sbDesc')) $('#sbDesc').textContent=d.desc;
   if($('#sbStoreCount')) $('#sbStoreCount').textContent=d.count;
+}
+
+// Update Active Filter Chips Bar
+function updateActiveFiltersBar(){
+  const bar=$('#activeFiltersBar');
+  const chips=$('#afChips');
+  if(!bar || !chips) return;
+
+  const hasCats = st.cats.size > 0;
+  const hasFloor = st.f !== 'all';
+  const hasQuery = Boolean(st.q);
+
+  if(!hasCats && !hasFloor && !hasQuery){
+    bar.hidden = true;
+    chips.innerHTML = '';
+    return;
+  }
+
+  bar.hidden = false;
+  let html = '';
+
+  if(hasFloor){
+    const flName = FLOOR_DATA[st.f]?FLOOR_DATA[st.f].title:st.f;
+    html += `<span class="af-chip" data-remove-filter="floor">${esc(flName)} <i aria-hidden="true">&times;</i></span>`;
+  }
+
+  st.cats.forEach(c=>{
+    html += `<span class="af-chip" data-remove-filter="cat" data-cat="${esc(c)}">${esc(c)} <i aria-hidden="true">&times;</i></span>`;
+  });
+
+  if(hasQuery){
+    html += `<span class="af-chip" data-remove-filter="query">“${esc(st.q)}” <i aria-hidden="true">&times;</i></span>`;
+  }
+
+  chips.innerHTML = html;
 }
 
 // Search Highlight
@@ -112,21 +163,24 @@ function hl(name){
 // Render Stores
 function renderStores(){
   const list=stores.filter(s=>{
-    const matchFloor=(st.f==='all'||s.fl.includes(st.f));
-    const matchCat=(st.c==='all'||s.c.includes(st.c));
-    const matchQuery=(!st.q||low(s.n).includes(st.q)||s.c.some(c=>low(c).includes(st.q)));
+    const matchFloor = (st.f === 'all' || s.fl.includes(st.f));
+    const matchCat = (st.cats.size === 0 || s.c.some(cat => st.cats.has(cat)));
+    const matchQuery = (!st.q || low(s.n).includes(st.q) || s.c.some(c => low(c).includes(st.q)));
     return matchFloor && matchCat && matchQuery;
   });
 
   const clearBtn=$('#clearBtn');
-  const isFiltered=(st.f!=='all'||st.c!=='all'||st.q);
-  if(clearBtn) clearBtn.hidden=!isFiltered;
+  const isFiltered = (st.f !== 'all' || st.cats.size > 0 || Boolean(st.q));
+  if(clearBtn) clearBtn.hidden = !isFiltered;
 
   const resText=$('#resText');
   if(resText){
-    const floorLabel=FLOOR_DATA[st.f]?FLOOR_DATA[st.f].title:'Tüm Katlar';
-    resText.innerHTML=`<b>${list.length}</b> mağaza bulundu · ${floorLabel}${st.c!=='all'?' · '+esc(st.c):''}`;
+    const floorLabel = FLOOR_DATA[st.f]?FLOOR_DATA[st.f].title:'Tüm Katlar';
+    const catLabel = st.cats.size > 0 ? ` · ${st.cats.size} kategori seçili` : '';
+    resText.innerHTML = `<b>${list.length}</b> mağaza bulundu · ${floorLabel}${catLabel}`;
   }
+
+  updateActiveFiltersBar();
 
   const show=list.slice(0,st.lim);
   const grid=$('#storeGrid');
@@ -142,23 +196,23 @@ function renderStores(){
           <p class="sc-floor">${PIN_SVG} ${esc(KF.floorLabel(s))}</p>
         </div>
         <div class="sc-bottom">
-          <span class="sc-hours">10:00 - 22:00</span>
+          <span class="sc-hours">10:00 – 22:00</span>
           <button class="btn btn-outline btn-sm sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
         </div>
       </article>
     `).join(''):`
       <div class="empty" style="grid-column:1/-1">
-        <p>${st.q?'“'+esc(st.q)+'” ile eşleşen mağaza bulunamadı':'Seçilen filtrelerle eşleşen mağaza bulunamadı'}</p>
+        <p>${st.q?'“'+esc(st.q)+'” için eşleşen mağaza bulunamadı':'Seçilen filtrelerle eşleşen mağaza bulunamadı'}</p>
         <button class="btn btn-dark" type="button" id="emptyClear">Filtreleri Temizle</button>
       </div>
     `;
   }
 
   const moreBtn=$('#moreBtn');
-  const rest=list.length-show.length;
+  const rest=list.length - show.length;
   if(moreBtn){
-    moreBtn.hidden=rest<=0;
-    moreBtn.textContent=`Daha fazla mağaza göster (${rest})`;
+    moreBtn.hidden = rest <= 0;
+    moreBtn.textContent = `Daha fazla mağaza göster (${rest} mağaza kaldı)`;
   }
 }
 
@@ -173,43 +227,129 @@ document.addEventListener('click',e=>{
   renderStores();
 });
 
-// Category Pills Listener
+// Category Pills Listener (Supports Multi-Selection)
 if(pillsEl){
   pillsEl.addEventListener('click',e=>{
     const b=e.target.closest('.pill');
     if(!b) return;
-    st.c=b.dataset.c;
-    document.querySelectorAll('#pills .pill').forEach(p=>p.setAttribute('aria-pressed',p.dataset.c===st.c));
+    const cat = b.dataset.c;
+
+    if(cat === 'all'){
+      st.cats.clear();
+      document.querySelectorAll('#pills .pill').forEach(p=>{
+        const isAll = p.dataset.c === 'all';
+        p.classList.toggle('on', isAll);
+        p.setAttribute('aria-pressed', isAll);
+      });
+    } else {
+      if(st.cats.has(cat)){
+        st.cats.delete(cat);
+      } else {
+        st.cats.add(cat);
+      }
+      
+      const allPill = $('#pills .pill[data-c="all"]');
+      if(st.cats.size === 0){
+        if(allPill){
+          allPill.classList.add('on');
+          allPill.setAttribute('aria-pressed', true);
+        }
+      } else {
+        if(allPill){
+          allPill.classList.remove('on');
+          allPill.setAttribute('aria-pressed', false);
+        }
+      }
+
+      document.querySelectorAll('#pills .pill:not([data-c="all"])').forEach(p=>{
+        const active = st.cats.has(p.dataset.c);
+        p.classList.toggle('on', active);
+        p.setAttribute('aria-pressed', active);
+      });
+    }
+
     st.lim=12;
     renderStores();
   });
 }
 
-// Search Input
-const qInput=$('#q');
-if(qInput){
-  qInput.addEventListener('input',e=>{
-    st.q=low(e.target.value.trim());
-    st.lim=12;
-    renderStores();
-  });
-}
+// Active Filter Chip Removal
+document.addEventListener('click',e=>{
+  const chip = e.target.closest('[data-remove-filter]');
+  if(!chip) return;
+  const type = chip.dataset.removeFilter;
 
-// Clear Button
-const clearBtn=$('#clearBtn');
-if(clearBtn){
-  clearBtn.addEventListener('click',()=>{
-    if(qInput) qInput.value='';
-    st.q='';
-    st.c='all';
-    st.f='all';
-    st.lim=12;
+  if(type === 'floor'){
+    st.f = 'all';
     document.querySelectorAll('.tower-card').forEach(c=>c.classList.remove('on'));
     const allBtn=$('.tower-all-btn');
     if(allBtn) allBtn.classList.add('on');
-    document.querySelectorAll('#pills .pill').forEach(p=>p.setAttribute('aria-pressed',p.dataset.c==='all'));
     updateStageBanner('all');
-    renderStores();
+  } else if(type === 'cat'){
+    const c = chip.dataset.cat;
+    st.cats.delete(c);
+    const pill = $(`#pills .pill[data-c="${c}"]`);
+    if(pill){
+      pill.classList.remove('on');
+      pill.setAttribute('aria-pressed', false);
+    }
+    if(st.cats.size === 0){
+      const allPill = $('#pills .pill[data-c="all"]');
+      if(allPill){
+        allPill.classList.add('on');
+        allPill.setAttribute('aria-pressed', true);
+      }
+    }
+  } else if(type === 'query'){
+    const qInput=$('#q');
+    if(qInput) qInput.value = '';
+    st.q = '';
+  }
+
+  st.lim = 12;
+  renderStores();
+});
+
+// Clear All Filters
+function clearAllFilters(){
+  const qInput=$('#q');
+  if(qInput) qInput.value='';
+  st.q='';
+  st.cats.clear();
+  st.f='all';
+  st.lim=12;
+
+  document.querySelectorAll('.tower-card').forEach(c=>c.classList.remove('on'));
+  const allBtn=$('.tower-all-btn');
+  if(allBtn) allBtn.classList.add('on');
+
+  document.querySelectorAll('#pills .pill').forEach(p=>{
+    const isAll = p.dataset.c === 'all';
+    p.classList.toggle('on', isAll);
+    p.setAttribute('aria-pressed', isAll);
+  });
+
+  updateStageBanner('all');
+  renderStores();
+}
+
+const clearBtn=$('#clearBtn');
+if(clearBtn) clearBtn.addEventListener('click', clearAllFilters);
+
+const afClearAll=$('#afClearAll');
+if(afClearAll) afClearAll.addEventListener('click', clearAllFilters);
+
+// Debounced Search Input
+let searchTimer;
+const qInput=$('#q');
+if(qInput){
+  qInput.addEventListener('input',e=>{
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(()=>{
+      st.q=low(e.target.value.trim());
+      st.lim=12;
+      renderStores();
+    }, 120);
   });
 }
 
@@ -217,12 +357,12 @@ if(clearBtn){
 const moreBtn=$('#moreBtn');
 if(moreBtn){
   moreBtn.addEventListener('click',()=>{
-    st.lim+=12;
+    st.lim += 12;
     renderStores();
   });
 }
 
-// Keyboard shortcut (Ctrl+K)
+// Keyboard shortcut (Ctrl+K to focus search, ESC to clear or close modal)
 document.addEventListener('keydown',e=>{
   const isK=(e.key==='k'||e.key==='K')&&(e.metaKey||e.ctrlKey);
   const slash=e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName);
@@ -230,6 +370,18 @@ document.addEventListener('keydown',e=>{
     e.preventDefault();
     $('#rehber').scrollIntoView({behavior:KF.reduce?'auto':'smooth'});
     setTimeout(()=>{if(qInput)qInput.focus({preventScroll:true})},450);
+  }
+  if(e.key==='Escape'){
+    const modal=$('#storeModal');
+    if(modal && modal.open){
+      modal.close();
+    } else if(qInput && document.activeElement===qInput && qInput.value){
+      qInput.value='';
+      st.q='';
+      st.lim=12;
+      renderStores();
+      qInput.blur();
+    }
   }
 });
 const kbdEl=$('#kbd');
@@ -244,13 +396,27 @@ const smClose=$('#smClose');
 function openStoreModal(name){
   const store=byName[name];
   if(!store || !storeModal) return;
+
   $('#smLogo').innerHTML=KF.logoHtml(store);
   $('#smName').textContent=store.n;
   $('#smFloor').textContent=`${KF.floorLabel(store)} · Koru Florya`;
   $('#smCat').textContent=store.c.join(', ');
-  $('#smLoc').textContent=`${KF.floorLabel(store)} (Ana koridor üzerinde)`;
+  $('#smLoc').textContent=`${KF.floorLabel(store)} (Ana alışveriş koridoru)`;
+  
+  // Phone number if available
+  const phoneRow = $('#smPhoneRow');
+  const phoneEl = $('#smPhone');
+  if(store.phone){
+    if(phoneRow) phoneRow.hidden = false;
+    if(phoneEl) phoneEl.textContent = store.phone;
+  } else {
+    if(phoneRow) phoneRow.hidden = false;
+    if(phoneEl) phoneEl.textContent = 'Danışma: 0212 000 00 00';
+  }
+
   $('#smDesc').textContent=store.d||`${store.n}, en güncel koleksiyonları ve kaliteli hizmet anlayışıyla Koru Florya'da sizleri bekliyor.`;
   $('#smDir').href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Koru Florya AVM '+store.n)}`;
+  
   storeModal.showModal();
 }
 
@@ -263,7 +429,7 @@ if(storeModal){
 
 document.addEventListener('click',e=>{
   if(e.target.closest('#emptyClear')){
-    if(clearBtn) clearBtn.click();
+    clearAllFilters();
     return;
   }
   const btn=e.target.closest('[data-open-store]');
@@ -278,13 +444,12 @@ updateStageBanner('all');
 renderStores();
 
 /* ========================================================
-   4. DİNAMİK ULAŞIM TERMİNALİ & YERİ KAYMAYAN HARİTA
+   4. DİNAMİK ULAŞIM TERMİNALİ & YERİ ASLA KAYMAYAN LEAFLET
    ======================================================== */
 let mapInstance=null;
 let activeRouteLayers=[];
 
-// Fixed Pin Factory: Anchor point [18, 38] is the absolute bottom tip of the pin!
-// The label is positioned above the pin with NO vertical transform, preventing any zoom drift!
+// Fixed Pin Factory: Anchor point [18, 40] is the absolute bottom needle tip of the pin!
 function createFixedPin(title, color, typeIcon){
   return L.divIcon({
     className: 'leaflet-fixed-marker',
@@ -308,7 +473,7 @@ const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 // Route Configurations
 const ROUTES={
   'shuttle':{
-    color:'#00AB84',
+    color:'#00B995',
     leg:'Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis)',
     path:[
       [40.9728979, 28.7876092],
@@ -318,7 +483,7 @@ const ROUTES={
       [40.9842677, 28.7834510]
     ],
     markers:[
-      {pos:[40.9728979, 28.7876092],title:'Marmaray Florya',color:'#00AB84',icon:TRAIN_ICON_SVG},
+      {pos:[40.9728979, 28.7876092],title:'Marmaray Florya',color:'#00B995',icon:TRAIN_ICON_SVG},
       {pos:[40.9842677, 28.7834510],title:'Koru Florya AVM',color:'#E53935',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9728979, 28.7876092], [40.9842677, 28.7834510]]
@@ -352,16 +517,16 @@ const ROUTES={
     bounds:[[40.9838, 28.7828], [40.9860, 28.7852]]
   },
   'car':{
-    color:'#1C1F1D',
-    leg:'Ekşinar Sokak ↔ 1.200 Araçlık Kapalı Otopark & Vale Girişi',
+    color:'#17211E',
+    leg:'Ekşinar Sokak ↔ 1.200 Araçlık Kapalı Otopark & VIP Vale Girişi',
     path:[
       [40.9825, 28.7818],
       [40.9836, 28.7828],
       [40.9842, 28.7834]
     ],
     markers:[
-      {pos:[40.9836, 28.7828],title:'P Kapalı Otopark Girişi',color:'#1C1F1D',icon:CAR_ICON_SVG},
-      {pos:[40.9842, 28.7834],title:'Koru Florya Vale Noktası',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.9836, 28.7828],title:'Kapalı Otopark Girişi (-1)',color:'#17211E',icon:CAR_ICON_SVG},
+      {pos:[40.9842, 28.7834],title:'Koru Florya VIP Vale',color:'#E53935',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9820, 28.7812], [40.9848, 28.7842]]
   }

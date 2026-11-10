@@ -4,32 +4,35 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Koru Florya | Alışveriş ve Yaşam Merkezi</title>
-<meta name="description" content="Florya'da 177 seçkin marka, açık bahçe terasları, kültür ve sanat etkinlikleri ve ücretsiz Marmaray servisi. Her gün 10:00 - 22:00 açık." />
-<meta name="theme-color" content="#00AB84" />
+<meta name="description" content="Florya'da 177 seçkin marka, açık bahçe terasları, kültür ve sanat etkinlikleri, VIP hizmetler ve ücretsiz Marmaray servisi. Her gün 10:00 - 22:00 açık." />
+<meta name="theme-color" content="#102B24" />
 <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
 <link rel="apple-touch-icon" href="assets/logo/koruflorya-icon-hq.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="assets/css/site.css" />
 </head>
 <body data-page="home">
 
 <main id="main">
-<!-- Hero Section (Kanyon Style Luxury Banner) -->
-<div class="hero" id="top">
+<!-- 1. HERO SECTION (PREMIUM EDITORIAL SLIDER) -->
+<section class="hero" id="top" aria-label="Koru Florya Giriş">
   <div id="slides"></div>
   <span class="hero-end" id="heroEnd" aria-hidden="true"></span>
   <div class="dots" id="dots" role="group" aria-label="Slayt seç"></div>
   <div class="hero-in">
     <div class="wrap">
-      <h1 class="h">Şehrin Ritmini Keşfet</h1>
-      <p class="sub" id="heroSub">Modern mimari, seçkin markalar ve ilham veren deneyimlerle Koru Florya'da yeni bir gün başlıyor.</p>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#rehber" id="findBtn">Markaları Keşfet <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-        <a class="btn btn-line" href="#ulasim">Nasıl Gelirim <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      <div class="hero-content">
+        <span class="hero-eyebrow">Florya'nın Prestijli Yaşam Merkezi</span>
+        <h1 class="h hero-title">Şehrin Ritmini Keşfet</h1>
+        <p class="sub hero-sub" id="heroSub">Modern mimari, seçkin dünya markaları ve ilham veren deneyimlerle Koru Florya'da yeni bir gün başlıyor.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#rehber" id="findBtn">Markaları Keşfet <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-line" href="#ulasim">Nasıl Gelirim <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
       </div>
     </div>
   </div>
@@ -37,24 +40,29 @@
     <span>KEŞFET</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
   </a>
+</section>
+
+<!-- 2. BRAND STRIP (OPTICALLY BALANCED LOGOS) -->
+<div class="strip" aria-label="Öne çıkan markalar">
+  <div class="wrap">
+    <div class="strip-label">SEÇKİN DÜNYA MARKALARI</div>
+    <ul id="brandList"></ul>
+  </div>
 </div>
 
-<!-- Öne Çıkan Markalar Logoları Şeridi -->
-<div class="strip" aria-label="Öne çıkan markalar"><div class="wrap"><ul id="brandList"></ul></div></div>
-
-<!-- YENİ MİMARİ KAT & MARKA DENEYİMİ (ARCHITECTURAL LEVEL EXPLORER) -->
+<!-- 3. KAT SEÇİMİ VE MAĞAZA REHBERİ (ARCHITECTURAL FLOOR & BRAND EXPLORER) -->
 <section id="rehber" aria-labelledby="hRehber">
   <div class="wrap">
     <div class="sec-head">
       <div>
         <span class="eyebrow">Mimari Kat Rehberi &amp; Seçkin Markalar</span>
-        <h2 class="h" id="hRehber">177 Marka, 4 Farklı Kat Atmosferi</h2>
-        <p class="lead">Açık hava bahçe teraslarından botanik cam atriyuma, kat kat tasarlanmış prestijli bir alışveriş ve yaşam deneyimi.</p>
+        <h2 class="h" id="hRehber">177 Marka, 4 Farklı Kat Deneyimi</h2>
+        <p class="lead">Geniş bahçe teraslarından botanik cam atriyuma, her katta özenle kurgulanmış prestijli alışveriş ve yaşam alanları.</p>
       </div>
     </div>
 
     <div class="arch-explorer">
-      <!-- Sol: 3D Mimari Kat Kulesi / Kat Kat Seçici -->
+      <!-- Sol: Mimari Kat Kulesi -->
       <aside class="floor-tower" role="tablist" aria-label="Kat Seçimi">
         <div class="tower-header">
           <span class="tower-label">KAT SEÇİMİ</span>
@@ -63,48 +71,48 @@
 
         <div class="tower-stack">
           <!-- Cadde Katı (+2) -->
-          <button type="button" class="tower-card" data-f="C">
+          <button type="button" class="tower-card" data-f="C" aria-pressed="false">
             <div class="tc-level">+2</div>
             <div class="tc-body">
               <div class="tc-top"><b>Cadde Katı</b><span class="tc-chip">Açık Teras</span></div>
-              <p>Dünya restoranları, açık hava terasları ve gurme lezzetler</p>
+              <p>Dünya mutfakları, açık hava bahçe terasları ve seçkin restoranlar</p>
               <div class="tc-meta"><span>34 Mekân</span><span>•</span><span>Happy Moon's, Divan, Vakko</span></div>
             </div>
           </button>
 
           <!-- Podyum Katı (+1) -->
-          <button type="button" class="tower-card" data-f="P">
+          <button type="button" class="tower-card" data-f="P" aria-pressed="false">
             <div class="tc-level">+1</div>
             <div class="tc-body">
               <div class="tc-top"><b>Podyum Katı</b><span class="tc-chip">Moda &amp; Lüks</span></div>
-              <p>Dünya modası, hazır giyim butikleri, kozmetik ve mücevher</p>
+              <p>Dünya modası, tasarım butikleri, saat, mücevher ve kozmetik</p>
               <div class="tc-meta"><span>48 Butik</span><span>•</span><span>Zara, Mango, Sephora</span></div>
             </div>
           </button>
 
           <!-- Koru Katı (0 Giriş) -->
-          <button type="button" class="tower-card" data-f="K">
+          <button type="button" class="tower-card" data-f="K" aria-pressed="false">
             <div class="tc-level">0</div>
             <div class="tc-body">
               <div class="tc-top"><b>Koru Katı</b><span class="tc-chip">Giriş &amp; Atriyum</span></div>
-              <p>Geniş cam tavanlı botanik atriyum, artisan kahve ve teknoloji</p>
+              <p>Geniş cam tavanlı botanik atriyum, artisan kahve noktaları ve teknoloji</p>
               <div class="tc-meta"><span>56 Mağaza</span><span>•</span><span>Shake Shack, Starbucks, LEGO</span></div>
             </div>
           </button>
 
           <!-- Otopark Katı (-1) -->
-          <button type="button" class="tower-card" data-f="O">
+          <button type="button" class="tower-card" data-f="O" aria-pressed="false">
             <div class="tc-level">-1</div>
             <div class="tc-body">
               <div class="tc-top"><b>Otopark Katı</b><span class="tc-chip">Hizmet &amp; Market</span></div>
-              <p>1.200 araçlık kapalı otopark, vale, kuru temizleme, terzi ve MediaMarkt</p>
+              <p>1.200 araçlık kapalı otopark, VIP vale, kuru temizleme, terzi ve MediaMarkt</p>
               <div class="tc-meta"><span>39 Hizmet</span><span>•</span><span>Migros, Terzi, Vale</span></div>
             </div>
           </button>
         </div>
       </aside>
 
-      <!-- Sağ: Aktif Katın Vitrini, Arama ve Mağaza Listesi -->
+      <!-- Sağ: Aktif Kat Vitrini, Arama ve Filtreleme -->
       <div class="floor-stage">
         <!-- Aktif Kat Bannerı -->
         <div class="stage-banner" id="stageBanner">
@@ -120,20 +128,25 @@
           </div>
         </div>
 
-        <!-- Arama ve Kategori Filtresi -->
+        <!-- Arama ve Çoklu Kategori Filtresi -->
         <div class="stage-filter-box">
           <div class="stage-search">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input id="q" type="search" placeholder="Mağaza veya lezzet ara... (örn: Zara, Sephora, Divan)" autocomplete="off" />
+            <input id="q" type="search" placeholder="Mağaza veya kategori ara... (örn: Zara, Sephora, Divan)" autocomplete="off" />
             <kbd id="kbd">Ctrl K</kbd>
           </div>
           <div class="stage-pills" id="pills" role="group" aria-label="Kategoriler"></div>
         </div>
 
-        <!-- Sonuç Durumu -->
+        <!-- Aktif Filtre Etiketleri ve Sonuç Sayacı -->
+        <div class="stage-active-filters" id="activeFiltersBar" hidden>
+          <div class="af-list" id="afChips"></div>
+          <button type="button" class="af-clear-all" id="afClearAll">Filtreleri Temizle</button>
+        </div>
+
         <div class="stage-res-head">
           <span id="resText">177 mağaza listeleniyor</span>
-          <button class="link" id="clearBtn" type="button" hidden>Filtreleri temizle</button>
+          <button class="link" id="clearBtn" type="button" hidden>Tümünü Göster</button>
         </div>
 
         <!-- Mağaza Kartları Grid'i -->
@@ -147,7 +160,7 @@
   </div>
 </section>
 
-<!-- EDITORIAL KÜLTÜR & ETKİNLİK SHOWCASE (MAGAZINE SPREAD) -->
+<!-- 4. ETKİNLİKLER (EDITORIAL MAGAZINE SPREAD) -->
 <section id="etkinlikler" aria-labelledby="hEtk">
   <div class="wrap">
     <div class="sec-head">
@@ -216,8 +229,96 @@
   </div>
 </section>
 
-<!-- DİNAMİK ULAŞIM TERMİNALİ VE HARİTA (GERÇEK DİNAMİK ROTA DEĞİŞİMİ) -->
-<section class="bg-lime" id="ulasim" aria-labelledby="hUlasim">
+<!-- 5. AYRICALIKLI HİZMETLER (VIP & EDITORIAL SERVICES) -->
+<section class="bg-lime" id="hizmetler" aria-labelledby="hHizmet">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Ayrıcalıklı Hizmetler</span>
+        <h2 class="h" id="hHizmet">Konfor ve Prestiji Yeniden Tanımlayan Hizmetler</h2>
+        <p class="lead">Ziyaretinizi kusursuz bir deneyime dönüştürmek için tasarlanan Koru Florya ayrıcalıkları.</p>
+      </div>
+    </div>
+
+    <!-- Üst Bölüm: 3 Büyük Görselli Editoryal Hizmet Kartı -->
+    <div class="services-hero-grid">
+      <!-- 1. VIP Vale & Oto Bakım -->
+      <article class="srv-hero-card">
+        <div class="srv-img-wrap">
+          <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&q=80&w=900" alt="VIP Vale Park ve Detaylı Oto Bakım" loading="lazy" />
+          <span class="srv-badge">Ayrıcalıklı Vale</span>
+        </div>
+        <div class="srv-body">
+          <h3>VIP Vale Park &amp; Detaylı Bakım</h3>
+          <p>Ana cadde girişinde profesyonel vale kabul noktası ve -1 Otopark Katı'nda nano boya koruma, buharlı iç-dış detaylı oto bakım servisi.</p>
+          <div class="srv-meta"><span>Konum: Cadde Girişi &amp; -1 Otopark</span></div>
+        </div>
+      </article>
+
+      <!-- 2. Concierge & Danışma -->
+      <article class="srv-hero-card">
+        <div class="srv-img-wrap">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=900" alt="Concierge ve Danışma Masası" loading="lazy" />
+          <span class="srv-badge">Misafir Hizmetleri</span>
+        </div>
+        <div class="srv-body">
+          <h3>Concierge &amp; Danışma Masası</h3>
+          <p>Koru Katı ana girişte çok dilli danışma, VIP emanet dolapları, ücretsiz tekerlekli sandalye ve bebek arabası temin noktası.</p>
+          <div class="srv-meta"><span>Konum: Koru Katı (Giriş)</span></div>
+        </div>
+      </article>
+
+      <!-- 3. ZES & Trugo Elektrikli Şarj İstasyonları -->
+      <article class="srv-hero-card">
+        <div class="srv-img-wrap">
+          <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=900" alt="Elektrikli Araç Şarj İstasyonları" loading="lazy" />
+          <span class="srv-badge">Ultra Hızlı Şarj</span>
+        </div>
+        <div class="srv-body">
+          <h3>ZES &amp; Trugo Yüksek Hızlı Şarj</h3>
+          <p>-1 ve -2 Otopark katlarında 180kW ve 300kW yüksek hızlı DC/AC şarj istasyonları ile tüm elektrikli araçlara kesintisiz şarj imkânı.</p>
+          <div class="srv-meta"><span>Konum: -1 ve -2 Otopark Katı</span></div>
+        </div>
+      </article>
+    </div>
+
+    <!-- Alt Bölüm: 3 Kompakt İkonlu Hizmet Kartı -->
+    <div class="services-compact-grid">
+      <div class="srv-compact-card">
+        <div class="srv-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M10 8h4M12 12v4"/></svg>
+        </div>
+        <div>
+          <h4>Bebek Bakım &amp; Aile Odaları</h4>
+          <p>Her katta özel hijyenik emzirme koltukları, mama ısıtıcıları, bez değiştirme üniteleri ve çocuk tuvaletleri.</p>
+        </div>
+      </div>
+
+      <div class="srv-compact-card">
+        <div class="srv-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div>
+          <h4>Döviz &amp; Banka İşlemleri</h4>
+          <p>Tüm banka ATM'leri ve Bağdat Döviz ile uluslararası para transferi, döviz alım-satım ve güvenli nakit işlemleri.</p>
+        </div>
+      </div>
+
+      <div class="srv-compact-card">
+        <div class="srv-ic">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+        </div>
+        <div>
+          <h4>Ücretsiz Gigabit Wi-Fi 6</h4>
+          <p>Koru Florya'nın tüm katlarında ve açık bahçe teraslarında yüksek hızlı kesintisiz kablosuz internet erişimi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ULAŞIM TERMİNALİ VE HARİTA (DİNAMİK ROTA SİSTEMİ) -->
+<section id="ulasim" aria-labelledby="hUlasim">
   <div class="wrap">
     <div class="sec-head">
       <div>
@@ -232,7 +333,7 @@
       <div class="map" id="map" role="img" aria-label="Koru Florya ulaşım haritası">
         <div class="map-canvas" id="mapCanvas"></div>
         <div class="map-leg" id="mapLeg">
-          <span class="dot" style="animation:none;background:#00AB84"></span>
+          <span class="dot" style="animation:none;background:#00B995"></span>
           <span id="mapLegText">Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis)</span>
         </div>
         <div class="map-attr"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></div>
@@ -256,7 +357,7 @@
           <div class="t-pane on" id="tp-shuttle">
             <div class="t-live-badge">
               <span class="dot" id="shDot"></span>
-              <span id="shBadge">Sıradaki sefer hesaplanıyor...</span>
+              <span id="shBadge">Sıradaki servis hesaplanıyor...</span>
             </div>
             <div class="route-summary-box">
               <div class="rs-item"><b>1,3 km</b><span>Mesafe</span></div>
@@ -326,8 +427,8 @@
 
           <!-- 4. Otopark & Vale Tab -->
           <div class="t-pane" id="tp-car">
-            <div class="t-live-badge" style="background:#F1EFEA;color:#1C1F1D">
-              <span class="dot" style="background:#1C1F1D"></span>
+            <div class="t-live-badge" style="background:#F1EFEA;color:#17211E">
+              <span class="dot" style="background:#17211E"></span>
               <span>1.200 Araçlık Kapalı Otopark</span>
             </div>
             <div class="car-features">
@@ -348,13 +449,13 @@
 </section>
 </main>
 
-<!-- Mağaza Hızlı Detay Modalı (Store Quick View) -->
+<!-- MAĞAZA DETAY PENCERESİ (STORE QUICK-VIEW MODAL) -->
 <dialog id="storeModal" class="store-modal">
   <div class="store-modal-box">
-    <button type="button" class="sm-close" id="smClose" aria-label="Kapat">&times;</button>
+    <button type="button" class="sm-close" id="smClose" aria-label="Pencereyi kapat">&times;</button>
     <div class="sm-head">
       <div class="sm-logo" id="smLogo"></div>
-      <div>
+      <div class="sm-title-group">
         <h3 id="smName">Mağaza Adı</h3>
         <p id="smFloor" class="sm-meta">Kat Bilgisi</p>
       </div>
@@ -366,11 +467,15 @@
       </div>
       <div class="sm-info-row">
         <span>Çalışma Saatleri</span>
-        <b>Her gün 10:00 - 22:00</b>
+        <b>Her gün 10:00 – 22:00</b>
       </div>
       <div class="sm-info-row">
-        <span>Konum Detayı</span>
+        <span>Konum &amp; Erişim</span>
         <b id="smLoc">Koru Florya AVM</b>
+      </div>
+      <div class="sm-info-row" id="smPhoneRow">
+        <span>İletişim &amp; Destek</span>
+        <b id="smPhone">0212 000 00 00</b>
       </div>
       <p id="smDesc" class="sm-desc">Açıklama</p>
     </div>
