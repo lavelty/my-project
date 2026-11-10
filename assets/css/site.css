@@ -460,6 +460,83 @@ footer{background:var(--brand-dark);color:#A8B5AF;padding:96px 0 32px}
 .back:hover svg{transform:translateX(-3px)}
 
 /* ========================================================
+   13. ETKİNLİKLER VE ETKİNLİK DETAY SAYFALARI (ETKİNLİKLER.HTML & ETKİNLİK.HTML)
+   ======================================================== */
+.pagehead{padding:140px 0 48px;background:var(--bg-light);border-bottom:1px solid var(--border-light)}
+.crumb{font-size:14px;color:var(--text-muted);margin-bottom:12px}
+.crumb a{color:var(--text-main);text-decoration:underline;text-underline-offset:3px}
+
+.etabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px}
+.etab{height:44px;padding:0 20px;border-radius:var(--radius-full);border:1px solid var(--border-light);background:#fff;font-family:var(--font-h);font-weight:600;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:all .2s var(--ease);color:var(--text-muted)}
+.etab em{font-style:normal;font-size:12px;color:var(--text-subtle);background:var(--bg-light);padding:2px 8px;border-radius:var(--radius-full)}
+.etab:hover{border-color:var(--text-main);color:var(--text-main)}
+.etab[aria-selected=true]{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff}
+.etab[aria-selected=true] em{background:rgba(255,255,255,.2);color:#fff}
+
+.ecards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.ecard{background:#fff;border:1px solid var(--border-light);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s var(--ease);box-shadow:var(--shadow-sm);text-decoration:none;color:inherit}
+.ecard:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:rgba(0,185,149,.35)}
+.eimg{position:relative;aspect-ratio:16/9;background:#EDEAE4;overflow:hidden}
+.eimg img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.ecard:hover .eimg img{transform:scale(1.04)}
+.ecard.past .eimg img{filter:grayscale(0.85);opacity:.7}
+
+.edate{position:absolute;top:14px;left:14px;background:rgba(255,255,255,.96);color:var(--text-main);border-radius:14px;padding:6px 12px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.12)}
+.edate b{display:block;font-family:var(--font-h);font-weight:700;font-size:22px;line-height:24px;letter-spacing:-.02em}
+.edate small{font-family:var(--font-h);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-turq-hover)}
+.ebadge{position:absolute;top:14px;left:14px;background:#FF7F41;color:#fff;border-radius:var(--radius-full);padding:6px 14px;font-family:var(--font-h);font-weight:700;font-size:13px;box-shadow:0 4px 12px rgba(0,0,0,.15)}
+
+.ebody{padding:24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.etags{display:flex;gap:6px;flex-wrap:wrap}
+.etags .tag{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:var(--radius-full);background:var(--brand-turq-light);color:var(--brand-turq-hover);font-family:var(--font-h)}
+.etags .tag.g{background:#EBF2EF;color:#4B6358}
+.etags .tag.o{background:#FFF0EB;color:#FF7F41}
+.etags .tag.y{background:#FEF3C7;color:#92400E}
+.ebody h3{font-family:var(--font-h);font-weight:600;font-size:20px;line-height:26px;letter-spacing:-.02em;color:var(--text-main);margin:0}
+.ebody p{color:var(--text-muted);font-size:14.5px;line-height:22px;margin:0}
+
+/* Emeta and Icons Sizing - Strict 16px to prevent blowout */
+.emeta{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--text-muted);margin-top:auto;padding-top:12px;border-top:1px solid var(--border-light)}
+.emeta div{display:flex;align-items:center;gap:8px}
+.emeta svg{width:16px!important;height:16px!important;max-width:16px!important;max-height:16px!important;flex:none;color:var(--brand-turq-hover)}
+.emeta span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.eempty{grid-column:1/-1;background:#fff;border:1px solid var(--border-light);border-radius:20px;padding:64px 24px;text-align:center}
+.eempty p{font-family:var(--font-h);font-weight:600;font-size:20px;margin-bottom:16px}
+
+/* Single Event Page (etkinlik.html) */
+.ev-hero{position:relative;color:#fff;isolation:isolate;overflow:hidden;background:#102B24}
+.ev-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:blur(36px) saturate(1.2) brightness(.5);transform:scale(1.2)}
+.ev-hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(16,43,36,.55) 0%,rgba(16,43,36,.92) 100%)}
+.ev-hero .wrap{padding:156px 0 56px;display:flex;flex-direction:column;justify-content:flex-end;min-height:560px}
+.ev-hero .crumb{font-size:14px;color:rgba(255,255,255,.8);margin-bottom:20px}
+.ev-hero .crumb a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.ev-hero h1{font-family:var(--font-h);font-weight:700;font-size:clamp(32px,4.5vw,64px);line-height:1.08;letter-spacing:-.03em;color:#fff;max-width:20ch}
+.ev-hero p{margin-top:14px;font-size:18px;line-height:28px;max-width:38rem;color:rgba(255,255,255,.9)}
+.ev-chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.ev-chips span{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:var(--radius-full);background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);font-weight:500;font-size:14px}
+.ev-chips svg{width:16px;height:16px}
+
+.evd{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+.evd h2{font-family:var(--font-h);font-weight:600;font-size:26px;letter-spacing:-.02em;margin:40px 0 14px}
+.evd h2:first-child{margin-top:0}
+.evd p{color:var(--text-muted);font-size:16px;line-height:26px;margin-bottom:14px}
+.poster{border-radius:20px;overflow:hidden;aspect-ratio:16/9;background:#EDEAE4;margin-bottom:28px}
+.poster img{width:100%;height:100%;object-fit:cover}
+
+.bio{display:grid;grid-template-columns:64px 1fr;gap:18px;background:var(--bg-light);border-radius:20px;padding:24px;margin-top:12px}
+.bio .av{width:64px;height:64px;border-radius:50%;background:var(--brand-dark);color:#fff;display:grid;place-items:center;font-family:var(--font-h);font-weight:600;font-size:22px}
+.bio h3{font-family:var(--font-h);font-weight:600;font-size:18px;margin:0 0 4px}
+.bio p{font-size:14.5px;line-height:23px;margin:0;color:var(--text-muted)}
+
+.sidecard{position:sticky;top:104px;display:flex;flex-direction:column;gap:16px}
+.sidecard .box{background:#fff;border:1px solid var(--border-light);border-radius:20px;padding:24px;box-shadow:var(--shadow-sm)}
+.sidecard .box h3{font-family:var(--font-h);font-weight:600;font-size:18px;margin:0 0 14px;color:var(--text-main)}
+.sidecard .info div{display:grid;grid-template-columns:96px 1fr;gap:10px;padding:10px 0;border-top:1px solid var(--border-light);font-size:14px}
+.sidecard .info dt{color:var(--text-subtle)}
+.sidecard .info dd{color:var(--text-main);font-weight:500}
+
+/* ========================================================
    13. RESPONSIVE BREAKPOINTS (ALL DEVICES)
    ======================================================== */
 @media (max-width:1100px){
@@ -477,6 +554,9 @@ footer{background:var(--brand-dark);color:#A8B5AF;padding:96px 0 32px}
   .toc{display:none}
   .foot{grid-template-columns:repeat(3,minmax(0,1fr))}
   .foot-brand-col{grid-column:1/-1}
+  .ecards{grid-template-columns:repeat(2,1fr)}
+  .evd{grid-template-columns:minmax(0,1fr);gap:40px}
+  .sidecard{position:static}
 }
 
 @media (max-width:1000px){
@@ -524,6 +604,7 @@ footer{background:var(--brand-dark);color:#A8B5AF;padding:96px 0 32px}
   .mt-btn{height:28px;padding:0 9px;font-size:11px}
   .map-leg{left:12px;top:52px;font-size:11.5px;padding:5px 12px;max-width:calc(100% - 24px);white-space:normal;line-height:1.3}
   .legal-head{padding:116px 0 36px}
+  .ecards{grid-template-columns:1fr}
   .foot{grid-template-columns:1fr}
 }
 
