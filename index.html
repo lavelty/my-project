@@ -11,14 +11,14 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="assets/css/site.css" />
 </head>
 <body data-page="home">
 
 <main id="main">
-<!-- 1. HERO SECTION (PREMIUM EDITORIAL SLIDER) -->
+<!-- 1. HERO SECTION -->
 <section class="hero" id="top" aria-label="Koru Florya Giriş">
   <div id="slides"></div>
   <span class="hero-end" id="heroEnd" aria-hidden="true"></span>
@@ -26,38 +26,38 @@
   <div class="hero-in">
     <div class="wrap">
       <div class="hero-content">
-        <span class="hero-eyebrow">Florya'nın Prestijli Yaşam Merkezi</span>
+        <span class="hero-eyebrow">Florya sahilinde açık hava ve botanik yaşam merkezi</span>
         <h1 class="h hero-title">Şehrin Ritmini Keşfet</h1>
-        <p class="sub hero-sub" id="heroSub">Modern mimari, seçkin dünya markaları ve ilham veren deneyimlerle Koru Florya'da yeni bir gün başlıyor.</p>
+        <p class="sub hero-sub" id="heroSub">Modern mimari, 177 seçkin marka ve ferah bahçe teraslarıyla Koru Florya'da yeni bir gün başlıyor.</p>
         <div class="hero-cta">
-          <a class="btn btn-primary" href="#rehber" id="findBtn">Markaları Keşfet <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-          <a class="btn btn-line" href="#ulasim">Nasıl Gelirim <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-primary" href="#rehber" id="findBtn">Markaları Keşfet <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-line" href="#ulasim">Nasıl Gelirim <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </div>
     </div>
   </div>
   <a class="hero-scroll" href="#rehber" aria-label="Aşağı kaydır ve keşfet">
-    <span>KEŞFET</span>
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+    <span>Keşfet</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
   </a>
 </section>
 
-<!-- 2. BRAND STRIP (OPTICALLY BALANCED LOGOS) -->
+<!-- 2. BRAND STRIP -->
 <div class="strip" aria-label="Öne çıkan markalar">
   <div class="wrap">
-    <div class="strip-label">SEÇKİN DÜNYA MARKALARI</div>
+    <div class="strip-label">Seçkin markalar</div>
     <ul id="brandList"></ul>
   </div>
 </div>
 
-<!-- 3. KAT SEÇİMİ VE MAĞAZA REHBERİ (ARCHITECTURAL FLOOR & BRAND EXPLORER) -->
+<!-- 3. KAT SEÇİMİ VE MAĞAZA REHBERİ -->
 <section id="rehber" aria-labelledby="hRehber">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow">Mimari Kat Rehberi &amp; Seçkin Markalar</span>
-        <h2 class="h" id="hRehber">177 Marka, 4 Farklı Kat Deneyimi</h2>
-        <p class="lead">Geniş bahçe teraslarından botanik cam atriyuma, her katta özenle kurgulanmış prestijli alışveriş ve yaşam alanları.</p>
+        <span class="eyebrow">Mimari kat rehberi ve markalar</span>
+        <h2 class="h" id="hRehber">177 Mağaza, 4 Mimari Kat</h2>
+        <p class="lead">Geniş bahçe teraslarından botanik cam atriyuma, her katta ferah alışveriş ve dinlenme alanları.</p>
       </div>
     </div>
 
@@ -65,7 +65,7 @@
       <!-- Sol: Mimari Kat Kulesi -->
       <aside class="floor-tower" role="tablist" aria-label="Kat Seçimi">
         <div class="tower-header">
-          <span class="tower-label">KAT SEÇİMİ</span>
+          <span class="tower-label">Kat seçimi</span>
           <button type="button" class="tower-all-btn on" data-f="all">Tüm Katlar (177)</button>
         </div>
 
@@ -84,7 +84,7 @@
           <button type="button" class="tower-card" data-f="P" aria-pressed="false">
             <div class="tc-level">+1</div>
             <div class="tc-body">
-              <div class="tc-top"><b>Podyum Katı</b><span class="tc-chip">Moda &amp; Lüks</span></div>
+              <div class="tc-top"><b>Podyum Katı</b><span class="tc-chip">Moda &amp; Yaşam</span></div>
               <p>Dünya modası, tasarım butikleri, saat, mücevher ve kozmetik</p>
               <div class="tc-meta"><span>48 Butik</span><span>•</span><span>Zara, Mango, Sephora</span></div>
             </div>
@@ -162,24 +162,24 @@
 
 
 
-<!-- 5. AYRICALIKLI HİZMETLER (VIP & EDITORIAL SERVICES) -->
+<!-- 5. HİZMETLER -->
 <section class="bg-lime" id="hizmetler" aria-labelledby="hHizmet">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow">Ayrıcalıklı Hizmetler</span>
-        <h2 class="h" id="hHizmet">Konfor ve Prestiji Yeniden Tanımlayan Hizmetler</h2>
-        <p class="lead">Ziyaretinizi kusursuz bir deneyime dönüştürmek için tasarlanan Koru Florya ayrıcalıkları.</p>
+        <span class="eyebrow">Ziyaretçi hizmetleri</span>
+        <h2 class="h" id="hHizmet">Ziyaretinizi Kolaylaştıran Hizmetler</h2>
+        <p class="lead">Vale, danışma, bebek bakım odaları ve elektrikli şarj noktalarıyla rahat bir ziyaret deneyimi.</p>
       </div>
     </div>
 
-    <!-- Üst Bölüm: 3 Büyük Görselli Editoryal Hizmet Kartı -->
+    <!-- Üst Bölüm: 3 Görselli Hizmet Kartı -->
     <div class="services-hero-grid">
       <!-- 1. Vale & Otopark -->
       <article class="srv-hero-card">
         <div class="srv-img-wrap">
           <img src="https://images.unsplash.com/photo-1542282088-72c9c27ed0cd?auto=format&fit=crop&q=80&w=900" alt="Vale Park ve Otopark Hizmeti" loading="lazy" />
-          <span class="srv-badge">Vale Hizmeti</span>
+          <span class="srv-badge">Vale hizmeti</span>
         </div>
         <div class="srv-body">
           <h3>Vale Hizmeti &amp; Otopark</h3>
@@ -192,7 +192,7 @@
       <article class="srv-hero-card">
         <div class="srv-img-wrap">
           <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&q=80&w=900" alt="Danışma ve Misafir Hizmetleri" loading="lazy" />
-          <span class="srv-badge">Misafir Hizmetleri</span>
+          <span class="srv-badge">Misafir danışma</span>
         </div>
         <div class="srv-body">
           <h3>Danışma &amp; Misafir Hizmetleri</h3>
@@ -205,7 +205,7 @@
       <article class="srv-hero-card">
         <div class="srv-img-wrap">
           <img src="https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=900" alt="Elektrikli Araç Şarj İstasyonları" loading="lazy" />
-          <span class="srv-badge">E-Şarj Noktası</span>
+          <span class="srv-badge">E-şarj noktası</span>
         </div>
         <div class="srv-body">
           <h3>Elektrikli Araç Şarj İstasyonları</h3>
@@ -215,21 +215,21 @@
       </article>
     </div>
 
-    <!-- Alt Bölüm: 3 Kompakt İkonlu Hizmet Kartı -->
+    <!-- Alt Bölüm: 3 Kompakt Hizmet Kartı -->
     <div class="services-compact-grid">
       <div class="srv-compact-card">
         <div class="srv-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M10 8h4M12 12v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M10 8h4M12 12v4"/></svg>
         </div>
         <div>
           <h4>Bebek Bakım Odaları</h4>
-          <p>Çocuklu ailelerimizin konforu için özel olarak hazırlanmış, hijyenik ve sakin bebek bakım ve emzirme alanları.</p>
+          <p>Çocuklu ailelerin konforu için özel olarak hazırlanmış, hijyenik ve sakin bebek bakım ve emzirme alanları.</p>
         </div>
       </div>
 
       <div class="srv-compact-card">
         <div class="srv-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
         </div>
         <div>
           <h4>Döviz &amp; Banka ATM'leri</h4>
@@ -239,7 +239,7 @@
 
       <div class="srv-compact-card">
         <div class="srv-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
         </div>
         <div>
           <h4>Ücretsiz Ziyaretçi Wi-Fi</h4>
@@ -250,43 +250,43 @@
   </div>
 </section>
 
-<!-- 6. ULAŞIM TERMİNALİ VE HARİTA (DİNAMİK ROTA SİSTEMİ) -->
+<!-- 6. ULAŞIM TERMİNALİ VE HARİTA -->
 <section id="ulasim" aria-labelledby="hUlasim">
   <div class="wrap">
     <div class="sec-head">
       <div>
-        <span class="eyebrow">Ulaşım &amp; Konum</span>
-        <h2 class="h" id="hUlasim">Nasıl Gelirim</h2>
-        <p class="lead">Yandaki ulaşım seçeneklerine tıkladığınızda haritada güzergâh ve rota dinamik olarak güncellenir.</p>
+        <span class="eyebrow">Ulaşım ve konum</span>
+        <h2 class="h" id="hUlasim">Nasıl Gelirim?</h2>
+        <p class="lead">Ulaşım seçeneklerini seçerek güncel sefer ve doğrudan yürüme rotalarını haritada inceleyebilirsiniz.</p>
       </div>
     </div>
 
     <div class="transit-hub-layout">
-      <!-- Sol Harita (Yer işaretleri kesinlikle kaymayan OpenStreetMap & Uydu) -->
+      <!-- Sol Harita -->
       <div class="map" id="map" role="img" aria-label="Koru Florya ulaşım haritası">
         <div class="map-canvas" id="mapCanvas"></div>
         <div class="map-theme-toggle" role="group" aria-label="Harita teması">
           <button type="button" class="mt-btn on" data-map-theme="street" title="Standart Sokak Haritası">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
             Harita
           </button>
           <button type="button" class="mt-btn" data-map-theme="satellite" title="Uydu ve Hava Fotoğrafı">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="13" height="13"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="13" height="13"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
             Uydu
           </button>
         </div>
         <div class="map-leg" id="mapLeg">
-          <span class="dot" style="animation:none;background:#00B995"></span>
+          <span class="dot"></span>
           <span id="mapLegText">Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis)</span>
         </div>
         <div class="map-attr" id="mapAttr"><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a></div>
         <div class="map-actions">
-          <a class="btn btn-dark btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Koru+Florya+Al%C4%B1%C5%9Fveri%C5%9F+ve+Ya%C5%9Fam+Merkezi" id="gmaps">Google Maps <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-          <a class="btn btn-light btn-sm" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Koru+Florya&ll=40.9842677,28.7834510" id="amaps">Apple Maps <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-dark btn-sm" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Koru+Florya+Al%C4%B1%C5%9Fveri%C5%9F+ve+Ya%C5%9Fam+Merkezi" id="gmaps">Google Maps <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-light btn-sm" target="_blank" rel="noopener" href="https://maps.apple.com/?q=Koru+Florya&ll=40.9842677,28.7834510" id="amaps">Apple Maps <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </div>
 
-      <!-- Sağ Konsol (Dinamik Rota Değiştirici) -->
+      <!-- Sağ Konsol -->
       <div class="transit-panel">
         <div class="transit-tabs" role="tablist">
           <button class="t-tab on" type="button" data-route="shuttle">Marmaray &amp; Servis</button>
@@ -309,22 +309,22 @@
             </div>
             <p class="t-desc">Marmaray Florya istasyonu ile Koru Florya arasında her 30 dakikada bir ücretsiz ring servisimiz hizmet vermektedir. Haritada yeşil kesikli rota Basınköy / Florya güzergâhını gösterir.</p>
             <div class="sw-wrapper">
-              <span class="sw-label">Sefer Yönü:</span>
+              <span class="sw-label">Sefer yönü:</span>
               <div class="sw" role="group" aria-label="Servis yönü">
                 <button type="button" data-d="MF" aria-pressed="true">Marmaray'dan</button>
                 <button type="button" data-d="KF" aria-pressed="false">KoruFlorya'dan</button>
               </div>
             </div>
             <div class="timetable-box">
-              <div class="times-head"><span>Bugünkü Sefer Saatleri</span><small>Sıradaki sefer yeşil ile vurgulanır</small></div>
+              <div class="times-head"><span>Bugünkü Sefer Saatleri</span><small>Sıradaki sefer koyu zeminle vurgulanır</small></div>
               <div class="times" id="shTimes"></div>
             </div>
           </div>
 
           <!-- 2. Metrobüs Tab -->
           <div class="t-pane" id="tp-metro">
-            <div class="t-live-badge" style="background:#FFF0EB;color:#FF7F41">
-              <span class="dot" style="background:#FF7F41"></span>
+            <div class="t-live-badge">
+              <span class="dot"></span>
               <span>Doğrudan Üst Geçit &amp; Yürüyüş Yolu</span>
             </div>
             <div class="route-summary-box">
@@ -334,14 +334,14 @@
             </div>
             <p class="t-desc">Cennet Mahallesi Metrobüs Durağı peronundan çıkan üst geçit, yürüyen merdiven ve asansörler ile D-100'ü geçip doğrudan <b>Koru Florya ana giriş meydanına (130 m · 2 dk)</b> inebilirsiniz.</p>
             <div class="t-route-item">
-              <div class="t-route-icon" style="color:#FF7F41"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="13" rx="2"/><path d="M4 11h16M7 20v-3M17 20v-3"/></svg></div>
+              <div class="t-route-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="4" width="16" height="13" rx="2"/><path d="M4 11h16M7 20v-3M17 20v-3"/></svg></div>
               <div>
                 <h4>Metrobüs: Cennet Mahallesi Durağı</h4>
                 <p>Metrobüs durağı doğrudan AVM'nin karşısındadır. Üst geçit asansör ve yürüyen merdivenleri ile doğrudan ana avluya iniş sağlanır.</p>
               </div>
             </div>
             <div class="t-route-item">
-              <div class="t-route-icon" style="color:#FF7F41"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M5 12h14"/></svg></div>
+              <div class="t-route-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v20M5 12h14"/></svg></div>
               <div>
                 <h4>M1A Metro &amp; Metrobüs Aktarması</h4>
                 <p>Yenibosna veya Ataköy istasyonlarından metrobüse aktarma yaparak Cennet durağına ve oradan AVM'ye 2 dakikada geçebilirsiniz.</p>
@@ -351,8 +351,8 @@
 
           <!-- 3. Otobüs Tab -->
           <div class="t-pane" id="tp-bus">
-            <div class="t-live-badge" style="background:#EFF6FF;color:#2563EB">
-              <span class="dot" style="background:#2563EB"></span>
+            <div class="t-live-badge">
+              <span class="dot"></span>
               <span>Ana Giriş Kapısı Önü Durak</span>
             </div>
             <div class="route-summary-box">
@@ -360,22 +360,22 @@
               <div class="rs-item"><b>1 dk</b><span>Yürüme</span></div>
               <div class="rs-item"><b>3 Hat</b><span>Doğrudan İETT</span></div>
             </div>
-            <p class="t-desc">Haritada mavi çizgiyle gösterilen durak doğrudan AVM ana giriş kapısının önündedir.</p>
+            <p class="t-desc">Haritada gösterilen durak doğrudan AVM ana giriş kapısının önündedir.</p>
             <div class="bus-lines">
-              <div class="b-line"><span class="b-code" style="background:#2563EB">73</span><div class="b-info"><b>Yenibosna Metro - Florya</b><small>Koru Florya durağında ininiz.</small></div></div>
-              <div class="b-line"><span class="b-code" style="background:#2563EB">73F</span><div class="b-info"><b>Taksim - Florya Sahil Ekspres</b><small>Sahil ve E-5 üzerinden doğrudan erişim.</small></div></div>
-              <div class="b-line"><span class="b-code" style="background:#2563EB">98</span><div class="b-info"><b>Bakırköy - Başakşehir</b><small>Bakırköy İDO ve Meydan bağlantısı.</small></div></div>
+              <div class="b-line"><span class="b-code">73</span><div class="b-info"><b>Yenibosna Metro - Florya</b><small>Koru Florya durağında ininiz.</small></div></div>
+              <div class="b-line"><span class="b-code">73F</span><div class="b-info"><b>Taksim - Florya Sahil Ekspres</b><small>Sahil ve E-5 üzerinden doğrudan erişim.</small></div></div>
+              <div class="b-line"><span class="b-code">98</span><div class="b-info"><b>Bakırköy - Başakşehir</b><small>Bakırköy İDO ve Meydan bağlantısı.</small></div></div>
             </div>
           </div>
 
           <!-- 4. Otopark & Vale Tab -->
           <div class="t-pane" id="tp-car">
-            <div class="t-live-badge" style="background:#F1EFEA;color:#17211E">
-              <span class="dot" style="background:#17211E"></span>
+            <div class="t-live-badge">
+              <span class="dot"></span>
               <span>1.200 Araçlık Kapalı Otopark</span>
             </div>
             <div class="car-features">
-              <div class="cf-item"><b>Giriş Güzergâhı</b><p>Haritada siyah çizgiyle gösterilen Ekşinar Sokak üzerinden -1 ve -2 kapalı otopark rampasına giriş yapınız.</p></div>
+              <div class="cf-item"><b>Giriş Güzergâhı</b><p>Ekşinar Sokak üzerinden -1 ve -2 kapalı otopark rampasına giriş yapınız.</p></div>
               <div class="cf-item"><b>Özel Vale Hizmeti</b><p>Ana cadde girişinde karşılama ve vale teslim noktası mevcuttur.</p></div>
               <div class="cf-item"><b>Elektrikli Şarj</b><p>-1 Otopark Katı'nda elektrikli araçlar için şarj noktaları mevcuttur.</p></div>
               <div class="cf-item"><b>Navigasyon Adresi</b><p>Şenlikköy Mah. Ekşinar Sok. No: 46/1, Bakırköy / İstanbul</p></div>
@@ -384,7 +384,7 @@
         </div>
 
         <div class="transit-footer">
-          <a class="btn btn-dark btn-sm w-full" id="transitActionBtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Koru+Florya+Al%C4%B1%C5%9Fveri%C5%9F+ve+Ya%C5%9Fam+Merkezi">Google Haritalar'da Yol Tarifi Başlat <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+          <a class="btn btn-dark btn-sm w-full" id="transitActionBtn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=Koru+Florya+Al%C4%B1%C5%9Fveri%C5%9F+ve+Ya%C5%9Fam+Merkezi">Google Haritalar'da Yol Tarifi Başlat <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
         </div>
       </div>
     </div>

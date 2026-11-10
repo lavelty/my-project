@@ -16,14 +16,14 @@ header.className='nav'+(home?'':' solid');
 header.id='nav';
 header.innerHTML=`<div class="wrap">
   <a class="brand" href="${home?'#top':'index.html'}" aria-label="Koru Florya ana sayfa">
-    <img class="logo-w" src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="156" height="50" />
-    <img class="logo-d" src="assets/logo/koruflorya.svg" alt="" width="156" height="50" />
+    <img class="logo-w" src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="156" height="48" />
+    <img class="logo-d" src="assets/logo/koruflorya.svg" alt="" width="156" height="48" />
   </a>
   <nav class="links" id="links" aria-label="Ana menü">
     ${nav.map(([t,h])=>`<a href="${h}">${t}</a>`).join('')}
   </nav>
   <div class="nav-r">
-    <div class="live" role="status" title="Çalışma Saatleri: Her gün 10:00 - 22:00">
+    <div class="live" role="status" title="Çalışma saatleri: Her gün 10:00 - 22:00">
       <span class="dot" id="navDot"></span>
       <span id="navStatus">Şu an açık</span>
     </div>
@@ -47,27 +47,27 @@ footer.innerHTML=`<div class="wrap">
   <div class="foot">
     <div class="foot-col foot-brand-col">
       <a class="brand" href="${home?'#top':'index.html'}" aria-label="Koru Florya ana sayfa">
-        <img src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="180" height="58" />
+        <img src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="160" height="50" />
       </a>
-      <p class="foot-desc">İstanbul Florya'nın seçkin markalar, gurme lezzetler, kültür ve doğayla buluştuğu prestijli yaşam ve alışveriş merkezi.</p>
+      <p class="foot-desc">177 seçkin mağaza, açık hava bahçe terasları ve doğrudan Marmaray/Metrobüs ulaşımı ile Florya'nın alışveriş ve yaşam merkezi.</p>
       <div class="foot-schedule">
-        <span class="fs-title">Ziyaret Saatleri:</span>
-        <span class="fs-hours">Her Gün 10:00 – 22:00</span>
+        <span class="fs-title">Ziyaret saatleri:</span>
+        <span class="fs-hours">Her gün 10:00 – 22:00</span>
       </div>
     </div>
 
     <div class="foot-col">
-      <h3>Gezin</h3>
+      <h3>Keşfet</h3>
       <a href="${p}#rehber">Markalar ve Katlar</a>
       <a href="etkinlikler.html">Etkinlik Takvimi</a>
-      <a href="${p}#hizmetler">Ayrıcalıklı Hizmetler</a>
+      <a href="${p}#hizmetler">Ziyaretçi Hizmetleri</a>
       <a href="${p}#ulasim">Ulaşım ve Harita</a>
     </div>
 
     <div class="foot-col">
       <h3>Hizmetler</h3>
-      <a href="${p}#hizmetler">VIP Vale &amp; Yıkama</a>
-      <a href="${p}#hizmetler">Concierge Danışma</a>
+      <a href="${p}#hizmetler">Vale &amp; Kapalı Otopark</a>
+      <a href="${p}#hizmetler">Misafir Danışma</a>
       <a href="${p}#hizmetler">Elektrikli Araç Şarjı</a>
       <a href="${p}#hizmetler">Bebek Bakım Odaları</a>
     </div>
@@ -83,15 +83,15 @@ footer.innerHTML=`<div class="wrap">
       <h3>Takip Edin</h3>
       <div class="foot-socials">
         <a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
           <span>Instagram</span>
         </a>
         <a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           <span>Facebook</span>
         </a>
         <a href="https://www.tiktok.com/@korufloryaavm" target="_blank" rel="noopener" aria-label="TikTok">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
           <span>TikTok</span>
         </a>
       </div>

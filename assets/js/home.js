@@ -164,7 +164,7 @@ function normTr(s){
 }
 
 // Search Highlight
-const PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
+const PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
 function hl(name){
   if(!st.q) return esc(name);
   const qNorm=normTr(st.q);
@@ -213,7 +213,7 @@ function renderStores(){
         </div>
         <div class="sc-bottom">
           <span class="sc-hours">10:00 – 22:00</span>
-          <button class="sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <button class="sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
         </div>
       </article>
     `).join(''):`
@@ -486,9 +486,9 @@ function createFixedPin(title, color, typeIcon){
 }
 
 const MALL_ICON_SVG='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 20 15h-5l5 6H4l5-6H4z"/></svg>';
-const TRAIN_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg>';
-const BUS_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg>';
-const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>';
+const TRAIN_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg>';
+const BUS_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg>';
+const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>';
 
 // Route Configurations
 // Real Turn-by-Turn Route Configurations (Physically Verified)
@@ -510,12 +510,12 @@ const ROUTES={
     ],
     markers:[
       {pos:[40.972898, 28.787609],title:'Marmaray Florya İstasyonu',color:'#00B995',icon:TRAIN_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya AVM (Ring Servis Noktası)',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.984268, 28.783451],title:'Koru Florya AVM (Ring Servis Noktası)',color:'#102B24',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9720, 28.7800], [40.9855, 28.7885]]
   },
   'metro':{
-    color:'#FF7F41',
+    color:'#102B24',
     leg:'Cennet Mahallesi Metrobüs Durağı ↔ Koru Florya (Doğrudan Üst Geçit & Yaya Yolu · 130 m · 2 dk)',
     path:[
       [40.985390, 28.783233],
@@ -524,13 +524,13 @@ const ROUTES={
       [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.985390, 28.783233],title:'Cennet Mahallesi Metrobüs Durağı',color:'#FF7F41',icon:TRAIN_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş Kapısı',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.985390, 28.783233],title:'Cennet Mahallesi Metrobüs Durağı',color:'#102B24',icon:TRAIN_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş Kapısı',color:'#00B995',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9838, 28.7824], [40.9858, 28.7842]]
   },
   'bus':{
-    color:'#2563EB',
+    color:'#2B423A',
     leg:'Koru Florya İETT Otobüs Durağı ↔ Ana Giriş Kapısı (70 m · 1 dk)',
     path:[
       [40.985050, 28.783300],
@@ -538,13 +538,13 @@ const ROUTES={
       [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.985050, 28.783300],title:'Koru Florya İETT Durağı (73, 73F, 98)',color:'#2563EB',icon:BUS_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.985050, 28.783300],title:'Koru Florya İETT Durağı (73, 73F, 98)',color:'#2B423A',icon:BUS_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş',color:'#00B995',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9840, 28.7828], [40.9854, 28.7840]]
   },
   'car':{
-    color:'#17211E',
+    color:'#102B24',
     leg:'Ekşinar Sokak ↔ 1.200 Araçlık Kapalı Otopark & VIP Vale Girişi',
     path:[
       [40.982600, 28.782100],
@@ -553,8 +553,8 @@ const ROUTES={
       [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.983600, 28.782800],title:'Kapalı Otopark Girişi (-1 / -2)',color:'#17211E',icon:CAR_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya VIP Vale',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.983600, 28.782800],title:'Kapalı Otopark Girişi (-1 / -2)',color:'#102B24',icon:CAR_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya VIP Vale',color:'#00B995',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9824, 28.7818], [40.9848, 28.7842]]
   }
