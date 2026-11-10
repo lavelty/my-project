@@ -52,33 +52,33 @@ if(brandList){
 }
 
 /* ========================================================
-   2. ARCHITECTURAL FLOOR & BRAND EXPERIENCE
+   2. ARCHITECTURAL FLOOR & BRAND EXPLORER
    ======================================================== */
 const FLOOR_DATA={
   'all':{
-    id:'all',title:'Tüm Katlarda 177 Marka',badge:'Koru Florya Katları',
-    desc:'Geniş açık terasları, ferah botanik atriyumu ve dünya markalarıyla alışverişin en keyifli hali.',
-    tags:['Açık Bahçe Terasları','177 Butik & Mağaza','29 Gurme Restoran']
+    id:'all',title:'Tüm Katlarda 177 Seçkin Marka',badge:'Koru Florya Katları',
+    desc:'Açık hava terasları, ferah botanik atriyum ve dünya markalarıyla alışverişin en keyifli hali.',
+    count:177
   },
   'C':{
     id:'C',title:'Cadde Katı (2. Kat)',badge:'Açık Teras & Restoranlar',
     desc:'Geniş bahçe terasları, dünya mutfaklarından seçkin restoranlar, bistrolar ve açık hava ferahlığı.',
-    tags:['34 Restoran & Mağaza','Happy Moon\'s · Divan Pub','Açık Bahçe Terasları']
+    count:34
   },
   'P':{
     id:'P',title:'Podyum Katı (1. Kat)',badge:'Moda & Kozmetik',
     desc:'Dünyaca ünlü hazır giyim markaları, tasarım butikleri, kozmetik ve mücevher mağazaları.',
-    tags:['48 Seçkin Marka','Zara · Mango · Sephora','Moda & Mücevher']
+    count:48
   },
   'K':{
-    id:'K',title:'Koru Katı (Giriş Kat)',badge:'Ana Atriyum & Kafe',
+    id:'K',title:'Koru Katı (Giriş Kat)',badge:'Giriş & Botanik Atriyum',
     desc:'Yüksek cam tavanlı botanik atriyum, artisan kahve noktaları, hızlı lezzetler ve teknoloji.',
-    tags:['56 Mağaza & Kafe','Shake Shack · Starbucks','Buluşma Noktası']
+    count:56
   },
   'O':{
     id:'O',title:'Otopark Katı (-1. Kat)',badge:'Hizmetler & Otopark',
     desc:'1.200 araçlık kapalı otopark, oto yıkama & vale, terzi, kuru temizleme ve günlük hizmetler.',
-    tags:['39 Hizmet & Mağaza','MediaMarkt · Migros','Vale & Hızlı Hizmet']
+    count:39
   }
 };
 
@@ -91,17 +91,17 @@ if(pillsEl){
     CATS.slice(0,8).map(c=>`<button class="pill" type="button" data-c="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
 }
 
-// Update Floor Hero Highlight Banner
-function updateFloorHero(fKey){
+// Update Stage Banner
+function updateStageBanner(fKey){
   const d=FLOOR_DATA[fKey]||FLOOR_DATA['all'];
-  if($('#fhBadge')) $('#fhBadge').textContent=d.badge;
-  if($('#fhTitle')) $('#fhTitle').textContent=d.title;
-  if($('#fhDesc')) $('#fhDesc').textContent=d.desc;
-  if($('#fhTags')) $('#fhTags').innerHTML=d.tags.map(t=>`<span class="fh-tag">${esc(t)}</span>`).join('');
+  if($('#sbBadge')) $('#sbBadge').textContent=d.badge;
+  if($('#sbTitle')) $('#sbTitle').textContent=d.title;
+  if($('#sbDesc')) $('#sbDesc').textContent=d.desc;
+  if($('#sbStoreCount')) $('#sbStoreCount').textContent=d.count;
 }
 
 // Search Highlight
-const PIN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="15" height="15"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
+const PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
 function hl(name){
   if(!st.q) return esc(name);
   const i=low(name).indexOf(st.q);
@@ -139,7 +139,7 @@ function renderStores(){
         </div>
         <div class="sc-mid">
           <h3 class="sc-name">${hl(s.n)}</h3>
-          <p class="sc-floor">${PIN} ${esc(KF.floorLabel(s))}</p>
+          <p class="sc-floor">${PIN_SVG} ${esc(KF.floorLabel(s))}</p>
         </div>
         <div class="sc-bottom">
           <span class="sc-hours">10:00 - 22:00</span>
@@ -158,25 +158,22 @@ function renderStores(){
   const rest=list.length-show.length;
   if(moreBtn){
     moreBtn.hidden=rest<=0;
-    moreBtn.textContent=`Daha fazla göster (${rest} mağaza)`;
+    moreBtn.textContent=`Daha fazla mağaza göster (${rest})`;
   }
 }
 
-// Floor Card Click
-const floorStrip=$('#floorStrip');
-if(floorStrip){
-  floorStrip.addEventListener('click',e=>{
-    const b=e.target.closest('.f-card');
-    if(!b) return;
-    st.f=b.dataset.f;
-    document.querySelectorAll('.f-card').forEach(c=>c.classList.toggle('on',c===b));
-    updateFloorHero(st.f);
-    st.lim=12;
-    renderStores();
-  });
-}
+// Floor Tower Selection Listener
+document.addEventListener('click',e=>{
+  const tc=e.target.closest('.tower-card, .tower-all-btn');
+  if(!tc) return;
+  st.f=tc.dataset.f;
+  document.querySelectorAll('.tower-card, .tower-all-btn').forEach(c=>c.classList.toggle('on',c===tc));
+  updateStageBanner(st.f);
+  st.lim=12;
+  renderStores();
+});
 
-// Category Pill Click
+// Category Pills Listener
 if(pillsEl){
   pillsEl.addEventListener('click',e=>{
     const b=e.target.closest('.pill');
@@ -207,9 +204,11 @@ if(clearBtn){
     st.c='all';
     st.f='all';
     st.lim=12;
-    document.querySelectorAll('.f-card').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));
+    document.querySelectorAll('.tower-card').forEach(c=>c.classList.remove('on'));
+    const allBtn=$('.tower-all-btn');
+    if(allBtn) allBtn.classList.add('on');
     document.querySelectorAll('#pills .pill').forEach(p=>p.setAttribute('aria-pressed',p.dataset.c==='all'));
-    updateFloorHero('all');
+    updateStageBanner('all');
     renderStores();
   });
 }
@@ -223,7 +222,7 @@ if(moreBtn){
   });
 }
 
-// Keyboard shortcuts (Ctrl+K)
+// Keyboard shortcut (Ctrl+K)
 document.addEventListener('keydown',e=>{
   const isK=(e.key==='k'||e.key==='K')&&(e.metaKey||e.ctrlKey);
   const slash=e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName);
@@ -262,7 +261,6 @@ if(storeModal){
   });
 }
 
-// Delegate store clicks
 document.addEventListener('click',e=>{
   if(e.target.closest('#emptyClear')){
     if(clearBtn) clearBtn.click();
@@ -276,67 +274,135 @@ document.addEventListener('click',e=>{
 });
 
 // Initial floor & store render
-updateFloorHero('all');
+updateStageBanner('all');
 renderStores();
 
 /* ========================================================
-   4. KORU FLORYA'DA NELER OLUYOR (3'LÜ EDITORIAL SHOWCASE)
+   4. DİNAMİK ULAŞIM TERMİNALİ & YERİ KAYMAYAN HARİTA
    ======================================================== */
-(function(){
-  const culBox=$('#cul');
-  if(!culBox) return;
+let mapInstance=null;
+let activeRouteLayers=[];
 
-  const EDITORIAL_EVENTS=[
-    {
-      id:'kitap-fuari',
-      title:'Kitap Fuarı KoruFlorya’da',
-      date:'4 - 22 KASIM',
-      cat:'Kültür & Sanat',
-      venue:'Koru Katı · Ana Atriyum',
-      desc:'Türkiye’nin önde gelen yayınevleri, binlerce seçkin eser ve ünlü yazarların katılımıyla kitap şöleni.',
-      img:'https://images.unsplash.com/photo-1566131807516-e3b3cd1a89d1?auto=format&fit=crop&q=80&w=900'
-    },
-    {
-      id:'celal-sengor-imza-gunu',
-      title:'Celal Şengör İmza Günü & Söyleşi',
-      date:'15 KASIM · 14:00',
-      cat:'Söyleşi & İmza',
-      venue:'D&R Etkinlik Alanı · Koru Katı',
-      desc:'Prof. Dr. Celal Şengör yeni kitabının tanıtımı ve imza gününde Koru Florya kitapseverleriyle buluşuyor.',
-      img:'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&q=80&w=900'
-    },
-    {
-      id:'koru-akustik-caz',
-      title:'Koru Akustik Sahne: Jazz & Coffee',
-      date:'20 KASIM · 19:30',
-      cat:'Müzik & Sahne',
-      venue:'Podyum Katı · Açık Teras',
-      desc:'Sonbahar esintisinde sıcak artisan kahveler eşliğinde canlı akustik caz triosu ile keyifli bir akşam.',
-      img:'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=900'
-    }
-  ];
-
-  culBox.innerHTML=EDITORIAL_EVENTS.map(ev=>`
-    <article class="ev-card">
-      <div class="ev-img">
-        <img src="${ev.img}" alt="${esc(ev.title)}" loading="lazy" width="900" height="600" />
-        <span class="ev-date-pill">${esc(ev.date)}</span>
-        <span class="ev-cat-pill">${esc(ev.cat)}</span>
+// Fixed Pin Factory: Anchor point [18, 38] is the absolute bottom tip of the pin!
+// The label is positioned above the pin with NO vertical transform, preventing any zoom drift!
+function createFixedPin(title, color, typeIcon){
+  return L.divIcon({
+    className: 'leaflet-fixed-marker',
+    iconSize: [36, 40],
+    iconAnchor: [18, 40],
+    popupAnchor: [0, -42],
+    html: `
+      <div class="fixed-pin" style="--pin-color:${color}">
+        <span class="pin-bubble">${esc(title)}</span>
+        <div class="pin-marker-shape">${typeIcon}</div>
       </div>
-      <div class="ev-body">
-        <div class="ev-venue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> ${esc(ev.venue)}</div>
-        <h3 class="ev-title">${esc(ev.title)}</h3>
-        <p class="ev-desc">${esc(ev.desc)}</p>
-        <a class="btn btn-outline btn-sm ev-btn" href="etkinlik.html?e=${ev.id}">Etkinliği İncele <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
-      </div>
-    </article>
-  `).join('');
-})();
+    `
+  });
+}
 
-/* ========================================================
-   5. NASIL GELİRİM: HARİTA & ULAŞIM TERMİNALİ
-   ======================================================== */
-// Shuttle Timetable & Direction Logic
+const MALL_ICON_SVG='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 20 15h-5l5 6H4l5-6H4z"/></svg>';
+const TRAIN_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg>';
+const BUS_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg>';
+const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>';
+
+// Route Configurations
+const ROUTES={
+  'shuttle':{
+    color:'#00AB84',
+    leg:'Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis)',
+    path:[
+      [40.9728979, 28.7876092],
+      [40.9745, 28.7865],
+      [40.9780, 28.7845],
+      [40.9820, 28.7838],
+      [40.9842677, 28.7834510]
+    ],
+    markers:[
+      {pos:[40.9728979, 28.7876092],title:'Marmaray Florya',color:'#00AB84',icon:TRAIN_ICON_SVG},
+      {pos:[40.9842677, 28.7834510],title:'Koru Florya AVM',color:'#E53935',icon:MALL_ICON_SVG}
+    ],
+    bounds:[[40.9728979, 28.7876092], [40.9842677, 28.7834510]]
+  },
+  'metro':{
+    color:'#FF7F41',
+    leg:'Cennet Metrobüs Durağı ↔ Koru Florya Yürüyüş Yolu (350 m · 2 dk)',
+    path:[
+      [40.9882, 28.7855],
+      [40.9868, 28.7846],
+      [40.9850, 28.7838]
+    ],
+    markers:[
+      {pos:[40.9882, 28.7855],title:'Cennet Metrobüs Durağı',color:'#FF7F41',icon:TRAIN_ICON_SVG},
+      {pos:[40.9850, 28.7838],title:'Koru Florya Yaya Girişi',color:'#E53935',icon:MALL_ICON_SVG}
+    ],
+    bounds:[[40.9845, 28.7830], [40.9888, 28.7862]]
+  },
+  'bus':{
+    color:'#2563EB',
+    leg:'Koru Florya İETT Otobüs Durağı ↔ Ana Giriş Kapısı (60 m · 1 dk)',
+    path:[
+      [40.9855, 28.7845],
+      [40.9848, 28.7839],
+      [40.9843, 28.7835]
+    ],
+    markers:[
+      {pos:[40.9855, 28.7845],title:'Koru Florya Durağı (73, 73F, 98)',color:'#2563EB',icon:BUS_ICON_SVG},
+      {pos:[40.9843, 28.7835],title:'Koru Florya Ana Giriş',color:'#E53935',icon:MALL_ICON_SVG}
+    ],
+    bounds:[[40.9838, 28.7828], [40.9860, 28.7852]]
+  },
+  'car':{
+    color:'#1C1F1D',
+    leg:'Ekşinar Sokak ↔ 1.200 Araçlık Kapalı Otopark & Vale Girişi',
+    path:[
+      [40.9825, 28.7818],
+      [40.9836, 28.7828],
+      [40.9842, 28.7834]
+    ],
+    markers:[
+      {pos:[40.9836, 28.7828],title:'P Kapalı Otopark Girişi',color:'#1C1F1D',icon:CAR_ICON_SVG},
+      {pos:[40.9842, 28.7834],title:'Koru Florya Vale Noktası',color:'#E53935',icon:MALL_ICON_SVG}
+    ],
+    bounds:[[40.9820, 28.7812], [40.9848, 28.7842]]
+  }
+};
+
+function switchTransitRoute(routeKey){
+  if(!mapInstance) return;
+  const cfg=ROUTES[routeKey]||ROUTES['shuttle'];
+
+  // Clear previous layers
+  activeRouteLayers.forEach(l=>mapInstance.removeLayer(l));
+  activeRouteLayers=[];
+
+  // Draw polyline
+  const poly=L.polyline(cfg.path, {
+    color: cfg.color,
+    weight: 4.5,
+    dashArray: '6, 8',
+    opacity: 0.95
+  }).addTo(mapInstance);
+  activeRouteLayers.push(poly);
+
+  // Add markers
+  cfg.markers.forEach(m=>{
+    const icon=createFixedPin(m.title, m.color, m.icon);
+    const marker=L.marker(m.pos, {icon}).addTo(mapInstance);
+    activeRouteLayers.push(marker);
+  });
+
+  // Fit bounds smoothly
+  mapInstance.flyToBounds(cfg.bounds, {
+    padding: [50, 50],
+    duration: 1
+  });
+
+  // Update map legend text
+  const legText=$('#mapLegText');
+  if(legText) legText.textContent=cfg.leg;
+}
+
+// Shuttle Timetable Logic
 let sdir='MF';
 function updateShuttle(){
   const now=KF.nowSecs();
@@ -344,7 +410,7 @@ function updateShuttle(){
   const shBadge=$('#shBadge');
   const shDot=$('#shDot');
   if(shBadge){
-    shBadge.textContent=nx?`Sıradaki servis ${nx.t} · Kalkışa ${nx.min} dk kaldı`:`Bugünkü seferler bitti · Yarın ilk sefer ${KF.SHUTTLE[sdir][0]}`;
+    shBadge.textContent=nx?`Sıradaki servis ${nx.t} · Kalkışa ${nx.min} dk kaldı`:`Bugünkü seferler bitti · Yarın ilk servis ${KF.SHUTTLE[sdir][0]}`;
   }
   if(shDot) shDot.classList.toggle('off',!nx);
   
@@ -358,81 +424,53 @@ function updateShuttle(){
   }
 }
 
-// Direction switcher
 document.querySelectorAll('.sw button').forEach(b=>b.addEventListener('click',()=>{
   sdir=b.dataset.d;
   document.querySelectorAll('.sw button').forEach(x=>x.setAttribute('aria-pressed',x===b));
   updateShuttle();
 }));
 
-// Transit Tabs
+// Route Tab Switching Listener
 const transitTabs=document.querySelectorAll('.t-tab');
 transitTabs.forEach(tab=>{
   tab.addEventListener('click',()=>{
     transitTabs.forEach(t=>t.classList.remove('on'));
     tab.classList.add('on');
-    const targetId='tp-'+tab.dataset.tab;
+    const routeKey=tab.dataset.route;
+    
+    // Switch pane
+    const targetId='tp-'+routeKey;
     document.querySelectorAll('.t-pane').forEach(p=>p.classList.toggle('on',p.id===targetId));
+    
+    // Switch map route line & markers
+    switchTransitRoute(routeKey);
   });
 });
 
 document.addEventListener('kf:tick',updateShuttle);
 updateShuttle();
 
-// Leaflet Map with OpenStreetMap Standard Tiles (NO API KEY REQUIRED!)
+// Leaflet Map Init with Free OpenStreetMap Tiles
 function initLeafletMap(){
   const canvas=$('#mapCanvas');
   if(!canvas || !window.L) return;
   canvas.innerHTML='';
 
-  const {mall, station}=KF.COORD;
-  const centerLat=(mall.lat+station.lat)/2;
-  const centerLon=(mall.lon+station.lon)/2;
-
-  const map = L.map('mapCanvas', {
-    center: [centerLat, centerLon],
+  mapInstance = L.map('mapCanvas', {
+    center: [40.9785, 28.7855],
     zoom: 15,
     scrollWheelZoom: true,
     zoomControl: true
   });
 
-  // OpenStreetMap standard tile server: 100% free, reliable, no API key needed
+  // Standard OpenStreetMap tiles: free, reliable, no watermark
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap contributors'
-  }).addTo(map);
+  }).addTo(mapInstance);
 
-  // Marmaray - Koru Florya Kesikli Rota Çizgisi
-  L.polyline([[station.lat, station.lon], [mall.lat, mall.lon]], {
-    color: '#00AB84',
-    weight: 4,
-    dashArray: '6, 8',
-    opacity: 0.9
-  }).addTo(map);
-
-  // Koru Florya Özel Pin İkonu
-  const mallIcon = L.divIcon({
-    className: 'custom-leaflet-marker',
-    html: `<div class="custom-pin"><span class="custom-pin-bubble">Koru Florya</span><span class="custom-pin-icon ml"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 20 15h-5l5 6H4l5-6H4z"/></svg></span></div>`,
-    iconSize: [44, 64],
-    iconAnchor: [22, 64]
-  });
-  L.marker([mall.lat, mall.lon], {icon: mallIcon}).addTo(map).bindPopup('<b>Koru Florya AVM</b><br>Her gün 10:00 - 22:00');
-
-  // Marmaray Florya İstasyonu Özel Pin İkonu
-  const stationIcon = L.divIcon({
-    className: 'custom-leaflet-marker',
-    html: `<div class="custom-pin"><span class="custom-pin-bubble">Marmaray Florya</span><span class="custom-pin-icon st"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="3" width="14" height="14" rx="3"/><path d="M5 11h14M8 21l2-4M16 21l-2-4"/></svg></span></div>`,
-    iconSize: [44, 64],
-    iconAnchor: [22, 64]
-  });
-  L.marker([station.lat, station.lon], {icon: stationIcon}).addTo(map).bindPopup('<b>Marmaray Florya İstasyonu</b><br>Ücretsiz servis kalkış noktası');
-
-  const R=6371,dLat=(mall.lat-station.lat)*Math.PI/180,dLon=(mall.lon-station.lon)*Math.PI/180;
-  const a=Math.sin(dLat/2)**2+Math.cos(station.lat*Math.PI/180)*Math.cos(mall.lat*Math.PI/180)*Math.sin(dLon/2)**2;
-  const km=(2*R*Math.asin(Math.sqrt(a))).toFixed(1).replace('.',',');
-  const leg=$('#mapLeg');
-  if(leg) leg.innerHTML=`<span class="dot" style="animation:none;background:#00AB84"></span>Marmaray istasyonundan ${km} km · 18-20 dk koru yürüyüşü`;
+  // Initial route (shuttle)
+  switchTransitRoute('shuttle');
 }
 
 if(window.L){
@@ -441,7 +479,7 @@ if(window.L){
   window.addEventListener('load',initLeafletMap);
 }
 
-// Deep linking support: index.html?magaza=Zara
+// Deep linking
 const want=new URLSearchParams(location.search).get('magaza');
 if(want&&byName[want]){
   setTimeout(()=>{
