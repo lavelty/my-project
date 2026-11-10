@@ -75,7 +75,6 @@ footer.innerHTML=`<div class="wrap">
     <div class="foot-col">
       <h3>İletişim</h3>
       <a href="mailto:info@koruflorya.com">info@koruflorya.com</a>
-      <a href="tel:+902120000000">0212 000 00 00</a>
       <a href="mailto:info@koruflorya.com?subject=Kiralama%20Talebi">Kiralama Ofisi</a>
       <span class="foot-addr">Şenlikköy Mah. Ekşinar Sok. No: 46/1, Florya / İstanbul</span>
     </div>

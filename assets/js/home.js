@@ -151,21 +151,37 @@ function updateActiveFiltersBar(){
   chips.innerHTML = html;
 }
 
+// Turkish character search normalization (handles i/ı, ş/s, ğ/g, ü/u, ö/o, ç/c)
+function normTr(s){
+  return (s||'').toLocaleLowerCase('tr')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/ı/g, 'i')
+    .replace(/ğ/g, 'g')
+    .replace(/ü/g, 'u')
+    .replace(/ş/g, 's')
+    .replace(/ö/g, 'o')
+    .replace(/ç/g, 'c');
+}
+
 // Search Highlight
 const PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
 function hl(name){
   if(!st.q) return esc(name);
-  const i=low(name).indexOf(st.q);
+  const qNorm=normTr(st.q);
+  if(!qNorm) return esc(name);
+  const nNorm=normTr(name);
+  const i=nNorm.indexOf(qNorm);
   if(i<0) return esc(name);
-  return esc(name.slice(0,i))+'<mark>'+esc(name.slice(i,i+st.q.length))+'</mark>'+esc(name.slice(i+st.q.length));
+  return esc(name.slice(0,i))+'<mark>'+esc(name.slice(i,i+qNorm.length))+'</mark>'+esc(name.slice(i+qNorm.length));
 }
 
 // Render Stores
 function renderStores(){
+  const qNorm = normTr(st.q);
   const list=stores.filter(s=>{
     const matchFloor = (st.f === 'all' || s.fl.includes(st.f));
     const matchCat = (st.cats.size === 0 || s.c.some(cat => st.cats.has(cat)));
-    const matchQuery = (!st.q || low(s.n).includes(st.q) || s.c.some(c => low(c).includes(st.q)));
+    const matchQuery = (!qNorm || normTr(s.n).includes(qNorm) || s.c.some(c => normTr(c).includes(qNorm)));
     return matchFloor && matchCat && matchQuery;
   });
 
@@ -368,8 +384,12 @@ document.addEventListener('keydown',e=>{
   const slash=e.key==='/'&&!/INPUT|TEXTAREA/.test(document.activeElement.tagName);
   if(isK||slash){
     e.preventDefault();
-    $('#rehber').scrollIntoView({behavior:KF.reduce?'auto':'smooth'});
-    setTimeout(()=>{if(qInput)qInput.focus({preventScroll:true})},450);
+    if(qInput){
+      qInput.focus();
+      qInput.select();
+    }
+    const rehber=$('#rehber');
+    if(rehber) rehber.scrollIntoView({behavior:KF.reduce?'auto':'smooth',block:'start'});
   }
   if(e.key==='Escape'){
     const modal=$('#storeModal');
@@ -401,20 +421,20 @@ function openStoreModal(name){
   $('#smName').textContent=store.n;
   $('#smFloor').textContent=`${KF.floorLabel(store)} · Koru Florya`;
   $('#smCat').textContent=store.c.join(', ');
-  $('#smLoc').textContent=`${KF.floorLabel(store)} (Ana alışveriş koridoru)`;
+  $('#smLoc').textContent=KF.floorLabel(store);
   
-  // Phone number if available
+  // Phone number only if verified in store record
   const phoneRow = $('#smPhoneRow');
   const phoneEl = $('#smPhone');
   if(store.phone){
     if(phoneRow) phoneRow.hidden = false;
     if(phoneEl) phoneEl.textContent = store.phone;
   } else {
-    if(phoneRow) phoneRow.hidden = false;
-    if(phoneEl) phoneEl.textContent = 'Danışma: 0212 000 00 00';
+    if(phoneRow) phoneRow.hidden = true;
+    if(phoneEl) phoneEl.textContent = '';
   }
 
-  $('#smDesc').textContent=store.d||`${store.n}, en güncel koleksiyonları ve kaliteli hizmet anlayışıyla Koru Florya'da sizleri bekliyor.`;
+  $('#smDesc').textContent=store.d||`${store.n}, güncel koleksiyonları ve seçkin ürünleriyle Koru Florya'da sizleri bekliyor.`;
   $('#smDir').href=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent('Koru Florya AVM '+store.n)}`;
   
   storeModal.showModal();
