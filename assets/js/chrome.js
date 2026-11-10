@@ -6,7 +6,7 @@ const p=home?'':'index.html';
 
 const nav=[
   ['Markalar & Katlar',p+'#rehber'],
-  ['Etkinlikler',home?'#etkinlikler':'etkinlikler.html'],
+  ['Etkinlikler','etkinlikler.html'],
   ['Hizmetler',p+'#hizmetler'],
   ['Ulaşım',p+'#ulasim']
 ];
@@ -59,7 +59,7 @@ footer.innerHTML=`<div class="wrap">
     <div class="foot-col">
       <h3>Gezin</h3>
       <a href="${p}#rehber">Markalar ve Katlar</a>
-      <a href="${home?'#etkinlikler':'etkinlikler.html'}">Etkinlik Takvimi</a>
+      <a href="etkinlikler.html">Etkinlik Takvimi</a>
       <a href="${p}#hizmetler">Ayrıcalıklı Hizmetler</a>
       <a href="${p}#ulasim">Ulaşım ve Harita</a>
     </div>
@@ -126,7 +126,7 @@ if(home){
   updateNav();
 
   /* ScrollSpy for active nav item indicator */
-  const sections=['rehber','etkinlikler','hizmetler','ulasim'].map(id=>document.getElementById(id)).filter(Boolean);
+  const sections=['rehber','hizmetler','ulasim'].map(id=>document.getElementById(id)).filter(Boolean);
   if(sections.length && 'IntersectionObserver' in window){
     const spyObs = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{

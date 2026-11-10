@@ -213,7 +213,7 @@ function renderStores(){
         </div>
         <div class="sc-bottom">
           <span class="sc-hours">10:00 – 22:00</span>
-          <button class="btn btn-outline btn-sm sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
+          <button class="sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
         </div>
       </article>
     `).join(''):`
@@ -491,64 +491,121 @@ const BUS_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>';
 
 // Route Configurations
+// Real Turn-by-Turn Route Configurations
 const ROUTES={
   'shuttle':{
     color:'#00B995',
-    leg:'Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis)',
+    leg:'Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis · 5 dk)',
     path:[
-      [40.9728979, 28.7876092],
-      [40.9745, 28.7865],
-      [40.9780, 28.7845],
-      [40.9820, 28.7838],
-      [40.9842677, 28.7834510]
+      [40.97309, 28.787719],
+      [40.973177, 28.787446],
+      [40.973586, 28.786117],
+      [40.974175, 28.784362],
+      [40.974524, 28.783053],
+      [40.974762, 28.782527],
+      [40.974913, 28.782377],
+      [40.975189, 28.782219],
+      [40.975571, 28.782182],
+      [40.975985, 28.782395],
+      [40.976360, 28.782262],
+      [40.977137, 28.781770],
+      [40.977463, 28.781618],
+      [40.977555, 28.781679],
+      [40.978202, 28.782110],
+      [40.978002, 28.781580],
+      [40.977853, 28.780999],
+      [40.978121, 28.780890],
+      [40.979392, 28.780608],
+      [40.979631, 28.780539],
+      [40.980766, 28.780267],
+      [40.981563, 28.780510],
+      [40.981779, 28.780721],
+      [40.982965, 28.781552],
+      [40.983156, 28.781653],
+      [40.983523, 28.781702],
+      [40.983789, 28.781733],
+      [40.984661, 28.781826],
+      [40.984829, 28.781840],
+      [40.985009, 28.781914],
+      [40.985093, 28.782122],
+      [40.985108, 28.782218],
+      [40.985119, 28.782752],
+      [40.985125, 28.782842],
+      [40.985027, 28.782918],
+      [40.984945, 28.783032],
+      [40.984926, 28.783356],
+      [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.9728979, 28.7876092],title:'Marmaray Florya',color:'#00B995',icon:TRAIN_ICON_SVG},
-      {pos:[40.9842677, 28.7834510],title:'Koru Florya AVM',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.972898, 28.787609],title:'Marmaray Florya İstasyonu',color:'#00B995',icon:TRAIN_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya AVM (Ring Noktası)',color:'#E53935',icon:MALL_ICON_SVG}
     ],
-    bounds:[[40.9728979, 28.7876092], [40.9842677, 28.7834510]]
+    bounds:[[40.9720, 28.7790], [40.9855, 28.7885]]
   },
   'metro':{
     color:'#FF7F41',
-    leg:'Cennet Metrobüs Durağı ↔ Koru Florya Yürüyüş Yolu (350 m · 2 dk)',
+    leg:'Cennet Mahallesi Metrobüs Durağı ↔ Koru Florya (Gerçek Yürüme Rotası · 880 m · 10 dk)',
     path:[
-      [40.9882, 28.7855],
-      [40.9868, 28.7846],
-      [40.9850, 28.7838]
+      [40.986436, 28.774144],
+      [40.986428, 28.774342],
+      [40.986407, 28.774700],
+      [40.986377, 28.775001],
+      [40.986325, 28.775345],
+      [40.986249, 28.775758],
+      [40.986145, 28.776254],
+      [40.986018, 28.776771],
+      [40.985903, 28.777147],
+      [40.985760, 28.777538],
+      [40.985620, 28.777889],
+      [40.985539, 28.778125],
+      [40.985444, 28.778464],
+      [40.985343, 28.778964],
+      [40.985290, 28.779324],
+      [40.985266, 28.779729],
+      [40.985255, 28.779966],
+      [40.985247, 28.780387],
+      [40.985245, 28.780975],
+      [40.985232, 28.781519],
+      [40.985214, 28.781981],
+      [40.985223, 28.782439],
+      [40.985253, 28.782910],
+      [40.985268, 28.783091],
+      [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.9882, 28.7855],title:'Cennet Metrobüs Durağı',color:'#FF7F41',icon:TRAIN_ICON_SVG},
-      {pos:[40.9850, 28.7838],title:'Koru Florya Yaya Girişi',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.986436, 28.774144],title:'Cennet Metrobüs Durağı',color:'#FF7F41',icon:TRAIN_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş',color:'#E53935',icon:MALL_ICON_SVG}
     ],
-    bounds:[[40.9845, 28.7830], [40.9888, 28.7862]]
+    bounds:[[40.9835, 28.7735], [40.9875, 28.7845]]
   },
   'bus':{
     color:'#2563EB',
     leg:'Koru Florya İETT Otobüs Durağı ↔ Ana Giriş Kapısı (60 m · 1 dk)',
     path:[
-      [40.9855, 28.7845],
-      [40.9848, 28.7839],
-      [40.9843, 28.7835]
+      [40.98495, 28.78310],
+      [40.98465, 28.78325],
+      [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.9855, 28.7845],title:'Koru Florya Durağı (73, 73F, 98)',color:'#2563EB',icon:BUS_ICON_SVG},
-      {pos:[40.9843, 28.7835],title:'Koru Florya Ana Giriş',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.98495, 28.78310],title:'Koru Florya Durağı (73, 73F, 98)',color:'#2563EB',icon:BUS_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş',color:'#E53935',icon:MALL_ICON_SVG}
     ],
-    bounds:[[40.9838, 28.7828], [40.9860, 28.7852]]
+    bounds:[[40.9838, 28.7825], [40.9855, 28.7840]]
   },
   'car':{
     color:'#17211E',
     leg:'Ekşinar Sokak ↔ 1.200 Araçlık Kapalı Otopark & VIP Vale Girişi',
     path:[
-      [40.9825, 28.7818],
-      [40.9836, 28.7828],
-      [40.9842, 28.7834]
+      [40.98495, 28.78280],
+      [40.98410, 28.78295],
+      [40.98360, 28.78310],
+      [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.9836, 28.7828],title:'Kapalı Otopark Girişi (-1)',color:'#17211E',icon:CAR_ICON_SVG},
-      {pos:[40.9842, 28.7834],title:'Koru Florya VIP Vale',color:'#E53935',icon:MALL_ICON_SVG}
+      {pos:[40.98360, 28.78310],title:'Kapalı Otopark Girişi (-1 / -2)',color:'#17211E',icon:CAR_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya VIP Vale',color:'#E53935',icon:MALL_ICON_SVG}
     ],
-    bounds:[[40.9820, 28.7812], [40.9848, 28.7842]]
+    bounds:[[40.9830, 28.7820], [40.9855, 28.7842]]
   }
 };
 
@@ -556,20 +613,28 @@ function switchTransitRoute(routeKey){
   if(!mapInstance) return;
   const cfg=ROUTES[routeKey]||ROUTES['shuttle'];
 
-  // Clear previous layers
+  // Clear previous route layers
   activeRouteLayers.forEach(l=>mapInstance.removeLayer(l));
   activeRouteLayers=[];
 
-  // Draw polyline
+  // Outer casing for high contrast on both street and satellite
+  const casing=L.polyline(cfg.path, {
+    color: '#FFFFFF',
+    weight: 7,
+    opacity: 0.8
+  }).addTo(mapInstance);
+  activeRouteLayers.push(casing);
+
+  // Colored dashed polyline
   const poly=L.polyline(cfg.path, {
     color: cfg.color,
     weight: 4.5,
     dashArray: '6, 8',
-    opacity: 0.95
+    opacity: 0.98
   }).addTo(mapInstance);
   activeRouteLayers.push(poly);
 
-  // Add markers
+  // Add fixed markers
   cfg.markers.forEach(m=>{
     const icon=createFixedPin(m.title, m.color, m.icon);
     const marker=L.marker(m.pos, {icon}).addTo(mapInstance);
@@ -635,7 +700,53 @@ transitTabs.forEach(tab=>{
 document.addEventListener('kf:tick',updateShuttle);
 updateShuttle();
 
-// Leaflet Map Init with Free OpenStreetMap Tiles
+// Leaflet Map Init with Street & Satellite Layers
+let currentMapTheme='street';
+let streetLayer=null;
+let satelliteLayer=null;
+
+function setMapTheme(theme){
+  if(!mapInstance) return;
+  if(theme===currentMapTheme) return;
+  currentMapTheme=theme;
+
+  if(theme==='satellite'){
+    if(streetLayer) mapInstance.removeLayer(streetLayer);
+    if(!satelliteLayer){
+      satelliteLayer=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: 'Tiles &copy; Esri &mdash; DigitalGlobe, GeoEye, Earthstar Geographics'
+      });
+    }
+    satelliteLayer.addTo(mapInstance);
+    const attr=$('#mapAttr');
+    if(attr) attr.innerHTML='<a href="https://www.esri.com" target="_blank" rel="noopener">© Esri World Imagery</a>';
+  } else {
+    if(satelliteLayer) mapInstance.removeLayer(satelliteLayer);
+    if(!streetLayer){
+      streetLayer=L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© OpenStreetMap contributors'
+      });
+    }
+    streetLayer.addTo(mapInstance);
+    const attr=$('#mapAttr');
+    if(attr) attr.innerHTML='<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">© OpenStreetMap</a>';
+  }
+
+  // Update theme button active state
+  document.querySelectorAll('.map-theme-toggle .mt-btn').forEach(b=>{
+    b.classList.toggle('on', b.dataset.mapTheme===theme);
+  });
+}
+
+// Map theme button listeners
+document.querySelectorAll('.map-theme-toggle .mt-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    setMapTheme(btn.dataset.mapTheme);
+  });
+});
+
 function initLeafletMap(){
   const canvas=$('#mapCanvas');
   if(!canvas || !window.L) return;
@@ -648,8 +759,7 @@ function initLeafletMap(){
     zoomControl: true
   });
 
-  // Standard OpenStreetMap tiles: free, reliable, no watermark
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  streetLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap contributors'
   }).addTo(mapInstance);
