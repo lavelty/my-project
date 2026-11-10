@@ -4,7 +4,7 @@ const $=s=>document.querySelector(s);
 const home=document.body.dataset.page==='home';
 const p=home?'':'index.html';
 const nav=[
-  ['Mağazalar',p+'#rehber'],['Yeme içme',p+'#yeme-icme'],['Etkinlikler',home?'#etkinlikler':'etkinlikler.html'],['Ulaşım',p+'#ulasim']
+  ['Markalar & Katlar',p+'#rehber'],['Etkinlikler',home?'#etkinlikler':'etkinlikler.html'],['Hizmetler',p+'#hizmetler'],['Ulaşım',p+'#ulasim']
 ];
 const header=document.createElement('header');
 header.className='nav'+(home?'':' solid');header.id='nav';
@@ -29,7 +29,7 @@ footer.innerHTML=`<div class="wrap">
       <a class="brand" href="${home?'#top':'index.html'}" aria-label="Koru Florya ana sayfa"><img src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="192" height="64" /></a>
       <p>Florya'nın alışveriş ve yaşam merkezi. Her gün 10:00 - 22:00</p>
     </div>
-    <div><h3>Gezin</h3><a href="${p}#rehber">Kat ve mağazalar</a><a href="${p}#yeme-icme">Yeme içme</a><a href="etkinlikler.html">Etkinlikler</a><a href="${p}#ulasim">Ulaşım</a></div>
+    <div><h3>Gezin</h3><a href="${p}#rehber">Markalar ve katlar</a><a href="etkinlikler.html">Etkinlikler</a><a href="${p}#hizmetler">Ayrıcalıklı hizmetler</a><a href="${p}#ulasim">Ulaşım ve harita</a></div>
     <div><h3>İletişim</h3><a href="mailto:info@koruflorya.com">info@koruflorya.com</a><a href="mailto:info@koruflorya.com?subject=Kiralama">Kiralama</a></div>
     <div><h3>Takip edin</h3><a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener">Facebook</a><a href="https://www.tiktok.com/@korufloryaavm" target="_blank" rel="noopener">TikTok</a></div>
     <div><h3>Yasal</h3><a href="kvkk.html">KVKK aydınlatma metni</a><a href="kvkk.html#cerezler">Çerez bilgisi</a><a href="sartlar.html">Kullanım şartları</a></div>
