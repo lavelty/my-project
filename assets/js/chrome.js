@@ -6,6 +6,7 @@ const p=home?'':'index.html';
 
 const nav=[
   ['Markalar & Katlar',p+'#rehber'],
+  ['Kat Planları','kat-planlari.html'],
   ['Etkinlikler','etkinlikler.html'],
   ['Hizmetler',p+'#hizmetler'],
   ['Ulaşım',p+'#ulasim']
@@ -59,6 +60,7 @@ footer.innerHTML=`<div class="wrap">
     <div class="foot-col">
       <h3>Keşfet</h3>
       <a href="${p}#rehber">Markalar ve Katlar</a>
+      <a href="kat-planlari.html">Kat Planları</a>
       <a href="etkinlikler.html">Etkinlik Takvimi</a>
       <a href="${p}#hizmetler">Ziyaretçi Hizmetleri</a>
       <a href="${p}#ulasim">Ulaşım ve Harita</a>

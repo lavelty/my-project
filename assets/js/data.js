@@ -33,6 +33,24 @@ KF.floorShort=s=>s.fl.map(k=>KF.FL[k].n+' · '+KF.FL[k].sub).join(', ');
 KF.initials=n=>{const w=n.replace(/[^\p{L}\p{N} ]/gu,'').split(' ').filter(Boolean);return(w.length>1?w[0][0]+w[1][0]:w[0].slice(0,2)).toLocaleUpperCase('tr')};
 KF.logoHtml=s=>s.l?`<img src="assets/brands/${s.l}" alt="" loading="lazy" decoding="async" />`:`<i>${KF.esc(KF.initials(s.n))}</i>`;
 
+/* store slugs and floor pages */
+KF.slugify=n=>n.toLocaleLowerCase('tr').replace(/ı/g,'i').replace(/ş/g,'s').replace(/ğ/g,'g').replace(/ü/g,'u').replace(/ö/g,'o').replace(/ç/g,'c').replace(/['’]/g,'-').replace(/&/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'');
+KF.stores.forEach(s=>{s.slug=KF.slugify(s.n)});
+KF.bySlug=Object.fromEntries(KF.stores.map(s=>[s.slug,s]));
+KF.storeUrl=s=>'magaza.html?s='+s.slug;
+KF.catUrl=c=>'index.html?kategori='+encodeURIComponent(c)+'#rehber';
+KF.floorUrl=(f,s)=>'kat-planlari.html?kat='+({K:0,P:1,C:2,O:-1}[f])+(s?'&magaza='+s.slug:'');
+KF.floorFromParam=v=>({'0':'K','1':'P','2':'C','-1':'O'}[v]||null);
+KF.FLOOR_INFO={
+  K:{services:['Danışma','Bankalar & ATM','Kayıp eşya']},
+  P:{services:['Moda & Giyim','Kozmetik & Bakım','Bebek bakım odası']},
+  C:{services:['Restoranlar','Kafeler','Teknoloji']},
+  O:{services:[]}
+};
+/* Real plan drawings: KF.PLAN_FILES.K='assets/plans/koru-kati.svg' (units carry data-store="slug") */
+KF.PLAN_FILES={};
+KF.storeDirections=s=>'https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(KF.MAPS_Q+' '+s.n);
+
 /* free shuttle timetable, from the official "Ücretsiz Servis Saatleri" visual */
 KF.SHUTTLE={
   MF:['10:30','11:00','11:30','12:00','12:30','13:00','13:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00'],

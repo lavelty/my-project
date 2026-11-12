@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Kat planları | Koru Florya</title>
+<meta name="description" content="Koru Florya'da hangi marka ve mekânın hangi katta olduğunu görün: Koru Katı, Podyum Katı, Cadde Katı ve Otopark Katı." />
+<meta name="theme-color" content="#102B24" />
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/logo/koruflorya-icon-hq.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<link rel="stylesheet" href="assets/css/store-pages.css" />
+</head>
+<body data-page="floors">
+<main id="main">
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Ana sayfa</a> / Kat planları</p>
+      <div class="sec-head" style="margin-bottom:0;align-items:flex-end">
+        <div>
+          <span class="eyebrow">Hizmetler</span>
+          <h1 class="h" style="font-size:clamp(40px,5.6vw,76px)">Kat planları</h1>
+        </div>
+        <p class="lead" style="margin:0">Katlarda hangi markaların ve mekânların yer aldığını görebilir, aradığınız mağazanın katına ulaşabilirsiniz</p>
+      </div>
+    </div>
+  </div>
+  <section style="padding-top:48px">
+    <div class="wrap">
+      <div class="kp-tabs"><div class="seg" id="tabs" role="tablist" aria-label="Kat"></div></div>
+      <div id="sel"></div>
+      <div class="kp" id="kp"></div>
+      <div class="kp-list-h">
+        <h2 id="listTitle"></h2>
+        <label class="search sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/></svg><span class="sr">Bu katta ara</span><input id="q" type="search" placeholder="Bu katta ara" autocomplete="off" /></label>
+      </div>
+      <div class="sgrid" id="grid"></div>
+    </div>
+  </section>
+</main>
+<script src="assets/js/stores.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/cards.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script>
+(function(){
+const {esc,low,IC,FL,FORDER}=KF;
+const $=s=>document.querySelector(s);
+const params=()=>new URLSearchParams(location.search);
+const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
+const LAYERS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></svg>';
+const num={K:0,P:1,C:2,O:-1};
+let f=KF.floorFromParam(params().get('kat'))||'K';
+const hlSlug=params().get('magaza');
+const hl=hlSlug&&KF.bySlug[hlSlug];
+if(hl&&!hl.fl.includes(f))f=hl.fl[0];
+let q='';
+const mini=x=>`<a class="mc${hl&&x===hl?' hl':''}" id="m-${x.slug}" href="${KF.storeUrl(x)}"><span class="lg">${KF.logoHtml(x)}</span><span><b>${esc(x.n)}</b><span class="s">${esc(KF.floorShort(x))}</span></span></a>`;
+async function render(){
+  const list=KF.stores.filter(s=>s.fl.includes(f));
+  const food=list.filter(s=>s.c.includes('Yeme & İçme')).length;
+  document.title=`${FL[f].n} kat planı | Koru Florya`;
+  $('#tabs').innerHTML=FORDER.map(k=>`<button type="button" data-f="${k}" aria-pressed="${k===f}">${FL[k].n} <small>${FL[k].sub}</small></button>`).join('');
+  $('#sel').innerHTML=hl?`<div class="kp-sel"><span>Seçili mağaza: <b>${esc(hl.n)}</b> · ${esc(KF.floorShort(hl))}</span><a class="btn btn-dark btn-sm" href="${KF.storeUrl(hl)}">Mağaza sayfası ${IC.arr}</a></div>`:'';
+  const svc=KF.FLOOR_INFO[f].services;
+  let plan=`<div class="kp-plan"><div><div class="kp-ic">${LAYERS}</div><h2>${FL[f].n} (${FL[f].sub})</h2><p>${esc(FL[f].d)}</p><span class="kp-soon">Bu katın plan görseli hazırlanıyor</span></div></div>`;
+  if(KF.PLAN_FILES[f]){try{const t=await (await fetch(KF.PLAN_FILES[f])).text();plan=`<div class="kp-plan kp-svg">${t}</div>`}catch{}}
+  $('#kp').innerHTML=`${plan}<aside class="kp-side"><h2>${FL[f].n} (${FL[f].sub})</h2><p>${esc(FL[f].d)}</p>${svc.length?`<ul class="checks">${svc.map(x=>`<li>${CHECK}${esc(x)}</li>`).join('')}</ul>`:'<div style="height:24px"></div>'}<div class="kp-stats"><div><b>${list.length}</b><span>Mağazalar</span></div><div><b>${food}</b><span>Yeme &amp; İçme</span></div></div></aside>`;
+  document.querySelectorAll('.kp-svg [data-store]').forEach(el=>{el.setAttribute('tabindex','0');el.classList.toggle('on',el.dataset.store===hlSlug);el.addEventListener('click',()=>{location.href='magaza.html?s='+el.dataset.store})});
+  $('#listTitle').textContent=`${FL[f].n} mağazaları`;
+  const shown=list.filter(s=>!q||low(s.n).includes(q)||s.c.some(c=>low(c).includes(q)));
+  $('#grid').innerHTML=shown.length?shown.map(mini).join(''):`<div class="eempty" style="grid-column:1/-1"><p>“${esc(q)}” için bu katta sonuç yok</p></div>`;
+}
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;f=b.dataset.f;q='';$('#q').value='';const u=new URL(location.href);u.searchParams.set('kat',num[f]);u.searchParams.delete('magaza');history.pushState(null,'',u);render()});
+$('#q').addEventListener('input',e=>{q=low(e.target.value.trim());render()});
+addEventListener('popstate',()=>{f=KF.floorFromParam(params().get('kat'))||'K';render()});
+render().then(()=>{if(hl){const el=document.getElementById('m-'+hl.slug);if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),400)}});
+})();
+</script>
+</body>
+</html>

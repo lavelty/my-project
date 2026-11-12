@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mağaza | Koru Florya</title>
+<meta name="description" content="Koru Florya mağaza bilgileri: kat, kategori, çalışma saatleri ve yol tarifi." />
+<meta name="theme-color" content="#102B24" />
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
+<link rel="apple-touch-icon" href="assets/logo/koruflorya-icon-hq.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<link rel="stylesheet" href="assets/css/store-pages.css" />
+</head>
+<body data-page="store">
+<main id="main"><div id="page"></div></main>
+<script src="assets/js/stores.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/cards.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script>
+(function(){
+const {esc,IC,FL}=KF;
+const $=s=>document.querySelector(s);
+const s=KF.bySlug[new URLSearchParams(location.search).get('s')];
+const page=$('#page');
+if(!s){
+  document.title='Mağaza bulunamadı | Koru Florya';
+  page.innerHTML=`<div class="pagehead"><div class="wrap"><p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#rehber">Mağazalar</a></p><h1 class="h" style="font-size:clamp(36px,5vw,64px)">Mağaza bulunamadı</h1><p class="lead">Bağlantı değişmiş ya da mağaza kaldırılmış olabilir</p><p style="margin-top:32px"><a class="btn btn-dark" href="index.html#rehber">Tüm mağazalara dön ${IC.arr}</a></p></div></div>`;
+  return;
+}
+document.title=`${s.n} | Koru Florya`;
+document.querySelector('meta[name=description]').content=`${s.n}, ${KF.floorShort(s)}. ${s.c.join(', ')}. Her gün 10:00 - 22:00.`;
+const cat=s.c[0];
+const camps=KF.EVENTS.filter(e=>e.store===s.n&&!KF.isPast(e));
+const same=KF.stores.filter(x=>x!==s&&cat&&x.c.includes(cat)).sort((a,b)=>(b.fl.some(f=>s.fl.includes(f))-a.fl.some(f=>s.fl.includes(f)))||a.n.localeCompare(b.n,'tr')).slice(0,8);
+const LAYERS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/></svg>';
+const mini=x=>`<a class="mc" href="${KF.storeUrl(x)}"><span class="lg">${KF.logoHtml(x)}</span><span><b>${esc(x.n)}</b><span class="s">${esc(KF.floorShort(x))}</span></span></a>`;
+page.innerHTML=`
+<div class="pagehead">
+  <div class="wrap">
+    <p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="index.html#rehber">Mağazalar</a>${cat?` / <a href="${KF.catUrl(cat)}">${esc(cat)}</a>`:''} / ${esc(s.n)}</p>
+    <div class="sp">
+      <div class="sp-logo">${s.l?`<img src="assets/brands/${s.l}" alt="${esc(s.n)} logosu" width="240" height="150" />`:`<i>${esc(KF.initials(s.n))}</i>`}</div>
+      <div>
+        <h1>${esc(s.n)}</h1>
+        <div class="sp-cats">${s.c.map(c=>`<a href="${KF.catUrl(c)}">${esc(c)}</a>`).join('')}</div>
+        <div class="sp-act">
+          <a class="btn btn-dark" target="_blank" rel="noopener" href="${KF.storeDirections(s)}">Yol tarifi ${IC.arr}</a>
+          <a class="btn btn-outline" href="${KF.floorUrl(s.fl[0],s)}">${LAYERS} Kat planında gör</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section style="padding-top:64px">
+  <div class="wrap sbody">
+    <div style="display:grid;gap:24px">
+      <div class="card2"><h2>Çalışma saatleri</h2><div class="hours-big">Her gün 10:00 – 22:00</div><div class="hours-st"><span class="dot" id="sDot"></span><span id="sStatus"></span></div></div>
+      ${camps.length?`<div><div class="sec-head" style="margin-bottom:24px"><h2 class="h" style="font-size:clamp(26px,3vw,36px)">Bu mağazada</h2></div><div class="sim">${camps.map(KF.cardHtml).join('')}</div></div>`:''}
+    </div>
+    <aside class="card2"><h3>Mağaza bilgileri</h3><dl class="spinfo">
+        <div><dt>Kat</dt><dd>${s.fl.map(f=>`<a href="${KF.floorUrl(f,s)}" style="text-decoration:underline;text-underline-offset:4px">${esc(FL[f].n)} (${esc(FL[f].sub)})</a>`).join('<br>')}</dd></div>
+        <div><dt>Kategori</dt><dd>${s.c.map(c=>esc(c)).join(', ')}</dd></div>
+        <div><dt>Adres</dt><dd><a href="${KF.storeDirections(s)}" target="_blank" rel="noopener" style="text-decoration:underline;text-underline-offset:4px">Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul</a></dd></div>
+        <div><dt>Durum</dt><dd id="sStatus2"></dd></div>
+      </dl>
+    </aside>
+  </div>
+</section>
+${same.length?`<section class="bg-lime" style="margin-top:32px"><div class="wrap"><div class="sec-head"><h2 class="h" style="font-size:clamp(28px,3.6vw,44px)">${esc(cat)} kategorisinde</h2><a class="btn btn-outline" href="${KF.catUrl(cat)}">Tümünü gör ${IC.arr}</a></div><div class="sgrid">${same.map(mini).join('')}</div></div></section>`:''}`;
+function tick(){const st=KF.status();$('#sDot').classList.toggle('off',!st.open);$('#sStatus').textContent=st.open?'Şu an açık, 22:00\'ye kadar':'Şu an kapalı';$('#sStatus2').textContent=st.open?'Şu an açık':'Şu an kapalı'}
+tick();document.addEventListener('kf:tick',tick);
+})();
+</script>
+</body>
+</html>

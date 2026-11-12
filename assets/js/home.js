@@ -58,7 +58,7 @@ const BRANDS=['Zara','Mango','Beymen Club','Starbucks','LEGO Store','Pandora','M
 const brandList=$('#brandList');
 if(brandList){
   brandList.innerHTML=BRANDS.map(n=>byName[n]).filter(s=>s&&s.l).map(s=>`
-    <li><img src="assets/brands/${s.l}" alt="${esc(s.n)}" loading="lazy" decoding="async" /></li>
+    <li><a href="${KF.storeUrl(s)}" aria-label="${esc(s.n)}"><img src="assets/brands/${s.l}" alt="${esc(s.n)}" loading="lazy" decoding="async" /></a></li>
   `).join('');
 }
 
@@ -419,6 +419,7 @@ function openStoreModal(name){
 
   $('#smLogo').innerHTML=KF.logoHtml(store);
   $('#smName').textContent=store.n;
+  const smPage=$('#smPage');if(smPage)smPage.href=KF.storeUrl(store);
   $('#smFloor').textContent=`${KF.floorLabel(store)} · Koru Florya`;
   $('#smCat').textContent=store.c.join(', ');
   $('#smLoc').textContent=KF.floorLabel(store);
@@ -725,7 +726,9 @@ if(window.L){
   window.addEventListener('load',initLeafletMap);
 }
 
-// Deep linking
+// Deep linking: ?kategori=Teknoloji selects the category pill
+const wantCat=new URLSearchParams(location.search).get('kategori');
+if(wantCat){const pill=[...document.querySelectorAll('#pills .pill')].find(p=>p.dataset.c===wantCat);if(pill){pill.click();setTimeout(()=>{const r=$('#rehber');if(r)r.scrollIntoView()},300)}}
 const want=new URLSearchParams(location.search).get('magaza');
 if(want&&byName[want]){
   setTimeout(()=>{
