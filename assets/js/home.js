@@ -212,7 +212,7 @@ function renderStores(){
           <p class="sc-floor">${PIN_SVG} ${esc(KF.floorLabel(s))}</p>
         </div>
         <div class="sc-bottom">
-          <span class="sc-hours">10:00 – 22:00</span>
+          <span class="sc-hours">AVM 10:00 – 22:00</span>
           <button class="sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
         </div>
       </article>
@@ -776,6 +776,15 @@ function switchTransitRoute(routeKey){
   const legKey=$('#mapKey');
   if(legKey) legKey.innerHTML=(cfg.key||[]).map(k=>`<span class="mk mk-${k[0]}"><i></i>${esc(k[1])}</span>`).join('');
 }
+
+// Upcoming events strip
+(function(){
+  const box=$('#homeEvents'),sec=$('#etkinlikSeridi');
+  if(!box||!KF.cardHtml||!KF.TABS) return;
+  const list=KF.sortEv(KF.TABS[0][2]()).slice(0,3);
+  if(!list.length){ if(sec) sec.hidden=true; return; }
+  box.innerHTML=list.map(KF.cardHtml).join('');
+})();
 
 // Shuttle Timetable Logic
 let sdir='MF';

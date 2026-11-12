@@ -51,7 +51,7 @@ if(!s){
 }
 document.title=`${s.n} | Koru Florya`;
 if(window.KFSeo)KFSeo.store(s);
-document.querySelector('meta[name=description]').content=`${s.n}, ${KF.floorShort(s)}. ${s.c.join(', ')}. Her gün 10:00 - 22:00.`;
+document.querySelector('meta[name=description]').content=`${s.n}, ${KF.floorShort(s)}. ${s.c.join(', ')}. Koru Florya her gün 10:00 - 22:00 açıktır.`;
 const cat=s.c[0];
 const camps=KF.EVENTS.filter(e=>e.store===s.n&&!KF.isPast(e));
 const same=KF.stores.filter(x=>x!==s&&cat&&x.c.includes(cat)).sort((a,b)=>(b.fl.some(f=>s.fl.includes(f))-a.fl.some(f=>s.fl.includes(f)))||a.n.localeCompare(b.n,'tr')).slice(0,8);
@@ -77,7 +77,7 @@ page.innerHTML=`
 <section style="padding-top:64px">
   <div class="wrap sbody">
     <div style="display:grid;gap:24px">
-      <div class="card2"><h2>Çalışma saatleri</h2><div class="hours-big">Her gün 10:00 – 22:00</div><div class="hours-st"><span class="dot" id="sDot"></span><span id="sStatus"></span></div></div>
+      <div class="card2"><h2>AVM çalışma saatleri</h2><div class="hours-big">Her gün 10:00 – 22:00</div><div class="hours-st"><span class="dot" id="sDot"></span><span id="sStatus"></span></div></div>
       ${camps.length?`<div><div class="sec-head" style="margin-bottom:24px"><h2 class="h" style="font-size:clamp(26px,3vw,36px)">Bu mağazada</h2></div><div class="sim">${camps.map(KF.cardHtml).join('')}</div></div>`:''}
     </div>
     <aside class="card2"><h3>Mağaza bilgileri</h3><dl class="spinfo">
@@ -90,7 +90,7 @@ page.innerHTML=`
   </div>
 </section>
 ${same.length?`<section class="bg-lime" style="margin-top:32px"><div class="wrap"><div class="sec-head"><h2 class="h" style="font-size:clamp(28px,3.6vw,44px)">${esc(cat)} kategorisinde</h2><a class="btn btn-outline" href="${KF.catUrl(cat)}">Tümünü gör ${IC.arr}</a></div><div class="sgrid">${same.map(mini).join('')}</div></div></section>`:''}`;
-function tick(){const st=KF.status();$('#sDot').classList.toggle('off',!st.open);$('#sStatus').textContent=st.open?'Şu an açık, 22:00\'ye kadar':'Şu an kapalı';$('#sStatus2').textContent=st.open?'Şu an açık':'Şu an kapalı'}
+function tick(){const st=KF.status();$('#sDot').classList.toggle('off',!st.open);$('#sStatus').textContent=st.open?'AVM şu an açık, 22:00\'ye kadar':'AVM şu an kapalı';$('#sStatus2').textContent=st.open?'AVM şu an açık':'AVM şu an kapalı'}
 tick();document.addEventListener('kf:tick',tick);
 })();
 </script>

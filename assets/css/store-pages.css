@@ -56,6 +56,16 @@ body[data-page="store"],body[data-page="floors"]{
 .kp-svg svg{width:100%;height:auto}
 .kp-svg [data-store]{cursor:pointer;transition:fill .16s var(--ease)}
 .kp-svg [data-store]:hover,.kp-svg [data-store].on{fill:var(--green)}
+.kp-stack{display:block;text-align:left;padding:28px}
+.ks-list{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.ks-row{display:grid;grid-template-columns:44px 1fr auto;align-items:center;gap:14px;padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius-lg);background:#fff;color:inherit;text-decoration:none;transition:border-color .16s,background-color .16s}
+.ks-row:hover{border-color:rgba(23,33,30,.24)}
+.ks-row.on{background:var(--brand-dark);border-color:var(--brand-dark);color:#fff}
+.ks-lvl{font-family:var(--font-h);font-weight:600;font-size:22px;font-variant-numeric:tabular-nums}
+.ks-name{font-weight:600}
+.ks-name small{display:block;font-weight:400;font-size:13px;opacity:.7;margin-top:2px}
+.ks-n{font-size:14px;font-variant-numeric:tabular-nums;opacity:.8}
+.ks-note{margin:18px 0 0;font-size:13px;color:var(--ink2)}
 .kp-soon{display:inline-flex;margin-top:20px;height:34px;padding:0 14px;border-radius:var(--radius-sm);background:var(--lime);align-items:center;font-size:13px;font-weight:500;color:var(--ink2)}
 .kp-side h2{font-family:var(--font-h);font-weight:600;font-size:26px;line-height:32px;letter-spacing:-.03em}
 .kp-side>p{color:var(--ink2);margin-top:8px}

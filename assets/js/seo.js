@@ -27,11 +27,11 @@ window.KFSeo={
       organizer:{'@type':'Organization',name:'Koru Florya',url:SITE}});
   },
   store(s){
-    const url=SITE+'magaza.html?s='+s.slug,desc=`${s.n}, ${KF.floorShort(s)}. ${s.c.join(', ')}. Her gün 10:00 - 22:00.`;
+    const url=SITE+'magaza.html?s='+s.slug,desc=`${s.n}, ${KF.floorShort(s)}. ${s.c.join(', ')}. Koru Florya her gün 10:00 - 22:00 açıktır.`;
     page(s.n+' | Koru Florya',desc,url,s.l?SITE+'assets/brands/'+s.l:null);
     ld({'@context':'https://schema.org','@type':'Store',name:s.n,url,
       image:s.l?SITE+'assets/brands/'+s.l:undefined,
-      address:place.address,openingHours:'Mo-Su 10:00-22:00',
+      address:place.address,
       containedInPlace:{'@type':'ShoppingCenter',name:'Koru Florya',url:SITE}});
   }
 };
