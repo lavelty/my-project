@@ -13,13 +13,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/css/site.css" />
 <link rel="stylesheet" href="assets/css/store-pages.css" />
+<!-- seo:start -->
+<link rel="canonical" href="https://lavelty.github.io/my-project/magaza.html" />
+<meta property="og:site_name" content="Koru Florya" />
+<meta property="og:locale" content="tr_TR" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Mağaza | Koru Florya" />
+<meta property="og:description" content="Koru Florya mağaza bilgileri: kat, kategori, çalışma saatleri ve yol tarifi." />
+<meta property="og:url" content="https://lavelty.github.io/my-project/magaza.html" />
+<meta property="og:image" content="https://lavelty.github.io/my-project/assets/og/og-default.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Mağaza | Koru Florya" />
+<meta name="twitter:description" content="Koru Florya mağaza bilgileri: kat, kategori, çalışma saatleri ve yol tarifi." />
+<meta name="twitter:image" content="https://lavelty.github.io/my-project/assets/og/og-default.jpg" />
+<!-- seo:end -->
 </head>
 <body data-page="store">
 <main id="main"><div id="page"></div></main>
 <script src="assets/js/stores.js"></script>
+<script src="assets/js/events.js"></script>
 <script src="assets/js/data.js"></script>
 <script src="assets/js/cards.js"></script>
 <script src="assets/js/chrome.js"></script>
+<script src="assets/js/seo.js"></script>
 <script>
 (function(){
 const {esc,IC,FL}=KF;
@@ -32,6 +50,7 @@ if(!s){
   return;
 }
 document.title=`${s.n} | Koru Florya`;
+if(window.KFSeo)KFSeo.store(s);
 document.querySelector('meta[name=description]').content=`${s.n}, ${KF.floorShort(s)}. ${s.c.join(', ')}. Her gün 10:00 - 22:00.`;
 const cat=s.c[0];
 const camps=KF.EVENTS.filter(e=>e.store===s.n&&!KF.isPast(e));

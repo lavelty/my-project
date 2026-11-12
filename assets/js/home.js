@@ -17,7 +17,7 @@ const ARR=KF.IC.arr;
 const SLIDES=[
   {img:IMG.atrium,alt:'Koru Florya iç mekânı'},
   {img:IMG.fashion,alt:'Alışveriş deneyimi'},
-  {img:IMG.cafe,alt:'Koru bahçe terasları'},
+  {img:IMG.cafe,alt:'Akşam ışığında kafe'},
   {img:IMG.trees,alt:'Florya korusu ve doğa'}
 ];
 const slidesEl=$('#slides'), dotsEl=$('#dots');
@@ -67,29 +67,29 @@ if(brandList){
    ======================================================== */
 const FLOOR_DATA={
   'all':{
-    id:'all',title:'Tüm Katlarda 177 Seçkin Marka',badge:'Koru Florya Katları',
-    desc:'Açık hava bahçe terasları, ferah botanik cam atriyum ve dünya markalarıyla alışverişin en keyifli hali.',
+    id:'all',title:'Tüm katlarda 177 mağaza',badge:'Koru Florya katları',
+    desc:'Dört katta mağazalar, yeme içme durakları ve hizmetler. Bir kat seç, kategoriye göre süz.',
     count:177
   },
   'C':{
-    id:'C',title:'Cadde Katı (2. Kat)',badge:'Açık Teras & Restoranlar',
-    desc:'Geniş bahçe terasları, dünya mutfaklarından seçkin restoranlar, gurme bistrolar ve açık hava ferahlığı.',
-    count:34
+    id:'C',title:'Cadde Katı (2. Kat)',badge:'Restoranlar & Teknoloji',
+    desc:'Restoranlar, kafeler ve teknoloji markaları.',
+    count:KF.stores.filter(s=>s.fl.includes('C')).length
   },
   'P':{
-    id:'P',title:'Podyum Katı (1. Kat)',badge:'Moda & Kozmetik',
-    desc:'Dünyaca ünlü hazır giyim markaları, tasarım butikleri, kozmetik, saat ve mücevher mağazaları.',
-    count:48
+    id:'P',title:'Podyum Katı (1. Kat)',badge:'Moda & Giyim',
+    desc:'Moda ve giyim katı; kadın, erkek ve aksesuar markaları.',
+    count:KF.stores.filter(s=>s.fl.includes('P')).length
   },
   'K':{
-    id:'K',title:'Koru Katı (Giriş Kat)',badge:'Giriş & Botanik Atriyum',
-    desc:'Yüksek cam tavanlı botanik atriyum, artisan kahve noktaları, hızlı lezzetler ve teknoloji mağazaları.',
-    count:56
+    id:'K',title:'Koru Katı (Giriş Kat)',badge:'Giriş',
+    desc:'Ana giriş, danışma, bankalar ve hızlı erişimli mağazalar.',
+    count:KF.stores.filter(s=>s.fl.includes('K')).length
   },
   'O':{
     id:'O',title:'Otopark Katı (-1. Kat)',badge:'Hizmetler & Otopark',
-    desc:'1.200 araçlık kapalı otopark, oto yıkama & VIP vale, terzi, kuru temizleme ve günlük hizmet noktaları.',
-    count:39
+    desc:'Otopark katı. Kuru temizleme, terzi, kuaför ve tatil danışmanlığı hizmetleri.',
+    count:KF.stores.filter(s=>s.fl.includes('O')).length
   }
 };
 
@@ -492,11 +492,11 @@ const BUS_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>';
 
 // Route Configurations
-// Real Turn-by-Turn Route Configurations (Physically Verified)
+// Approximate route configurations (positions are not surveyed)
 const ROUTES={
   'shuttle':{
     color:'#00B995',
-    leg:'Marmaray Florya İstasyonu ↔ Koru Florya (Ücretsiz Ring Servis · 1,4 km · 5 dk)',
+    leg:'Marmaray Florya İstasyonu ↔ Koru Florya (ücretsiz ring servis, rota yaklaşıktır)',
     path:[
       [40.972898, 28.787609],
       [40.973500, 28.786500],
@@ -517,7 +517,7 @@ const ROUTES={
   },
   'metro':{
     color:'#102B24',
-    leg:'Cennet Mahallesi Metrobüs Durağı ↔ Koru Florya (Doğrudan Üst Geçit & Yaya Yolu · 130 m · 2 dk)',
+    leg:'Metrobüs: Cennet – Koru Florya durağı ↔ Koru Florya (konum yaklaşıktır)',
     path:[
       [40.985390, 28.783233],
       [40.985180, 28.783250],
@@ -525,37 +525,34 @@ const ROUTES={
       [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.985390, 28.783233],title:'Cennet Mahallesi Metrobüs Durağı',color:'#102B24',icon:TRAIN_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş Kapısı',color:'#00B995',icon:MALL_ICON_SVG}
+      {pos:[40.985390, 28.783233],title:'Metrobüs durağı (yaklaşık konum)',color:'#102B24',icon:TRAIN_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya',color:'#00B995',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9838, 28.7824], [40.9858, 28.7842]]
   },
   'bus':{
     color:'#2B423A',
-    leg:'Koru Florya İETT Otobüs Durağı ↔ Ana Giriş Kapısı (70 m · 1 dk)',
+    leg:'Koru Florya otobüs durağı (73, 73F, 98) ↔ Ana giriş (konum yaklaşıktır)',
     path:[
       [40.985050, 28.783300],
       [40.984650, 28.783350],
       [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.985050, 28.783300],title:'Koru Florya İETT Durağı (73, 73F, 98)',color:'#2B423A',icon:BUS_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya Ana Giriş',color:'#00B995',icon:MALL_ICON_SVG}
+      {pos:[40.985050, 28.783300],title:'Otobüs durağı (yaklaşık konum)',color:'#2B423A',icon:BUS_ICON_SVG},
+      {pos:[40.984268, 28.783451],title:'Koru Florya',color:'#00B995',icon:MALL_ICON_SVG}
     ],
     bounds:[[40.9840, 28.7828], [40.9854, 28.7840]]
   },
   'car':{
     color:'#102B24',
-    leg:'Ekşinar Sokak ↔ 1.200 Araçlık Kapalı Otopark & VIP Vale Girişi',
+    leg:'Koru Florya · Otopark Katı (-1)',
     path:[
-      [40.982600, 28.782100],
-      [40.983600, 28.782800],
-      [40.984100, 28.783200],
+      [40.984268, 28.783451],
       [40.984268, 28.783451]
     ],
     markers:[
-      {pos:[40.983600, 28.782800],title:'Kapalı Otopark Girişi (-1 / -2)',color:'#102B24',icon:CAR_ICON_SVG},
-      {pos:[40.984268, 28.783451],title:'Koru Florya VIP Vale',color:'#00B995',icon:MALL_ICON_SVG}
+      {pos:[40.984268, 28.783451],title:'Koru Florya · Otopark Katı (-1)',color:'#00B995',icon:CAR_ICON_SVG}
     ],
     bounds:[[40.9824, 28.7818], [40.9848, 28.7842]]
   }

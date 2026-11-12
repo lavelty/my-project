@@ -1,0 +1,1418 @@
+[
+ {
+  "n": "ADL",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "adl.webp"
+ },
+ {
+  "n": "AJA",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "aja.webp"
+ },
+ {
+  "n": "Alix Avien",
+  "f": "P",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "alix-avien.webp"
+ },
+ {
+  "n": "Altın İğne Terzi",
+  "f": "O",
+  "c": [
+   "Hizmet & Banka"
+  ],
+  "l": "altin-igne-terzi.webp"
+ },
+ {
+  "n": "Altınbaş",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "altinbas.webp"
+ },
+ {
+  "n": "Altınyıldız Classics",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "altinyildiz-classics.webp"
+ },
+ {
+  "n": "Amasya Et Ürünleri",
+  "f": "K",
+  "c": [
+   "Market & Gıda"
+  ],
+  "l": "amasya-et-urunleri.webp"
+ },
+ {
+  "n": "Arby's",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "arby-s.webp"
+ },
+ {
+  "n": "Armağan Oyuncak",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "armagan-oyuncak.webp"
+ },
+ {
+  "n": "Asuman",
+  "f": "C",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Atasay",
+  "f": "C",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "atasay.webp"
+ },
+ {
+  "n": "Atasun Optik",
+  "f": "K",
+  "c": [
+   "Sağlık & Optik"
+  ],
+  "l": "atasun-optik.webp"
+ },
+ {
+  "n": "AVVA",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "avva.webp"
+ },
+ {
+  "n": "B&G Store",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "b-g-store.webp"
+ },
+ {
+  "n": "Bağdat Döviz",
+  "f": "P",
+  "c": [
+   "Hizmet & Banka"
+  ],
+  "l": "bagdat-doviz.webp"
+ },
+ {
+  "n": "Bambi",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Barbour",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "barbour.webp"
+ },
+ {
+  "n": "Başak Altın",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "basak-altin.webp"
+ },
+ {
+  "n": "Bershka",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "bershka.webp"
+ },
+ {
+  "n": "Beymen Club",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "beymen-club.webp"
+ },
+ {
+  "n": "Bisse",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "bisse.webp"
+ },
+ {
+  "n": "Blue Diamond",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "blue-diamond.webp"
+ },
+ {
+  "n": "Bolero",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "bolero.webp"
+ },
+ {
+  "n": "Bosch",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "bosch.webp"
+ },
+ {
+  "n": "Boyner",
+  "f": "PC",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "boyner.webp"
+ },
+ {
+  "n": "Burger King",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "burger-king.webp"
+ },
+ {
+  "n": "Burger Yiyelim",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "burger-yiyelim.webp"
+ },
+ {
+  "n": "Cacharel",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Caffè Nero",
+  "f": "P",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "caffe-nero.webp"
+ },
+ {
+  "n": "Coffee Crafters",
+  "f": "C",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "coffee-crafters.webp"
+ },
+ {
+  "n": "Colin's",
+  "f": "K",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "colin-s.webp"
+ },
+ {
+  "n": "Columbia",
+  "f": "P",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "columbia.webp"
+ },
+ {
+  "n": "Crocs",
+  "f": "P",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "crocs.webp"
+ },
+ {
+  "n": "Cups and Clouds",
+  "f": "C",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "cups-cloud.webp"
+ },
+ {
+  "n": "Çift Geyik Karaca",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "karaca.webp"
+ },
+ {
+  "n": "Damat Tween",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "damat-tween.webp"
+ },
+ {
+  "n": "DeFacto",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "defacto.webp"
+ },
+ {
+  "n": "Derimod",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "derimod.webp"
+ },
+ {
+  "n": "Diesel",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "diesel.webp"
+ },
+ {
+  "n": "Dore Müzik",
+  "f": "K",
+  "c": [
+   "Kırtasiye & Kitap"
+  ],
+  "l": "dore-music.webp"
+ },
+ {
+  "n": "Dry Clean Express",
+  "f": "O",
+  "c": [
+   "Hizmet & Banka"
+  ],
+  "l": "dry-clean.webp"
+ },
+ {
+  "n": "Dürümle",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "durumle.webp"
+ },
+ {
+  "n": "Eczane",
+  "f": "P",
+  "c": [
+   "Sağlık & Optik"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Edwards Marine",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "edwards-marine.webp"
+ },
+ {
+  "n": "Efor",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "efor.webp"
+ },
+ {
+  "n": "Ekol",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "ekol.webp"
+ },
+ {
+  "n": "Elle",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "elle.webp"
+ },
+ {
+  "n": "Elle Cafe",
+  "f": "C",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "elle-cafe.webp"
+ },
+ {
+  "n": "Emo Optik",
+  "f": "C",
+  "c": [
+   "Sağlık & Optik"
+  ],
+  "l": "emo-optik.webp"
+ },
+ {
+  "n": "Enka",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "enka.webp"
+ },
+ {
+  "n": "Espressolab",
+  "f": "P",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "espressolab.webp"
+ },
+ {
+  "n": "Faik Sönmez",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "faik-sonmez.webp"
+ },
+ {
+  "n": "Fenerium",
+  "f": "K",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "fenerium.webp"
+ },
+ {
+  "n": "Flormar",
+  "f": "K",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "flormar.webp"
+ },
+ {
+  "n": "G-Star RAW",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "g-star-raw.webp"
+ },
+ {
+  "n": "Gameport",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "gameport.webp"
+ },
+ {
+  "n": "Gant",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "gant.webp"
+ },
+ {
+  "n": "GAP",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "gap.webp"
+ },
+ {
+  "n": "Getmobil",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "getmobil.webp"
+ },
+ {
+  "n": "Gratis",
+  "f": "K",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "gratis.webp"
+ },
+ {
+  "n": "Green Salads",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "green-salads.webp"
+ },
+ {
+  "n": "Greyder",
+  "f": "K",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "greyder.webp"
+ },
+ {
+  "n": "GS Store",
+  "f": "K",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "gs-store.webp"
+ },
+ {
+  "n": "Guess",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "guess.webp"
+ },
+ {
+  "n": "Happy Moon's",
+  "f": "C",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "happy-moon-s.webp"
+ },
+ {
+  "n": "Hays",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "hays.webp"
+ },
+ {
+  "n": "Hemington",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "hemington.webp"
+ },
+ {
+  "n": "Hotiç",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "hotic.webp"
+ },
+ {
+  "n": "İpekyol",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "ipekyol.webp"
+ },
+ {
+  "n": "Jack & Jones",
+  "f": "K",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "jack-jones.webp"
+ },
+ {
+  "n": "Jimmy Key",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "jimmy-key.webp"
+ },
+ {
+  "n": "Joyart",
+  "f": "P",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "joyart.webp"
+ },
+ {
+  "n": "Kayra",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "kayra.webp"
+ },
+ {
+  "n": "Kayseri Mutfağı",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "kayseri-mutfagi.webp"
+ },
+ {
+  "n": "Ketroy",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "ketroy.webp"
+ },
+ {
+  "n": "KFC",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "kfc.webp"
+ },
+ {
+  "n": "Kiğılı",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "kigili.webp"
+ },
+ {
+  "n": "Koçak Gold",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "kocak.webp"
+ },
+ {
+  "n": "Konyalı Saat",
+  "f": "C",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "konyali-saat.webp"
+ },
+ {
+  "n": "Korkmaz",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "korkmaz.webp"
+ },
+ {
+  "n": "Koton",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "koton.webp"
+ },
+ {
+  "n": "Küppeli",
+  "f": "K",
+  "c": [
+   "Aksesuar & Takı"
+  ],
+  "l": "kuppeli.webp"
+ },
+ {
+  "n": "Lacoste",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "lacoste.webp"
+ },
+ {
+  "n": "LC Waikiki",
+  "f": "PC",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "lc-waikiki.webp"
+ },
+ {
+  "n": "Lefties",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "lefties.webp"
+ },
+ {
+  "n": "LEGO Store",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "lego.webp"
+ },
+ {
+  "n": "Levi's",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "levi-s.webp"
+ },
+ {
+  "n": "Lillo",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Liu Jo Milano",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "liu-jo.webp"
+ },
+ {
+  "n": "Lizay Pırlanta",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "lizay-pirlanta.webp"
+ },
+ {
+  "n": "Love My Body",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "love-my-body.webp"
+ },
+ {
+  "n": "LTB",
+  "f": "K",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "ltb.webp"
+ },
+ {
+  "n": "Lulu's Friends",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "lulu-s-friends.webp"
+ },
+ {
+  "n": "M Club",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "m-club.webp"
+ },
+ {
+  "n": "Macro Center",
+  "f": "K",
+  "c": [
+   "Market & Gıda"
+  ],
+  "l": ""
+ },
+ {
+  "n": "MAD Parfümeri",
+  "f": "K",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "mad-parfumeur.webp"
+ },
+ {
+  "n": "Mango",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "mango.webp"
+ },
+ {
+  "n": "Manuka",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "manuka.webp"
+ },
+ {
+  "n": "Maqas Kuaför",
+  "f": "O",
+  "c": [
+   "Hizmet & Banka"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Marlet Pastaneleri",
+  "f": "P",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "marlet-pastaneleri.webp"
+ },
+ {
+  "n": "Massimo Dutti",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "massimo-dutti.webp"
+ },
+ {
+  "n": "Mavi",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "mavi.webp"
+ },
+ {
+  "n": "MediaMarkt",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "mediamarkt.webp"
+ },
+ {
+  "n": "Michetta",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "michetta.webp"
+ },
+ {
+  "n": "Miniso",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "miniso.webp"
+ },
+ {
+  "n": "Minycenter",
+  "f": "C",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "minycenter.webp"
+ },
+ {
+  "n": "Mira Mira",
+  "f": "P",
+  "c": [
+   "Aksesuar & Takı"
+  ],
+  "l": "mira-mira.webp"
+ },
+ {
+  "n": "Modest",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "modest.webp"
+ },
+ {
+  "n": "MR.DIY",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "mr-diy.webp"
+ },
+ {
+  "n": "Mudo",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "mudo.webp"
+ },
+ {
+  "n": "Muscent",
+  "f": "P",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "muscent.webp"
+ },
+ {
+  "n": "Network",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "network.webp"
+ },
+ {
+  "n": "Nocturne",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "nocturne.webp"
+ },
+ {
+  "n": "North Sails",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "north-sails.webp"
+ },
+ {
+  "n": "Opmar Optik",
+  "f": "K",
+  "c": [
+   "Sağlık & Optik"
+  ],
+  "l": "opmar-optik.webp"
+ },
+ {
+  "n": "Oysho",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "oysho.webp"
+ },
+ {
+  "n": "Panço",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "panco.webp"
+ },
+ {
+  "n": "Pandora",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "pandora.webp"
+ },
+ {
+  "n": "Parfois",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "parfois.webp"
+ },
+ {
+  "n": "Pastofino",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "pastofino.webp"
+ },
+ {
+  "n": "Penelope",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "penelope.webp"
+ },
+ {
+  "n": "Penti",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "penti.webp"
+ },
+ {
+  "n": "Pierre Cardin",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "pierre-cardin.webp"
+ },
+ {
+  "n": "Popeyes",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "popeyes.webp"
+ },
+ {
+  "n": "Pull&Bear",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "pull-bear.webp"
+ },
+ {
+  "n": "Puma",
+  "f": "K",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "puma.webp"
+ },
+ {
+  "n": "Quick China",
+  "f": "P",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "quick-china.webp"
+ },
+ {
+  "n": "Ramsey",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "ramsey.webp"
+ },
+ {
+  "n": "Rossmann",
+  "f": "K",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "rossmann.webp"
+ },
+ {
+  "n": "Saat & Saat",
+  "f": "P",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "saat-saat.webp"
+ },
+ {
+  "n": "Saat & Saat Exclusive",
+  "f": "C",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "saat-saat.webp"
+ },
+ {
+  "n": "Samsung",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "samsung.webp"
+ },
+ {
+  "n": "Sbarro",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "sbarro.webp"
+ },
+ {
+  "n": "Schafer",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "schafer.webp"
+ },
+ {
+  "n": "Shake Shack",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "shake-shack.webp"
+ },
+ {
+  "n": "Siemens",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "siemens.webp"
+ },
+ {
+  "n": "Sirello Aksesuar",
+  "f": "K",
+  "c": [
+   "Aksesuar & Takı"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Skechers",
+  "f": "P",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "skechers.webp"
+ },
+ {
+  "n": "Sneaks Up",
+  "f": "P",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "sneaks-up.webp"
+ },
+ {
+  "n": "So Chic",
+  "f": "P",
+  "c": [
+   "Aksesuar & Takı"
+  ],
+  "l": "so-chic.webp"
+ },
+ {
+  "n": "Starbucks",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "starbucks.webp"
+ },
+ {
+  "n": "Stefanel",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "stefanel.webp"
+ },
+ {
+  "n": "Stradivarius",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "stradivarius.webp"
+ },
+ {
+  "n": "Style Aksesuar",
+  "f": "K",
+  "c": [
+   "Aksesuar & Takı"
+  ],
+  "l": "style.webp"
+ },
+ {
+  "n": "Subway",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "subway.webp"
+ },
+ {
+  "n": "Sunglass Hut",
+  "f": "C",
+  "c": [
+   "Sağlık & Optik"
+  ],
+  "l": "sunglass-hut.webp"
+ },
+ {
+  "n": "Superstep",
+  "f": "P",
+  "c": [
+   "Spor & Outdoor"
+  ],
+  "l": "superstep.webp"
+ },
+ {
+  "n": "Suwen",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "suwen.webp"
+ },
+ {
+  "n": "Swarovski",
+  "f": "C",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "swarovski.webp"
+ },
+ {
+  "n": "TatilBudur",
+  "f": "O",
+  "c": [
+   "Hizmet & Banka"
+  ],
+  "l": "tatilbudur.webp"
+ },
+ {
+  "n": "Tavuk Dünyası",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "tavuk-dunyasi.webp"
+ },
+ {
+  "n": "The Co Coffee Company",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "the-co-coffee.webp"
+ },
+ {
+  "n": "Tobacco",
+  "f": "P",
+  "c": [
+   "Hizmet & Banka"
+  ],
+  "l": "select-tobacco.webp"
+ },
+ {
+  "n": "Toyzz Shop",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "toyzz-shop.webp"
+ },
+ {
+  "n": "Troy",
+  "f": "P",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "troy.webp"
+ },
+ {
+  "n": "Tudors",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "tudors.webp"
+ },
+ {
+  "n": "Turkcell",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Türk Telekom",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "turk-telekom.webp"
+ },
+ {
+  "n": "U.S. Polo Assn.",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "u-s-polo-assn.webp"
+ },
+ {
+  "n": "Usta Dönerci",
+  "f": "K",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "usta-donerci.webp"
+ },
+ {
+  "n": "Valmenti",
+  "f": "P",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "valmenti.webp"
+ },
+ {
+  "n": "Vicco",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "vicco.webp"
+ },
+ {
+  "n": "Victoria's Secret",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "victoria-s-secret.webp"
+ },
+ {
+  "n": "Vodafone",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "vodafone.webp"
+ },
+ {
+  "n": "Voi",
+  "f": "C",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": ""
+ },
+ {
+  "n": "Watsons",
+  "f": "K",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "watsons.webp"
+ },
+ {
+  "n": "Weeni Woo",
+  "f": "K",
+  "c": [
+   "Çocuk"
+  ],
+  "l": "weeni-woo.webp"
+ },
+ {
+  "n": "White Burger",
+  "f": "P",
+  "c": [
+   "Yeme & İçme"
+  ],
+  "l": "white-burger.webp"
+ },
+ {
+  "n": "Xenon Smart",
+  "f": "K",
+  "c": [
+   "Teknoloji"
+  ],
+  "l": "xenon-smart.webp"
+ },
+ {
+  "n": "Xside",
+  "f": "K",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "xside.webp"
+ },
+ {
+  "n": "Yargıcı",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "yargici.webp"
+ },
+ {
+  "n": "Yves Rocher",
+  "f": "P",
+  "c": [
+   "Kozmetik & Bakım"
+  ],
+  "l": "yves-rocher.webp"
+ },
+ {
+  "n": "Zara",
+  "f": "PC",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "zara.webp"
+ },
+ {
+  "n": "Zara Home",
+  "f": "C",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "zara-home.webp"
+ },
+ {
+  "n": "Zeki",
+  "f": "C",
+  "c": [
+   "Moda & Giyim"
+  ],
+  "l": "zeki.webp"
+ },
+ {
+  "n": "Zen Diamond",
+  "f": "C",
+  "c": [
+   "Saat & Mücevher"
+  ],
+  "l": "zen-pirlanta.webp"
+ },
+ {
+  "n": "Zsa Zsa Zsu",
+  "f": "K",
+  "c": [
+   "Ev & Yaşam"
+  ],
+  "l": "zsa-zsa-zsu.webp"
+ }
+]

@@ -50,7 +50,7 @@ footer.innerHTML=`<div class="wrap">
       <a class="brand" href="${home?'#top':'index.html'}" aria-label="Koru Florya ana sayfa">
         <img src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="160" height="50" />
       </a>
-      <p class="foot-desc">177 seçkin mağaza, açık hava bahçe terasları ve doğrudan Marmaray/Metrobüs ulaşımı ile Florya'nın alışveriş ve yaşam merkezi.</p>
+      <p class="foot-desc">177 mağaza, 29 yeme içme durağı ve ücretsiz Marmaray ring servisiyle Florya'nın alışveriş ve yaşam merkezi.</p>
       <div class="foot-schedule">
         <span class="fs-title">Ziyaret saatleri:</span>
         <span class="fs-hours">Her gün 10:00 – 22:00</span>
@@ -68,10 +68,10 @@ footer.innerHTML=`<div class="wrap">
 
     <div class="foot-col">
       <h3>Hizmetler</h3>
-      <a href="${p}#hizmetler">Vale &amp; Kapalı Otopark</a>
-      <a href="${p}#hizmetler">Misafir Danışma</a>
-      <a href="${p}#hizmetler">Elektrikli Araç Şarjı</a>
-      <a href="${p}#hizmetler">Bebek Bakım Odaları</a>
+      <a href="${p}#hizmetler">Danışma</a>
+      <a href="${p}#hizmetler">Bankalar &amp; ATM</a>
+      <a href="${p}#hizmetler">Kayıp eşya</a>
+      <a href="${p}#hizmetler">Bebek bakım odası</a>
     </div>
 
     <div class="foot-col">

@@ -61,34 +61,8 @@ KF.nowSecs=()=>{const d=KF.ist();return d.getHours()*3600+d.getMinutes()*60+d.ge
 KF.nextShuttle=(dir,now=KF.nowSecs())=>{const t=KF.SHUTTLE[dir].find(x=>KF.secs(x)>now);return t?{t,min:Math.ceil((KF.secs(t)-now)/60)}:null};
 KF.status=()=>{const d=KF.ist(),h=d.getHours()+d.getMinutes()/60,open=h>=10&&h<22;return{open,text:open?'Açık · 22:00\'ye kadar':(h<10?'Kapalı · 10:00\'da açılır':'Kapalı · Yarın 10:00')}};
 
-/* events and campaigns. Dates are Istanbul local time. Source: koruflorya.com */
-KF.EVENTS=[
-  {id:'kitap-fuari',type:'event',title:'Kitap Fuarı KoruFlorya’da',kicker:'Kültür · Sanat',short:'4–22 Kasım tarihleri arasında kitapseverleri KoruFlorya’ya bekliyoruz.',
-   about:['Kitap Fuarı boyunca pek çok yayınevinin kitapları KoruFlorya’da.','Fuar kapsamında 8 Kasım’da Ahmet Ümit, 15 Kasım’da Celal Şengör imza günleriyle okurlarıyla buluşuyor.'],
-   start:'2026-11-04',end:'2026-11-22',allDay:true,time:'AVM açılış saatleri içinde',venue:'KoruFlorya',place:'Koru Katı (Giriş Kat)',audience:'Herkese açık',free:true,img:'hero-kitap-fuari.jpg',
-   schedule:[{t:'4 Kasım',d:'Kitap Fuarı başlıyor',hot:true},{t:'8 Kasım',d:'Ahmet Ümit imza günü'},{t:'15 Kasım, 14.00',d:'Celal Şengör imza günü',hot:true},{t:'22 Kasım',d:'Fuarın son günü'}],
-   related:['celal-sengor-imza-gunu','ahmet-umit-imza-gunu']},
-  {id:'celal-sengor-imza-gunu',type:'event',title:'Celal Şengör İmza Günü',kicker:'İmza günü',short:'Prof. Dr. Celal Şengör, KoruFlorya Kitap Fuarı’nda okurlarıyla buluşuyor.',
-   about:['Celal Şengör, Kitap Fuarı kapsamında kitaplarını imzalayacak ve okurlarıyla bir araya gelecek.'],
-   start:'2026-11-15T14:00',end:'2026-11-15T15:00',time:'14.00',venue:'Kitap Fuarı alanı',place:'Koru Katı (Giriş Kat)',audience:'Herkese açık',free:true,img:'hero-celal-sengor.jpg',
-   who:{name:'Prof. Dr. Celal Şengör',bio:'Jeolog ve İstanbul Teknik Üniversitesi öğretim üyesi. Tektonik ve Türkiye jeolojisi üzerine çalışmalarıyla, bilim ve düşünce alanındaki kitaplarıyla geniş bir okur kitlesine ulaşıyor.'},
-   schedule:[{t:'14.00',d:'Celal Şengör, Kitap Fuarı alanında okurlarıyla buluşuyor ve kitaplarını imzalıyor',hot:true}],
-   related:['kitap-fuari','ahmet-umit-imza-gunu']},
-  {id:'ahmet-umit-imza-gunu',type:'event',title:'Ahmet Ümit İmza Günü',kicker:'İmza günü',short:'Kitap Fuarı kapsamında okurlarıyla buluştu.',
-   about:['Kitap Fuarı kapsamında 8 Kasım’da düzenlenen imza günü.'],
-   start:'2026-11-08',end:'2026-11-08',allDay:true,time:null,venue:'Kitap Fuarı',place:'Koru Katı (Giriş Kat)',audience:'Herkese açık',free:true,img:'hero-kitap-fuari.jpg',
-   who:{name:'Ahmet Ümit',bio:'Polisiye romanlarıyla tanınan yazar.'},
-   schedule:[{t:'8 Kasım',d:'Ahmet Ümit, Kitap Fuarı kapsamında okurlarıyla buluştu'}],
-   related:['kitap-fuari','celal-sengor-imza-gunu']},
-  {id:'altinbas-halk-gunleri',type:'campaign',title:'Altınbaş Halk Günleri',kicker:'Kampanya',short:'Seçili pırlanta ürünlerinde %50’ye varan indirim',
-   about:['Seçili pırlanta ürünlerinde %50’ye varan indirim. Kaçırılmayacak fırsatlar.'],start:'2026-11-01',end:'2026-11-11',allDay:true,store:'Altınbaş',place:'Podyum Katı (1. Kat)',img:'hero-altinbas-halk-gunleri.jpg',badge:'%50’ye varan'},
-  {id:'pierre-cardin-sale',type:'campaign',title:'The Cardin Sale',kicker:'Kampanya',short:'Pierre Cardin’de ikonik Kasım indirimi, net %50',
-   about:['Pierre Cardin The Cardin Sale: İkonik Kasım indirimi, net %50 indirim.','Smokin, aksesuar ve basic ürün grupları kampanyaya dahil değildir.'],start:'2026-11-05',end:'2026-12-01',allDay:true,store:'Pierre Cardin',place:'Podyum Katı (1. Kat)',img:'hero-pierre-cardin.jpg',badge:'Net %50'},
-  {id:'dry-clean-express',type:'campaign',title:'Dry Clean Express açıldı',kicker:'Yeni mağaza',short:'Açılışa özel %20 indirim, organik kuru temizleme',
-   about:['Açılışa özel %20 indirim.','Organik kuru temizleme: kokusuz, kimyasal içermez, hassas ciltlere özel.','Konum: -1 Otopark çıkışı, MediaMarkt alt katı. Telefon: 0554 585 10 37, 0212 424 10 37.'],start:null,end:null,store:'Dry Clean Express',place:'-1 Otopark Katı',img:'hero-dry-clean-express.jpg',badge:'%20'},
-  {id:'happy-moons',type:'campaign',title:'Happy Moon’s',kicker:'Mekân',short:'Koccaman lezzetler sizi bekliyor',about:['Koccaman lezzetler sizi bekliyor.'],start:null,end:null,store:"Happy Moon's",place:'Cadde Katı (2. Kat)',img:'hero-happy-moons.jpg'},
-  {id:'shake-shack',type:'campaign',title:'Shake Shack',kicker:'Mekân',short:'KoruFlorya’da buluşmanın tadı başka',about:['KoruFlorya’da buluşmanın tadı başka.'],start:null,end:null,store:'Shake Shack',place:'Koru Katı (Giriş Kat)',img:'hero-shake-shack.jpg'}
-];
+/* events and campaigns come from assets/data/events.json (run node tools/build-data.mjs after editing) */
+KF.EVENTS=window.KF_EVENTS||[];
 KF.evById=id=>KF.EVENTS.find(e=>e.id===id);
 KF.P=s=>{if(!s)return null;const[a,b]=s.split('T');const[y,m,d]=a.split('-').map(Number);const[hh,mm]=(b||'00:00').split(':').map(Number);return new Date(y,m-1,d,hh,mm)};
 KF.startOfDay=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
