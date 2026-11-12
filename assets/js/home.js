@@ -496,7 +496,8 @@ const CAR_ICON_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" s
 const ROUTES={
   'shuttle':{
     color:'#00B995',
-    leg:'Marmaray Florya İstasyonu ↔ Koru Florya · servis yolu ~2,0 km (düz çizgi), yürüyüş yolu ~2,1 km (kesik çizgi)',
+    leg:'Marmaray Florya İstasyonu ↔ Koru Florya',
+    key:[['drive','Araç / servis yolu · ~2,0 km'],['walk','Yürüyüş yolu · ~2,1 km']],
     path:[
       [40.97309, 28.787719],
       [40.973149, 28.787539],
@@ -697,7 +698,8 @@ const ROUTES={
   },
   'metro':{
     color:'#102B24',
-    leg:'Metrobüs durağı ↔ Koru Florya · yürüyüş ~330 m (durak konumu yaklaşıktır)',
+    leg:'Metrobüs durağı (yaklaşık konum) ↔ Koru Florya',
+    key:[['walk','Yürüyüş yolu · ~330 m']],
     path:[
       [40.985607, 28.783188],
       [40.985588, 28.783032],
@@ -735,7 +737,8 @@ const ROUTES={
   },
   'bus':{
     color:'#2B423A',
-    leg:'Otobüs durağı (73, 73F, 98) ↔ Ana giriş · yürüyüş ~90 m (durak konumu yaklaşıktır)',
+    leg:'Otobüs durağı (73, 73F, 98, yaklaşık konum) ↔ Ana giriş',
+    key:[['walk','Yürüyüş yolu · ~90 m']],
     path:[
       [40.985158, 28.783283],
       [40.985139, 28.78307],
@@ -762,6 +765,7 @@ const ROUTES={
   'car':{
     color:'#102B24',
     leg:'Koru Florya · Otopark Katı (-1)',
+    key:[['drive','Araçla yol tarifi için Google Maps düğmesini kullanın']],
     path:[],
     gm:'https://www.google.com/maps/dir/?api=1&destination=40.984268,28.783451&travelmode=driving',
     markers:[
@@ -803,6 +807,8 @@ function switchTransitRoute(routeKey){
   // Update map legend text
   const legText=$('#mapLegText');
   if(legText) legText.textContent=cfg.leg;
+  const legKey=$('#mapKey');
+  if(legKey) legKey.innerHTML=(cfg.key||[]).map(k=>`<span class="mk mk-${k[0]}"><i></i>${esc(k[1])}</span>`).join('');
 }
 
 // Shuttle Timetable Logic
