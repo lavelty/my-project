@@ -23,6 +23,7 @@ Koru Florya: a Turkish-language site for a shopping mall in Bakırköy, Istanbul
 | `etkinlik.html?e=<id>` | Event or campaign detail, calendar links |
 | `magaza.html?s=<slug>` | Store detail (slug comes from the name, see `KF.slugify`) |
 | `kat-planlari.html?kat=0\|1\|2\|-1` | Floor plans by floor, store cards, hook for real plan drawings |
+| `hizmetler.html`, `kayip-esya.html` | Visitor services and lost property (reader layout, text from the official site; lost property uses a ready mailto, no data is collected) |
 | `kvkk.html`, `sartlar.html` | Legal reader pages, text copied from the official site |
 
 ## Architecture
@@ -38,7 +39,7 @@ Koru Florya: a Turkish-language site for a shopping mall in Bakırköy, Istanbul
 
 ## Content rules
 
-- Facts come from koruflorya.com or from the stores list. Do not invent amenities, distances, capacities or brand names. Services confirmed by the official site: information desk, banks and ATM, lost property (Koru Katı), baby care room (Podyum Katı). Vale parking and EV charging are NOT confirmed.
+- Facts come from koruflorya.com or from the stores list. Do not invent amenities, distances, capacities or brand names. Services listed on koruflorya.com/hizmetler.php: information desk, lost property (30 days at the desk), accessibility, baby care room, free Wi-Fi, stroller and wheelchair loan, closed car park (first 60 minutes free), EV charging (24 points), valet at the main entrance, first aid, lost child point. Banks and ATM are Koru Katı. The official lost property page shows a placeholder phone number (+90 212 000 00 01): do not publish it, use info@koruflorya.com. The official page says the baby care rooms are on the "1. ve 3. kat", but the mall has no 3rd floor in our floor model, so the site says Podyum Katı only.
 - Floors: Koru Katı (ground, 0), Podyum Katı (1), Cadde Katı (2), Otopark Katı (-1). Zara, LC Waikiki and Boyner are on two floors (`f: "PC"`).
 - The free shuttle timetable is in `KF.SHUTTLE` (read from the official visual). It is not strictly every 30 minutes.
 - A real floor plan drawing does not exist yet. When one arrives, set `KF.PLAN_FILES.K = 'assets/plans/…svg'` in `data.js`; units need `data-store="<slug>"`.

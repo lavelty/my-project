@@ -21,7 +21,7 @@ vm.createContext(ctx);
 for (const f of ['assets/js/stores.js', 'assets/js/events.js', 'assets/js/data.js']) vm.runInContext(fs.readFileSync(path.join(ROOT, f), 'utf8'), ctx, { filename: f });
 const KF = ctx.window.KF;
 
-const pages = ['index.html', 'etkinlikler.html', 'etkinlik.html', 'kat-planlari.html', 'magaza.html', 'kvkk.html', 'sartlar.html'];
+const pages = ['index.html', 'etkinlikler.html', 'etkinlik.html', 'kat-planlari.html', 'magaza.html', 'kvkk.html', 'sartlar.html', 'hizmetler.html', 'kayip-esya.html'];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 const today = new Date().toISOString().slice(0, 10);
 
@@ -77,7 +77,7 @@ for (const file of pages) {
 
 /* sitemap */
 const urls = [
-  '', 'etkinlikler.html', 'kat-planlari.html', 'kvkk.html', 'sartlar.html',
+  '', 'etkinlikler.html', 'kat-planlari.html', 'hizmetler.html', 'kayip-esya.html', 'kvkk.html', 'sartlar.html',
   ...[0, 1, 2, -1].map((k) => `kat-planlari.html?kat=${k}`),
   ...KF.EVENTS.map((e) => `etkinlik.html?e=${e.id}`),
   ...KF.stores.map((s) => `magaza.html?s=${s.slug}`)

@@ -8,7 +8,7 @@ const nav=[
   ['Markalar & Katlar',p+'#rehber'],
   ['Kat Planları','kat-planlari.html'],
   ['Etkinlikler','etkinlikler.html'],
-  ['Hizmetler',p+'#hizmetler'],
+  ['Hizmetler','hizmetler.html'],
   ['Ulaşım',p+'#ulasim']
 ];
 
@@ -62,16 +62,16 @@ footer.innerHTML=`<div class="wrap">
       <a href="${p}#rehber">Markalar ve Katlar</a>
       <a href="kat-planlari.html">Kat Planları</a>
       <a href="etkinlikler.html">Etkinlik Takvimi</a>
-      <a href="${p}#hizmetler">Ziyaretçi Hizmetleri</a>
+      <a href="hizmetler.html">Ziyaretçi Hizmetleri</a>
       <a href="${p}#ulasim">Ulaşım ve Harita</a>
     </div>
 
     <div class="foot-col">
       <h3>Hizmetler</h3>
-      <a href="${p}#hizmetler">Danışma</a>
-      <a href="${p}#hizmetler">Bankalar &amp; ATM</a>
-      <a href="${p}#hizmetler">Kayıp eşya</a>
-      <a href="${p}#hizmetler">Bebek bakım odası</a>
+      <a href="hizmetler.html">Danışma</a>
+      <a href="hizmetler.html#otopark">Otopark ve şarj</a>
+      <a href="kayip-esya.html">Kayıp eşya</a>
+      <a href="hizmetler.html#ziyaretci">Bebek bakım odası</a>
     </div>
 
     <div class="foot-col">
