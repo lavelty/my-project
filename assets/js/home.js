@@ -245,10 +245,24 @@ document.addEventListener('click',e=>{
     renderStores();
     return;
   }
-  if(e.target.closest('#heroSearchBtn')){
-    setTimeout(()=>{const qEl=$('#q'); if(qEl) qEl.focus({preventScroll:true});},420);
-  }
 });
+
+// Hero quick-search form
+const heroSearchForm=$('#heroSearchForm'), heroSearchInput=$('#heroSearchInput');
+if(heroSearchForm && heroSearchInput){
+  heroSearchForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const val=heroSearchInput.value.trim();
+    st.f='all';st.cats.clear();st.q=val;st.lim=12;
+    const qEl=$('#q'); if(qEl) qEl.value=val;
+    document.querySelectorAll('.tower-card,.tower-all-btn').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));
+    document.querySelectorAll('.stage-pills .pill').forEach(p=>p.classList.toggle('on',p.dataset.c==='all'));
+    updateStageBanner('all');
+    renderStores();
+    const rehber=$('#rehber');
+    if(rehber) rehber.scrollIntoView({behavior:'smooth'});
+  });
+}
 
 // Floor Tower Selection Listener
 document.addEventListener('click',e=>{

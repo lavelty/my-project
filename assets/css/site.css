@@ -404,6 +404,12 @@ section{padding:96px 0}
 .cf-item p{font-size:12.5px;line-height:18px;color:var(--text-muted);margin:0}
 .transit-footer{margin-top:20px;padding-top:16px;border-top:1px solid var(--border-light)}
 
+/* Dark Forest Green Editorial Section (#ulasim) */
+#ulasim{background:var(--brand-dark);color:#fff}
+#ulasim .eyebrow{color:var(--brand-turq)}
+#ulasim h2.h{color:#fff}
+#ulasim .lead{color:#B4C9C0}
+
 /* ========================================================
    11. FOOTER – ARCHITECTURAL
    ======================================================== */
