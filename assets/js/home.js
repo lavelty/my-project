@@ -232,6 +232,24 @@ function renderStores(){
   }
 }
 
+// Quick-pick suggestion & hero search focus
+document.addEventListener('click',e=>{
+  const sug=e.target.closest('.empty-chip');
+  if(sug){
+    const val=sug.dataset.suggest||'';
+    st.f='all';st.cats.clear();st.q=val;st.lim=12;
+    const qEl=$('#q'); if(qEl) qEl.value=val;
+    document.querySelectorAll('.tower-card,.tower-all-btn').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));
+    document.querySelectorAll('.stage-pills .pill').forEach(p=>p.classList.toggle('on',p.dataset.c==='all'));
+    updateStageBanner('all');
+    renderStores();
+    return;
+  }
+  if(e.target.closest('#heroSearchBtn')){
+    setTimeout(()=>{const qEl=$('#q'); if(qEl) qEl.focus({preventScroll:true});},420);
+  }
+});
+
 // Floor Tower Selection Listener
 document.addEventListener('click',e=>{
   const tc=e.target.closest('.tower-card, .tower-all-btn');
