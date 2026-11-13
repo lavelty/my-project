@@ -24,7 +24,7 @@ const slidesEl=$('#slides'), dotsEl=$('#dots');
 if(slidesEl){
   slidesEl.innerHTML=SLIDES.map((s,i)=>`
     <div class="slide${i?'':' on'}">
-      <img src="${U(s.img,2000)}" alt="${s.alt}" width="2000" height="1125" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" />
+      <img src="${U(s.img,1400)}" srcset="${U(s.img,800)} 800w, ${U(s.img,1400)} 1400w, ${U(s.img,2000)} 2000w" sizes="100vw" alt="${s.alt}" width="2000" height="1125" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" />
     </div>
   `).join('');
 }
@@ -774,8 +774,13 @@ const ROUTES={
 };
 
 function switchTransitRoute(routeKey){
-  if(!mapInstance) return;
   const cfg=ROUTES[routeKey]||ROUTES['shuttle'];
+  const legText=$('#mapLegText');
+  if(legText) legText.textContent=cfg.leg;
+  const legKey=$('#mapKey');
+  if(legKey) legKey.innerHTML=(cfg.key||[]).map(k=>`<span class="mk mk-${k[0]}"><i></i>${esc(k[1])}</span>`).join('');
+  const gm=$('#routeGmaps'); if(gm) gm.href=cfg.gm;
+  if(!mapInstance){ if(typeof loadLeaflet==='function') loadLeaflet(); return; }
 
   // Clear previous route layers
   activeRouteLayers.forEach(l=>mapInstance.removeLayer(l));
@@ -787,7 +792,6 @@ function switchTransitRoute(routeKey){
     activeRouteLayers.push(L.polyline(pts,{color:cfg.color,weight:4.5,dashArray:dash,opacity:0.98}).addTo(mapInstance));
   };
   if(cfg.walk){ draw(cfg.walk,'6, 8'); draw(cfg.path,null); } else { draw(cfg.path,'6, 8'); }
-  const gm=$('#routeGmaps'); if(gm) gm.href=cfg.gm;
 
   // Add fixed markers
   cfg.markers.forEach(m=>{
@@ -802,11 +806,6 @@ function switchTransitRoute(routeKey){
     duration: 1
   });
 
-  // Update map legend text
-  const legText=$('#mapLegText');
-  if(legText) legText.textContent=cfg.leg;
-  const legKey=$('#mapKey');
-  if(legKey) legKey.innerHTML=(cfg.key||[]).map(k=>`<span class="mk mk-${k[0]}"><i></i>${esc(k[1])}</span>`).join('');
 }
 
 // Upcoming events strip
@@ -921,7 +920,7 @@ function initLeafletMap(){
   mapInstance = L.map('mapCanvas', {
     center: [40.9785, 28.7855],
     zoom: 15,
-    scrollWheelZoom: true,
+    scrollWheelZoom: false,
     zoomControl: true
   });
 
@@ -930,14 +929,28 @@ function initLeafletMap(){
     attribution: '© OpenStreetMap contributors'
   }).addTo(mapInstance);
 
-  // Initial route (shuttle)
-  switchTransitRoute('shuttle');
+  // Initial route follows the selected tab
+  const onTab=document.querySelector('.t-tab.on');
+  switchTransitRoute(onTab?onTab.dataset.route:'shuttle');
 }
 
-if(window.L){
-  initLeafletMap();
+// Leaflet is loaded only when the transport section comes near the viewport
+let leafletAsked=false;
+function loadLeaflet(){
+  if(leafletAsked) return; leafletAsked=true;
+  if(window.L){ initLeafletMap(); return; }
+  const css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(css);
+  const js=document.createElement('script');js.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';js.onload=initLeafletMap;document.head.appendChild(js);
+}
+const mapSection=$('#ulasim');
+if(mapSection && 'IntersectionObserver' in window){
+  const mapObs=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)){ mapObs.disconnect(); loadLeaflet(); } },{rootMargin:'800px 0px'});
+  mapObs.observe(mapSection);
+  // Fallback: load shortly after the page has finished, without blocking first paint
+  const later=()=>setTimeout(loadLeaflet,2500);
+  if(document.readyState==='complete') later(); else window.addEventListener('load',later);
 } else {
-  window.addEventListener('load',initLeafletMap);
+  loadLeaflet();
 }
 
 // Deep linking: ?kategori=Teknoloji selects the category pill

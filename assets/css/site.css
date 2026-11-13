@@ -465,10 +465,10 @@ footer{background:var(--brand-dark);color:#A8B5AF;padding:80px 0 32px}
 .doc h2{font-family:var(--font-h);font-weight:700;font-size:26px;line-height:32px;letter-spacing:-.03em;margin:52px 0 16px;scroll-margin-top:104px}
 .doc p{margin:12px 0;color:var(--text-muted);font-size:16.5px;line-height:28px}
 .doc dl{margin:16px 0}
-.doc dl>div{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:16px 0;border-top:1px solid var(--border-light)}
+.doc dl>div{display:grid;grid-template-columns:200px minmax(0,1fr);gap:20px;padding:16px 0;border-top:1px solid var(--border-light)}
 .doc dl>div:last-child{border-bottom:1px solid var(--border-light)}
 .doc dt{font-family:var(--font-h);font-weight:600;font-size:15px;color:var(--text-main)}
-.doc dd{color:var(--text-muted);font-size:15.5px;line-height:26px}
+.doc dd{min-width:0;overflow-wrap:anywhere;color:var(--text-muted);font-size:15.5px;line-height:26px}
 .doc dd a,.doc p a{text-decoration:underline;text-underline-offset:4px;color:var(--brand-turq-hover)}
 .doc ul{margin:16px 0}
 .doc li{padding:8px 0 8px 24px;position:relative;color:var(--text-muted);font-size:15.5px;line-height:26px}

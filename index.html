@@ -12,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <link rel="stylesheet" href="assets/css/site.css" />
 <!-- seo:start -->
 <link rel="canonical" href="https://lavelty.github.io/my-project/" />
@@ -44,10 +43,10 @@
     <div class="wrap">
       <div class="hero-content">
         <h1 class="h hero-title">Florya'da alışveriş, kahve ve koru</h1>
-        <p class="sub hero-sub" id="heroSub">Açık hava terasları, seçkin markalar ve doğayla iç içe bir yaşam deneyimi.</p>
+        <p class="sub hero-sub" id="heroSub">177 mağaza, yeme içme durakları ve etkinliklerle Florya'nın buluşma noktası.</p>
         <form class="hero-search-bar" id="heroSearchForm" role="search" aria-label="Hızlı mağaza arama">
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          <input type="search" id="heroSearchInput" placeholder="Mağaza, restoran veya kahve ara... (örn. Zara, Starbucks)" autocomplete="off" />
+          <input type="search" id="heroSearchInput" aria-label="Mağaza ara" placeholder="Mağaza, restoran veya kahve ara... (örn. Zara, Starbucks)" autocomplete="off" />
           <button type="submit" class="hero-search-submit">Ara</button>
         </form>
         <div class="hero-cta">
@@ -153,7 +152,7 @@
         <div class="stage-filter-box">
           <div class="stage-search">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input id="q" type="search" placeholder="Mağaza veya kategori ara (örn: Zara, Starbucks)" autocomplete="off" />
+            <input id="q" type="search" aria-label="Mağaza veya kategori ara" placeholder="Mağaza veya kategori ara (örn: Zara, Starbucks)" autocomplete="off" />
             <kbd id="kbd">Ctrl K</kbd>
           </div>
           <div class="stage-pills" id="pills" role="group" aria-label="Kategoriler"></div>
@@ -457,7 +456,6 @@
   </div>
 </dialog>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="assets/js/stores.js"></script>
 <script src="assets/js/events.js"></script>
 <script src="assets/js/data.js"></script>

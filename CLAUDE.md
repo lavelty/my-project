@@ -12,7 +12,7 @@ Koru Florya: a Turkish-language site for a shopping mall in Bakırköy, Istanbul
 - After editing `assets/data/stores.json` or `assets/data/events.json`: `node tools/build-data.mjs`. It validates the data, regenerates `assets/js/stores.js` and `assets/js/events.js`, then refreshes `sitemap.xml`, `robots.txt` and the SEO block in every page.
 - Only the SEO files: `node tools/build-seo.mjs`. Change `SITE` at the top of that file if the domain changes.
 - Compare the store list with the official site: `node tools/sync-from-koruflorya.mjs` (report only; `--write` applies). The official terms require permission for automated access.
-- Deploy: push to `main`. `.github/workflows/deploy-pages.yml` publishes the whole repo root, so every tracked file is public.
+- Deploy: push to `main`. `.github/workflows/deploy-pages.yml` runs `node tools/build-data.mjs` (a data error fails the deploy), then publishes only the site files: root `*.html`, `robots.txt`, `sitemap.xml` and `assets/{css,js,brands,events,logo,og,plans}`. A new top-level asset folder must be added to that list. The repository itself is public, so tracked files are still visible on GitHub.
 
 ## Pages
 
@@ -35,7 +35,7 @@ Koru Florya: a Turkish-language site for a shopping mall in Bakırköy, Istanbul
 - `assets/js/home.js` (home page), `cards.js` (event card markup), `legal.js` (table of contents), `seo.js` (runtime JSON-LD for store and event pages).
 - Script order on every page: `stores.js`, `events.js`, `data.js`, then page scripts, `chrome.js` last of the shared ones.
 - Images: `assets/brands/*.webp` (store logos), `assets/events/*.webp` (posters, which contain baked-in text), `assets/logo/` (official logo SVGs; the SVG files carry no colors, the favicon colors were assigned by hand). Unsplash photos are hotlinked for the hero and category images.
-- The map on the home page uses Leaflet from a CDN with OpenStreetMap tiles. Route paths and stop positions are approximate.
+- The map on the home page uses Leaflet from a CDN with OpenStreetMap tiles. Leaflet is loaded lazily by `home.js` (`loadLeaflet`), not from `index.html`. Route lines come from OpenStreetMap routing computed offline; stop and entrance positions are approximate.
 
 ## Content rules
 
@@ -51,4 +51,4 @@ More than one person or tool commits to this repo. Run `git pull` before startin
 
 ## Antigravity agent workflow
 
-`.github/workflows/antigravity-agent.yml` and the tracked `.antigravity/` directory support a remote agent on GitHub Actions. Do not hand-edit `.antigravity/` files. The legacy `pair`/`token` workflow inputs print into public run logs, so do not use them. Because Pages publishes the repo root, anything under `.antigravity/` is publicly downloadable.
+`.github/workflows/antigravity-agent.yml` and the tracked `.antigravity/` directory support a remote agent on GitHub Actions. Do not hand-edit `.antigravity/` files. The legacy `pair`/`token` workflow inputs print into public run logs, so do not use them. `.antigravity/` is no longer published to Pages, but it is still readable in the public repository.
