@@ -123,7 +123,16 @@ section{padding:96px 0}
 .hero-eyebrow{display:inline-block;font-family:var(--font-h);font-size:12.5px;font-weight:500;letter-spacing:.04em;color:#D5EBE1;margin-bottom:12px;background:rgba(16,43,36,.6);padding:6px 14px;border-radius:var(--radius-sm);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px)}
 .hero h1{font-size:clamp(40px,5.5vw,72px);line-height:1.04;letter-spacing:-.03em;color:#fff}
 .hero p.sub{font-size:18px;line-height:28px;margin-top:16px;max-width:36rem;color:rgba(255,255,255,.9)}
-.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+
+.hero-search-bar{display:flex;align-items:center;gap:10px;margin-top:24px;max-width:460px;height:48px;padding:4px 4px 4px 16px;border-radius:var(--radius-md);background:rgba(255,255,255,.14);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.28);box-shadow:0 8px 24px rgba(0,0,0,.16);transition:border-color .16s var(--ease),background-color .16s var(--ease)}
+.hero-search-bar:focus-within{background:rgba(16,43,36,.78);border-color:rgba(255,255,255,.55)}
+.hero-search-bar svg{color:rgba(255,255,255,.8);flex:none}
+.hero-search-bar input{flex:1;min-width:0;border:0;background:none;outline:none;color:#fff;font-size:14px;font-family:var(--font-b);-webkit-appearance:none;appearance:none}
+.hero-search-bar input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.hero-search-bar input::placeholder{color:rgba(255,255,255,.72)}
+.hero-search-submit{height:38px;padding:0 18px;border-radius:var(--radius-sm);border:0;background:#fff;color:var(--brand-dark);font-family:var(--font-h);font-size:13.5px;font-weight:600;cursor:pointer;transition:background-color .16s var(--ease),color .16s var(--ease)}
+.hero-search-submit:hover{background:var(--brand-turq);color:#fff}
 
 .dots{display:flex;gap:8px;position:absolute;right:max(24px,calc((100% - 1280px)/2));top:50%;transform:translateY(-50%);flex-direction:column;z-index:3}
 .dots button{width:6px;height:28px;border-radius:var(--radius-pill);border:0;background:rgba(255,255,255,.35);cursor:pointer;transition:background-color .2s var(--ease),height .25s var(--ease)}
