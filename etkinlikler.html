@@ -31,17 +31,17 @@
 </head>
 <body data-page="events">
 <main id="main">
-  <div class="pagehead">
+  <div class="pagehead pagehead-dark">
     <div class="wrap">
       <p class="crumb"><a href="index.html">Ana sayfa</a> / Etkinlikler</p>
-      <span class="eyebrow">Kültür ve sanat</span>
-      <h1 class="h" style="font-size:clamp(36px,4.5vw,60px)">Etkinlikler</h1>
-      <p class="lead">Koru Florya'da gerçekleşen konserler, atölyeler ve kültürel buluşmalar.</p>
+      <span class="eyebrow">Kültür, sanat ve kampanyalar</span>
+      <h1 class="h" style="font-size:clamp(32px,4vw,52px)">Koru Florya’da Neler Oluyor?</h1>
+      <p class="lead">Güncel etkinlikler, imza günleri, atölyeler ve mağaza kampanyaları.</p>
     </div>
   </div>
-  <section style="padding:48px 0 96px">
+  <section style="padding:40px 0 88px" class="bg-lime">
     <div class="wrap">
-      <div class="etabs" id="etabs" role="tablist" aria-label="Zaman"></div>
+      <div class="etabs" id="etabs" role="tablist" aria-label="Kategori"></div>
       <div class="ecards" id="ecards" aria-live="polite"></div>
     </div>
   </section>
@@ -59,7 +59,7 @@ let tab=keys.includes(location.hash.slice(1))?location.hash.slice(1):'upcoming';
 function render(){
   $('#etabs').innerHTML=KF.TABS.map(([k,l,f])=>`<button class="etab" role="tab" type="button" data-k="${k}" aria-selected="${k===tab}">${l}<em>${f().length}</em></button>`).join('');
   const list=KF.sortEv(KF.TABS.find(t=>t[0]===tab)[2]());
-  $('#ecards').innerHTML=list.length?list.map(KF.cardHtml).join(''):`<div class="eempty"><p>${tab==='past'?'Geçmiş etkinlik yok':'Bu dönemde etkinlik yok'}</p>${tab==='upcoming'?'':'<button class="btn btn-dark" type="button" data-k="upcoming">Yaklaşan etkinlikleri gör</button>'}</div>`;
+  $('#ecards').innerHTML=list.length?list.map(KF.cardHtml).join(''):`<div class="eempty"><p>Bu kategoride aktif etkinlik bulunmuyor</p><button class="btn btn-dark btn-sm" type="button" data-k="upcoming">Tüm güncel etkinlikleri gör</button></div>`;
 }
 document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;tab=b.dataset.k;history.replaceState(null,'','#'+tab);render()});
 addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(keys.includes(k)){tab=k;render()}});

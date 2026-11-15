@@ -59,7 +59,7 @@ const chips=[dt?`<span>${IC.cal}${esc(dt)}</span>`:'',e.time?`<span>${IC.clock}$
 const rows=[dt?['Tarih',esc(dt)]:null,e.time?['Saat',esc(e.time)]:null,['Mekân',`${e.venue?esc(e.venue)+'<br>':''}${esc(e.place||'')}`],e.who?['Konuk',esc(e.who.name)]:null,e.audience?['Kimler için',esc(e.audience)]:null,!camp?['Katılım',e.free?'Ücretsiz':'—']:null].filter(Boolean);
 const inits=n=>n.replace(/(Prof\.|Dr\.)\s*/g,'').split(' ').map(w=>w[0]).slice(0,2).join('');
 const goEventHall=!camp&&/^Koru Katı/.test(e.place||'');
-const similar=(e.related||KF.EVENTS.filter(x=>x.id!==e.id&&x.type===e.type).map(x=>x.id)).map(KF.evById).filter(Boolean).slice(0,3);
+const similar=(e.related||KF.EVENTS.filter(x=>x.id!==e.id&&x.type===e.type).map(x=>x.id)).map(KF.evById).filter(x=>x&&!KF.isPast(x)).slice(0,3);
 page.innerHTML=`
 <div class="ev-hero">
   <img src="assets/events/${e.img}" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" />
@@ -87,7 +87,7 @@ page.innerHTML=`
     </aside>
   </div>
 </section>
-${similar.length?`<section class="bg-lime" style="padding-top:80px"><div class="wrap"><div class="sec-head"><h2 class="h">${camp?'Diğer kampanyalar':'Benzer etkinlikler'}</h2><a class="btn btn-outline" href="etkinlikler.html">Tümü ${IC.arr}</a></div><div class="sim">${similar.map(KF.cardHtml).join('')}</div></div></section>`:''}`;
+${similar.length?`<section class="bg-lime" style="padding:64px 0"><div class="wrap"><div class="sec-head" style="margin-bottom:24px"><h2 class="h" style="font-size:clamp(22px,2.5vw,30px)">${camp?'Diğer kampanyalar':'Benzer etkinlikler'}</h2><a class="btn btn-outline btn-sm" href="etkinlikler.html">Tümü ${IC.arr}</a></div><div class="ecards ecards-sm">${similar.map(KF.cardHtml).join('')}</div></div></section>`:''}`;
 if(location.hash==='#takvim')setTimeout(()=>{const t=$('#takvim');if(t)t.scrollIntoView({behavior:'smooth',block:'center'})},300);
 })();
 </script>

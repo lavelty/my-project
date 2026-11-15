@@ -78,10 +78,10 @@ KF.weekBounds=()=>{const n=KF.startOfDay(KF.ist());const dow=(n.getDay()+6)%7;co
 KF.monthBounds=()=>{const n=KF.startOfDay(KF.ist());return[new Date(n.getFullYear(),n.getMonth(),1),new Date(n.getFullYear(),n.getMonth()+1,0,23,59,59)]};
 KF.overlaps=(e,a,b)=>KF.evStart(e)<=b&&KF.evEnd(e)>=a;
 KF.TABS=[
-  ['upcoming','Yaklaşan',()=>KF.EVENTS.filter(e=>e.type==='event'&&!KF.isPast(e))],
+  ['upcoming','Tümü',()=>KF.EVENTS.filter(e=>!KF.isPast(e))],
+  ['events','Etkinlikler',()=>KF.EVENTS.filter(e=>e.type==='event'&&!KF.isPast(e))],
   ['week','Bu hafta',()=>{const[a,b]=KF.weekBounds();return KF.EVENTS.filter(e=>e.type==='event'&&!KF.isPast(e)&&KF.overlaps(e,a,b))}],
   ['month','Bu ay',()=>{const[a,b]=KF.monthBounds();return KF.EVENTS.filter(e=>e.type==='event'&&!KF.isPast(e)&&KF.overlaps(e,a,b))}],
-  ['past','Geçmiş',()=>KF.EVENTS.filter(e=>e.type==='event'&&KF.isPast(e))],
   ['campaigns','Kampanyalar',()=>KF.EVENTS.filter(e=>e.type==='campaign'&&!KF.isPast(e))]
 ];
 
