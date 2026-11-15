@@ -77,7 +77,7 @@ if(brandList){
    ======================================================== */
 const FLOOR_DATA={
   'all':{
-    id:'all',title:'Tüm katlarda 177 mağaza',badge:'Koru Florya katları',
+    id:'all',title:'Tüm Katlar',badge:'Koru Florya katları',
     desc:'Dört katta mağazalar, yeme içme durakları ve hizmetler. Bir kat seç, kategoriye göre süz.',
     count:177
   },
@@ -107,14 +107,67 @@ const st={
   f: 'all',
   cats: new Set(), // Set of active categories (empty = all)
   q: '',
-  lim: 12
+  page: 1,
+  perPage: 12
 };
 
-// Render Category Pills
-const pillsEl=$('#pills');
+// Render Category Pills with Counts + Horizontal Scroll Support
+const pillsEl=$('#pills'), pillsPrev=$('#pillsPrev'), pillsNext=$('#pillsNext');
 if(pillsEl){
-  pillsEl.innerHTML=`<button class="pill on" type="button" data-c="all" aria-pressed="true">Tümü</button>`+
-    CATS.slice(0,9).map(c=>`<button class="pill" type="button" data-c="${esc(c)}" aria-pressed="false">${esc(c)}</button>`).join('');
+  pillsEl.innerHTML=`<button class="pill on" type="button" data-c="all" aria-pressed="true">Tümü <small>${stores.length}</small></button>`+
+    CATS.map(c=>{
+      const cnt=stores.filter(s=>s.c.includes(c)).length;
+      return `<button class="pill" type="button" data-c="${esc(c)}" aria-pressed="false">${esc(c)} <small>${cnt}</small></button>`;
+    }).join('');
+
+  const syncPillArrows=()=>{
+    if(!pillsPrev || !pillsNext) return;
+    const maxScroll = Math.max(0, pillsEl.scrollWidth - pillsEl.clientWidth);
+    pillsPrev.disabled = pillsEl.scrollLeft <= 4;
+    pillsNext.disabled = pillsEl.scrollLeft >= maxScroll - 4;
+  };
+  if(pillsPrev) pillsPrev.addEventListener('click',()=>{pillsEl.scrollBy({left:-260,behavior:'smooth'})});
+  if(pillsNext) pillsNext.addEventListener('click',()=>{pillsEl.scrollBy({left:260,behavior:'smooth'})});
+  pillsEl.addEventListener('scroll', syncPillArrows, {passive:true});
+  window.addEventListener('resize', syncPillArrows, {passive:true});
+  setTimeout(syncPillArrows, 80);
+
+  // Mouse wheel horizontal scroll on pills
+  pillsEl.addEventListener('wheel', e=>{
+    if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+      e.preventDefault();
+      pillsEl.scrollLeft += e.deltaY;
+    }
+  }, {passive:false});
+
+  // Mouse drag-to-scroll on pills
+  let isDown=false, startX=0, scrollStart=0, dragged=false;
+  pillsEl.addEventListener('mousedown', e=>{
+    isDown=true; dragged=false;
+    startX=e.pageX - pillsEl.offsetLeft;
+    scrollStart=pillsEl.scrollLeft;
+  });
+  window.addEventListener('mouseup', ()=>{
+    isDown=false;
+    pillsEl.classList.remove('dragging');
+  });
+  pillsEl.addEventListener('mousemove', e=>{
+    if(!isDown) return;
+    const x=e.pageX - pillsEl.offsetLeft;
+    const walk=(x - startX);
+    if(Math.abs(walk) > 6){
+      dragged=true;
+      pillsEl.classList.add('dragging');
+      pillsEl.scrollLeft = scrollStart - walk;
+    }
+  });
+  pillsEl.addEventListener('click', e=>{
+    if(dragged){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+      dragged=false;
+    }
+  }, true);
 }
 
 // Update Stage Banner
@@ -138,11 +191,13 @@ function updateActiveFiltersBar(){
 
   if(!hasCats && !hasFloor && !hasQuery){
     bar.hidden = true;
+    bar.style.display = 'none';
     chips.innerHTML = '';
     return;
   }
 
   bar.hidden = false;
+  bar.style.display = 'flex';
   let html = '';
 
   if(hasFloor){
@@ -185,7 +240,7 @@ function hl(name){
   return esc(name.slice(0,i))+'<mark>'+esc(name.slice(i,i+qNorm.length))+'</mark>'+esc(name.slice(i+qNorm.length));
 }
 
-// Render Stores
+// Render Stores with Page-by-Page Pagination & Editorial Brand Cards
 function renderStores(){
   const qNorm = normTr(st.q);
   const list=stores.filter(s=>{
@@ -199,31 +254,34 @@ function renderStores(){
   const isFiltered = (st.f !== 'all' || st.cats.size > 0 || Boolean(st.q));
   if(clearBtn) clearBtn.hidden = !isFiltered;
 
+  const totalPages = Math.max(1, Math.ceil(list.length / st.perPage));
+  if(st.page > totalPages) st.page = totalPages;
+  if(st.page < 1) st.page = 1;
+  const startIdx = (st.page - 1) * st.perPage;
+  const show = list.slice(startIdx, startIdx + st.perPage);
+
   const resText=$('#resText');
   if(resText){
     const floorLabel = FLOOR_DATA[st.f]?FLOOR_DATA[st.f].title:'Tüm Katlar';
     const catLabel = st.cats.size > 0 ? ` · ${st.cats.size} kategori seçili` : '';
-    resText.innerHTML = `<b>${list.length}</b> mağaza bulundu · ${floorLabel}${catLabel}`;
+    const pageInfo = totalPages > 1 ? ` · Sayfa ${st.page} / ${totalPages}` : '';
+    resText.innerHTML = `<b>${list.length}</b> mağaza bulundu · ${floorLabel}${catLabel}${pageInfo}`;
   }
 
   updateActiveFiltersBar();
 
-  const show=list.slice(0,st.lim);
   const grid=$('#storeGrid');
   if(grid){
     grid.innerHTML=show.length?show.map(s=>`
-      <article class="store-card" data-store="${esc(s.n)}">
+      <article class="store-card" data-store="${esc(s.n)}" data-open-store="${esc(s.n)}">
         <div class="sc-top">
-          <div class="sc-logo">${KF.logoHtml(s)}</div>
           <span class="sc-cat">${esc(s.c[0]||'Mağaza')}</span>
         </div>
+        <div class="sc-logo">${KF.logoHtml(s)}</div>
         <div class="sc-mid">
-          <h3 class="sc-name">${hl(s.n)}</h3>
+          <div class="sc-name-line"><h3 class="sc-name">${hl(s.n)}</h3></div>
+          <button class="sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum</button>
           <p class="sc-floor">${PIN_SVG} ${esc(KF.floorLabel(s))}</p>
-        </div>
-        <div class="sc-bottom">
-          <span class="sc-hours">AVM 10:00 – 22:00</span>
-          <button class="sc-btn" type="button" data-open-store="${esc(s.n)}">Detay &amp; Konum <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
         </div>
       </article>
     `).join(''):`
@@ -234,12 +292,46 @@ function renderStores(){
     `;
   }
 
-  const moreBtn=$('#moreBtn');
-  const rest=list.length - show.length;
-  if(moreBtn){
-    moreBtn.hidden = rest <= 0;
-    moreBtn.textContent = `Daha fazla mağaza göster (${rest} mağaza kaldı)`;
+  const pager=$('#storePager');
+  if(pager){
+    if(totalPages <= 1){
+      pager.hidden = true;
+      pager.innerHTML = '';
+    } else {
+      pager.hidden = false;
+      const pages=[];
+      for(let i=1;i<=totalPages;i++){
+        if(i===1 || i===totalPages || (i>=st.page-1 && i<=st.page+1)){
+          pages.push(i);
+        } else if(pages[pages.length-1]!=='...'){
+          pages.push('...');
+        }
+      }
+      pager.innerHTML=`
+        <button type="button" class="pg-nav" data-page="${st.page-1}" ${st.page<=1?'disabled':''} aria-label="Önceki sayfa">← Önceki</button>
+        <div class="pg-nums">
+          ${pages.map(p=>p==='...'?`<span class="pg-dots">…</span>`:`<button type="button" class="pg-btn${p===st.page?' on':''}" data-page="${p}" aria-current="${p===st.page?'page':'false'}">${p}</button>`).join('')}
+        </div>
+        <button type="button" class="pg-nav" data-page="${st.page+1}" ${st.page>=totalPages?'disabled':''} aria-label="Sonraki sayfa">Sonraki →</button>
+      `;
+    }
   }
+}
+
+// Pagination click handler
+const storePagerEl=$('#storePager');
+if(storePagerEl){
+  storePagerEl.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-page]');
+    if(!btn || btn.disabled) return;
+    const p=parseInt(btn.dataset.page,10);
+    if(!isNaN(p) && p!==st.page){
+      st.page=p;
+      renderStores();
+      const filterBox=$('.stage-filter-box')||$('#rehber');
+      if(filterBox) filterBox.scrollIntoView({behavior:KF.reduce?'auto':'smooth',block:'start'});
+    }
+  });
 }
 
 // Quick-pick suggestion & hero search focus
@@ -247,7 +339,7 @@ document.addEventListener('click',e=>{
   const sug=e.target.closest('.empty-chip');
   if(sug){
     const val=sug.dataset.suggest||'';
-    st.f='all';st.cats.clear();st.q=val;st.lim=12;
+    st.f='all';st.cats.clear();st.q=val;st.page=1;
     const qEl=$('#q'); if(qEl) qEl.value=val;
     document.querySelectorAll('.tower-card,.tower-all-btn').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));
     document.querySelectorAll('.stage-pills .pill').forEach(p=>p.classList.toggle('on',p.dataset.c==='all'));
@@ -263,7 +355,7 @@ if(heroSearchForm && heroSearchInput){
   heroSearchForm.addEventListener('submit',e=>{
     e.preventDefault();
     const val=heroSearchInput.value.trim();
-    st.f='all';st.cats.clear();st.q=val;st.lim=12;
+    st.f='all';st.cats.clear();st.q=val;st.page=1;
     const qEl=$('#q'); if(qEl) qEl.value=val;
     document.querySelectorAll('.tower-card,.tower-all-btn').forEach(c=>c.classList.toggle('on',c.dataset.f==='all'));
     document.querySelectorAll('.stage-pills .pill').forEach(p=>p.classList.toggle('on',p.dataset.c==='all'));
@@ -281,7 +373,7 @@ document.addEventListener('click',e=>{
   st.f=tc.dataset.f;
   document.querySelectorAll('.tower-card, .tower-all-btn').forEach(c=>c.classList.toggle('on',c===tc));
   updateStageBanner(st.f);
-  st.lim=12;
+  st.page=1;
   renderStores();
 });
 
@@ -431,7 +523,7 @@ document.addEventListener('keydown',e=>{
     } else if(qInput && document.activeElement===qInput && qInput.value){
       qInput.value='';
       st.q='';
-      st.lim=12;
+      st.page=1;
       renderStores();
       qInput.blur();
     }

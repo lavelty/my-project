@@ -117,14 +117,11 @@ footer.innerHTML=`<div class="wrap">
 </div>`;
 document.body.appendChild(footer);
 
-/* Header: 100% transparent over hero, then smoothly transitions to solid white */
+/* Header: 100% transparent over hero top, then softly transitions to frosted ivory/white on scroll */
 if(home){
-  const hero=$('#top');
   const updateNav=()=>{
     if($('#links')&&$('#links').classList.contains('open')) return;
-    const heroRect=hero?hero.getBoundingClientRect():null;
-    const pastHero=heroRect?(heroRect.bottom<=76):(scrollY>innerHeight*.85);
-    header.classList.toggle('solid',pastHero);
+    header.classList.toggle('solid', scrollY > 48);
   };
   addEventListener('scroll',updateNav,{passive:true});
   updateNav();
@@ -162,9 +159,7 @@ if(mb && links){
     } else {
       document.body.style.overflow='';
       if(home){
-        const hero=$('#top');
-        const heroRect=hero?hero.getBoundingClientRect():null;
-        header.classList.toggle('solid',heroRect?(heroRect.bottom<=76):(scrollY>innerHeight*.85));
+        header.classList.toggle('solid', scrollY > 48);
       }
     }
   });

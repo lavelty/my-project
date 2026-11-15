@@ -138,10 +138,18 @@
         <div class="stage-filter-box">
           <div class="stage-search">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-            <input id="q" type="search" aria-label="Mağaza veya kategori ara" placeholder="Mağaza veya kategori ara (örn: Zara, Starbucks)" autocomplete="off" />
+            <input id="q" type="search" aria-label="Mağaza veya kategori ara" placeholder="Mağaza veya kategori ara (örn: Zara, Starbucks, Saat)" autocomplete="off" />
             <kbd id="kbd">Ctrl K</kbd>
           </div>
-          <div class="stage-pills" id="pills" role="group" aria-label="Kategoriler"></div>
+          <div class="stage-pills-wrap">
+            <button type="button" class="sp-arrow" id="pillsPrev" aria-label="Kategorileri sola kaydır" disabled>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div class="stage-pills" id="pills" role="group" aria-label="Kategoriler"></div>
+            <button type="button" class="sp-arrow" id="pillsNext" aria-label="Kategorileri sağa kaydır">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
         </div>
 
         <!-- Aktif Filtre Etiketleri ve Sonuç Sayacı -->

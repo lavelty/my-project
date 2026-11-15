@@ -47,14 +47,15 @@
       <nav class="toc" aria-label="İçindekiler">
         <b>İçindekiler</b>
         <a href="#birim">Kayıp eşya birimi</a>
-        <a href="#bildirim">Kayıp bildirimi</a>
+        <a href="#bildirim">Kayıp bildirimi oluştur</a>
+        <a href="#sorgula">Başvuru &amp; yanıt sorgula</a>
       </nav>
       <article class="doc">
 <h2 id="birim">Kayıp eşya birimi</h2>
 <dl><div><dt>Birim</dt><dd>Danışma, Koru Katı (Giriş Kat)</dd></div><div><dt>Çalışma saatleri</dt><dd>Her gün 10:00 – 22:00</dd></div><div><dt>E-posta</dt><dd><a href="mailto:info@koruflorya.com">info@koruflorya.com</a></dd></div><div><dt>Adres</dt><dd>Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul</dd></div></dl>
 
 <h2 id="bildirim">Kayıp eşya bildirim formu</h2>
-<p>Kayıp eşya bildiriminizi doğrudan aşağıdaki form üzerinden danışma ve yönetim birimine iletebilirsiniz. Bildiriminiz anında yönetim paneline düşer ve eşyanız bulunduğunda size dönüş yapılır.</p>
+<p>Kayıp eşya bildiriminizi doğrudan aşağıdaki form üzerinden danışma ve yönetim birimine iletebilirsiniz. Bildiriminiz anında yönetim paneline düşer ve size özel bir <b>Takip Kodu</b> oluşturulur.</p>
 <form id="lostForm" class="cms-form" style="background:var(--bg-light);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:24px;margin:20px 0;display:grid;gap:14px">
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
     <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Ad Soyad *
@@ -75,35 +76,117 @@
   <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Eşyanın Tanımı *
     <textarea name="desc" rows="3" required placeholder="Eşyanın rengi, markası ve ayırt edici özellikleri..." style="padding:10px 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px;font-family:inherit;resize:vertical"></textarea>
   </label>
-  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <button type="submit" class="btn btn-dark btn-sm" style="height:42px;padding:0 20px">Bildirimi Gönder</button>
-    <span id="lostFormMsg" style="font-size:13.5px;color:var(--brand-turq-text);font-weight:500" hidden>✓ Bildiriminiz danışma yönetim paneline kaydedildi.</span>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:4px">
+    <button type="submit" class="btn btn-dark btn-sm" style="height:42px;padding:0 22px">Bildirimi Gönder</button>
+    <span id="lostFormMsg" style="font-size:13.5px;color:var(--brand-turq-text);font-weight:600" hidden></span>
   </div>
 </form>
+
+<h2 id="sorgula">Başvuru durumu ve danışma yanıtı sorgula</h2>
+<p>Daha önce oluşturduğunuz kayıp eşya bildiriminin güncel durumunu ve danışma biriminin size ilettiği yanıtı takip kodunuz, telefon numaranız veya adınızla sorgulayabilirsiniz.</p>
+<div style="background:var(--bg-light);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:22px;margin:18px 0">
+  <form id="trackForm" style="display:flex;gap:10px;flex-wrap:wrap">
+    <input type="search" id="trackInput" placeholder="Takip kodu (örn: KF-1042), telefon veya ad soyad girin..." style="flex:1;min-width:220px;height:42px;padding:0 14px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px" />
+    <button type="submit" class="btn btn-dark btn-sm" style="height:42px;padding:0 20px">Sorgula</button>
+  </form>
+  <div id="trackResults" style="margin-top:16px;display:grid;gap:12px"></div>
+</div>
+
 <p>Kişisel verilerinizin işlenmesi için <a href="kvkk.html">KVKK aydınlatma metnine</a> bakın. Diğer hizmetler için <a href="hizmetler.html">hizmetler sayfası</a>.</p>
 <script>
-document.getElementById('lostForm').addEventListener('submit',function(e){
-  e.preventDefault();
-  const fd=new FormData(this);
-  const item={
-    id:'lf-'+Date.now(),
-    name:fd.get('name'),
-    contact:fd.get('contact'),
-    date:fd.get('date'),
-    location:fd.get('location')||'Belirtilmedi',
-    desc:fd.get('desc'),
-    status:'Bekliyor',
-    createdAt:new Date().toLocaleString('tr-TR')
+(function(){
+  const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const statusBadge=st=>{
+    const map={
+      'Bekliyor':['#FEF3C7','#92400E','İnceleme Bekliyor'],
+      'İnceleniyor':['#E0E7FF','#1E40AF','Kamera & Saha İncelemesinde'],
+      'Danışmada Muhafaza':['#D1FAE5','#065F46','Bulundu · Danışmada Muhafaza Ediliyor'],
+      'Teslim Edildi':['#EBF7F4','#00876D','Sahibine Teslim Edildi'],
+      'Bulunamadı':['#FEE2E2','#991B1B','Kayıtlarda Eşleşme Bulunamadı']
+    };
+    const [bg,fg,label]=map[st]||['#F0EEEA','#17211E',st||'Bekliyor'];
+    return `<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;background:${bg};color:${fg}">${esc(label)}</span>`;
   };
-  try{
-    const list=JSON.parse(localStorage.getItem('kf_cms_lost')||'[]');
-    list.unshift(item);
-    localStorage.setItem('kf_cms_lost',JSON.stringify(list));
-  }catch(err){}
-  this.reset();
-  const msg=document.getElementById('lostFormMsg');
-  if(msg){msg.hidden=false;setTimeout(()=>msg.hidden=true,6000);}
-});
+
+  function renderTrack(query){
+    const box=document.getElementById('trackResults');
+    if(!box)return;
+    let list=[];
+    try{list=JSON.parse(localStorage.getItem('kf_cms_lost')||'[]');}catch(e){}
+    const q=(query||'').trim().toLocaleLowerCase('tr');
+    const matches=q?list.filter(x=>
+      (x.code||'').toLocaleLowerCase('tr').includes(q)||
+      (x.name||'').toLocaleLowerCase('tr').includes(q)||
+      (x.contact||'').toLocaleLowerCase('tr').includes(q)||
+      (x.desc||'').toLocaleLowerCase('tr').includes(q)
+    ):list.slice(0,3);
+
+    if(!matches.length){
+      box.innerHTML=q?`<div style="padding:14px;background:#fff;border:1px solid var(--border-light);border-radius:10px;font-size:13.5px;color:var(--text-muted)">“<b>${esc(query)}</b>” ile eşleşen bir başvuru bulunamadı.</div>`:'';
+      return;
+    }
+
+    box.innerHTML=matches.map(item=>`
+      <div style="background:#fff;border:1px solid var(--border-light);border-radius:12px;padding:16px 18px;display:grid;gap:10px;box-shadow:var(--shadow-sm)">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-family:var(--font-h);font-size:12px;font-weight:700;background:var(--brand-dark);color:#fff;padding:3px 9px;border-radius:6px">${esc(item.code||'KF-'+(item.id||'').slice(-4))}</span>
+            <b style="font-size:14.5px;color:var(--text-main)">${esc(item.name)}</b>
+            <span style="font-size:12px;color:var(--text-subtle)">· ${esc(item.date||'')}</span>
+          </div>
+          ${statusBadge(item.status)}
+        </div>
+        <p style="margin:0;font-size:13.5px;color:var(--text-muted)"><b>Eşya:</b> ${esc(item.desc)} <span style="color:var(--text-subtle)">(${esc(item.location||'Belirtilmedi')})</span></p>
+        ${item.reply?`
+          <div style="background:var(--brand-turq-light);border-left:3px solid var(--brand-turq);padding:12px 14px;border-radius:6px;margin-top:2px">
+            <div style="font-size:11.5px;font-weight:700;color:var(--brand-turq-text);margin-bottom:4px">DANIŞMA &amp; YÖNETİM YANITI ${item.replyAt?`<span style="font-weight:400;opacity:.8">(${esc(item.replyAt)})</span>`:''}</div>
+            <p style="margin:0;font-size:13.5px;line-height:20px;color:var(--text-main)">${esc(item.reply)}</p>
+          </div>
+        `:`<div style="font-size:12.5px;color:var(--text-subtle)">Henüz danışma yanıtı eklenmemiş. Eşyanız incelendiğinde bu alanda yanıt görüntülenecektir.</div>`}
+      </div>
+    `).join('');
+  }
+
+  document.getElementById('lostForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const fd=new FormData(this);
+    const code='KF-'+Math.floor(1000+Math.random()*9000);
+    const item={
+      id:'lf-'+Date.now(),
+      code,
+      name:fd.get('name'),
+      contact:fd.get('contact'),
+      date:fd.get('date'),
+      location:fd.get('location')||'Belirtilmedi',
+      desc:fd.get('desc'),
+      status:'Bekliyor',
+      reply:'',
+      replyAt:'',
+      createdAt:new Date().toLocaleString('tr-TR')
+    };
+    try{
+      const list=JSON.parse(localStorage.getItem('kf_cms_lost')||'[]');
+      list.unshift(item);
+      localStorage.setItem('kf_cms_lost',JSON.stringify(list));
+    }catch(err){}
+    this.reset();
+    const msg=document.getElementById('lostFormMsg');
+    if(msg){
+      msg.innerHTML=`✓ Bildiriminiz kaydedildi. Takip Kodunuz: <b>${code}</b>`;
+      msg.hidden=false;
+    }
+    const ti=document.getElementById('trackInput');
+    if(ti) ti.value=code;
+    renderTrack(code);
+  });
+
+  document.getElementById('trackForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    renderTrack(document.getElementById('trackInput').value);
+  });
+
+  renderTrack('');
+})();
 </script>
       </article>
     </div>

@@ -54,6 +54,7 @@
         <label class="search sm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m20 20-4.5-4.5"/></svg><span class="sr">Bu katta ara</span><input id="q" type="search" placeholder="Bu katta ara" autocomplete="off" /></label>
       </div>
       <div class="sgrid" id="grid"></div>
+      <nav class="stage-pager" id="kpPager" aria-label="Kat mağaza sayfaları"></nav>
     </div>
   </section>
 </main>
@@ -68,14 +69,54 @@ const {esc,low,IC,FL,FORDER}=KF;
 const $=s=>document.querySelector(s);
 const params=()=>new URLSearchParams(location.search);
 const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
-const LAYERS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></svg>';
+const PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
 const num={K:0,P:1,C:2,O:-1};
 let f=KF.floorFromParam(params().get('kat'))||'K';
 const hlSlug=params().get('magaza');
 const hl=hlSlug&&KF.bySlug[hlSlug];
 if(hl&&!hl.fl.includes(f))f=hl.fl[0];
-let q='';
-const mini=x=>`<a class="mc${hl&&x===hl?' hl':''}" id="m-${x.slug}" href="${KF.storeUrl(x)}"><span class="lg">${KF.logoHtml(x)}</span><span><b>${esc(x.n)}</b><span class="s">${esc(KF.floorShort(x))}</span></span></a>`;
+let q='', page=1;
+const perPage=12;
+if(hl){
+  const initList=KF.stores.filter(s=>s.fl.includes(f));
+  const idx=initList.indexOf(hl);
+  if(idx>=0) page=Math.floor(idx/perPage)+1;
+}
+const mini=x=>`<a class="store-card${hl&&x===hl?' hl':''}" id="m-${x.slug}" href="${KF.storeUrl(x)}"><div class="sc-top"><span class="sc-cat">${esc(x.c[0]||'Mağaza')}</span></div><div class="sc-logo">${KF.logoHtml(x)}</div><div class="sc-mid"><div class="sc-name-line"><h3 class="sc-name">${esc(x.n)}</h3></div><span class="sc-btn">Detay &amp; Konum</span><p class="sc-floor">${PIN_SVG} ${esc(KF.floorLabel(x))}</p></div></a>`;
+
+function renderList(){
+  const list=KF.stores.filter(s=>s.fl.includes(f));
+  const shown=list.filter(s=>!q||low(s.n).includes(q)||s.c.some(c=>low(c).includes(q)));
+  const totalPages=Math.max(1,Math.ceil(shown.length/perPage));
+  if(page>totalPages) page=totalPages;
+  if(page<1) page=1;
+  const startIdx=(page-1)*perPage;
+  const slice=shown.slice(startIdx,startIdx+perPage);
+  $('#listTitle').innerHTML=`${FL[f].n} mağazaları <small style="font-size:15px;font-weight:500;color:var(--text-muted);margin-left:8px">(${shown.length} mağaza${totalPages>1?` · Sayfa ${page}/${totalPages}`:''})</small>`;
+  $('#grid').innerHTML=slice.length?slice.map(mini).join(''):`<div class="eempty" style="grid-column:1/-1"><p>“${esc(q)}” için bu katta sonuç yok</p></div>`;
+  const pager=$('#kpPager');
+  if(pager){
+    if(totalPages<=1){
+      pager.hidden=true;
+      pager.innerHTML='';
+    }else{
+      pager.hidden=false;
+      const pages=[];
+      for(let i=1;i<=totalPages;i++){
+        if(i===1||i===totalPages||(i>=page-1&&i<=page+1)) pages.push(i);
+        else if(pages[pages.length-1]!=='...') pages.push('...');
+      }
+      pager.innerHTML=`
+        <button type="button" class="pg-nav" data-page="${page-1}" ${page<=1?'disabled':''} aria-label="Önceki sayfa">← Önceki</button>
+        <div class="pg-nums">
+          ${pages.map(p=>p==='...'?`<span class="pg-dots">…</span>`:`<button type="button" class="pg-btn${p===page?' on':''}" data-page="${p}" aria-current="${p===page?'page':'false'}">${p}</button>`).join('')}
+        </div>
+        <button type="button" class="pg-nav" data-page="${page+1}" ${page>=totalPages?'disabled':''} aria-label="Sonraki sayfa">Sonraki →</button>
+      `;
+    }
+  }
+}
+
 async function render(){
   const list=KF.stores.filter(s=>s.fl.includes(f));
   const food=list.filter(s=>s.c.includes('Yeme & İçme')).length;
@@ -88,13 +129,22 @@ async function render(){
   if(KF.PLAN_FILES[f]){try{const t=await (await fetch(KF.PLAN_FILES[f])).text();plan=`<div class="kp-plan kp-svg">${t}</div>`}catch{}}
   $('#kp').innerHTML=`${plan}<aside class="kp-side"><h2>${FL[f].n} (${FL[f].sub})</h2><p>${esc(FL[f].d)}</p>${svc.length?`<ul class="checks">${svc.map(x=>`<li>${CHECK}${esc(x)}</li>`).join('')}</ul>`:'<div style="height:24px"></div>'}<div class="kp-stats"><div><b>${list.length}</b><span>Mağazalar</span></div><div><b>${food}</b><span>Yeme &amp; İçme</span></div></div></aside>`;
   document.querySelectorAll('.kp-svg [data-store]').forEach(el=>{el.setAttribute('tabindex','0');el.classList.toggle('on',el.dataset.store===hlSlug);el.addEventListener('click',()=>{location.href='magaza.html?s='+el.dataset.store})});
-  $('#listTitle').textContent=`${FL[f].n} mağazaları`;
-  const shown=list.filter(s=>!q||low(s.n).includes(q)||s.c.some(c=>low(c).includes(q)));
-  $('#grid').innerHTML=shown.length?shown.map(mini).join(''):`<div class="eempty" style="grid-column:1/-1"><p>“${esc(q)}” için bu katta sonuç yok</p></div>`;
+  renderList();
 }
-$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;f=b.dataset.f;q='';$('#q').value='';const u=new URL(location.href);u.searchParams.set('kat',num[f]);u.searchParams.delete('magaza');history.pushState(null,'',u);render()});
-$('#q').addEventListener('input',e=>{q=low(e.target.value.trim());render()});
-addEventListener('popstate',()=>{f=KF.floorFromParam(params().get('kat'))||'K';render()});
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;f=b.dataset.f;q='';page=1;$('#q').value='';const u=new URL(location.href);u.searchParams.set('kat',num[f]);u.searchParams.delete('magaza');history.pushState(null,'',u);render()});
+$('#q').addEventListener('input',e=>{q=low(e.target.value.trim());page=1;renderList()});
+$('#kpPager').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-page]');
+  if(!btn||btn.disabled)return;
+  const p=parseInt(btn.dataset.page,10);
+  if(!isNaN(p)&&p!==page){
+    page=p;
+    renderList();
+    const lh=document.querySelector('.kp-list-h');
+    if(lh)lh.scrollIntoView({behavior:KF.reduce?'auto':'smooth',block:'start'});
+  }
+});
+addEventListener('popstate',()=>{f=KF.floorFromParam(params().get('kat'))||'K';page=1;render()});
 render().then(()=>{if(hl){const el=document.getElementById('m-'+hl.slug);if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth',block:'center'}),400)}});
 })();
 </script>

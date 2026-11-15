@@ -29,7 +29,7 @@ body[data-page="store"],body[data-page="floors"]{
 .sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
 .mc{display:grid;gap:12px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);padding:18px;box-shadow:var(--shadow-sm);transition:border-color .16s var(--ease),box-shadow .16s var(--ease),transform .16s var(--ease)}
 .mc:hover{border-color:rgba(23,33,30,.2);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.mc.hl{border-color:var(--green-deep);background:#F6FBF9;box-shadow:0 0 0 3px rgba(0,185,149,.18)}
+.mc.hl,.store-card.hl{border-color:var(--green-deep);background:#F6FBF9;box-shadow:0 0 0 3px rgba(0,185,149,.18)}
 .mc b{display:block;font-family:var(--font-h);font-weight:600;font-size:16px;line-height:22px;letter-spacing:-.01em;overflow-wrap:anywhere}
 .mc span.s{display:block;font-size:13px;line-height:19px;color:var(--ink3)}
 .lg{width:64px;height:44px;border-radius:var(--radius-md);background:var(--lime);display:grid;place-items:center;flex:none}
