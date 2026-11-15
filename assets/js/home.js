@@ -1046,10 +1046,17 @@ if(mapSection && 'IntersectionObserver' in window){
   loadLeaflet();
 }
 
-// Deep linking: ?kategori=Teknoloji selects the category pill
-const wantCat=new URLSearchParams(location.search).get('kategori');
+// Deep linking: ?kategori=Teknoloji or ?ara=Zara
+const sp=new URLSearchParams(location.search);
+const wantCat=sp.get('kategori');
 if(wantCat){const pill=[...document.querySelectorAll('#pills .pill')].find(p=>p.dataset.c===wantCat);if(pill){pill.click();setTimeout(()=>{const r=$('#rehber');if(r)r.scrollIntoView()},300)}}
-const want=new URLSearchParams(location.search).get('magaza');
+const wantSearch=sp.get('ara');
+if(wantSearch){
+  st.q=low(wantSearch.trim());
+  if(qInput) qInput.value=wantSearch.trim();
+  renderStores();
+}
+const want=sp.get('magaza');
 if(want&&byName[want]){
   setTimeout(()=>{
     openStoreModal(want);

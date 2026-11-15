@@ -1,7 +1,9 @@
-/* Shared header, footer and header behavior - V2 Premium */
+/* Shared header, footer, bespoke mobile drawer and mobile bottom dock - V3 Mobile-First Luxury */
 (function(){
 const $=s=>document.querySelector(s);
-const home=document.body.dataset.page==='home';
+const pageType=document.body.dataset.page||'';
+const home=pageType==='home';
+const isAdmin=pageType==='admin';
 const p=home?'':'index.html';
 
 const nav=[
@@ -10,6 +12,45 @@ const nav=[
   ['Etkinlikler','etkinlikler.html'],
   ['Hizmetler','hizmetler.html'],
   ['Ulaşım',p+'#ulasim']
+];
+
+const mobileCards=[
+  {
+    title:'Markalar & Katlar',
+    sub:'Mağaza, restoran ve kafe rehberi',
+    href:p+'#rehber',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>'
+  },
+  {
+    title:'Kat Planları',
+    sub:'Koru, Podyum, Cadde ve Otopark katları',
+    href:'kat-planlari.html',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></svg>'
+  },
+  {
+    title:'Etkinlikler & Kampanyalar',
+    sub:'Güncel etkinlik takvimi ve mağaza fırsatları',
+    href:'etkinlikler.html',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>'
+  },
+  {
+    title:'Ziyaretçi Hizmetleri',
+    sub:'Vale, elektrikli şarj, bebek odası ve danışma',
+    href:'hizmetler.html',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>'
+  },
+  {
+    title:'Kayıp Eşya & Başvuru Sorgula',
+    sub:'Online kayıp bildirimi ve danışma yanıt takibi',
+    href:'kayip-esya.html',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4.5-4.5"/></svg>'
+  },
+  {
+    title:'Ulaşım & Marmaray Ring',
+    sub:'Ücretsiz servis saatleri ve interaktif harita',
+    href:p+'#ulasim',
+    icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg>'
+  }
 ];
 
 const header=document.createElement('header');
@@ -28,13 +69,100 @@ header.innerHTML=`<div class="wrap">
       <span class="dot" id="navDot"></span>
       <span id="navStatus">Şu an açık</span>
     </div>
-    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="links" aria-label="Menüyü aç">
-      <span class="menu-btn-icon"></span>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileDrawer" aria-label="Menüyü aç">
+      <span class="menu-bars" aria-hidden="true"><i></i><i></i></span>
       <span class="menu-btn-text">Menü</span>
     </button>
   </div>
 </div>`;
 document.body.prepend(header);
+
+/* Bespoke Mobile Menu Drawer */
+const drawer=document.createElement('aside');
+drawer.className='mobile-drawer';
+drawer.id='mobileDrawer';
+drawer.setAttribute('aria-hidden','true');
+drawer.innerHTML=`
+  <div class="md-backdrop" id="mdBackdrop"></div>
+  <div class="md-sheet">
+    <div class="md-status-bar">
+      <div class="md-live">
+        <span class="dot" id="mdDot"></span>
+        <div>
+          <b id="mdStatusText">Şu an açık</b>
+          <span>Her gün 10:00 – 22:00</span>
+        </div>
+      </div>
+      <a href="${p}#ulasim" class="md-ring-pill" data-close-drawer>🚌 Ücretsiz Ring</a>
+    </div>
+
+    <form class="md-search" id="mdSearchForm" action="index.html" method="get">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" width="18" height="18"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input type="search" id="mdSearchInput" placeholder="Mağaza, restoran veya kategori ara..." autocomplete="off" />
+      <button type="submit">Ara</button>
+    </form>
+
+    <nav class="md-nav" aria-label="Mobil menü">
+      ${mobileCards.map(c=>`
+        <a href="${c.href}" class="md-card" data-close-drawer>
+          <span class="md-ic">${c.icon}</span>
+          <span class="md-txt">
+            <b>${c.title}</b>
+            <small>${c.sub}</small>
+          </span>
+          <svg class="md-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
+      `).join('')}
+    </nav>
+
+    <div class="md-foot">
+      <div class="md-cta-grid">
+        <a href="${(window.KF&&KF.MAPS)||'https://maps.google.com'}" target="_blank" rel="noopener" class="btn btn-dark btn-sm">📍 Yol Tarifi Al</a>
+        <a href="kayip-esya.html" class="btn btn-outline btn-sm" data-close-drawer>🔍 Kayıp Eşya</a>
+      </div>
+      <div class="md-socials">
+        <a href="https://www.instagram.com/koruflorya.avm/" target="_blank" rel="noopener">Instagram</a>
+        <span>•</span>
+        <a href="https://www.facebook.com/korufloryaavm" target="_blank" rel="noopener">Facebook</a>
+        <span>•</span>
+        <a href="https://www.tiktok.com/@korufloryaavm" target="_blank" rel="noopener">TikTok</a>
+      </div>
+    </div>
+  </div>
+`;
+document.body.appendChild(drawer);
+
+/* Native-App Floating Mobile Bottom Navigation Bar */
+if(!isAdmin){
+  const curPath=location.pathname.split('/').pop()||'index.html';
+  const dock=document.createElement('nav');
+  dock.className='mobile-dock';
+  dock.id='mobileDock';
+  dock.setAttribute('aria-label','Hızlı mobil gezinme');
+  dock.innerHTML=`
+    <a href="${home?'#top':'index.html'}" class="mdk-item${home?' on':''}" data-dock="home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span>Keşfet</span>
+    </a>
+    <a href="${p}#rehber" class="mdk-item${pageType==='store'?' on':''}" data-dock="rehber">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <span>Mağazalar</span>
+    </a>
+    <a href="kat-planlari.html" class="mdk-item${curPath==='kat-planlari.html'?' on':''}" data-dock="floors">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></svg>
+      <span>Kat Planı</span>
+    </a>
+    <a href="etkinlikler.html" class="mdk-item${curPath==='etkinlikler.html'||curPath==='etkinlik.html'?' on':''}" data-dock="events">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span>Etkinlikler</span>
+    </a>
+    <a href="${p}#ulasim" class="mdk-item" data-dock="ulasim">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="14" rx="3"/><path d="M4 12h16M8 21l-1-4M16 21l1-4"/></svg>
+      <span>Ulaşım</span>
+    </a>
+  `;
+  document.body.appendChild(dock);
+}
 
 const skip=document.createElement('a');
 skip.className='skip';
@@ -120,14 +248,14 @@ document.body.appendChild(footer);
 /* Header: 100% transparent over hero top, then softly transitions to frosted ivory/white on scroll */
 if(home){
   const updateNav=()=>{
-    if($('#links')&&$('#links').classList.contains('open')) return;
+    if(drawer.classList.contains('open')) return;
     header.classList.toggle('solid', scrollY > 48);
   };
   addEventListener('scroll',updateNav,{passive:true});
   updateNav();
 
-  /* ScrollSpy for active nav item indicator */
-  const sections=['rehber','hizmetler','ulasim'].map(id=>document.getElementById(id)).filter(Boolean);
+  /* ScrollSpy for active nav & mobile dock item indicator */
+  const sections=['top','rehber','hizmetler','ulasim'].map(id=>document.getElementById(id)).filter(Boolean);
   if(sections.length && 'IntersectionObserver' in window){
     const spyObs = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
@@ -137,41 +265,59 @@ if(home){
             const isMatch = a.getAttribute('href').includes('#'+id);
             a.classList.toggle('active', isMatch);
           });
+          document.querySelectorAll('#mobileDock .mdk-item').forEach(a=>{
+            const dk=a.dataset.dock;
+            const match=(id==='top'&&dk==='home')||(id==='rehber'&&dk==='rehber')||(id==='ulasim'&&dk==='ulasim');
+            if(id==='top'||id==='rehber'||id==='ulasim') a.classList.toggle('on',match);
+          });
         }
       });
-    }, { rootMargin: '-20% 0px -60% 0px' });
+    }, { rootMargin: '-25% 0px -55% 0px' });
     sections.forEach(s=>spyObs.observe(s));
   }
 }
 
-/* Mobile Menu Toggle */
-const links=$('#links'), mb=$('#menuBtn');
-if(mb && links){
-  mb.addEventListener('click',()=>{
-    const isOpen=links.classList.toggle('open');
-    mb.setAttribute('aria-expanded',isOpen);
-    const textEl = mb.querySelector('.menu-btn-text');
-    if(textEl) textEl.textContent = isOpen?'Kapat':'Menü';
-    mb.classList.toggle('active', isOpen);
-    if(isOpen){
-      header.classList.add('solid');
-      document.body.style.overflow='hidden';
-    } else {
-      document.body.style.overflow='';
-      if(home){
-        header.classList.toggle('solid', scrollY > 48);
-      }
+/* Mobile Drawer Toggle & Search */
+const mb=$('#menuBtn');
+function setDrawerOpen(open){
+  drawer.classList.toggle('open',open);
+  drawer.setAttribute('aria-hidden',!open);
+  if(mb){
+    mb.setAttribute('aria-expanded',open);
+    mb.classList.toggle('active',open);
+    const textEl=mb.querySelector('.menu-btn-text');
+    if(textEl) textEl.textContent=open?'Kapat':'Menü';
+  }
+  if(open){
+    header.classList.add('solid');
+    document.body.style.overflow='hidden';
+  }else{
+    document.body.style.overflow='';
+    if(home) header.classList.toggle('solid', scrollY > 48);
+  }
+}
+if(mb){
+  mb.addEventListener('click',()=>setDrawerOpen(!drawer.classList.contains('open')));
+}
+$('#mdBackdrop').addEventListener('click',()=>setDrawerOpen(false));
+drawer.querySelectorAll('[data-close-drawer]').forEach(el=>el.addEventListener('click',()=>setDrawerOpen(false)));
+
+const mdSearchForm=$('#mdSearchForm'), mdSearchInput=$('#mdSearchInput');
+if(mdSearchForm && mdSearchInput){
+  mdSearchForm.addEventListener('submit',e=>{
+    e.preventDefault();
+    const val=mdSearchInput.value.trim();
+    setDrawerOpen(false);
+    if(home && $('#q')){
+      const qEl=$('#q');
+      qEl.value=val;
+      qEl.dispatchEvent(new Event('input',{bubbles:true}));
+      const r=$('#rehber');
+      if(r) r.scrollIntoView({behavior:'smooth'});
+    }else{
+      location.href='index.html'+(val?'?ara='+encodeURIComponent(val):'')+'#rehber';
     }
   });
-
-  links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
-    links.classList.remove('open');
-    mb.setAttribute('aria-expanded',false);
-    mb.classList.remove('active');
-    const textEl = mb.querySelector('.menu-btn-text');
-    if(textEl) textEl.textContent = 'Menü';
-    document.body.style.overflow='';
-  }));
 }
 
 /* Live status ticker */
@@ -181,6 +327,9 @@ function tick(){
   const navDot=$('#navDot'), navStatus=$('#navStatus');
   if(navDot) navDot.classList.toggle('off',!s.open);
   if(navStatus) navStatus.textContent=s.open?'Şu an açık':'Şu an kapalı';
+  const mdDot=$('#mdDot'), mdStatus=$('#mdStatusText');
+  if(mdDot) mdDot.classList.toggle('off',!s.open);
+  if(mdStatus) mdStatus.textContent=s.open?'AVM Şu An Açık':'AVM Şu An Kapalı';
   document.dispatchEvent(new CustomEvent('kf:tick'));
 }
 tick();
