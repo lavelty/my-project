@@ -12,9 +12,14 @@ const IMG={
 const ARR=KF.IC.arr;
 
 /* ========================================================
-   1. HERO SLIDESHOW (SMOOTH FADE + SUBTLE SCALE)
+   1. HERO SLIDESHOW (SMOOTH FADE + SUBTLE SCALE + CMS OVERRIDES)
    ======================================================== */
-const SLIDES=[
+const cmsHero=(window.KF&&KF.CMS&&KF.CMS.hero)||null;
+if(cmsHero){
+  if(cmsHero.title && $('#heroTitle')) $('#heroTitle').textContent=cmsHero.title;
+  if(cmsHero.sub && $('#heroSub')) $('#heroSub').textContent=cmsHero.sub;
+}
+const SLIDES=(cmsHero&&Array.isArray(cmsHero.slides)&&cmsHero.slides.length)?cmsHero.slides:[
   {img:IMG.atrium,alt:'Koru Florya iç mekânı'},
   {img:IMG.fashion,alt:'Alışveriş deneyimi'},
   {img:IMG.cafe,alt:'Akşam ışığında kafe'},
@@ -22,11 +27,16 @@ const SLIDES=[
 ];
 const slidesEl=$('#slides'), dotsEl=$('#dots');
 if(slidesEl){
-  slidesEl.innerHTML=SLIDES.map((s,i)=>`
+  slidesEl.innerHTML=SLIDES.map((s,i)=>{
+    const raw=s.url||s.img||'';
+    const isFull=/^https?:\/\/|^assets\/|^data:/.test(raw);
+    const src=isFull?raw:U(raw,1400);
+    const srcset=isFull?'':`srcset="${U(raw,800)} 800w, ${U(raw,1400)} 1400w, ${U(raw,2000)} 2000w" sizes="100vw"`;
+    return `
     <div class="slide${i?'':' on'}">
-      <img src="${U(s.img,1400)}" srcset="${U(s.img,800)} 800w, ${U(s.img,1400)} 1400w, ${U(s.img,2000)} 2000w" sizes="100vw" alt="${s.alt}" width="2000" height="1125" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" />
+      <img src="${esc(src)}" ${srcset} alt="${esc(s.alt||'Koru Florya')}" width="2000" height="1125" ${i?'loading="lazy"':'fetchpriority="high"'} decoding="async" />
     </div>
-  `).join('');
+  `}).join('');
 }
 if(dotsEl){
   dotsEl.innerHTML=SLIDES.map((s,i)=>`<button type="button" aria-label="Slayt ${i+1}" aria-current="${i===0}"></button>`).join('');
@@ -316,7 +326,7 @@ if(pillsEl){
       });
     }
 
-    st.lim=12;
+    st.page=1;
     renderStores();
   });
 }
@@ -354,7 +364,7 @@ document.addEventListener('click',e=>{
     st.q = '';
   }
 
-  st.lim = 12;
+  st.page = 1;
   renderStores();
 });
 
@@ -365,7 +375,7 @@ function clearAllFilters(){
   st.q='';
   st.cats.clear();
   st.f='all';
-  st.lim=12;
+  st.page=1;
 
   document.querySelectorAll('.tower-card').forEach(c=>c.classList.remove('on'));
   const allBtn=$('.tower-all-btn');
@@ -395,18 +405,9 @@ if(qInput){
     clearTimeout(searchTimer);
     searchTimer = setTimeout(()=>{
       st.q=low(e.target.value.trim());
-      st.lim=12;
+      st.page=1;
       renderStores();
     }, 120);
-  });
-}
-
-// More Button
-const moreBtn=$('#moreBtn');
-if(moreBtn){
-  moreBtn.addEventListener('click',()=>{
-    st.lim += 12;
-    renderStores();
   });
 }
 

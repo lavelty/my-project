@@ -53,11 +53,58 @@
 <h2 id="birim">Kayıp eşya birimi</h2>
 <dl><div><dt>Birim</dt><dd>Danışma, Koru Katı (Giriş Kat)</dd></div><div><dt>Çalışma saatleri</dt><dd>Her gün 10:00 – 22:00</dd></div><div><dt>E-posta</dt><dd><a href="mailto:info@koruflorya.com">info@koruflorya.com</a></dd></div><div><dt>Adres</dt><dd>Şenlikköy Mahallesi, Ekşinar Sokak No: 46/1, Florya, Bakırköy, 34153 İstanbul</dd></div></dl>
 
-<h2 id="bildirim">Kayıp bildirimi</h2>
-<p>Resmî sitede kayıp bildirimi için bir form bulunur. Eşyayı bulduklarında size dönebilmeleri için ad soyad, e-posta, kaybettiğiniz tarih ve eşyanın tanımını iletmeniz gerekir; telefon isteğe bağlıdır.</p>
-<p>Bu sayfa herhangi bir bilgi toplamaz. Aşağıdaki düğme, bilgileri doldurabileceğiniz hazır bir e-posta açar. Dilerseniz resmî sitedeki formu da kullanabilirsiniz.</p>
-<p><a class="btn btn-dark btn-sm" href="mailto:info@koruflorya.com?subject=Kay%C4%B1p%20e%C5%9Fya%20bildirimi&amp;body=Merhaba%2C%0A%0AKay%C4%B1p%20e%C5%9Fya%20bildirimi%20yapmak%20istiyorum.%0A%0AAd%20soyad%3A%0AKaybetti%C4%9Fim%20tarih%3A%0AE%C5%9Fyan%C4%B1n%20tan%C4%B1m%C4%B1%3A%0ATelefon%20(iste%C4%9Fe%20ba%C4%9Fl%C4%B1)%3A%0A%0ATe%C5%9Fekk%C3%BCrler.">E-posta ile bildir</a> <a class="btn btn-outline sm-btn" href="https://www.koruflorya.com/kayip-esya.php" target="_blank" rel="noopener">Resmî sitedeki form</a></p>
+<h2 id="bildirim">Kayıp eşya bildirim formu</h2>
+<p>Kayıp eşya bildiriminizi doğrudan aşağıdaki form üzerinden danışma ve yönetim birimine iletebilirsiniz. Bildiriminiz anında yönetim paneline düşer ve eşyanız bulunduğunda size dönüş yapılır.</p>
+<form id="lostForm" class="cms-form" style="background:var(--bg-light);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:24px;margin:20px 0;display:grid;gap:14px">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+    <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Ad Soyad *
+      <input type="text" name="name" required placeholder="Adınız Soyadınız" style="height:42px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px" />
+    </label>
+    <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Telefon / E-posta *
+      <input type="text" name="contact" required placeholder="05xx xxx xx xx veya e-posta" style="height:42px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px" />
+    </label>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+    <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Kaybolduğu Tarih *
+      <input type="date" name="date" required style="height:42px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px" />
+    </label>
+    <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Tahmini Kat / Mağaza
+      <input type="text" name="location" placeholder="Örn: Koru Katı, Starbucks yakını" style="height:42px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px" />
+    </label>
+  </div>
+  <label style="display:grid;gap:5px;font-size:13px;font-weight:500">Eşyanın Tanımı *
+    <textarea name="desc" rows="3" required placeholder="Eşyanın rengi, markası ve ayırt edici özellikleri..." style="padding:10px 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:#fff;font-size:14px;font-family:inherit;resize:vertical"></textarea>
+  </label>
+  <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+    <button type="submit" class="btn btn-dark btn-sm" style="height:42px;padding:0 20px">Bildirimi Gönder</button>
+    <span id="lostFormMsg" style="font-size:13.5px;color:var(--brand-turq-text);font-weight:500" hidden>✓ Bildiriminiz danışma yönetim paneline kaydedildi.</span>
+  </div>
+</form>
 <p>Kişisel verilerinizin işlenmesi için <a href="kvkk.html">KVKK aydınlatma metnine</a> bakın. Diğer hizmetler için <a href="hizmetler.html">hizmetler sayfası</a>.</p>
+<script>
+document.getElementById('lostForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  const fd=new FormData(this);
+  const item={
+    id:'lf-'+Date.now(),
+    name:fd.get('name'),
+    contact:fd.get('contact'),
+    date:fd.get('date'),
+    location:fd.get('location')||'Belirtilmedi',
+    desc:fd.get('desc'),
+    status:'Bekliyor',
+    createdAt:new Date().toLocaleString('tr-TR')
+  };
+  try{
+    const list=JSON.parse(localStorage.getItem('kf_cms_lost')||'[]');
+    list.unshift(item);
+    localStorage.setItem('kf_cms_lost',JSON.stringify(list));
+  }catch(err){}
+  this.reset();
+  const msg=document.getElementById('lostFormMsg');
+  if(msg){msg.hidden=false;setTimeout(()=>msg.hidden=true,6000);}
+});
+</script>
       </article>
     </div>
   </section>

@@ -16,6 +16,7 @@ body[data-page="store"],body[data-page="floors"]{
 .sp-cats a:hover{background:#D7EFE8}
 .sp-act{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
 .sbody{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:40px;align-items:start}
+.sbody>div,.sbody>aside{position:sticky;top:100px}
 .card2{background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm)}
 .card2 h2,.card2 h3{font-family:var(--font-h);font-weight:600;font-size:20px;line-height:26px;letter-spacing:-.02em;margin-bottom:16px}
 .hours-big{font-family:var(--font-h);font-weight:600;font-size:clamp(26px,3vw,36px);letter-spacing:-.03em;line-height:1.1}
@@ -47,7 +48,8 @@ body[data-page="store"],body[data-page="floors"]{
 .seg button[aria-pressed=true]{background:var(--brand-dark);color:#fff}
 .seg button[aria-pressed=true] small{color:#A9C7BE}
 .kp{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:32px;align-items:start}
-.kp-plan{background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);min-height:480px;display:grid;place-items:center;text-align:center;padding:48px;box-shadow:var(--shadow-sm)}
+.kp-plan{position:sticky;top:100px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);min-height:420px;display:grid;place-items:center;text-align:center;padding:36px;box-shadow:var(--shadow-sm)}
+.kp-side{position:sticky;top:100px;background:#fff;border:1px solid var(--line);border-radius:var(--radius-xl);padding:28px;box-shadow:var(--shadow-sm)}
 .kp-plan h2{font-family:var(--font-h);font-weight:600;font-size:clamp(26px,2.8vw,36px);letter-spacing:-.03em;line-height:1.1}
 .kp-plan p{color:var(--ink2);max-width:28rem;margin:12px auto 0}
 .kp-ic{width:64px;height:64px;border-radius:50%;background:var(--lime);display:grid;place-items:center;margin:0 auto 20px}
@@ -67,16 +69,16 @@ body[data-page="store"],body[data-page="floors"]{
 .ks-n{font-size:14px;font-variant-numeric:tabular-nums;opacity:.8}
 .ks-note{margin:18px 0 0;font-size:13px;color:var(--ink2)}
 .kp-soon{display:inline-flex;margin-top:20px;height:34px;padding:0 14px;border-radius:var(--radius-sm);background:var(--lime);align-items:center;font-size:13px;font-weight:500;color:var(--ink2)}
-.kp-side h2{font-family:var(--font-h);font-weight:600;font-size:26px;line-height:32px;letter-spacing:-.03em}
-.kp-side>p{color:var(--ink2);margin-top:8px}
+.kp-side h2{font-family:var(--font-h);font-weight:600;font-size:24px;line-height:30px;letter-spacing:-.02em}
+.kp-side>p{color:var(--ink2);margin-top:8px;font-size:14.5px;line-height:22px}
 .checks{margin:20px 0}
-.checks li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-weight:500}
+.checks li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-weight:500;font-size:14px}
 .checks li:last-child{border-bottom:1px solid var(--line)}
 .checks svg{width:18px;height:18px;color:var(--green);flex:none}
 .kp-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .kp-stats div{background:var(--lime);border:1px solid var(--line);border-radius:var(--radius-lg);padding:14px 18px}
-.kp-stats b{display:block;font-family:var(--font-h);font-weight:600;font-size:30px;line-height:34px;letter-spacing:-.03em}
-.kp-stats span{font-size:14px;color:var(--ink2)}
+.kp-stats b{display:block;font-family:var(--font-h);font-weight:600;font-size:26px;line-height:30px;letter-spacing:-.02em}
+.kp-stats span{font-size:13px;color:var(--ink2)}
 .kp-list-h{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin:56px 0 20px}
 .kp-list-h h2{font-family:var(--font-h);font-weight:600;font-size:clamp(26px,3vw,36px);letter-spacing:-.03em;line-height:1.1}
 .search{display:flex;align-items:center;gap:12px;background:var(--lime);border:1px solid var(--line);border-radius:var(--radius-md);padding:0 14px;height:48px;flex:0 1 320px;min-width:220px;transition:border-color .16s var(--ease),background-color .16s var(--ease)}
@@ -90,6 +92,7 @@ body[data-page="store"],body[data-page="floors"]{
 @media (max-width:1100px){
   .sp{grid-template-columns:180px minmax(0,1fr);gap:32px}
   .sbody{grid-template-columns:minmax(0,1fr);gap:28px}
+  .sbody>div,.sbody>aside,.kp-plan,.kp-side{position:static}
   .sgrid{grid-template-columns:repeat(3,1fr)}
   .kp{grid-template-columns:minmax(0,1fr)}
 }

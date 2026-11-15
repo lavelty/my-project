@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Yönetim Paneli (CMS) | Koru Florya</title>
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#102B24" />
+<link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/css/site.css" />
+<style>
+  .adm-wrap{display:grid;grid-template-columns:250px minmax(0,1fr);gap:28px;align-items:start}
+  .adm-nav{position:sticky;top:100px;background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:14px;display:flex;flex-direction:column;gap:4px;box-shadow:var(--shadow-sm)}
+  .adm-tab{height:40px;padding:0 14px;border-radius:var(--radius-sm);border:0;background:transparent;font-family:var(--font-h);font-size:13.5px;font-weight:500;color:var(--text-muted);text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background-color .16s,color .16s}
+  .adm-tab:hover{background:var(--bg-light);color:var(--text-main)}
+  .adm-tab.on{background:var(--brand-dark);color:#fff}
+  .adm-tab span.cnt{font-size:11.5px;padding:2px 7px;border-radius:var(--radius-xs);background:rgba(0,0,0,.06)}
+  .adm-tab.on span.cnt{background:rgba(255,255,255,.2);color:#fff}
+
+  .adm-pane{display:none;flex-direction:column;gap:24px}
+  .adm-pane.on{display:flex}
+
+  .adm-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow-sm)}
+  .adm-card h2{font-family:var(--font-h);font-size:18px;font-weight:600;margin-bottom:6px;color:var(--text-main)}
+  .adm-card p.sub{font-size:13.5px;color:var(--text-muted);margin-bottom:18px}
+
+  .adm-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+  .adm-field{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:500;color:var(--text-main)}
+  .adm-field.full{grid-column:1/-1}
+  .adm-field input,.adm-field select,.adm-field textarea{padding:9px 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:var(--bg-light);font-size:14px;font-family:var(--font-b);color:var(--text-main);outline:none;transition:border-color .16s,background-color .16s}
+  .adm-field input:focus,.adm-field select:focus,.adm-field textarea:focus{background:#fff;border-color:var(--brand-turq)}
+
+  .adm-table-wrap{overflow-x:auto}
+  .adm-table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .adm-table th,.adm-table td{padding:12px 10px;border-bottom:1px solid var(--border-light);text-align:left;vertical-align:middle}
+  .adm-table th{font-family:var(--font-h);font-weight:600;font-size:12px;color:var(--text-subtle);text-transform:uppercase;letter-spacing:.04em}
+  .adm-thumb{width:64px;height:40px;border-radius:var(--radius-xs);object-fit:cover;background:var(--bg-light);border:1px solid var(--border-light)}
+
+  .adm-badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:var(--radius-xs);font-size:11.5px;font-weight:500;font-family:var(--font-h)}
+  .adm-badge.ev{background:var(--brand-turq-light);color:var(--brand-turq-text)}
+  .adm-badge.cp{background:#FEF3C7;color:#92400E}
+  .adm-badge.ok{background:#DCFCE7;color:#166534}
+
+  .adm-actions{display:flex;gap:6px;align-items:center}
+  .adm-btn-del{height:30px;padding:0 10px;border-radius:var(--radius-xs);border:1px solid rgba(220,38,38,.25);background:#FEF2F2;color:#B91C1C;font-size:12px;font-weight:500;cursor:pointer}
+  .adm-btn-del:hover{background:#FEE2E2}
+  .adm-btn-act{height:30px;padding:0 10px;border-radius:var(--radius-xs);border:1px solid var(--border-light);background:var(--bg-light);color:var(--text-main);font-size:12px;font-weight:500;cursor:pointer}
+  .adm-btn-act:hover{background:var(--bg-raised)}
+
+  .adm-toast{position:fixed;bottom:24px;right:24px;background:var(--brand-dark);color:#fff;padding:12px 18px;border-radius:var(--radius-md);font-family:var(--font-h);font-size:13.5px;font-weight:500;box-shadow:var(--shadow-lg);z-index:999;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s}
+  .adm-toast.on{opacity:1;transform:translateY(0)}
+
+  @media (max-width:900px){
+    .adm-wrap{grid-template-columns:1fr}
+    .adm-nav{position:static;flex-direction:row;overflow-x:auto}
+    .adm-tab{flex:0 0 auto;gap:8px}
+    .adm-grid{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body data-page="admin">
+<main id="main">
+  <div class="pagehead">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">Ana sayfa</a> / Yönetim Paneli</p>
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+        <div>
+          <span class="eyebrow">İçerik &amp; operasyon yönetimi</span>
+          <h1 class="h">Koru Florya Yönetim Paneli</h1>
+          <p class="lead">Ana sayfa hero slaytlarını, etkinlik ve kampanyaları, kayıp eşya bildirimlerini tek ekrandan yönetin.</p>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-outline btn-sm" href="index.html" target="_blank">Siteyi Görüntüle</a>
+          <button type="button" class="btn btn-dark btn-sm" id="exportJsonBtn">Verileri JSON İndir</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section style="padding:40px 0 88px" class="bg-lime">
+    <div class="wrap adm-wrap">
+      <aside class="adm-nav" role="tablist" aria-label="Yönetim Bölümleri">
+        <button type="button" class="adm-tab on" data-pane="events">Etkinlik &amp; Kampanyalar <span class="cnt" id="cntEvents">0</span></button>
+        <button type="button" class="adm-tab" data-pane="hero">Hero &amp; Görseller <span class="cnt" id="cntSlides">4</span></button>
+        <button type="button" class="adm-tab" data-pane="lost">Kayıp Eşya Bildirimleri <span class="cnt" id="cntLost">0</span></button>
+      </aside>
+
+      <div>
+        <!-- 1. ETKİNLİK & KAMPANYALAR PANE -->
+        <div class="adm-pane on" id="pane-events">
+          <div class="adm-card">
+            <h2>Yeni Etkinlik veya Kampanya Ekle</h2>
+            <p class="sub">Eklediğiniz etkinlik veya kampanya anında ana sayfada ve Etkinlikler sayfasında yayınlanır.</p>
+            <form id="addEventForm" class="adm-grid">
+              <label class="adm-field">Başlık *
+                <input type="text" name="title" required placeholder="Örn: Beymen Club Sezon İndirimi" />
+              </label>
+              <label class="adm-field">Tür *
+                <select name="type">
+                  <option value="campaign">Kampanya / Mağaza Fırsatı</option>
+                  <option value="event">Etkinlik / İmza Günü / Atölye</option>
+                </select>
+              </label>
+              <label class="adm-field">Alt Başlık (Kicker)
+                <input type="text" name="kicker" placeholder="Örn: Sezon Kampanyası, Kültür · Sanat" />
+              </label>
+              <label class="adm-field">Rozet (Badge)
+                <input type="text" name="badge" placeholder="Örn: Net %40, Ücretsiz" />
+              </label>
+              <label class="adm-field">Bulunduğu Kat / Konum *
+                <select name="place">
+                  <option value="Koru Katı (Giriş Kat)">Koru Katı (Giriş Kat)</option>
+                  <option value="Podyum Katı (1. Kat)">Podyum Katı (1. Kat)</option>
+                  <option value="Cadde Katı (2. Kat)">Cadde Katı (2. Kat)</option>
+                  <option value="Otopark Katı (-1. Kat)">Otopark Katı (-1. Kat)</option>
+                </select>
+              </label>
+              <label class="adm-field">Mekân / Mağaza Adı
+                <input type="text" name="venue" placeholder="Örn: Zara, Atriyum Etkinlik Alanı" />
+              </label>
+              <label class="adm-field">Başlangıç Tarihi
+                <input type="date" name="start" />
+              </label>
+              <label class="adm-field">Bitiş Tarihi
+                <input type="date" name="end" />
+              </label>
+              <label class="adm-field">Saat Aralığı
+                <input type="text" name="time" value="10:00 – 22:00" placeholder="Örn: 14:00 – 17:00" />
+              </label>
+              <label class="adm-field">Görsel (Hazır Afiş veya URL)
+                <input type="text" name="img" placeholder="hero-kitap-fuari.webp veya https://..." value="hero-pierre-cardin.webp" />
+              </label>
+              <label class="adm-field full">Kısa Özet (Kart üzerinde görünür) *
+                <input type="text" name="short" required placeholder="Kart üzerinde görünecek 1-2 cümlelik özet açıklama" />
+              </label>
+              <label class="adm-field full">Detaylı Açıklama (Her satır ayrı paragraf olur) *
+                <textarea name="about" rows="4" required placeholder="Kampanya veya etkinliğin kapsamlı açıklaması, katılım koşulları..."></textarea>
+              </label>
+              <div class="adm-field full" style="flex-direction:row;justify-content:space-between;align-items:center;margin-top:6px">
+                <button type="submit" class="btn btn-dark btn-sm" style="height:40px;padding:0 20px">Yayınla &amp; Kaydet</button>
+                <button type="button" class="adm-btn-act" id="resetEventsBtn">Varsayılanlara Sıfırla</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="adm-card">
+            <h2>Yayındaki Etkinlik ve Kampanyalar</h2>
+            <p class="sub">Sitede aktif olarak gösterilen tüm kayıtlar.</p>
+            <div class="adm-table-wrap">
+              <table class="adm-table">
+                <thead>
+                  <tr>
+                    <th>Görsel</th>
+                    <th>Başlık</th>
+                    <th>Tür</th>
+                    <th>Konum</th>
+                    <th>Tarih</th>
+                    <th>İşlem</th>
+                  </tr>
+                </thead>
+                <tbody id="eventsTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. HERO & GÖRSELLER PANE -->
+        <div class="adm-pane" id="pane-hero">
+          <div class="adm-card">
+            <h2>Ana Sayfa Hero Başlık &amp; Slogan</h2>
+            <p class="sub">Ana sayfa açılış ekranındaki ana başlığı ve alt sloganı güncelleyin.</p>
+            <form id="heroTextForm" class="adm-grid">
+              <label class="adm-field full">Ana Başlık (H1)
+                <input type="text" id="admHeroTitle" required value="Florya'da alışveriş, kahve ve koru" />
+              </label>
+              <label class="adm-field full">Alt Slogan
+                <input type="text" id="admHeroSub" required value="Açık hava bahçe terasları, seçkin dünya markaları ve doğayla iç içe bir yaşam deneyimi." />
+              </label>
+              <div class="adm-field full" style="flex-direction:row;gap:10px">
+                <button type="submit" class="btn btn-dark btn-sm" style="height:40px;padding:0 20px">Metinleri Güncelle</button>
+                <button type="button" class="adm-btn-act" id="resetHeroBtn">Varsayılana Dön</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="adm-card">
+            <h2>Hero Arka Plan Slayt Fotoğrafları</h2>
+            <p class="sub">Ana sayfa hero alanında dönen fotoğrafları yönetin veya yeni fotoğraf URL'si ekleyin.</p>
+            <form id="addSlideForm" class="adm-grid" style="margin-bottom:20px">
+              <label class="adm-field">Fotoğraf URL *
+                <input type="url" name="url" required placeholder="https://images.unsplash.com/photo-..." />
+              </label>
+              <label class="adm-field">Fotoğraf Açıklaması (Alt Metin) *
+                <input type="text" name="alt" required placeholder="Örn: Koru Florya Bahçe Terası" />
+              </label>
+              <div class="adm-field full">
+                <button type="submit" class="btn btn-dark btn-sm" style="align-self:flex-start;height:38px">Slayt Ekle</button>
+              </div>
+            </form>
+            <div class="adm-table-wrap">
+              <table class="adm-table">
+                <thead>
+                  <tr>
+                    <th>Önizleme</th>
+                    <th>Açıklama</th>
+                    <th>Görsel Adresi</th>
+                    <th>İşlem</th>
+                  </tr>
+                </thead>
+                <tbody id="slidesTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. KAYIP EŞYA BİLDİRİMLERİ PANE -->
+        <div class="adm-pane" id="pane-lost">
+          <div class="adm-card">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+              <div>
+                <h2>Kayıp Eşya Bildirimleri &amp; Danışma Kayıtları</h2>
+                <p class="sub" style="margin-bottom:0"><a href="kayip-esya.html" style="text-decoration:underline">Kayıp Eşya</a> sayfasındaki formdan gönderilen bildirimler burada listelenir.</p>
+              </div>
+              <button type="button" class="adm-btn-act" id="addSampleLostBtn">+ Örnek Kayıt Ekle</button>
+            </div>
+            <div class="adm-table-wrap">
+              <table class="adm-table">
+                <thead>
+                  <tr>
+                    <th>Ad Soyad</th>
+                    <th>İletişim</th>
+                    <th>Tarih &amp; Konum</th>
+                    <th>Eşya Tanımı</th>
+                    <th>Durum</th>
+                    <th>İşlem</th>
+                  </tr>
+                </thead>
+                <tbody id="lostTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="adm-toast" id="admToast" role="status" aria-live="polite">Değişiklikler kaydedildi</div>
+
+<script src="assets/js/stores.js"></script>
+<script src="assets/js/events.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/chrome.js"></script>
+<script>
+(function(){
+  const $=s=>document.querySelector(s);
+  const esc=KF.esc;
+
+  function toast(msg){
+    const t=$('#admToast');
+    t.textContent=msg;
+    t.classList.add('on');
+    setTimeout(()=>t.classList.remove('on'),2600);
+  }
+
+  // Tab switching
+  document.querySelectorAll('.adm-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const p=btn.dataset.pane;
+      document.querySelectorAll('.adm-tab').forEach(b=>b.classList.toggle('on',b===btn));
+      document.querySelectorAll('.adm-pane').forEach(el=>el.classList.toggle('on',el.id==='pane-'+p));
+    });
+  });
+
+  // 1. EVENTS MANAGEMENT
+  function getActiveEvents(){
+    const custom=JSON.parse(localStorage.getItem('kf_cms_events')||'[]');
+    const deleted=new Set(JSON.parse(localStorage.getItem('kf_cms_deleted_events')||'[]'));
+    const customIds=new Set(custom.map(x=>x.id));
+    return [...custom, ...(window.KF_EVENTS||[]).filter(e=>!customIds.has(e.id))].filter(e=>!deleted.has(e.id));
+  }
+
+  function renderEvents(){
+    const list=getActiveEvents();
+    $('#cntEvents').textContent=list.length;
+    const tb=$('#eventsTableBody');
+    tb.innerHTML=list.map(e=>{
+      const imgSrc=/^https?:\/\/|^data:|^assets\//.test(e.img||'')?e.img:`assets/events/${e.img}`;
+      return `<tr>
+        <td><img class="adm-thumb" src="${esc(imgSrc)}" alt="" /></td>
+        <td><b>${esc(e.title)}</b><br><small style="color:var(--text-muted)">${esc(e.kicker||'')}</small></td>
+        <td><span class="adm-badge ${e.type==='event'?'ev':'cp'}">${e.type==='event'?'Etkinlik':'Kampanya'}</span></td>
+        <td>${esc(e.place||'—')}</td>
+        <td>${esc(e.start||'Sürekli')}${e.end?' → '+esc(e.end):''}</td>
+        <td>
+          <div class="adm-actions">
+            <a class="adm-btn-act" href="etkinlik.html?e=${encodeURIComponent(e.id)}" target="_blank">Gör</a>
+            <button type="button" class="adm-btn-del" data-del-ev="${esc(e.id)}">Kaldır</button>
+          </div>
+        </td>
+      </tr>`;
+    }).join('');
+  }
+
+  $('#addEventForm').addEventListener('submit',function(ev){
+    ev.preventDefault();
+    const fd=new FormData(this);
+    const title=fd.get('title').trim();
+    const id=KF.slugify(title)+'-'+Date.now().toString().slice(-4);
+    const item={
+      id,
+      type:fd.get('type'),
+      title,
+      kicker:fd.get('kicker').trim()||(fd.get('type')==='event'?'Kültür · Sanat':'Kampanya'),
+      badge:fd.get('badge').trim()||null,
+      place:fd.get('place'),
+      venue:fd.get('venue').trim()||'Koru Florya',
+      store:fd.get('venue').trim()||null,
+      start:fd.get('start')||null,
+      end:fd.get('end')||null,
+      allDay:true,
+      time:fd.get('time').trim()||'10:00 – 22:00',
+      img:fd.get('img').trim()||'hero-pierre-cardin.webp',
+      short:fd.get('short').trim(),
+      about:fd.get('about').split('\n').map(s=>s.trim()).filter(Boolean),
+      free:true,
+      audience:'Herkese açık'
+    };
+    const custom=JSON.parse(localStorage.getItem('kf_cms_events')||'[]');
+    custom.unshift(item);
+    localStorage.setItem('kf_cms_events',JSON.stringify(custom));
+    this.reset();
+    renderEvents();
+    toast('Yeni içerik yayınlandı');
+  });
+
+  document.addEventListener('click',e=>{
+    const delEv=e.target.closest('[data-del-ev]');
+    if(delEv){
+      const id=delEv.dataset.delEv;
+      const custom=JSON.parse(localStorage.getItem('kf_cms_events')||'[]').filter(x=>x.id!==id);
+      localStorage.setItem('kf_cms_events',JSON.stringify(custom));
+      const deleted=JSON.parse(localStorage.getItem('kf_cms_deleted_events')||'[]');
+      if(!deleted.includes(id)) deleted.push(id);
+      localStorage.setItem('kf_cms_deleted_events',JSON.stringify(deleted));
+      renderEvents();
+      toast('İçerik yayından kaldırıldı');
+    }
+  });
+
+  $('#resetEventsBtn').addEventListener('click',()=>{
+    localStorage.removeItem('kf_cms_events');
+    localStorage.removeItem('kf_cms_deleted_events');
+    renderEvents();
+    toast('Varsayılan etkinlik ve kampanyalar geri yüklendi');
+  });
+
+  // 2. HERO & SLIDES MANAGEMENT
+  const DEFAULT_HERO={
+    title:"Florya'da alışveriş, kahve ve koru",
+    sub:"Açık hava bahçe terasları, seçkin dünya markaları ve doğayla iç içe bir yaşam deneyimi.",
+    slides:[
+      {url:'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&q=75&w=1400',alt:'Koru Florya iç mekânı'},
+      {url:'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=75&w=1400',alt:'Alışveriş deneyimi'},
+      {url:'https://images.unsplash.com/photo-1764489307253-da5c9c311fa2?auto=format&fit=crop&q=75&w=1400',alt:'Akşam ışığında kafe'},
+      {url:'https://images.unsplash.com/photo-1757585920915-c5a388d16e44?auto=format&fit=crop&q=75&w=1400',alt:'Florya korusu ve doğa'}
+    ]
+  };
+
+  function getHero(){
+    try{
+      return JSON.parse(localStorage.getItem('kf_cms_hero'))||JSON.parse(JSON.stringify(DEFAULT_HERO));
+    }catch{
+      return JSON.parse(JSON.stringify(DEFAULT_HERO));
+    }
+  }
+
+  function renderHero(){
+    const h=getHero();
+    $('#admHeroTitle').value=h.title||DEFAULT_HERO.title;
+    $('#admHeroSub').value=h.sub||DEFAULT_HERO.sub;
+    const slides=h.slides||DEFAULT_HERO.slides;
+    $('#cntSlides').textContent=slides.length;
+    $('#slidesTableBody').innerHTML=slides.map((s,idx)=>`
+      <tr>
+        <td><img class="adm-thumb" src="${esc(s.url||s.img)}" alt="" /></td>
+        <td><b>${esc(s.alt||'Slayt '+(idx+1))}</b></td>
+        <td style="max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-muted)">${esc(s.url||s.img)}</td>
+        <td><button type="button" class="adm-btn-del" data-del-slide="${idx}">Sil</button></td>
+      </tr>
+    `).join('');
+  }
+
+  $('#heroTextForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const h=getHero();
+    h.title=$('#admHeroTitle').value.trim();
+    h.sub=$('#admHeroSub').value.trim();
+    localStorage.setItem('kf_cms_hero',JSON.stringify(h));
+    toast('Hero başlık ve sloganı güncellendi');
+  });
+
+  $('#addSlideForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    const fd=new FormData(this);
+    const h=getHero();
+    h.slides=h.slides||[];
+    h.slides.push({url:fd.get('url').trim(),alt:fd.get('alt').trim()});
+    localStorage.setItem('kf_cms_hero',JSON.stringify(h));
+    this.reset();
+    renderHero();
+    toast('Yeni slayt fotoğrafı eklendi');
+  });
+
+  document.addEventListener('click',e=>{
+    const ds=e.target.closest('[data-del-slide]');
+    if(ds){
+      const idx=Number(ds.dataset.delSlide);
+      const h=getHero();
+      if(h.slides && h.slides.length>1){
+        h.slides.splice(idx,1);
+        localStorage.setItem('kf_cms_hero',JSON.stringify(h));
+        renderHero();
+        toast('Slayt silindi');
+      } else {
+        toast('En az 1 slayt kalmalıdır');
+      }
+    }
+  });
+
+  $('#resetHeroBtn').addEventListener('click',()=>{
+    localStorage.removeItem('kf_cms_hero');
+    renderHero();
+    toast('Hero ayarları varsayılana döndürüldü');
+  });
+
+  // 3. LOST & FOUND MANAGEMENT
+  const SAMPLE_LOST=[
+    {id:'lf-101',name:'Zeynep Kaya',contact:'0532 410 88 92',date:'2026-11-14',location:'Koru Katı · Starbucks',desc:'Siyah deri Celine kartlık, içinde kimlik ve 2 banka kartı.',status:'Danışmada Muhafaza',createdAt:'14.11.2026 16:40'},
+    {id:'lf-102',name:'Mert Demir',contact:'mert.demir@gmail.com',date:'2026-11-15',location:'Podyum Katı · Zara',desc:'Apple AirPods Pro 2. nesil şarj kutusu.',status:'Bekliyor',createdAt:'15.11.2026 11:15'}
+  ];
+
+  function getLost(){
+    try{
+      const raw=localStorage.getItem('kf_cms_lost');
+      if(!raw){
+        localStorage.setItem('kf_cms_lost',JSON.stringify(SAMPLE_LOST));
+        return SAMPLE_LOST;
+      }
+      return JSON.parse(raw);
+    }catch{return SAMPLE_LOST;}
+  }
+
+  function renderLost(){
+    const list=getLost();
+    $('#cntLost').textContent=list.length;
+    const tb=$('#lostTableBody');
+    if(!list.length){
+      tb.innerHTML=`<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--text-muted)">Kayıtlı kayıp eşya bildirimi bulunmuyor.</td></tr>`;
+      return;
+    }
+    tb.innerHTML=list.map((item,idx)=>`
+      <tr>
+        <td><b>${esc(item.name)}</b><br><small style="color:var(--text-subtle)">${esc(item.createdAt||'')}</small></td>
+        <td>${esc(item.contact)}</td>
+        <td>${esc(item.date)}<br><small style="color:var(--text-muted)">${esc(item.location)}</small></td>
+        <td style="max-width:260px">${esc(item.desc)}</td>
+        <td><span class="adm-badge ${item.status==='Teslim Edildi'?'ok':(item.status==='Danışmada Muhafaza'?'ev':'cp')}">${esc(item.status)}</span></td>
+        <td>
+          <div class="adm-actions">
+            <button type="button" class="adm-btn-act" data-toggle-lost="${idx}">Durum Değiştir</button>
+            <button type="button" class="adm-btn-del" data-del-lost="${idx}">Sil</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  document.addEventListener('click',e=>{
+    const tl=e.target.closest('[data-toggle-lost]');
+    if(tl){
+      const idx=Number(tl.dataset.toggleLost);
+      const list=getLost();
+      const states=['Bekliyor','Danışmada Muhafaza','Teslim Edildi'];
+      const curIdx=states.indexOf(list[idx].status);
+      list[idx].status=states[(curIdx+1)%states.length];
+      localStorage.setItem('kf_cms_lost',JSON.stringify(list));
+      renderLost();
+      toast('Kayıp eşya durumu güncellendi: '+list[idx].status);
+    }
+    const dl=e.target.closest('[data-del-lost]');
+    if(dl){
+      const idx=Number(dl.dataset.delLost);
+      const list=getLost();
+      list.splice(idx,1);
+      localStorage.setItem('kf_cms_lost',JSON.stringify(list));
+      renderLost();
+      toast('Kayıp eşya kaydı silindi');
+    }
+  });
+
+  $('#addSampleLostBtn').addEventListener('click',()=>{
+    const list=getLost();
+    list.unshift({
+      id:'lf-'+Date.now(),
+      name:'Elif Yılmaz',
+      contact:'0544 220 19 05',
+      date:'2026-11-15',
+      location:'Cadde Katı · Happy Moon’s Teras',
+      desc:'Bej rengi kaşmir şal, koltuk üzerinde unutuldu.',
+      status:'Bekliyor',
+      createdAt:new Date().toLocaleString('tr-TR')
+    });
+    localStorage.setItem('kf_cms_lost',JSON.stringify(list));
+    renderLost();
+    toast('Örnek kayıp eşya bildirimi eklendi');
+  });
+
+  // Export JSON
+  $('#exportJsonBtn').addEventListener('click',()=>{
+    const data={
+      events:getActiveEvents(),
+      hero:getHero(),
+      lostAndFound:getLost()
+    };
+    const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='koruflorya-cms-data.json';
+    a.click();
+    toast('JSON veri dosyası indirildi');
+  });
+
+  renderEvents();
+  renderHero();
+  renderLost();
+})();
+</script>
+</body>
+</html>

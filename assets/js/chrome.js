@@ -50,7 +50,7 @@ footer.innerHTML=`<div class="wrap">
       <a class="brand" href="${home?'#top':'index.html'}" aria-label="Koru Florya ana sayfa">
         <img src="assets/logo/koruflorya-white.svg" alt="Koru Florya" width="160" height="50" />
       </a>
-      <p class="foot-desc">177 mağaza, 29 yeme içme durağı ve ücretsiz Marmaray ring servisiyle Florya'nın alışveriş ve yaşam merkezi.</p>
+      <p class="foot-desc">Açık hava bahçe terasları, seçkin dünya markaları ve doğayla iç içe mimarisiyle Florya’nın yaşam merkezi.</p>
       <div class="foot-schedule">
         <span class="fs-title">Ziyaret saatleri:</span>
         <span class="fs-hours">Her gün 10:00 – 22:00</span>
@@ -70,7 +70,7 @@ footer.innerHTML=`<div class="wrap">
       <h3>Hizmetler</h3>
       <a href="hizmetler.html">Danışma</a>
       <a href="hizmetler.html#otopark">Otopark ve şarj</a>
-      <a href="kayip-esya.html">Kayıp eşya</a>
+      <a href="kayip-esya.html">Kayıp eşya bildirimi</a>
       <a href="hizmetler.html#ziyaretci">Bebek bakım odası</a>
     </div>
 
@@ -110,6 +110,8 @@ footer.innerHTML=`<div class="wrap">
       <a href="kvkk.html#cerezler">Çerez Politikası</a>
       <span>•</span>
       <a href="sartlar.html">Kullanım Şartları</a>
+      <span>•</span>
+      <a href="admin.html">Yönetim Paneli</a>
     </div>
   </div>
 </div>`;

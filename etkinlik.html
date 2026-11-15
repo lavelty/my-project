@@ -60,12 +60,13 @@ const rows=[dt?['Tarih',esc(dt)]:null,e.time?['Saat',esc(e.time)]:null,['Mekân'
 const inits=n=>n.replace(/(Prof\.|Dr\.)\s*/g,'').split(' ').map(w=>w[0]).slice(0,2).join('');
 const goEventHall=!camp&&/^Koru Katı/.test(e.place||'');
 const similar=(e.related||KF.EVENTS.filter(x=>x.id!==e.id&&x.type===e.type).map(x=>x.id)).map(KF.evById).filter(x=>x&&!KF.isPast(x)).slice(0,3);
+const imgSrc=/^https?:\/\/|^data:|^assets\//.test(e.img||'')?e.img:`assets/events/${e.img}`;
 page.innerHTML=`
 <div class="ev-hero">
-  <img src="assets/events/${e.img}" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" />
+  <img src="${esc(imgSrc)}" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" />
   <div class="wrap">
     <p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="etkinlikler.html">Etkinlikler</a> / ${esc(e.title)}</p>
-    <span class="eyebrow" style="color:#9CE8D2">${esc(e.kicker||'')}${past?' · Sona erdi':''}</span>
+    <span class="eyebrow">${esc(e.kicker||'')}${past?' · Sona erdi':''}</span>
     <h1>${esc(e.title)}</h1>
     <p>${esc(e.short)}</p>
     <div class="ev-chips">${chips}</div>
@@ -74,7 +75,7 @@ page.innerHTML=`
 <section>
   <div class="wrap evd">
     <article>
-      <div class="poster"><img src="assets/events/${e.img}" alt="${esc(e.title)} afişi" width="1920" height="1080" loading="lazy" decoding="async" /></div>
+      <div class="poster"><img src="${esc(imgSrc)}" alt="${esc(e.title)} afişi" width="1920" height="1080" loading="lazy" decoding="async" /></div>
       <h2>${camp?'Kampanya hakkında':'Etkinlik hakkında'}</h2>
       ${e.about.map(p=>`<p>${esc(p)}</p>`).join('')}
       ${e.who?`<h2>Konuk hakkında</h2><div class="bio"><span class="av" aria-hidden="true">${esc(inits(e.who.name))}</span><div><h3>${esc(e.who.name)}</h3><p>${esc(e.who.bio)}</p></div></div>`:''}

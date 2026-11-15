@@ -61,8 +61,19 @@ KF.nowSecs=()=>{const d=KF.ist();return d.getHours()*3600+d.getMinutes()*60+d.ge
 KF.nextShuttle=(dir,now=KF.nowSecs())=>{const t=KF.SHUTTLE[dir].find(x=>KF.secs(x)>now);return t?{t,min:Math.ceil((KF.secs(t)-now)/60)}:null};
 KF.status=()=>{const d=KF.ist(),h=d.getHours()+d.getMinutes()/60,open=h>=10&&h<22;return{open,text:open?'Açık · 22:00\'ye kadar':(h<10?'Kapalı · 10:00\'da açılır':'Kapalı · Yarın 10:00')}};
 
-/* events and campaigns come from assets/data/events.json (run node tools/build-data.mjs after editing) */
-KF.EVENTS=window.KF_EVENTS||[];
+/* events and campaigns come from assets/data/events.json + optional CMS overrides in localStorage */
+let customEvents=[], customHero=null;
+try{
+  const rawEv=localStorage.getItem('kf_cms_events');
+  if(rawEv) customEvents=JSON.parse(rawEv)||[];
+  const rawHero=localStorage.getItem('kf_cms_hero');
+  if(rawHero) customHero=JSON.parse(rawHero)||null;
+}catch(e){}
+KF.CMS={hero:customHero};
+const baseEvents=window.KF_EVENTS||[];
+const customIds=new Set(customEvents.map(x=>x.id));
+const deletedIds=new Set((()=>{try{return JSON.parse(localStorage.getItem('kf_cms_deleted_events')||'[]')}catch{return[]}})());
+KF.EVENTS=[...customEvents,...baseEvents.filter(e=>!customIds.has(e.id))].filter(e=>!deletedIds.has(e.id));
 KF.evById=id=>KF.EVENTS.find(e=>e.id===id);
 KF.P=s=>{if(!s)return null;const[a,b]=s.split('T');const[y,m,d]=a.split('-').map(Number);const[hh,mm]=(b||'00:00').split(':').map(Number);return new Date(y,m-1,d,hh,mm)};
 KF.startOfDay=d=>new Date(d.getFullYear(),d.getMonth(),d.getDate());
