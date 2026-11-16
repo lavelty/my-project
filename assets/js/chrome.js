@@ -170,42 +170,9 @@ skip.href='#main';
 skip.textContent='İçeriğe geç';
 document.body.prepend(skip);
 
-/* Premium Corporate Footer with Integrated E-Bülten System */
+/* Premium Corporate Footer with Kanyon-Style Compact E-Bülten Capsule */
 const footer=document.createElement('footer');
 footer.innerHTML=`<div class="wrap">
-  <div class="nl-banner" id="ebulten">
-    <div class="nl-copy">
-      <span class="nl-badge">
-        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        Koru Florya E-Bülten
-      </span>
-      <h2>Etkinlikleri ve özel mağaza ayrıcalıklarını ilk siz öğrenin</h2>
-      <p>Konserler, çocuk atölyeleri, imza günleri ve seçkin markaların sezon indirimlerinden anında haberdar olmak için e-bültenimize katılın.</p>
-    </div>
-    <form class="nl-form" id="kfNewsletterForm">
-      <div class="nl-tags" role="group" aria-label="İlgi alanları">
-        <label class="nl-tag"><input type="checkbox" name="tags" value="Etkinlik & Kültür" checked /><span>Etkinlik &amp; Kültür</span></label>
-        <label class="nl-tag"><input type="checkbox" name="tags" value="Mağaza Kampanyaları" checked /><span>Mağaza Kampanyaları</span></label>
-        <label class="nl-tag"><input type="checkbox" name="tags" value="Gastronomi & Yeni Markalar" /><span>Gastronomi &amp; Yeni Markalar</span></label>
-      </div>
-      <div class="nl-inputs">
-        <input type="text" name="name" id="nlName" placeholder="Adınız Soyadınız (İsteğe bağlı)" autocomplete="name" />
-        <input type="email" name="email" id="nlEmail" required placeholder="E-posta adresiniz *" autocomplete="email" />
-        <button type="submit" class="nl-submit" id="nlSubmitBtn">
-          <span>Abone Ol</span>
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-      </div>
-      <div class="nl-foot-row">
-        <label class="nl-kvkk">
-          <input type="checkbox" required checked />
-          <span><a href="kvkk.html">KVKK Aydınlatma Metni</a> kapsamında ticari elektronik ileti gönderilmesini kabul ediyorum.</span>
-        </label>
-        <span class="nl-msg" id="nlFeedbackMsg" hidden></span>
-      </div>
-    </form>
-  </div>
-
   <div class="foot">
     <div class="foot-col foot-brand-col">
       <a class="brand" href="${home?'#top':'index.html'}" aria-label="Koru Florya ana sayfa">
@@ -261,6 +228,17 @@ footer.innerHTML=`<div class="wrap">
     </div>
   </div>
 
+  <div class="nl-kanyon-wrap" id="ebulten">
+    <form class="nl-capsule" id="kfNewsletterForm" novalidate>
+      <input type="email" name="email" id="nlEmail" required placeholder="E-BÜLTENİMİZE ABONE OLUN" aria-label="E-Bültenimize abone olmak için e-posta adresiniz" autocomplete="email" />
+      <button type="submit" class="nl-capsule-btn" id="nlSubmitBtn">
+        <span>Kayıt Ol</span>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </form>
+    <span class="nl-msg" id="nlFeedbackMsg" hidden></span>
+  </div>
+
   <div class="legal">
     <div class="legal-left">
       <span>© 2026 Koru Gayrimenkul Yatırım A.Ş. Tüm hakları saklıdır.</span>
@@ -278,19 +256,28 @@ footer.innerHTML=`<div class="wrap">
 </div>`;
 document.body.appendChild(footer);
 
-/* Wire E-Bülten Subscription Form to localStorage (kf_cms_newsletter) */
+/* Wire Compact Kanyon-Style E-Bülten Capsule to localStorage (kf_cms_newsletter) */
 const nlForm=footer.querySelector('#kfNewsletterForm');
 if(nlForm){
+  const emailEl=footer.querySelector('#nlEmail');
+  const msgEl=footer.querySelector('#nlFeedbackMsg');
+  const btnEl=footer.querySelector('#nlSubmitBtn');
+
+  emailEl.addEventListener('focus',()=>{
+    emailEl.placeholder='E-posta adresinizi yazın...';
+  });
+  emailEl.addEventListener('blur',()=>{
+    if(!emailEl.value.trim()) emailEl.placeholder='E-BÜLTENİMİZE ABONE OLUN';
+  });
+
   nlForm.addEventListener('submit',e=>{
     e.preventDefault();
-    const emailEl=footer.querySelector('#nlEmail');
-    const nameEl=footer.querySelector('#nlName');
-    const msgEl=footer.querySelector('#nlFeedbackMsg');
-    const btnEl=footer.querySelector('#nlSubmitBtn');
     const email=(emailEl.value||'').trim().toLowerCase();
-    const name=(nameEl.value||'').trim()||'Ziyaretçi';
-    const tags=[...nlForm.querySelectorAll('input[name="tags"]:checked')].map(c=>c.value);
-    if(!email) return;
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      emailEl.focus();
+      emailEl.placeholder='E-posta adresinizi yazın...';
+      return;
+    }
 
     const NL_KEY='kf_cms_newsletter';
     let list=[];
@@ -301,35 +288,34 @@ if(nlForm){
 
     const existing=list.find(x=>(x.email||'').toLowerCase()===email);
     if(existing){
-      existing.name=name||existing.name;
-      existing.tags=tags.length?tags:existing.tags;
       existing.status='Aktif';
     }else{
+      const namePart=email.split('@')[0].replace(/[._-]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase());
       list.unshift({
         id:'nl-'+Date.now(),
         email,
-        name,
-        tags:tags.length?tags:['Etkinlik & Kültür','Mağaza Kampanyaları'],
+        name:namePart||'Ziyaretçi',
+        interests:['Etkinlik & Kültür','Mağaza Kampanyaları'],
         status:'Aktif',
-        source:location.pathname.split('/').pop()||'index.html',
+        source:location.pathname.split('/').pop()||'Anasayfa E-Bülten',
         createdAt:new Date().toLocaleString('tr-TR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
       });
     }
     try{localStorage.setItem(NL_KEY,JSON.stringify(list));}catch{}
 
     nlForm.reset();
+    emailEl.placeholder='E-BÜLTENİMİZE ABONE OLUN';
+    emailEl.blur();
     if(btnEl){
-      btnEl.innerHTML=`<span>Kaydınız Alındı</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-      btnEl.classList.add('done');
+      btnEl.innerHTML=`<span>Kaydınız Alındı</span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
       setTimeout(()=>{
-        btnEl.innerHTML=`<span>Abone Ol</span><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
-        btnEl.classList.remove('done');
-      },4000);
+        btnEl.innerHTML=`<span>Kayıt Ol</span><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+      },3500);
     }
     if(msgEl){
-      msgEl.textContent='✓ E-bülten aboneliğiniz başarıyla tamamlandı.';
+      msgEl.textContent='✓ E-bülten aboneliğiniz başarıyla kaydedildi.';
       msgEl.hidden=false;
-      setTimeout(()=>{msgEl.hidden=true;},6000);
+      setTimeout(()=>{msgEl.hidden=true;},5000);
     }
   });
 }
