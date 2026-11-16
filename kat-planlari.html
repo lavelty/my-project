@@ -34,13 +34,15 @@
 <main id="main">
   <div class="pagehead">
     <div class="wrap">
-      <p class="crumb"><a href="index.html">Ana sayfa</a> / Kat planları</p>
+      <div class="lh-crumb">
+        <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Ana sayfaya dön</a>
+        <span class="lh-badge">Hizmetler &amp; Mimari Rehber</span>
+      </div>
       <div class="sec-head" style="margin-bottom:0;align-items:flex-end">
         <div>
-          <span class="eyebrow">Hizmetler</span>
-          <h1 class="h" style="font-size:clamp(40px,5.6vw,76px)">Kat planları</h1>
+          <h1 class="h" style="font-size:clamp(32px,4.5vw,52px)">Kat planları</h1>
         </div>
-        <p class="lead" style="margin:0">Katlarda hangi markaların ve mekânların yer aldığını görebilir, aradığınız mağazanın katına ulaşabilirsiniz</p>
+        <p class="lead" style="margin:0">Katlarda hangi markaların ve mekânların yer aldığını görebilir, aradığınız mağazanın katına ulaşabilirsiniz.</p>
       </div>
     </div>
   </div>
@@ -70,6 +72,8 @@ const $=s=>document.querySelector(s);
 const params=()=>new URLSearchParams(location.search);
 const CHECK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>';
 const PIN_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="14" height="14"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>';
+const LAYERS_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5z"/><path d="m3 13 9 5 9-5"/><path d="m3 18 9 5 9-5"/></svg>';
+const INFO_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" width="18" height="18"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>';
 const num={K:0,P:1,C:2,O:-1};
 let f=KF.floorFromParam(params().get('kat'))||'K';
 const hlSlug=params().get('magaza');
@@ -124,10 +128,9 @@ async function render(){
   $('#tabs').innerHTML=FORDER.map(k=>`<button type="button" data-f="${k}" aria-pressed="${k===f}">${FL[k].n} <small>${FL[k].sub}</small></button>`).join('');
   $('#sel').innerHTML=hl?`<div class="kp-sel"><span>Seçili mağaza: <b>${esc(hl.n)}</b> · ${esc(KF.floorShort(hl))}</span><a class="btn btn-dark btn-sm" href="${KF.storeUrl(hl)}">Mağaza sayfası ${IC.arr}</a></div>`:'';
   const svc=KF.FLOOR_INFO[f].services;
-  const STACK=['C','P','K','O'];
-  let plan=`<div class="kp-plan kp-stack"><ol class="ks-list" aria-label="Katlar">${STACK.map(k=>{const n=KF.stores.filter(s=>s.fl.includes(k)).length;return `<li><a href="kat-planlari.html?kat=${num[k]}" class="ks-row${k===f?' on':''}"${k===f?' aria-current="page"':''}><span class="ks-lvl">${num[k]>0?'+'+num[k]:num[k]}</span><span class="ks-name">${FL[k].n}<small>${FL[k].sub}</small></span><span class="ks-n">${n} ${k==='O'?'hizmet':'mağaza'}</span></a></li>`}).join('')}</ol><p class="ks-note">Ayrıntılı kat planı çizimi eklendiğinde bu alanda görünecek.</p></div>`;
+  let plan=`<div class="kp-plan"><div class="kp-plan-inner"><div class="kp-ic">${LAYERS_SVG}</div><h2>${FL[f].n} (${FL[f].sub})</h2><p>${esc(FL[f].d)}.</p><div class="kp-soon">${INFO_SVG}<span>Bu katın plan görseli hazırlanıyor. Aşağıdaki listede katta yer alan markaları ve mekânları görebilirsiniz.</span></div></div></div>`;
   if(KF.PLAN_FILES[f]){try{const t=await (await fetch(KF.PLAN_FILES[f])).text();plan=`<div class="kp-plan kp-svg">${t}</div>`}catch{}}
-  $('#kp').innerHTML=`${plan}<aside class="kp-side"><h2>${FL[f].n} (${FL[f].sub})</h2><p>${esc(FL[f].d)}</p>${svc.length?`<ul class="checks">${svc.map(x=>`<li>${CHECK}${esc(x)}</li>`).join('')}</ul>`:'<div style="height:24px"></div>'}<div class="kp-stats"><div><b>${list.length}</b><span>Mağazalar</span></div><div><b>${food}</b><span>Yeme &amp; İçme</span></div></div></aside>`;
+  $('#kp').innerHTML=`${plan}<aside class="kp-side"><h2>${FL[f].n} (${FL[f].sub})</h2><p>${esc(FL[f].d)}.</p>${svc.length?`<ul class="checks">${svc.map(x=>`<li>${CHECK}${esc(x)}</li>`).join('')}</ul>`:'<div style="height:24px"></div>'}<div class="kp-stats"><div><b>${list.length}</b><span>Mağazalar</span></div><div><b>${food}</b><span>Yeme &amp; İçme</span></div></div></aside>`;
   document.querySelectorAll('.kp-svg [data-store]').forEach(el=>{el.setAttribute('tabindex','0');el.classList.toggle('on',el.dataset.store===hlSlug);el.addEventListener('click',()=>{location.href='magaza.html?s='+el.dataset.store})});
   renderList();
 }

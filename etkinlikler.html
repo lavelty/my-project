@@ -33,8 +33,10 @@
 <main id="main">
   <div class="pagehead pagehead-dark">
     <div class="wrap">
-      <p class="crumb"><a href="index.html">Ana sayfa</a> / Etkinlikler</p>
-      <span class="eyebrow">Kültür, sanat ve kampanyalar</span>
+      <div class="lh-crumb">
+        <a class="back" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Ana sayfaya dön</a>
+        <span class="lh-badge">Kültür, sanat ve kampanyalar</span>
+      </div>
       <h1 class="h" style="font-size:clamp(32px,4vw,52px)">Koru Florya’da Neler Oluyor?</h1>
       <p class="lead">Güncel etkinlikler, imza günleri, atölyeler ve mağaza kampanyaları.</p>
     </div>
@@ -56,14 +58,23 @@
 const $=s=>document.querySelector(s);
 const keys=KF.TABS.map(t=>t[0]);
 let tab=keys.includes(location.hash.slice(1))?location.hash.slice(1):'upcoming';
-function render(){
-  $('#etabs').innerHTML=KF.TABS.map(([k,l,f])=>`<button class="etab" role="tab" type="button" data-k="${k}" aria-selected="${k===tab}">${l}<em>${f().length}</em></button>`).join('');
+function render(scrollActive){
+  const etabsEl=$('#etabs');
+  const prevScroll=etabsEl?etabsEl.scrollLeft:0;
+  etabsEl.innerHTML=KF.TABS.map(([k,l,f])=>`<button class="etab" role="tab" type="button" data-k="${k}" aria-selected="${k===tab}">${l}<em>${f().length}</em></button>`).join('');
+  if(etabsEl){
+    etabsEl.scrollLeft=prevScroll;
+    if(scrollActive){
+      const act=etabsEl.querySelector('[aria-selected="true"]');
+      if(act && act.scrollIntoView) act.scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
+    }
+  }
   const list=KF.sortEv(KF.TABS.find(t=>t[0]===tab)[2]());
   $('#ecards').innerHTML=list.length?list.map(KF.cardHtml).join(''):`<div class="eempty"><p>Bu kategoride aktif etkinlik bulunmuyor</p><button class="btn btn-dark btn-sm" type="button" data-k="upcoming">Tüm güncel etkinlikleri gör</button></div>`;
 }
-document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;tab=b.dataset.k;history.replaceState(null,'','#'+tab);render()});
-addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(keys.includes(k)){tab=k;render()}});
-render();
+document.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b)return;tab=b.dataset.k;history.replaceState(null,'','#'+tab);render(true)});
+addEventListener('hashchange',()=>{const k=location.hash.slice(1);if(keys.includes(k)){tab=k;render(true)}});
+render(false);
 })();
 </script>
 </body>

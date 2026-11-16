@@ -98,14 +98,14 @@
   const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const statusBadge=st=>{
     const map={
-      'Bekliyor':['#FEF3C7','#92400E','İnceleme Bekliyor'],
-      'İnceleniyor':['#E0E7FF','#1E40AF','Kamera & Saha İncelemesinde'],
-      'Danışmada Muhafaza':['#D1FAE5','#065F46','Bulundu · Danışmada Muhafaza Ediliyor'],
-      'Teslim Edildi':['#EBF7F4','#00876D','Sahibine Teslim Edildi'],
-      'Bulunamadı':['#FEE2E2','#991B1B','Kayıtlarda Eşleşme Bulunamadı']
+      'Bekliyor':['#FEF3C7','#92400E','İnceleme Bekliyor','<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'],
+      'İnceleniyor':['#E0E7FF','#1E40AF','Kamera & Saha İncelemesinde','<circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/>'],
+      'Danışmada Muhafaza':['#D1FAE5','#065F46','Bulundu · Danışmada Muhafaza Ediliyor','<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'],
+      'Teslim Edildi':['#EBF7F4','#00876D','Sahibine Teslim Edildi','<polyline points="20 6 9 17 4 12"/>'],
+      'Bulunamadı':['#FEE2E2','#991B1B','Kayıtlarda Eşleşme Bulunamadı','<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>']
     };
-    const [bg,fg,label]=map[st]||['#F0EEEA','#17211E',st||'Bekliyor'];
-    return `<span style="display:inline-flex;align-items:center;padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;background:${bg};color:${fg}">${esc(label)}</span>`;
+    const [bg,fg,label,svg]=map[st]||['#F0EEEA','#17211E',st||'Bekliyor','<circle cx="12" cy="12" r="9"/>'];
+    return `<span style="display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-family:var(--font-h);font-size:12px;font-weight:600;background:${bg};color:${fg}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${svg}</svg>${esc(label)}</span>`;
   };
 
   function renderTrack(query){

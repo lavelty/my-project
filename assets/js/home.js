@@ -566,10 +566,22 @@ function openStoreModal(name){
   storeModal.showModal();
 }
 
+function cleanStoreUrlParam(){
+  if(!location.search.includes('magaza=')) return;
+  try{
+    const u=new URL(location.href);
+    u.searchParams.delete('magaza');
+    if(u.hash==='#top') u.hash='';
+    const clean=u.pathname+(u.search||'')+(u.hash||'');
+    history.replaceState(null,'',clean);
+  }catch(e){}
+}
+
 if(storeModal){
-  if(smClose) smClose.addEventListener('click',()=>storeModal.close());
+  if(smClose) smClose.addEventListener('click',()=>{ storeModal.close(); cleanStoreUrlParam(); });
+  storeModal.addEventListener('close', cleanStoreUrlParam);
   storeModal.addEventListener('click',e=>{
-    if(e.target===storeModal) storeModal.close();
+    if(e.target===storeModal){ storeModal.close(); cleanStoreUrlParam(); }
   });
 }
 
@@ -1057,9 +1069,12 @@ if(wantSearch){
   renderStores();
 }
 const want=sp.get('magaza');
-if(want&&byName[want]){
-  setTimeout(()=>{
-    openStoreModal(want);
-  },400);
+if(want){
+  cleanStoreUrlParam();
+  if(byName[want]){
+    setTimeout(()=>{
+      openStoreModal(want);
+    },250);
+  }
 }
 })();

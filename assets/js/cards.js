@@ -12,6 +12,6 @@ KF.cardHtml=function(e){
   const dt=KF.dateText(e);
   const imgSrc=/^https?:\/\/|^data:|^assets\//.test(e.img||'')?e.img:`assets/events/${e.img}`;
   const meta=[dt?`<div>${IC.cal}<span>${esc(dt)}</span></div>`:'',e.time?`<div>${IC.clock}<span>${esc(e.time)}</span></div>`:'',`<div>${IC.pin}<span>${esc(e.venue?e.venue+', ':'')}${esc(e.place||'')}</span></div>`].join('');
-  return `<a class="ecard${past?' past':''}" href="etkinlik.html?e=${e.id}"><div class="eimg"><img src="${esc(imgSrc)}" alt="" width="1920" height="1080" loading="lazy" decoding="async" />${badge}</div><div class="ebody"><div class="etags">${tags.join('')}</div><h3>${esc(e.title)}</h3><p>${esc(e.short)}</p><div class="emeta">${meta}</div><span class="btn btn-dark btn-sm" style="align-self:flex-start;margin-top:8px">Detaylar ${IC.arr}</span></div></a>`;
+  return `<a class="ecard${past?' past':''}" href="etkinlik.html?e=${e.id}"><div class="eimg" style="--bg-img:url('${esc(imgSrc)}')"><img src="${esc(imgSrc)}" alt="${esc(e.title)}" width="1600" height="900" loading="lazy" decoding="async" />${badge}</div><div class="ebody"><div class="etags">${tags.join('')}</div><h3>${esc(e.title)}</h3><p>${esc(e.short)}</p><div class="emeta">${meta}</div><span class="btn btn-dark btn-sm" style="align-self:flex-start;margin-top:8px">Detaylar ${IC.arr}</span></div></a>`;
 };
 })();

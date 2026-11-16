@@ -47,7 +47,7 @@ const e=KF.evById(id);
 const page=$('#page');
 if(!e){
   document.title='Etkinlik bulunamadı | Koru Florya';
-  page.innerHTML=`<div class="pagehead"><div class="wrap"><p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="etkinlikler.html">Etkinlikler</a></p><h1 class="h" style="font-size:clamp(36px,5vw,64px)">Etkinlik bulunamadı</h1><p class="lead">Bağlantı değişmiş ya da etkinlik kaldırılmış olabilir</p><p style="margin-top:32px"><a class="btn btn-dark" href="etkinlikler.html">Tüm etkinliklere dön ${IC.arr}</a></p></div></div>`;
+  page.innerHTML=`<div class="pagehead"><div class="wrap"><div class="lh-crumb"><a class="back" href="etkinlikler.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Tüm etkinliklere dön</a><span class="lh-badge">Etkinlikler</span></div><h1 class="h" style="font-size:clamp(36px,5vw,64px)">Etkinlik bulunamadı</h1><p class="lead">Bağlantı değişmiş ya da etkinlik kaldırılmış olabilir</p><p style="margin-top:32px"><a class="btn btn-dark" href="etkinlikler.html">Tüm etkinliklere dön ${IC.arr}</a></p></div></div>`;
   return;
 }
 document.title=`${e.title} | Koru Florya`;
@@ -63,10 +63,12 @@ const similar=(e.related||KF.EVENTS.filter(x=>x.id!==e.id&&x.type===e.type).map(
 const imgSrc=/^https?:\/\/|^data:|^assets\//.test(e.img||'')?e.img:`assets/events/${e.img}`;
 page.innerHTML=`
 <div class="ev-hero">
-  <img src="${esc(imgSrc)}" alt="" width="1920" height="1080" decoding="async" fetchpriority="high" />
+  <img src="${esc(imgSrc)}" alt="" width="1600" height="900" decoding="async" fetchpriority="high" />
   <div class="wrap">
-    <p class="crumb"><a href="index.html">Ana sayfa</a> / <a href="etkinlikler.html">Etkinlikler</a> / ${esc(e.title)}</p>
-    <span class="eyebrow">${esc(e.kicker||'')}${past?' · Sona erdi':''}</span>
+    <div class="lh-crumb">
+      <a class="back" href="etkinlikler.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Tüm etkinliklere dön</a>
+      <span class="lh-badge">${esc(e.kicker||(camp?'Kampanya':'Etkinlik'))}${past?' · Sona erdi':''}</span>
+    </div>
     <h1>${esc(e.title)}</h1>
     <p>${esc(e.short)}</p>
     <div class="ev-chips">${chips}</div>
@@ -75,11 +77,11 @@ page.innerHTML=`
 <section>
   <div class="wrap evd">
     <article>
-      <div class="poster"><img src="${esc(imgSrc)}" alt="${esc(e.title)} afişi" width="1920" height="1080" loading="lazy" decoding="async" /></div>
+      <div class="poster" style="--bg-img:url('${esc(imgSrc)}')"><img src="${esc(imgSrc)}" alt="${esc(e.title)} afişi" width="1600" height="900" fetchpriority="high" decoding="async" /></div>
       <h2>${camp?'Kampanya hakkında':'Etkinlik hakkında'}</h2>
       ${e.about.map(p=>`<p>${esc(p)}</p>`).join('')}
       ${e.who?`<h2>Konuk hakkında</h2><div class="bio"><span class="av" aria-hidden="true">${esc(inits(e.who.name))}</span><div><h3>${esc(e.who.name)}</h3><p>${esc(e.who.bio)}</p></div></div>`:''}
-      ${e.schedule?`<h2>${e.schedule.length>1?'Etkinlik çizelgesi':'Saat'}</h2><ul class="tl">${e.schedule.map(s=>`<li class="${s.hot?'hot':''}"><b>${esc(s.t)}</b><span>${esc(s.d)}</span></li>`).join('')}</ul>`:''}
+      ${e.schedule?`<h2>${camp?'Kampanya Özeti & Detaylar':(e.schedule.length>1?'Etkinlik Akışı & Program':'Saat Bilgisi')}</h2><ul class="tl">${e.schedule.map((s,idx)=>`<li class="${s.hot?'hot':''}"><div class="tl-head"><span class="tl-idx">${camp?IC.pin:IC.clock}</span><b>${esc(s.t)}</b>${s.hot?`<em class="tl-badge">${camp?'Öne Çıkan':'Önemli'}</em>`:''}</div><p class="tl-desc">${esc(s.d)}</p></li>`).join('')}</ul>`:''}
     </article>
     <aside class="sidecard">
       <div class="box"><h3>${camp?'Kampanya bilgileri':'Etkinlik bilgileri'}</h3><dl class="info">${rows.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl></div>

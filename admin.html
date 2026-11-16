@@ -71,45 +71,81 @@
   .cms-card h2{font-family:var(--font-h);font-size:18.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:4px;color:var(--text-main)}
   .cms-card p.sub{font-size:13px;color:var(--text-muted);margin-bottom:18px}
 
-  .f-grid{display:grid;gap:12px}
-  .f-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .f-label{display:grid;gap:5px;font-size:12.5px;font-weight:600;color:var(--text-main)}
-  .f-label input,.f-label select,.f-label textarea{width:100%;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:var(--bg-light);padding:0 12px;height:40px;font-size:13.5px;color:var(--text-main);font-family:inherit;transition:border-color .16s,background-color .16s}
-  .f-label textarea{height:auto;padding:10px 12px;resize:vertical;line-height:1.5}
+  .f-grid{display:grid;gap:14px}
+  .f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .f-label{display:grid;gap:6px;font-family:var(--font-h);font-size:12.5px;font-weight:600;letter-spacing:-.01em;color:var(--text-main)}
+  .f-label input,.f-label select,.f-label textarea{width:100%;border:1px solid var(--border-light);border-radius:10px;background:var(--bg-light);padding:0 13px;height:42px;font-size:13.5px;font-weight:500;color:var(--text-main);font-family:var(--font-b);transition:border-color .18s var(--ease),background-color .18s var(--ease),box-shadow .18s var(--ease)}
+  .f-label textarea{height:auto;padding:11px 13px;resize:vertical;line-height:1.55}
   .f-label input:focus,.f-label select:focus,.f-label textarea:focus{background:#fff;border-color:var(--brand-turq);outline:none;box-shadow:0 0 0 3px var(--brand-turq-light)}
+
+  /* Bespoke Custom Select / Status Dropdown (.c-select) */
+  .c-select{position:relative;display:inline-block;width:100%;font-family:var(--font-h);user-select:none}
+  .c-select.compact{width:auto;min-width:190px}
+  .c-select-native{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important;overflow:hidden!important}
+  .c-select-trig{width:100%;height:42px;padding:0 12px 0 13px;border-radius:10px;border:1px solid var(--border-light);background:var(--bg-light);font-family:var(--font-h);font-size:13px;font-weight:600;color:var(--text-main);display:inline-flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:all .18s var(--ease);text-align:left}
+  .c-select.compact .c-select-trig{height:36px;padding:0 11px 0 12px;border-radius:9px;background:#fff;font-size:12.5px;box-shadow:0 1px 2px rgba(16,43,36,.04)}
+  .c-select-trig:hover{background:#fff;border-color:rgba(23,33,30,.22)}
+  .c-select.open .c-select-trig{background:#fff;border-color:var(--brand-turq);box-shadow:0 0 0 3px var(--brand-turq-light)}
+  .c-select-val{display:inline-flex;align-items:center;gap:8px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .c-select-chev{width:15px;height:15px;color:var(--text-subtle);flex-shrink:0;transition:transform .2s var(--ease)}
+  .c-select.open .c-select-chev{transform:rotate(180deg);color:var(--brand-dark)}
+  .c-select-menu{position:absolute;top:calc(100% + 6px);left:0;min-width:100%;width:max-content;max-width:320px;max-height:260px;overflow-y:auto;background:#fff;border:1px solid rgba(23,33,30,.12);border-radius:12px;padding:5px;box-shadow:0 16px 38px rgba(16,43,36,.16),0 2px 6px rgba(16,43,36,.06);z-index:120;opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease)}
+  .c-select.compact .c-select-menu{right:0;left:auto;min-width:220px}
+  .c-select.open .c-select-menu{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
+  .c-select-opt{width:100%;border:0;background:transparent;padding:8px 10px;border-radius:8px;font-family:var(--font-h);font-size:12.5px;font-weight:600;color:var(--text-main);display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;text-align:left;transition:background-color .14s,color .14s}
+  .c-select-opt:hover{background:var(--bg-light)}
+  .c-select-opt.selected{background:var(--brand-turq-light);color:var(--brand-turq-text)}
+  .c-select-opt-left{display:inline-flex;align-items:center;gap:8px;min-width:0}
+  .c-select-check{width:14px;height:14px;color:var(--brand-turq-text);opacity:0;flex-shrink:0}
+  .c-select-opt.selected .c-select-check{opacity:1}
+
+  /* Professional SVG Status Indicators */
+  .st-ico{width:16px;height:16px;border-radius:50%;display:inline-grid;place-items:center;flex-shrink:0}
+  .st-ico svg{width:10px;height:10px;stroke-width:2.4}
+  .st-ico.st-green{background:#D1FAE5;color:#047857}
+  .st-ico.st-amber{background:#FEF3C7;color:#B45309}
+  .st-ico.st-blue{background:#DBEAFE;color:#1D4ED8}
+  .st-ico.st-teal{background:#CCFBF1;color:#0F766E}
+  .st-ico.st-red{background:#FEE2E2;color:#B91C1C}
+  .st-ico.st-slate{background:#E5E7EB;color:#4B5563}
 
   /* Media Picker Widget */
   .media-picker-box{border:1px solid var(--border-light);background:var(--bg-light);border-radius:var(--radius-md);padding:12px;display:grid;gap:10px}
-  .mp-preview{width:100%;height:140px;border-radius:var(--radius-sm);background:#E5E4E0;overflow:hidden;position:relative;display:grid;place-items:center;border:1px solid var(--border-light)}
-  .mp-preview img{width:100%;height:100%;object-fit:cover}
+  .mp-preview{width:100%;height:148px;border-radius:var(--radius-sm);background:#E5E4E0;overflow:hidden;position:relative;display:grid;place-items:center;border:1px solid var(--border-light)}
+  .mp-preview img{width:100%;height:100%;object-fit:contain;background:#102B24}
   .mp-preview-empty{font-size:12px;color:var(--text-subtle);text-align:center;padding:12px}
-  .mp-btns{display:flex;gap:6px;flex-wrap:wrap}
-  .mp-btn{flex:1;height:34px;padding:0 10px;border-radius:var(--radius-xs);border:1px solid var(--border-light);background:#fff;font-family:var(--font-h);font-size:12px;font-weight:600;color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:all .16s}
+  .mp-btns{display:flex;gap:8px;flex-wrap:wrap}
+  .mp-btn{flex:1;height:36px;padding:0 12px;border-radius:8px;border:1px solid var(--border-light);background:#fff;font-family:var(--font-h);font-size:12px;font-weight:600;color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:all .16s}
+  .mp-btn svg{width:15px;height:15px;color:var(--brand-turq-text);transition:color .16s}
   .mp-btn:hover{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
+  .mp-btn:hover svg{color:#9CE8D2}
 
   /* Schedule Builder */
   .sched-list{display:grid;gap:8px;margin-top:4px}
-  .sched-row{display:grid;grid-template-columns:110px 1fr auto;gap:6px;align-items:center}
-  .sched-row input{height:34px!important;font-size:12.5px!important}
+  .sched-row{display:grid;grid-template-columns:120px 1fr auto;gap:8px;align-items:center}
+  .sched-row input{height:36px!important;font-size:12.5px!important}
 
   /* Item List */
   .cms-list{display:grid;gap:12px}
-  .cms-item{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px;border:1px solid var(--border-light);border-radius:var(--radius-lg);background:var(--bg-light);transition:border-color .16s,background-color .16s,box-shadow .16s}
+  .cms-item{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px;border:1px solid var(--border-light);border-radius:var(--radius-lg);background:var(--bg-light);transition:border-color .16s,background-color .16s,box-shadow .16s}
   .cms-item:hover{background:#fff;border-color:rgba(23,33,30,.16);box-shadow:var(--shadow-sm)}
-  .cms-thumb{width:104px;height:72px;border-radius:var(--radius-sm);object-fit:cover;background:#E6E4DF;border:1px solid var(--border-light)}
+  .cms-thumb{width:112px;height:68px;border-radius:8px;object-fit:contain;background:#102B24;border:1px solid var(--border-light)}
   .cms-info{min-width:0}
   .cms-info h4{font-family:var(--font-h);font-size:15.5px;font-weight:700;color:var(--text-main);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .cms-info p{font-size:12.5px;color:var(--text-muted);margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .cms-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:5px}
-  .cms-badge{font-family:var(--font-h);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:999px;background:var(--brand-turq-light);color:var(--brand-turq-text)}
+  .cms-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--font-h);font-size:11px;font-weight:600;padding:3px 9px;border-radius:999px;background:var(--brand-turq-light);color:var(--brand-turq-text)}
   .cms-badge.camp{background:#FEF3C7;color:#92400E}
   .cms-badge.draft{background:#F3F4F6;color:#4B5563}
   .cms-badge.ended{background:#FEE2E2;color:#991B1B}
 
-  .cms-item-actions{display:flex;flex-direction:column;gap:6px;align-items:flex-end}
-  .cms-item-btns{display:flex;gap:6px;align-items:center}
-  .btn-xs{height:30px;padding:0 10px;border-radius:6px;font-family:var(--font-h);font-size:12px;font-weight:600;border:1px solid var(--border-light);background:#fff;color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:all .16s}
+  .cms-item-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+  .cms-item-btns{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+  .btn-xs{height:32px;padding:0 11px;border-radius:8px;font-family:var(--font-h);font-size:12px;font-weight:600;border:1px solid var(--border-light);background:#fff;color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .16s}
+  .btn-xs svg{width:13.5px;height:13.5px;flex-shrink:0}
   .btn-xs:hover{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
+  .btn-xs.primary-soft{background:var(--brand-turq-light);color:var(--brand-turq-text);border-color:rgba(0,169,137,.24)}
+  .btn-xs.primary-soft:hover{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
   .btn-xs.danger{color:#B91C1C;border-color:rgba(185,28,28,.2);background:#FEF2F2}
   .btn-xs.danger:hover{background:#B91C1C;color:#fff}
 
@@ -120,20 +156,37 @@
   .hero-live-preview h3{font-family:var(--font-h);font-size:24px;font-weight:700;margin:4px 0}
   .hero-live-preview p{font-size:13.5px;opacity:.9;margin:0;max-width:36rem}
 
-  /* Lost & Found Ticket Cards */
+  /* Lost & Found Ticket Cards & Response Composer */
   .lf-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}
   .lf-filters{display:flex;gap:6px;flex-wrap:wrap}
-  .lf-filter-btn{height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--border-light);background:var(--bg-light);font-family:var(--font-h);font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;transition:all .16s}
+  .lf-filter-btn{height:36px;padding:0 13px;border-radius:999px;border:1px solid var(--border-light);background:var(--bg-light);font-family:var(--font-h);font-size:12px;font-weight:600;color:var(--text-muted);cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:all .16s}
+  .lf-filter-btn:hover{background:#fff;color:var(--text-main);border-color:rgba(23,33,30,.2)}
   .lf-filter-btn.on{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
+  .lf-filter-btn.on .st-ico{box-shadow:0 0 0 2px rgba(255,255,255,.22)}
 
-  .lf-card{background:var(--bg-light);border:1px solid var(--border-light);border-radius:var(--radius-lg);padding:18px 20px;display:grid;gap:12px;transition:all .16s}
-  .lf-card:hover{background:#fff;box-shadow:var(--shadow-sm);border-color:rgba(23,33,30,.15)}
-  .lf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
-  .lf-code{font-family:var(--font-h);font-size:12px;font-weight:700;background:var(--brand-dark);color:#fff;padding:3px 9px;border-radius:6px}
-  .lf-reply-box{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-md);padding:14px;display:grid;gap:10px;margin-top:4px}
+  .lf-card{background:#fff;border:1px solid var(--border-light);border-radius:16px;padding:20px 22px;display:grid;gap:14px;transition:all .18s var(--ease);box-shadow:0 2px 6px rgba(16,43,36,.03)}
+  .lf-card:hover{box-shadow:var(--shadow-sm);border-color:rgba(23,33,30,.18)}
+  .lf-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .lf-code{font-family:var(--font-h);font-size:12px;font-weight:700;letter-spacing:.03em;background:var(--brand-dark);color:#fff;padding:4px 10px;border-radius:7px}
+  .lf-meta-row{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:12.5px;color:var(--text-muted);margin-top:2px}
+  .lf-meta-item{display:inline-flex;align-items:center;gap:5px}
+  .lf-meta-item svg{width:13.5px;height:13.5px;color:var(--text-subtle)}
+
+  .lf-saved-reply{background:linear-gradient(135deg,#F0FAF7 0%,#E6F6F1 100%);border:1px solid rgba(0,169,137,.22);border-left:4px solid var(--brand-turq);padding:14px 16px;border-radius:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+  .lf-saved-head{display:flex;align-items:center;gap:7px;font-family:var(--font-h);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--brand-turq-text);margin-bottom:4px}
+  .lf-saved-head svg{width:14px;height:14px}
+
+  .lf-reply-box{background:var(--bg-light);border:1px solid rgba(23,33,30,.12);border-radius:14px;padding:16px 18px;display:grid;gap:12px;margin-top:2px;box-shadow:inset 0 1px 0 #fff}
+  .lf-reply-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .lf-reply-title{display:inline-flex;align-items:center;gap:7px;font-family:var(--font-h);font-size:12.5px;font-weight:700;color:var(--text-main)}
+  .lf-reply-title svg{width:15px;height:15px;color:var(--brand-turq-text)}
   .lf-tpl-bar{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
-  .lf-tpl-chip{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--bg-light);border:1px solid var(--border-light);color:var(--text-main);cursor:pointer;transition:all .15s}
-  .lf-tpl-chip:hover{background:var(--brand-turq-light);border-color:var(--brand-turq);color:var(--brand-turq-text)}
+  .lf-tpl-chip{font-family:var(--font-h);font-size:11.5px;font-weight:600;padding:5px 11px;border-radius:999px;background:#fff;border:1px solid var(--border-light);color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .15s var(--ease);box-shadow:0 1px 2px rgba(16,43,36,.03)}
+  .lf-tpl-chip:hover{background:var(--brand-turq-light);border-color:var(--brand-turq);color:var(--brand-turq-text);transform:translateY(-1px)}
+  .lf-reply-textarea{width:100%;padding:12px 14px;border:1px solid var(--border-light);border-radius:10px;background:#fff;font-size:13.5px;line-height:1.55;font-family:var(--font-b);color:var(--text-main);resize:vertical;transition:border-color .16s,box-shadow .16s}
+  .lf-reply-textarea:focus{border-color:var(--brand-turq);outline:none;box-shadow:0 0 0 3px var(--brand-turq-light)}
+  .lf-reply-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+  .lf-reply-hint{font-size:11.5px;color:var(--text-subtle);display:inline-flex;align-items:center;gap:5px}
 
   /* Media Library Modal */
   .media-modal{border:0;border-radius:var(--radius-xl);padding:0;width:min(760px,calc(100% - 32px));background:#fff;box-shadow:var(--shadow-xl);margin:auto;overflow:hidden}
@@ -156,8 +209,10 @@
   @media (max-width:640px){
     .cms-stats{grid-template-columns:1fr}
     .cms-item{grid-template-columns:1fr;gap:10px}
-    .cms-item-actions{flex-direction:row;justify-content:space-between;width:100%}
+    .cms-item-actions{flex-direction:row;justify-content:space-between;width:100%;flex-wrap:wrap}
     .f-row{grid-template-columns:1fr}
+    .c-select.compact{width:100%}
+    .c-select.compact .c-select-menu{left:0;right:auto;width:100%}
   }
 </style>
 </head>
@@ -290,9 +345,9 @@
             </label>
             <label class="f-label">Yayın Durumu *
               <select name="status" id="evStatus">
-                <option value="active">🟢 Yayında (Aktif)</option>
-                <option value="draft">🟡 Taslak (Sitede Gizli)</option>
-                <option value="ended">⚪ Sona Erdi (Arşiv)</option>
+                <option value="active">Yayında (Aktif)</option>
+                <option value="draft">Taslak (Sitede Gizli)</option>
+                <option value="ended">Sona Erdi (Arşiv)</option>
               </select>
             </label>
           </div>
@@ -352,9 +407,13 @@
               </div>
               <input type="text" name="img" id="evImgInput" required placeholder="Görsel URL veya galeriden/bilgisayardan seçin" />
               <div class="mp-btns">
-                <button type="button" class="mp-btn" id="evOpenGalleryBtn">🖼 Galeriden Seç</button>
+                <button type="button" class="mp-btn" id="evOpenGalleryBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  Galeriden Seç
+                </button>
                 <label class="mp-btn" style="cursor:pointer">
-                  📁 Bilgisayardan Yükle
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Bilgisayardan Yükle
                   <input type="file" id="evFileInput" accept="image/*" hidden />
                 </label>
               </div>
@@ -416,31 +475,40 @@
         <hr style="border:0;border-top:1px solid var(--border-light);margin:22px 0" />
 
         <div style="display:flex;justify-content:space-between;align-items:center">
-          <h2 id="slideFormHeading">Hero Slayt Fotoğrafı Ekle</h2>
+          <h2 id="slideFormHeading">Hero Slayt / Etkinlik Ekle</h2>
           <button type="button" class="btn-xs" id="slideCancelEditBtn" hidden>İptal</button>
         </div>
-        <p class="sub">Yeni bir arka plan fotoğrafı ekleyin veya mevcut slaytı güncelleyin.</p>
+        <p class="sub">İstediğiniz bir etkinliği seçerek doğrudan Hero'ya ekleyebilir (tıklandığında o etkinlik açılır) veya özel fotoğraf yükleyebilirsiniz.</p>
         <form id="heroSlideForm" class="f-grid">
           <input type="hidden" id="slideEditIdx" value="-1" />
+          <label class="f-label">Etkinlik / Kampanyayı Hero'ya Bağla (Opsiyonel)
+            <select id="slideEventSelect">
+              <option value="">— Bağımsız Görsel (Etkinlik Bağlantısı Yok) —</option>
+            </select>
+          </label>
           <div class="f-label">Slayt Görseli *
             <div class="media-picker-box">
               <div class="mp-preview" id="heroImgPreview">
                 <span class="mp-preview-empty">Görsel seçilmedi</span>
               </div>
-              <input type="text" id="slideUrl" required placeholder="Görsel URL veya galeriden/bilgisayardan seçin" />
+              <input type="text" id="slideUrl" required placeholder="Görsel URL veya etkinlik/galeriden seçin" />
               <div class="mp-btns">
-                <button type="button" class="mp-btn" id="heroOpenGalleryBtn">🖼 Galeriden Seç</button>
+                <button type="button" class="mp-btn" id="heroOpenGalleryBtn">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+                  Galeriden Seç
+                </button>
                 <label class="mp-btn" style="cursor:pointer">
-                  📁 Bilgisayardan Yükle
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  Bilgisayardan Yükle
                   <input type="file" id="heroFileInput" accept="image/*" hidden />
                 </label>
               </div>
             </div>
           </div>
-          <label class="f-label">Görsel Başlığı / Açıklaması
-            <input type="text" id="slideAlt" required placeholder="Örn: Koru Florya Bahçe Terası" />
+          <label class="f-label">Görsel / Etkinlik Başlığı
+            <input type="text" id="slideAlt" required placeholder="Örn: Koru Florya Kitap Fuarı veya Bahçe Terası" />
           </label>
-          <button type="submit" class="btn btn-primary w-full" id="slideSubmitBtn">Slaytı Kaydet</button>
+          <button type="submit" class="btn btn-primary w-full" id="slideSubmitBtn">Hero Slaytını Kaydet</button>
         </form>
       </div>
 
@@ -448,7 +516,7 @@
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:12px">
           <div>
             <h2>Canlı Hero Önizlemesi &amp; Slayt Sıralaması</h2>
-            <p class="sub" style="margin:0">Fotoğrafların sırasını değiştirebilir, görselini yenileyebilir veya silebilirsiniz.</p>
+            <p class="sub" style="margin:0">Fotoğrafların sırasını değiştirebilir, etkinlik bağlantısını düzenleyebilir veya silebilirsiniz.</p>
           </div>
           <button type="button" class="btn-xs" id="resetHeroBtn">Varsayılan Hero'ya Dön</button>
         </div>
@@ -482,11 +550,26 @@
         <div class="lf-toolbar" style="padding-bottom:12px;border-bottom:1px solid var(--border-light)">
           <div class="lf-filters" id="lfFilters">
             <button type="button" class="lf-filter-btn on" data-lf-filter="all">Tümü</button>
-            <button type="button" class="lf-filter-btn" data-lf-filter="Bekliyor">🟡 İnceleme Bekleyen</button>
-            <button type="button" class="lf-filter-btn" data-lf-filter="İnceleniyor">🔵 İnceleniyor</button>
-            <button type="button" class="lf-filter-btn" data-lf-filter="Danışmada Muhafaza">🟢 Danışmada Muhafaza</button>
-            <button type="button" class="lf-filter-btn" data-lf-filter="Teslim Edildi">✅ Teslim Edildi</button>
-            <button type="button" class="lf-filter-btn" data-lf-filter="Bulunamadı">🔴 Bulunamadı</button>
+            <button type="button" class="lf-filter-btn" data-lf-filter="Bekliyor">
+              <span class="st-ico st-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+              İnceleme Bekleyen
+            </button>
+            <button type="button" class="lf-filter-btn" data-lf-filter="İnceleniyor">
+              <span class="st-ico st-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+              İnceleniyor
+            </button>
+            <button type="button" class="lf-filter-btn" data-lf-filter="Danışmada Muhafaza">
+              <span class="st-ico st-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+              Danışmada Muhafaza
+            </button>
+            <button type="button" class="lf-filter-btn" data-lf-filter="Teslim Edildi">
+              <span class="st-ico st-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>
+              Teslim Edildi
+            </button>
+            <button type="button" class="lf-filter-btn" data-lf-filter="Bulunamadı">
+              <span class="st-ico st-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+              Bulunamadı
+            </button>
           </div>
           <input type="search" id="lfSearch" placeholder="Takip kodu, isim veya eşya ara..." style="height:36px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:var(--bg-light);font-size:13px;min-width:220px" />
         </div>
@@ -833,6 +916,121 @@
   });
 
   /* ========================================================
+     2.5 BESPOKE CUSTOM DROPDOWN & SVG STATUS ICON SYSTEM
+     ======================================================== */
+  const SVG_ICONS={
+    green:`<span class="st-ico st-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>`,
+    active:`<span class="st-ico st-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5" fill="currentColor"/></svg></span>`,
+    amber:`<span class="st-ico st-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>`,
+    blue:`<span class="st-ico st-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>`,
+    teal:`<span class="st-ico st-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>`,
+    red:`<span class="st-ico st-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>`,
+    slate:`<span class="st-ico st-slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="4" width="16" height="16" rx="3"/></svg></span>`,
+    event:`<span class="st-ico st-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>`,
+    campaign:`<span class="st-ico st-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>`,
+    pin:`<span class="st-ico st-slate"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>`
+  };
+
+  function getOptionIcon(val, selectEl){
+    if(val==='active') return SVG_ICONS.active;
+    if(val==='draft') return SVG_ICONS.amber;
+    if(val==='ended') return SVG_ICONS.slate;
+    if(val==='Bekliyor') return SVG_ICONS.amber;
+    if(val==='İnceleniyor') return SVG_ICONS.blue;
+    if(val==='Danışmada Muhafaza') return SVG_ICONS.green;
+    if(val==='Teslim Edildi') return SVG_ICONS.teal;
+    if(val==='Bulunamadı') return SVG_ICONS.red;
+    if(val==='event') return SVG_ICONS.event;
+    if(val==='campaign') return SVG_ICONS.campaign;
+    if(selectEl && selectEl.id==='evPlace') return SVG_ICONS.pin;
+    if(selectEl && selectEl.id==='slideEventSelect' && val) return SVG_ICONS.event;
+    return '';
+  }
+
+  function syncCustomSelect(sel){
+    const wrap=sel.closest('.c-select');
+    if(!wrap) return;
+    const trigVal=wrap.querySelector('.c-select-val');
+    const menu=wrap.querySelector('.c-select-menu');
+    const opt=sel.options[sel.selectedIndex]||sel.options[0];
+    const ico=opt?getOptionIcon(opt.value, sel):'';
+    if(trigVal){
+      trigVal.innerHTML=`${ico}<span>${esc(opt?opt.textContent:'')}</span>`;
+    }
+    if(menu){
+      menu.innerHTML=[...sel.options].map((o,i)=>{
+        const oIco=getOptionIcon(o.value, sel);
+        const isSel=(i===sel.selectedIndex);
+        return `
+          <button type="button" class="c-select-opt ${isSel?'selected':''}" data-opt-idx="${i}">
+            <span class="c-select-opt-left">${oIco}<span>${esc(o.textContent)}</span></span>
+            <svg class="c-select-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        `;
+      }).join('');
+    }
+  }
+
+  function enhanceSelects(root=document){
+    root.querySelectorAll('select').forEach(sel=>{
+      if(sel.closest('.c-select')){
+        syncCustomSelect(sel);
+        return;
+      }
+      const wrap=document.createElement('div');
+      const isCompact=sel.hasAttribute('data-ev-status')||sel.hasAttribute('data-lost-status');
+      wrap.className='c-select'+(isCompact?' compact':'');
+      sel.parentNode.insertBefore(wrap, sel);
+      wrap.appendChild(sel);
+      sel.classList.add('c-select-native');
+
+      const trig=document.createElement('button');
+      trig.type='button';
+      trig.className='c-select-trig';
+      trig.innerHTML=`
+        <span class="c-select-val"></span>
+        <svg class="c-select-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      `;
+      const menu=document.createElement('div');
+      menu.className='c-select-menu';
+      wrap.appendChild(trig);
+      wrap.appendChild(menu);
+
+      syncCustomSelect(sel);
+
+      trig.addEventListener('click',e=>{
+        e.preventDefault();
+        e.stopPropagation();
+        const wasOpen=wrap.classList.contains('open');
+        document.querySelectorAll('.c-select.open').forEach(w=>w.classList.remove('open'));
+        if(!wasOpen) wrap.classList.add('open');
+      });
+
+      menu.addEventListener('click',e=>{
+        const btn=e.target.closest('[data-opt-idx]');
+        if(!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const idx=Number(btn.dataset.optIdx);
+        if(sel.selectedIndex!==idx){
+          sel.selectedIndex=idx;
+          sel.dispatchEvent(new Event('change',{bubbles:true}));
+        }
+        syncCustomSelect(sel);
+        wrap.classList.remove('open');
+      });
+
+      sel.addEventListener('change',()=>syncCustomSelect(sel));
+    });
+  }
+
+  document.addEventListener('click',e=>{
+    if(!e.target.closest('.c-select')){
+      document.querySelectorAll('.c-select.open').forEach(w=>w.classList.remove('open'));
+    }
+  });
+
+  /* ========================================================
      3. EVENTS & CAMPAIGNS MANAGER (CREATE, EDIT, STATUS, SCHEDULE)
      ======================================================== */
   const storeSelect=$('#evStoreSelect');
@@ -878,6 +1076,7 @@
     updatePreviewBox($('#evImgPreview'),'');
     $('#evSchedList').innerHTML='';
     addSchedRow('10:00 – 22:00','Gün boyu ziyaretçilere açık');
+    enhanceSelects($('#evForm'));
   }
   $('#evFormCancelEdit').addEventListener('click',resetEvForm);
 
@@ -905,10 +1104,22 @@
     }else{
       addSchedRow(ev.time||'10:00 – 22:00',ev.venue||ev.place||'');
     }
+    enhanceSelects($('#evForm'));
     $('#evFormHeading').textContent='İçeriği Düzenle: '+ev.title;
     $('#evSubmitBtn').textContent='Değişiklikleri Güncelle';
     $('#evFormCancelEdit').hidden=false;
     $('#evForm').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function populateHeroEventSelect(){
+    const sel=$('#slideEventSelect');
+    if(!sel) return;
+    const prev=sel.value;
+    const all=getAllEventsMerged().filter(e=>e.status!=='ended');
+    sel.innerHTML=`<option value="">— Bağımsız Görsel (Etkinlik Bağlantısı Yok) —</option>`+
+      all.map(e=>`<option value="${esc(e.id)}">${esc(e.type==='campaign'?'[Kampanya] ':'[Etkinlik] ')}${esc(e.title)}</option>`).join('');
+    sel.value=prev;
+    syncCustomSelect(sel);
   }
 
   function renderEvents(){
@@ -919,6 +1130,7 @@
     $('#stEvents').textContent=evCount;
     $('#stCamps').textContent=campCount;
     $('#tabCntEvents').textContent=all.length;
+    populateHeroEventSelect();
 
     if(!all.length){
       listEl.innerHTML=`<p style="color:var(--text-muted);padding:24px 0">Kayıtlı etkinlik veya kampanya bulunmuyor.</p>`;
@@ -943,12 +1155,16 @@
             <p>${esc(e.short||'')}</p>
           </div>
           <div class="cms-item-actions">
-            <select data-ev-status="${esc(e.id)}" style="height:30px;padding:0 8px;border-radius:6px;border:1px solid var(--border-light);font-size:11.5px;font-weight:600;background:#fff">
-              <option value="active" ${st==='active'?'selected':''}>🟢 Yayında</option>
-              <option value="draft" ${st==='draft'?'selected':''}>🟡 Taslak (Gizli)</option>
-              <option value="ended" ${st==='ended'?'selected':''}>⚪ Sona Erdi</option>
+            <select data-ev-status="${esc(e.id)}">
+              <option value="active" ${st==='active'?'selected':''}>Yayında</option>
+              <option value="draft" ${st==='draft'?'selected':''}>Taslak (Gizli)</option>
+              <option value="ended" ${st==='ended'?'selected':''}>Sona Erdi</option>
             </select>
             <div class="cms-item-btns">
+              <button type="button" class="btn-xs primary-soft" data-hero-add-ev="${esc(e.id)}" title="Bu etkinliği anasayfa Hero vitrinine tıklanabilir slayt olarak ekle">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 8v8M8 12h8"/></svg>
+                Hero'ya Ekle
+              </button>
               <button type="button" class="btn-xs" data-edit-ev="${esc(e.id)}">Düzenle</button>
               <a class="btn-xs" href="etkinlik.html?e=${encodeURIComponent(e.id)}" target="_blank">Önizle</a>
               <button type="button" class="btn-xs danger" data-del-ev="${esc(e.id)}">Sil</button>
@@ -957,6 +1173,7 @@
         </div>
       `;
     }).join('');
+    enhanceSelects(listEl);
   }
 
   $('#evForm').addEventListener('submit',e=>{
@@ -1018,6 +1235,24 @@
   });
 
   $('#cmsEventsList').addEventListener('click',e=>{
+    const heroBtn=e.target.closest('[data-hero-add-ev]');
+    if(heroBtn){
+      const ev=getAllEventsMerged().find(x=>x.id===heroBtn.dataset.heroAddEv);
+      if(!ev) return;
+      const imgSrc=/^https?:\/\/|^data:|^assets\//.test(ev.img||'')?ev.img:`assets/events/${ev.img}`;
+      const cfg=getHeroConfig();
+      const existsIdx=cfg.slides.findIndex(s=>s.eventId===ev.id);
+      const slideObj={url:imgSrc, alt:ev.title, eventId:ev.id};
+      if(existsIdx>=0){
+        cfg.slides[existsIdx]=slideObj;
+      }else{
+        cfg.slides.unshift(slideObj);
+      }
+      localStorage.setItem('kf_cms_hero',JSON.stringify(cfg));
+      renderHeroPanel();
+      showToast(`✓ "${ev.title}" anasayfa Hero vitrinine tıklanabilir etkinlik olarak eklendi!`);
+      return;
+    }
     const editBtn=e.target.closest('[data-edit-ev]');
     if(editBtn){
       const ev=getAllEventsMerged().find(x=>x.id===editBtn.dataset.editEv);
@@ -1046,13 +1281,14 @@
   });
 
   /* ========================================================
-     4. HERO SECTION & SLIDESHOW MANAGER
+     4. HERO SECTION & SLIDESHOW MANAGER (WITH EVENT LINKING)
      ======================================================== */
   const DEFAULT_HERO={
     title:"Florya'da alışveriş ve yaşam merkezi",
     sub:"Açık hava bahçe terasları, seçkin dünya markaları ve doğayla iç içe bir yaşam deneyimi.",
     slides:[
       {url:'https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?auto=format&fit=crop&q=80&w=1400',alt:'Koru Florya iç mekânı'},
+      {url:'assets/events/hero-kitap-fuari.webp',alt:'Koru Florya Kitap Fuarı',eventId:'kitap-fuari'},
       {url:'https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&q=80&w=1400',alt:'Alışveriş deneyimi'},
       {url:'https://images.unsplash.com/photo-1764489307253-da5c9c311fa2?auto=format&fit=crop&q=80&w=1400',alt:'Akşam ışığında kafe'},
       {url:'https://images.unsplash.com/photo-1757585920915-c5a388d16e44?auto=format&fit=crop&q=80&w=1400',alt:'Florya korusu ve doğa'}
@@ -1067,6 +1303,18 @@
     }catch{return JSON.parse(JSON.stringify(DEFAULT_HERO));}
   }
 
+  $('#slideEventSelect').addEventListener('change',e=>{
+    const evId=e.target.value;
+    if(!evId) return;
+    const ev=getAllEventsMerged().find(x=>x.id===evId);
+    if(!ev) return;
+    const imgSrc=/^https?:\/\/|^data:|^assets\//.test(ev.img||'')?ev.img:`assets/events/${ev.img}`;
+    $('#slideUrl').value=imgSrc;
+    $('#slideAlt').value=ev.title;
+    updatePreviewBox($('#heroImgPreview'),imgSrc);
+    $('#hlpImg').src=imgSrc;
+  });
+
   function renderHeroPanel(){
     const cfg=getHeroConfig();
     $('#cmsHeroTitle').value=cfg.title||DEFAULT_HERO.title;
@@ -1077,17 +1325,25 @@
 
     $('#stSlides').textContent=cfg.slides.length;
     $('#tabCntHero').textContent=cfg.slides.length;
+    populateHeroEventSelect();
 
     const listEl=$('#cmsHeroSlidesList');
     listEl.innerHTML=cfg.slides.map((s,idx)=>{
       const u=s.url||s.img||'';
+      const evId=s.eventId||'';
+      const evBadge=evId
+        ? `<a class="cms-badge camp" href="etkinlik.html?e=${encodeURIComponent(evId)}" target="_blank" title="Tıklandığında bu etkinlik sayfası açılır">Etkinlik Bağlantılı ↗</a>`
+        : '';
       return `
       <div class="cms-item">
         <img class="cms-thumb" src="${esc(u)}" alt="${esc(s.alt||'')}" />
         <div class="cms-info">
-          <div class="cms-meta"><span class="cms-badge">Slayt #${idx+1}</span></div>
+          <div class="cms-meta">
+            <span class="cms-badge">Slayt #${idx+1}</span>
+            ${evBadge}
+          </div>
           <h4>${esc(s.alt||'Hero Görseli')}</h4>
-          <p>${esc(u.startsWith('data:')?'Yüklenen Özel Görsel (Data URL)':u)}</p>
+          <p>${esc(evId?`Tıklanabilir Etkinlik Slaytı (etkinlik.html?e=${evId})`:(u.startsWith('data:')?'Yüklenen Özel Görsel (Data URL)':u))}</p>
         </div>
         <div class="cms-item-actions">
           <div class="cms-item-btns">
@@ -1115,9 +1371,11 @@
     e.preventDefault();
     const cfg=getHeroConfig();
     const idx=parseInt($('#slideEditIdx').value,10);
+    const evId=$('#slideEventSelect').value.trim();
     const slideObj={
       url:$('#slideUrl').value.trim(),
-      alt:$('#slideAlt').value.trim()
+      alt:$('#slideAlt').value.trim(),
+      ...(evId?{eventId:evId}:{})
     };
     if(idx>=0 && idx<cfg.slides.length){
       cfg.slides[idx]=slideObj;
@@ -1127,19 +1385,23 @@
     localStorage.setItem('kf_cms_hero',JSON.stringify(cfg));
     $('#heroSlideForm').reset();
     $('#slideEditIdx').value='-1';
-    $('#slideFormHeading').textContent='Hero Slayt Fotoğrafı Ekle';
-    $('#slideSubmitBtn').textContent='Slaytı Kaydet';
+    $('#slideEventSelect').value='';
+    syncCustomSelect($('#slideEventSelect'));
+    $('#slideFormHeading').textContent='Hero Slayt / Etkinlik Ekle';
+    $('#slideSubmitBtn').textContent='Hero Slaytını Kaydet';
     $('#slideCancelEditBtn').hidden=true;
     updatePreviewBox($('#heroImgPreview'),'');
     renderHeroPanel();
-    showToast(idx>=0?'✓ Slayt fotoğrafı güncellendi!':'✓ Yeni slayt fotoğrafı eklendi!');
+    showToast(idx>=0?'✓ Hero slaytı güncellendi!':'✓ Yeni Hero slaytı eklendi!');
   });
 
   $('#slideCancelEditBtn').addEventListener('click',()=>{
     $('#heroSlideForm').reset();
     $('#slideEditIdx').value='-1';
-    $('#slideFormHeading').textContent='Hero Slayt Fotoğrafı Ekle';
-    $('#slideSubmitBtn').textContent='Slaytı Kaydet';
+    $('#slideEventSelect').value='';
+    syncCustomSelect($('#slideEventSelect'));
+    $('#slideFormHeading').textContent='Hero Slayt / Etkinlik Ekle';
+    $('#slideSubmitBtn').textContent='Hero Slaytını Kaydet';
     $('#slideCancelEditBtn').hidden=true;
     updatePreviewBox($('#heroImgPreview'),'');
   });
@@ -1167,11 +1429,13 @@
       const s=cfg.slides[idx];
       if(!s) return;
       $('#slideEditIdx').value=String(idx);
+      $('#slideEventSelect').value=s.eventId||'';
+      syncCustomSelect($('#slideEventSelect'));
       $('#slideUrl').value=s.url||s.img||'';
       $('#slideAlt').value=s.alt||'';
       updatePreviewBox($('#heroImgPreview'),s.url||s.img||'');
       $('#hlpImg').src=s.url||s.img||'';
-      $('#slideFormHeading').textContent=`Slayt #${idx+1} Fotoğrafını Değiştir`;
+      $('#slideFormHeading').textContent=`Slayt #${idx+1} İçeriğini Değiştir`;
       $('#slideSubmitBtn').textContent='Slaytı Güncelle';
       $('#slideCancelEditBtn').hidden=false;
       $('#heroSlideForm').scrollIntoView({behavior:'smooth',block:'center'});
@@ -1199,10 +1463,10 @@
      5. LOST & FOUND STATUS & RESPONSE SYSTEM (YANIT SİSTEMİ)
      ======================================================== */
   const REPLY_TEMPLATES=[
-    {label:'🟢 Bulundu (Danışmada)', status:'Danışmada Muhafaza', text:'Merhaba, bildirmiş olduğunuz eşyanız bulunmuş olup Koru Katı (Giriş) Danışma noktasında muhafaza altına alınmıştır. Her gün 10:00 – 22:00 saatleri arasında kimliğinizle birlikte danışma birimimizden teslim alabilirsiniz.'},
-    {label:'🔵 İnceleniyor', status:'İnceleniyor', text:'Merhaba, kayıp eşya bildiriminiz güvenlik ve saha ekiplerimiz tarafından incelenmektedir. Kamera ve saha kontrolleri tamamlandığında size bu ekran üzerinden ve iletişim bilgilerinizden dönüş yapılacaktır.'},
-    {label:'✅ Teslim Edildi', status:'Teslim Edildi', text:'Merhaba, kayıp eşyanız tutanak karşılığında tarafınıza teslim edilmiştir. Koru Florya’yı tercih ettiğiniz için teşekkür eder, iyi günler dileriz.'},
-    {label:'🔴 Bulunamadı', status:'Bulunamadı', text:'Merhaba, belirttiğiniz tarih ve konumda yapılan saha ve güvenlik kontrollerinde eşyanıza henüz ulaşılamamıştır. Danışma birimimize yeni bir buluntu teslim edilmesi halinde sizinle derhal iletişime geçilecektir.'}
+    {label:'Bulundu · Danışmada', ico:SVG_ICONS.green, status:'Danışmada Muhafaza', text:'Merhaba, bildirmiş olduğunuz eşyanız bulunmuş olup Koru Katı (Giriş) Danışma noktasında muhafaza altına alınmıştır. Her gün 10:00 – 22:00 saatleri arasında kimliğinizle birlikte danışma birimimizden teslim alabilirsiniz.'},
+    {label:'İnceleniyor', ico:SVG_ICONS.blue, status:'İnceleniyor', text:'Merhaba, kayıp eşya bildiriminiz güvenlik ve saha ekiplerimiz tarafından incelenmektedir. Kamera ve saha kontrolleri tamamlandığında size bu ekran üzerinden ve iletişim bilgilerinizden dönüş yapılacaktır.'},
+    {label:'Teslim Edildi', ico:SVG_ICONS.teal, status:'Teslim Edildi', text:'Merhaba, kayıp eşyanız tutanak karşılığında tarafınıza teslim edilmiştir. Koru Florya’yı tercih ettiğiniz için teşekkür eder, iyi günler dileriz.'},
+    {label:'Bulunamadı', ico:SVG_ICONS.red, status:'Bulunamadı', text:'Merhaba, belirttiğiniz tarih ve konumda yapılan saha ve güvenlik kontrollerinde eşyanıza henüz ulaşılamıştır. Danışma birimimize yeni bir buluntu teslim edilmesi halinde sizinle derhal iletişime geçilecektir.'}
   ];
 
   let lfFilter='all', lfQuery='', openReplyId=null;
@@ -1277,60 +1541,79 @@
       return `
         <div class="lf-card">
           <div class="lf-top">
-            <div style="display:grid;gap:4px">
-              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+            <div style="display:grid;gap:6px">
+              <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
                 <span class="lf-code">${esc(code)}</span>
-                <b style="font-size:15.5px;color:var(--text-main)">${esc(item.desc)}</b>
+                <b style="font-family:var(--font-h);font-size:15.5px;color:var(--text-main)">${esc(item.desc)}</b>
               </div>
-              <div style="font-size:13px;color:var(--text-muted)">
-                <b>Bildiren:</b> ${esc(item.name)} · <b>İletişim:</b> ${esc(item.contact)} · <b>Konum:</b> ${esc(item.location)} · <b>Tarih:</b> ${esc(item.date||'')}
+              <div class="lf-meta-row">
+                <span class="lf-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg> <b>${esc(item.name)}</b></span>
+                <span class="lf-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.81.32 1.6.59 2.36a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.72-1.16a2 2 0 0 1 2.11-.45c.76.27 1.55.47 2.36.59A2 2 0 0 1 22 16.92z"/></svg> ${esc(item.contact)}</span>
+                <span class="lf-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> ${esc(item.location)}</span>
+                <span class="lf-meta-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> ${esc(item.date||'')}</span>
               </div>
             </div>
 
             <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-              <select data-lost-status="${esc(item.id)}" style="height:34px;padding:0 10px;border-radius:8px;border:1px solid var(--border-light);font-size:12.5px;font-weight:600;background:#fff">
-                <option value="Bekliyor" ${item.status==='Bekliyor'?'selected':''}>🟡 İnceleme Bekliyor</option>
-                <option value="İnceleniyor" ${item.status==='İnceleniyor'?'selected':''}>🔵 İnceleniyor</option>
-                <option value="Danışmada Muhafaza" ${item.status==='Danışmada Muhafaza'?'selected':''}>🟢 Danışmada Muhafaza</option>
-                <option value="Teslim Edildi" ${item.status==='Teslim Edildi'?'selected':''}>✅ Teslim Edildi</option>
-                <option value="Bulunamadı" ${item.status==='Bulunamadı'?'selected':''}>🔴 Bulunamadı</option>
+              <select data-lost-status="${esc(item.id)}">
+                <option value="Bekliyor" ${item.status==='Bekliyor'?'selected':''}>İnceleme Bekliyor</option>
+                <option value="İnceleniyor" ${item.status==='İnceleniyor'?'selected':''}>İnceleniyor</option>
+                <option value="Danışmada Muhafaza" ${item.status==='Danışmada Muhafaza'?'selected':''}>Danışmada Muhafaza</option>
+                <option value="Teslim Edildi" ${item.status==='Teslim Edildi'?'selected':''}>Teslim Edildi</option>
+                <option value="Bulunamadı" ${item.status==='Bulunamadı'?'selected':''}>Bulunamadı</option>
               </select>
-              <button type="button" class="btn-xs" data-toggle-reply="${esc(item.id)}">${item.reply?'💬 Yanıtı Düzenle':'💬 Yanıt Yaz'}</button>
+              <button type="button" class="btn-xs ${item.reply?'':'primary-soft'}" data-toggle-reply="${esc(item.id)}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                ${item.reply?'Yanıtı Düzenle':'Yanıt Yaz'}
+              </button>
               <button type="button" class="btn-xs danger" data-del-lost="${esc(item.id)}">Sil</button>
             </div>
           </div>
 
           ${item.reply?`
-            <div style="background:var(--brand-turq-light);border-left:3px solid var(--brand-turq);padding:10px 14px;border-radius:6px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+            <div class="lf-saved-reply">
               <div style="flex:1;min-width:220px">
-                <div style="font-size:11px;font-weight:700;color:var(--brand-turq-text);margin-bottom:2px">KAYITLI DANIŞMA YANITI (${esc(item.replyAt||'Şimdi')})</div>
-                <p style="margin:0;font-size:13px;color:var(--text-main)">${esc(item.reply)}</p>
+                <div class="lf-saved-head">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  Kayıtlı Danışma Yanıtı · ${esc(item.replyAt||'Şimdi')}
+                </div>
+                <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--text-main)">${esc(item.reply)}</p>
               </div>
-              <div style="display:flex;gap:6px;align-items:center">
-                ${mailHref?`<a class="btn-xs" href="${mailHref}">✉ E-posta Gönder</a>`:''}
-                ${waHref?`<a class="btn-xs" target="_blank" rel="noopener" href="${waHref}">📱 WhatsApp ile İlet</a>`:''}
+              <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+                ${mailHref?`<a class="btn-xs" href="${mailHref}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg> E-posta Gönder</a>`:''}
+                ${waHref?`<a class="btn-xs" target="_blank" rel="noopener" href="${waHref}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> WhatsApp ile İlet</a>`:''}
               </div>
             </div>
           `:''}
 
           ${isOpen?`
             <div class="lf-reply-box" data-reply-box="${esc(item.id)}">
-              <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
-                <span style="font-size:12px;font-weight:700;color:var(--text-main)">Hazır Yanıt Şablonu Seçin veya Özel Mesaj Yazın:</span>
+              <div class="lf-reply-head">
+                <span class="lf-reply-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                  Resmi Danışma Yanıtı Oluşturun veya Hazır Şablon Seçin
+                </span>
                 <div class="lf-tpl-bar">
-                  ${REPLY_TEMPLATES.map((tpl,idx)=>`<button type="button" class="lf-tpl-chip" data-apply-tpl="${idx}" data-target-id="${esc(item.id)}">${esc(tpl.label)}</button>`).join('')}
+                  ${REPLY_TEMPLATES.map((tpl,idx)=>`<button type="button" class="lf-tpl-chip" data-apply-tpl="${idx}" data-target-id="${esc(item.id)}">${tpl.ico}<span>${esc(tpl.label)}</span></button>`).join('')}
                 </div>
               </div>
-              <textarea id="replyText-${esc(item.id)}" rows="3" placeholder="Ziyaretçiye iletilecek resmi danışma yanıtını yazın..." style="width:100%;padding:10px 12px;border:1px solid var(--border-light);border-radius:8px;font-size:13.5px;font-family:inherit">${esc(item.reply||'')}</textarea>
-              <div style="display:flex;justify-content:flex-end;gap:8px">
-                <button type="button" class="btn-xs" data-close-reply="${esc(item.id)}">Vazgeç</button>
-                <button type="button" class="btn btn-dark btn-sm" style="height:34px;padding:0 16px" data-save-reply="${esc(item.id)}">Yanıtı Kaydet &amp; Yayınla</button>
+              <textarea class="lf-reply-textarea" id="replyText-${esc(item.id)}" rows="3" placeholder="Ziyaretçiye iletilecek resmi danışma yanıtını buraya yazın...">${esc(item.reply||'')}</textarea>
+              <div class="lf-reply-foot">
+                <span class="lf-reply-hint">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+                  Kaydedilen yanıt ziyaretçi sorgulama ekranında anında yayınlanır.
+                </span>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <button type="button" class="btn-xs" data-close-reply="${esc(item.id)}">Vazgeç</button>
+                  <button type="button" class="btn btn-dark btn-sm" style="height:36px;padding:0 18px" data-save-reply="${esc(item.id)}">Yanıtı Kaydet &amp; Yayınla</button>
+                </div>
               </div>
             </div>
           `:''}
         </div>
       `;
     }).join('');
+    enhanceSelects(listEl);
   }
 
   $('#lfFilters').addEventListener('click',e=>{
@@ -1381,7 +1664,10 @@
       const ta=document.getElementById('replyText-'+id);
       if(ta && tpl) ta.value=tpl.text;
       const stSel=document.querySelector(`[data-lost-status="${id}"]`);
-      if(stSel && tpl) stSel.value=tpl.status;
+      if(stSel && tpl){
+        stSel.value=tpl.status;
+        syncCustomSelect(stSel);
+      }
       return;
     }
     const saveBtn=e.target.closest('[data-save-reply]');
@@ -1453,6 +1739,7 @@
   renderEvents();
   renderHeroPanel();
   renderLost();
+  enhanceSelects(document);
 })();
 </script>
 </body>
