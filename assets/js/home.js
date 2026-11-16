@@ -20,7 +20,7 @@ if(cmsHero){
   if(cmsHero.sub && $('#heroSub')) $('#heroSub').textContent=cmsHero.sub;
 }
 const SLIDES=(cmsHero&&Array.isArray(cmsHero.slides)&&cmsHero.slides.length)?cmsHero.slides:[
-  {img:IMG.atrium,alt:'Koru Florya iç mekânı'},
+  {url:'assets/hero/hero-atrium-default.jpg',alt:'Koru Florya iç mekânı ve mimari atrium'},
   {img:IMG.fashion,alt:'Alışveriş deneyimi'},
   {img:IMG.cafe,alt:'Akşam ışığında kafe'},
   {img:IMG.trees,alt:'Florya korusu ve doğa'}
