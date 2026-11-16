@@ -63,39 +63,43 @@
   .cms-tab.on .cnt{background:rgba(255,255,255,.2);color:#fff}
 
   .cms-pane{display:none}
-  .cms-pane.on{display:grid;grid-template-columns:420px minmax(0,1fr);gap:24px;align-items:start}
+  .cms-pane.on{display:grid;grid-template-columns:440px minmax(0,1fr);gap:24px;align-items:start}
   .cms-pane.full.on{display:block}
 
-  .cms-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow-sm)}
-  .cms-card-sticky{position:sticky;top:96px}
+  .cms-card{background:#fff;border:1px solid var(--border-light);border-radius:var(--radius-xl);padding:24px;box-shadow:var(--shadow-sm);position:relative}
+  .cms-card-sticky{position:relative;top:auto}
   .cms-card h2{font-family:var(--font-h);font-size:18.5px;font-weight:700;letter-spacing:-.015em;margin-bottom:4px;color:var(--text-main)}
   .cms-card p.sub{font-size:13px;color:var(--text-muted);margin-bottom:18px}
 
   .f-grid{display:grid;gap:14px}
-  .f-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .f-label{display:grid;gap:6px;font-family:var(--font-h);font-size:12.5px;font-weight:600;letter-spacing:-.01em;color:var(--text-main)}
-  .f-label input,.f-label select,.f-label textarea{width:100%;border:1px solid var(--border-light);border-radius:10px;background:var(--bg-light);padding:0 13px;height:42px;font-size:13.5px;font-weight:500;color:var(--text-main);font-family:var(--font-b);transition:border-color .18s var(--ease),background-color .18s var(--ease),box-shadow .18s var(--ease)}
+  .f-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px; align-items:start}
+  .f-label{display:grid;gap:6px;min-width:0;font-family:var(--font-h);font-size:12.5px;font-weight:600;letter-spacing:-.01em;color:var(--text-main)}
+  .f-label input,.f-label select,.f-label textarea{width:100%;min-width:0;border:1px solid var(--border-light);border-radius:10px;background:var(--bg-light);padding:0 13px;height:42px;font-size:13.5px;font-weight:500;color:var(--text-main);font-family:var(--font-b);transition:border-color .18s var(--ease),background-color .18s var(--ease),box-shadow .18s var(--ease)}
   .f-label textarea{height:auto;padding:11px 13px;resize:vertical;line-height:1.55}
   .f-label input:focus,.f-label select:focus,.f-label textarea:focus{background:#fff;border-color:var(--brand-turq);outline:none;box-shadow:0 0 0 3px var(--brand-turq-light)}
 
   /* Bespoke Custom Select / Status Dropdown (.c-select) */
-  .c-select{position:relative;display:inline-block;width:100%;font-family:var(--font-h);user-select:none}
-  .c-select.compact{width:auto;min-width:190px}
+  .c-select{position:relative;display:block;width:100%;min-width:0;font-family:var(--font-h);user-select:none}
+  .c-select.compact{display:inline-block;width:auto;min-width:142px}
   .c-select-native{position:absolute!important;opacity:0!important;pointer-events:none!important;width:1px!important;height:1px!important;overflow:hidden!important}
-  .c-select-trig{width:100%;height:42px;padding:0 12px 0 13px;border-radius:10px;border:1px solid var(--border-light);background:var(--bg-light);font-family:var(--font-h);font-size:13px;font-weight:600;color:var(--text-main);display:inline-flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;transition:all .18s var(--ease);text-align:left}
-  .c-select.compact .c-select-trig{height:36px;padding:0 11px 0 12px;border-radius:9px;background:#fff;font-size:12.5px;box-shadow:0 1px 2px rgba(16,43,36,.04)}
+  .c-select-trig{width:100%;height:42px;padding:0 11px 0 12px;border-radius:10px;border:1px solid var(--border-light);background:var(--bg-light);font-family:var(--font-h);font-size:12.5px;font-weight:600;color:var(--text-main);display:flex;align-items:center;justify-content:space-between;gap:8px;cursor:pointer;transition:all .18s var(--ease);text-align:left;min-width:0}
+  .c-select.compact .c-select-trig{height:32px;padding:0 10px 0 10px;border-radius:8px;background:#fff;font-size:12px;box-shadow:0 1px 2px rgba(16,43,36,.04)}
   .c-select-trig:hover{background:#fff;border-color:rgba(23,33,30,.22)}
+  .c-select.open{z-index:150}
   .c-select.open .c-select-trig{background:#fff;border-color:var(--brand-turq);box-shadow:0 0 0 3px var(--brand-turq-light)}
-  .c-select-val{display:inline-flex;align-items:center;gap:8px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .c-select-chev{width:15px;height:15px;color:var(--text-subtle);flex-shrink:0;transition:transform .2s var(--ease)}
+  .c-select-val{display:inline-flex;align-items:center;gap:7px;min-width:0;flex:1;overflow:hidden}
+  .c-select-val > span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .c-select-chev{width:14px;height:14px;color:var(--text-subtle);flex-shrink:0;transition:transform .2s var(--ease)}
   .c-select.open .c-select-chev{transform:rotate(180deg);color:var(--brand-dark)}
-  .c-select-menu{position:absolute;top:calc(100% + 6px);left:0;min-width:100%;width:max-content;max-width:320px;max-height:260px;overflow-y:auto;background:#fff;border:1px solid rgba(23,33,30,.12);border-radius:12px;padding:5px;box-shadow:0 16px 38px rgba(16,43,36,.16),0 2px 6px rgba(16,43,36,.06);z-index:120;opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease)}
-  .c-select.compact .c-select-menu{right:0;left:auto;min-width:220px}
+  .c-select-menu{position:absolute;top:calc(100% + 6px);left:0;width:100%;min-width:200px;max-width:300px;max-height:250px;overflow-y:auto;background:#fff;border:1px solid rgba(23,33,30,.12);border-radius:12px;padding:5px;box-shadow:0 16px 38px rgba(16,43,36,.18),0 2px 6px rgba(16,43,36,.06);z-index:160;opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;transition:opacity .16s var(--ease),transform .16s var(--ease)}
+  .f-row > *:last-child .c-select-menu{left:auto;right:0}
+  .c-select.compact .c-select-menu{right:0;left:auto;width:max-content;min-width:190px}
   .c-select.open .c-select-menu{opacity:1;transform:translateY(0) scale(1);pointer-events:auto}
   .c-select-opt{width:100%;border:0;background:transparent;padding:8px 10px;border-radius:8px;font-family:var(--font-h);font-size:12.5px;font-weight:600;color:var(--text-main);display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;text-align:left;transition:background-color .14s,color .14s}
   .c-select-opt:hover{background:var(--bg-light)}
   .c-select-opt.selected{background:var(--brand-turq-light);color:var(--brand-turq-text)}
   .c-select-opt-left{display:inline-flex;align-items:center;gap:8px;min-width:0}
+  .c-select-opt-left > span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
   .c-select-check{width:14px;height:14px;color:var(--brand-turq-text);opacity:0;flex-shrink:0}
   .c-select-opt.selected .c-select-check{opacity:1}
 
@@ -127,7 +131,7 @@
 
   /* Item List */
   .cms-list{display:grid;gap:12px}
-  .cms-item{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px;border:1px solid var(--border-light);border-radius:var(--radius-lg);background:var(--bg-light);transition:border-color .16s,background-color .16s,box-shadow .16s}
+  .cms-item{display:grid;grid-template-columns:112px minmax(0,1fr) auto;gap:16px;align-items:center;padding:15px 18px;border:1px solid var(--border-light);border-radius:var(--radius-lg);background:var(--bg-light);transition:border-color .16s,background-color .16s,box-shadow .16s}
   .cms-item:hover{background:#fff;border-color:rgba(23,33,30,.16);box-shadow:var(--shadow-sm)}
   .cms-thumb{width:112px;height:68px;border-radius:8px;object-fit:contain;background:#102B24;border:1px solid var(--border-light)}
   .cms-info{min-width:0}
@@ -139,10 +143,10 @@
   .cms-badge.draft{background:#F3F4F6;color:#4B5563}
   .cms-badge.ended{background:#FEE2E2;color:#991B1B}
 
-  .cms-item-actions{display:flex;flex-direction:column;gap:8px;align-items:flex-end}
-  .cms-item-btns{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-  .btn-xs{height:32px;padding:0 11px;border-radius:8px;font-family:var(--font-h);font-size:12px;font-weight:600;border:1px solid var(--border-light);background:#fff;color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .16s}
-  .btn-xs svg{width:13.5px;height:13.5px;flex-shrink:0}
+  .cms-item-actions{display:flex;flex-direction:column;gap:7px;align-items:flex-end}
+  .cms-item-btns{display:flex;gap:5px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+  .btn-xs{height:32px;padding:0 10px;border-radius:8px;font-family:var(--font-h);font-size:11.5px;font-weight:600;border:1px solid var(--border-light);background:#fff;color:var(--text-main);cursor:pointer;display:inline-flex;align-items:center;gap:5px;transition:all .16s;white-space:nowrap}
+  .btn-xs svg{width:13px;height:13px;flex-shrink:0}
   .btn-xs:hover{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
   .btn-xs.primary-soft{background:var(--brand-turq-light);color:var(--brand-turq-text);border-color:rgba(0,169,137,.24)}
   .btn-xs.primary-soft:hover{background:var(--brand-dark);color:#fff;border-color:var(--brand-dark)}
@@ -337,19 +341,19 @@
           <input type="hidden" name="editId" id="evEditId" value="" />
 
           <div class="f-row">
-            <label class="f-label">İçerik Türü *
+            <div class="f-label">İçerik Türü *
               <select name="type" id="evType" required>
-                <option value="event">Etkinlik (Kültür / Sanat / Çocuk)</option>
+                <option value="event">Etkinlik (Kültür / Sanat)</option>
                 <option value="campaign">Mağaza Kampanyası</option>
               </select>
-            </label>
-            <label class="f-label">Yayın Durumu *
+            </div>
+            <div class="f-label">Yayın Durumu *
               <select name="status" id="evStatus">
                 <option value="active">Yayında (Aktif)</option>
                 <option value="draft">Taslak (Sitede Gizli)</option>
                 <option value="ended">Sona Erdi (Arşiv)</option>
               </select>
-            </label>
+            </div>
           </div>
 
           <label class="f-label">Başlık *
@@ -366,19 +370,19 @@
           </div>
 
           <div class="f-row">
-            <label class="f-label">İlgili Mağaza (Kampanya ise)
+            <div class="f-label">İlgili Mağaza (Kampanya ise)
               <select name="store" id="evStoreSelect">
-                <option value="">— Mağaza Seçin (Opsiyonel) —</option>
+                <option value="">— Mağaza Seçin —</option>
               </select>
-            </label>
-            <label class="f-label">Kat / Konum *
+            </div>
+            <div class="f-label">Kat / Konum *
               <select name="place" id="evPlace">
                 <option value="Koru Katı (Giriş Kat)">Koru Katı (Giriş Kat)</option>
                 <option value="Podyum Katı (1. Kat)">Podyum Katı (1. Kat)</option>
                 <option value="Cadde Katı (2. Kat)">Cadde Katı (2. Kat)</option>
                 <option value="Otopark Katı (-1. Kat)">Otopark Katı (-1. Kat)</option>
               </select>
-            </label>
+            </div>
           </div>
 
           <div class="f-row">
@@ -481,11 +485,11 @@
         <p class="sub">İstediğiniz bir etkinliği seçerek doğrudan Hero'ya ekleyebilir (tıklandığında o etkinlik açılır) veya özel fotoğraf yükleyebilirsiniz.</p>
         <form id="heroSlideForm" class="f-grid">
           <input type="hidden" id="slideEditIdx" value="-1" />
-          <label class="f-label">Etkinlik / Kampanyayı Hero'ya Bağla (Opsiyonel)
+          <div class="f-label">Etkinlik / Kampanyayı Hero'ya Bağla (Opsiyonel)
             <select id="slideEventSelect">
               <option value="">— Bağımsız Görsel (Etkinlik Bağlantısı Yok) —</option>
             </select>
-          </label>
+          </div>
           <div class="f-label">Slayt Görseli *
             <div class="media-picker-box">
               <div class="mp-preview" id="heroImgPreview">
@@ -1035,7 +1039,7 @@
      ======================================================== */
   const storeSelect=$('#evStoreSelect');
   if(storeSelect && KF.stores){
-    storeSelect.innerHTML=`<option value="">— Mağaza Seçin (Opsiyonel) —</option>`+
+    storeSelect.innerHTML=`<option value="">— Mağaza Seçin —</option>`+
       KF.stores.map(s=>`<option value="${esc(s.n)}">${esc(s.n)} (${esc(KF.floorShort(s))})</option>`).join('');
   }
 
