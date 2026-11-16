@@ -309,6 +309,11 @@
         <b id="stLost">0</b>
         <small id="stLostSub">Danışma yanıt sistemi</small>
       </div>
+      <div class="cms-stat">
+        <span>E-Bülten Aboneleri</span>
+        <b id="stNews">0</b>
+        <small id="stNewsSub">KVKK onaylı aktif liste</small>
+      </div>
     </div>
 
     <div class="cms-tabs" role="tablist">
@@ -316,10 +321,13 @@
         Etkinlik &amp; Kampanyalar <span class="cnt" id="tabCntEvents">0</span>
       </button>
       <button type="button" class="cms-tab" data-tab="hero" role="tab" aria-selected="false">
-        Hero &amp; Görsel Yönetimi <span class="cnt" id="tabCntHero">4</span>
+        Hero &amp; Görsel Yönetimi <span class="cnt" id="tabCntHero">5</span>
       </button>
       <button type="button" class="cms-tab" data-tab="lost" role="tab" aria-selected="false">
         Kayıp Eşya &amp; Yanıt Sistemi <span class="cnt" id="tabCntLost">0</span>
+      </button>
+      <button type="button" class="cms-tab" data-tab="newsletter" role="tab" aria-selected="false">
+        E-Bülten &amp; Aboneler <span class="cnt" id="tabCntNews">0</span>
       </button>
       <button type="button" class="cms-tab" data-tab="security" role="tab" aria-selected="false">
         Güvenlik &amp; Şifre
@@ -583,7 +591,93 @@
     </div>
 
     <!-- ========================================================
-         TAB 4: GÜVENLİK & ŞİFRE YÖNETİMİ
+         TAB 4: E-BÜLTEN & ABONE YÖNETİMİ (CRM)
+         ======================================================== -->
+    <div class="cms-pane" id="pane-newsletter">
+      <div class="cms-card cms-card-sticky">
+        <h2>Toplu E-Bülten Duyurusu Hazırla</h2>
+        <p class="sub">Mevcut bir etkinliği/kampanyayı seçerek veya özel metin yazarak aktif abonelere bülten gönderin.</p>
+        <form id="nlBlastForm" class="f-grid">
+          <div class="f-label">İçerikten Otomatik Doldur (Opsiyonel)
+            <select id="nlBlastEventSelect">
+              <option value="">— Etkinlik veya Kampanya Seçin —</option>
+            </select>
+          </div>
+          <div class="f-label">Hedef Kitle Filtresi
+            <select id="nlBlastTarget">
+              <option value="all">Tüm Aktif Aboneler</option>
+              <option value="Etkinlik & Kültür">Sadece Etkinlik &amp; Kültür İlgilileri</option>
+              <option value="Mağaza Kampanyaları">Sadece Mağaza Kampanyası İlgilileri</option>
+              <option value="Gastronomi & Yeni Markalar">Sadece Gastronomi &amp; Yeni Marka İlgilileri</option>
+            </select>
+          </div>
+          <label class="f-label">E-Bülten Konu Başlığı *
+            <input type="text" id="nlBlastSubject" required placeholder="Örn: Koru Florya'da Bu Hafta Sonu: Kitap Fuarı & Özel İndirimler" />
+          </label>
+          <label class="f-label">E-Bülten Mesaj İçeriği *
+            <textarea id="nlBlastBody" rows="5" required placeholder="Abonelere gönderilecek duyuru metni ve etkinlik bağlantısı..."></textarea>
+          </label>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="submit" class="btn btn-dark" style="flex:1">E-Posta İstemcisiyle Gönder (BCC)</button>
+            <button type="button" class="btn btn-outline" id="nlCopyBlastBtn">Metni &amp; Alıcıları Kopyala</button>
+          </div>
+        </form>
+
+        <hr style="border:0;border-top:1px solid var(--border-light);margin:22px 0" />
+
+        <h2>Manuel Abone Ekle</h2>
+        <p class="sub">Danışma veya etkinlik kayıtlarından gelen ziyaretçileri e-bülten listesine ekleyin.</p>
+        <form id="nlAddSubForm" class="f-grid">
+          <div class="f-row">
+            <label class="f-label">Ad Soyad
+              <input type="text" id="nlNewName" placeholder="Örn: Selin Arslan" />
+            </label>
+            <label class="f-label">E-posta Adresi *
+              <input type="email" id="nlNewEmail" required placeholder="ornek@eposta.com" />
+            </label>
+          </div>
+          <div class="f-label">İlgi Alanı Etiketi
+            <select id="nlNewTag">
+              <option value="Etkinlik & Kültür, Mağaza Kampanyaları">Etkinlik &amp; Kampanyalar (Tümü)</option>
+              <option value="Etkinlik & Kültür">Etkinlik &amp; Kültür</option>
+              <option value="Mağaza Kampanyaları">Mağaza Kampanyaları</option>
+              <option value="Gastronomi & Yeni Markalar">Gastronomi &amp; Yeni Markalar</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary w-full">Aboneyi Listeye Kaydet</button>
+        </form>
+      </div>
+
+      <div class="cms-card">
+        <div class="lf-toolbar">
+          <div>
+            <h2>Kayıtlı E-Bülten Aboneleri (CRM)</h2>
+            <p class="sub" style="margin:0">Site altındaki E-Bülten formundan kayıt olan ziyaretçiler anında bu listeye düşer.</p>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button type="button" class="btn-xs primary-soft" id="exportCsvNewsBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              CSV / Excel İndir
+            </button>
+          </div>
+        </div>
+
+        <div class="lf-toolbar" style="padding-bottom:12px;border-bottom:1px solid var(--border-light)">
+          <div class="lf-filters" id="nlFilters">
+            <button type="button" class="lf-filter-btn on" data-nl-filter="all">Tümü</button>
+            <button type="button" class="lf-filter-btn" data-nl-filter="Etkinlik & Kültür">Etkinlik &amp; Kültür</button>
+            <button type="button" class="lf-filter-btn" data-nl-filter="Mağaza Kampanyaları">Mağaza Kampanyaları</button>
+            <button type="button" class="lf-filter-btn" data-nl-filter="Gastronomi & Yeni Markalar">Gastronomi &amp; Yeni Markalar</button>
+          </div>
+          <input type="search" id="nlSearch" placeholder="E-posta veya isim ara..." style="height:36px;padding:0 12px;border:1px solid var(--border-light);border-radius:var(--radius-sm);background:var(--bg-light);font-size:13px;min-width:200px" />
+        </div>
+
+        <div class="cms-list" id="cmsNewsList"></div>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         TAB 5: GÜVENLİK & ŞİFRE YÖNETİMİ
          ======================================================== -->
     <div class="cms-pane full" id="pane-security">
       <div class="cms-card" style="max-width:540px">
@@ -936,9 +1030,9 @@
   };
 
   function getOptionIcon(val, selectEl){
-    if(val==='active') return SVG_ICONS.active;
+    if(val==='active'||val==='Aktif') return SVG_ICONS.active;
     if(val==='draft') return SVG_ICONS.amber;
-    if(val==='ended') return SVG_ICONS.slate;
+    if(val==='ended'||val==='Pasif') return SVG_ICONS.slate;
     if(val==='Bekliyor') return SVG_ICONS.amber;
     if(val==='İnceleniyor') return SVG_ICONS.blue;
     if(val==='Danışmada Muhafaza') return SVG_ICONS.green;
@@ -947,7 +1041,7 @@
     if(val==='event') return SVG_ICONS.event;
     if(val==='campaign') return SVG_ICONS.campaign;
     if(selectEl && selectEl.id==='evPlace') return SVG_ICONS.pin;
-    if(selectEl && selectEl.id==='slideEventSelect' && val) return SVG_ICONS.event;
+    if(selectEl && (selectEl.id==='slideEventSelect'||selectEl.id==='nlBlastEventSelect') && val) return SVG_ICONS.event;
     return '';
   }
 
@@ -982,7 +1076,7 @@
         return;
       }
       const wrap=document.createElement('div');
-      const isCompact=sel.hasAttribute('data-ev-status')||sel.hasAttribute('data-lost-status');
+      const isCompact=sel.hasAttribute('data-ev-status')||sel.hasAttribute('data-lost-status')||sel.hasAttribute('data-nl-status');
       wrap.className='c-select'+(isCompact?' compact':'');
       sel.parentNode.insertBefore(wrap, sel);
       wrap.appendChild(sel);
@@ -1126,6 +1220,17 @@
     syncCustomSelect(sel);
   }
 
+  function populateNewsletterEventSelect(){
+    const sel=$('#nlBlastEventSelect');
+    if(!sel) return;
+    const prev=sel.value;
+    const all=getAllEventsMerged().filter(e=>e.status!=='ended');
+    sel.innerHTML=`<option value="">— Özel Bülten (Etkinlik / Kampanya Seçerek Otomatik Doldur) —</option>`+
+      all.map(e=>`<option value="${esc(e.id)}">${esc(e.type==='campaign'?'[Kampanya] ':'[Etkinlik] ')}${esc(e.title)}</option>`).join('');
+    sel.value=prev;
+    syncCustomSelect(sel);
+  }
+
   function renderEvents(){
     const all=getAllEventsMerged();
     const listEl=$('#cmsEventsList');
@@ -1135,6 +1240,7 @@
     $('#stCamps').textContent=campCount;
     $('#tabCntEvents').textContent=all.length;
     populateHeroEventSelect();
+    populateNewsletterEventSelect();
 
     if(!all.length){
       listEl.innerHTML=`<p style="color:var(--text-muted);padding:24px 0">Kayıtlı etkinlik veya kampanya bulunmuyor.</p>`;
@@ -1724,13 +1830,257 @@
     showToast(`✓ Örnek kayıp eşya bildirimi (${code}) eklendi.`);
   });
 
+  /* =========================================================
+     6. E-BÜLTEN & ABONE YÖNETİMİ (CRM)
+     ========================================================= */
+  let currentNlFilter='all';
+  let currentNlSearch='';
+
+  function getNewsletterSubs(){
+    try{
+      let list=JSON.parse(localStorage.getItem('kf_cms_newsletter')||'null');
+      if(!Array.isArray(list)){
+        list=[
+          {
+            id:'nl-seed-1',
+            name:'Selin Demirtaş',
+            email:'selin.demirtas@floryaresidence.com',
+            interests:['Etkinlik & Kültür','Gastronomi & Yeni Markalar'],
+            status:'Aktif',
+            source:'Anasayfa E-Bülten',
+            createdAt:'08.11.2026 19:20'
+          },
+          {
+            id:'nl-seed-2',
+            name:'Kerem Yalçınkaya',
+            email:'kerem.yalcinkaya@kurumsal.com.tr',
+            interests:['Mağaza Kampanyaları','Etkinlik & Kültür'],
+            status:'Aktif',
+            source:'Etkinlikler Sayfası',
+            createdAt:'09.11.2026 11:45'
+          },
+          {
+            id:'nl-seed-3',
+            name:'Zeynep Aksoy',
+            email:'zeynepaksoy.ist@gmail.com',
+            interests:['Etkinlik & Kültür','Mağaza Kampanyaları','Gastronomi & Yeni Markalar'],
+            status:'Aktif',
+            source:'Kat Planları & Rehber',
+            createdAt:'09.11.2026 16:12'
+          },
+          {
+            id:'nl-seed-4',
+            name:'Mert Soylu',
+            email:'mert.soylu@mimarianket.com',
+            interests:['Gastronomi & Yeni Markalar'],
+            status:'Aktif',
+            source:'Mağaza Rehberi',
+            createdAt:'10.11.2026 10:05'
+          }
+        ];
+        localStorage.setItem('kf_cms_newsletter',JSON.stringify(list));
+      }
+      return list;
+    }catch{return[]}
+  }
+
+  function renderNewsletter(){
+    const list=getNewsletterSubs();
+    const activeCount=list.filter(s=>(s.status||'Aktif')==='Aktif').length;
+    if($('#stNews')) $('#stNews').textContent=activeCount;
+    if($('#tabCntNews')) $('#tabCntNews').textContent=list.length;
+    if($('#nlTotalBadge')) $('#nlTotalBadge').textContent=`${activeCount} Aktif / ${list.length} Kayıt`;
+
+    const q=currentNlSearch.trim().toLocaleLowerCase('tr-TR');
+    const filtered=list.filter(s=>{
+      const st=s.status||'Aktif';
+      const ints=Array.isArray(s.interests)?s.interests:[];
+      if(currentNlFilter==='Aktif' && st!=='Aktif') return false;
+      if(currentNlFilter==='Pasif' && st!=='Pasif') return false;
+      if(currentNlFilter!=='all' && currentNlFilter!=='Aktif' && currentNlFilter!=='Pasif'){
+        if(!ints.includes(currentNlFilter)) return false;
+      }
+      if(q){
+        const hay=`${s.name||''} ${s.email||''} ${ints.join(' ')} ${s.source||''}`.toLocaleLowerCase('tr-TR');
+        if(!hay.includes(q)) return false;
+      }
+      return true;
+    });
+
+    const el=$('#cmsNewsList');
+    if(!el) return;
+    if(!filtered.length){
+      el.innerHTML=`<p style="color:var(--text-muted);padding:24px 0">Bu filtreye uygun e-bülten abonesi bulunamadı.</p>`;
+      return;
+    }
+
+    el.innerHTML=filtered.map(s=>{
+      const st=s.status||'Aktif';
+      const ints=Array.isArray(s.interests)&&s.interests.length?s.interests:['Genel Duyurular'];
+      return `
+        <div class="cms-item" style="grid-template-columns:1fr auto">
+          <div class="cms-info">
+            <div class="cms-meta">
+              <span class="cms-badge ${st==='Pasif'?'ended':''}">${esc(st)}</span>
+              <span style="font-size:11.5px;color:var(--text-subtle)">${esc(s.createdAt||'')} · ${esc(s.source||'Site Footer')}</span>
+            </div>
+            <h4>${esc(s.name||'Ziyaretçi')} <span style="font-weight:500;color:var(--primary);font-size:13.5px">&lt;${esc(s.email)}&gt;</span></h4>
+            <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:6px">
+              ${ints.map(tag=>`<span style="font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:rgba(154,117,64,.1);color:var(--gold-deep)">${esc(tag)}</span>`).join('')}
+            </div>
+          </div>
+          <div class="cms-item-actions">
+            <select data-nl-status="${esc(s.id)}">
+              <option value="Aktif" ${st==='Aktif'?'selected':''}>Aktif Abone</option>
+              <option value="Pasif" ${st==='Pasif'?'selected':''}>Pasif (İptal)</option>
+            </select>
+            <div class="cms-item-btns">
+              <a class="btn-xs" href="mailto:${encodeURIComponent(s.email)}?subject=${encodeURIComponent('Koru Florya AVM — Özel Bilgilendirme')}">E-Posta Gönder</a>
+              <button type="button" class="btn-xs danger" data-del-nl="${esc(s.id)}">Sil</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    enhanceSelects(el);
+  }
+
+  $('#nlBlastEventSelect')?.addEventListener('change',e=>{
+    const id=e.target.value;
+    if(!id) return;
+    const ev=getAllEventsMerged().find(x=>x.id===id);
+    if(!ev) return;
+    $('#nlBlastSubject').value=`Koru Florya ${ev.type==='campaign'?'Ayrıcalığı':'Etkinliği'}: ${ev.title}`;
+    $('#nlBlastBody').value=`Değerli Koru Florya Ziyaretçimiz,\n\n${ev.title} (${ev.kicker||'Koru Florya'}) kapsamında sizi bekliyoruz!\n\n${ev.short||''}\n\n📍 Konum: ${ev.place||'Koru Florya'} — ${ev.venue||''}\n🕒 Saat: ${ev.time||'10:00 – 22:00'}\n\nDetaylı bilgi için: https://lavelty.github.io/my-project/etkinlik.html?e=${encodeURIComponent(ev.id)}\n\nSevgilerimizle,\nKoru Florya AVM Yönetimi`;
+    showToast('✓ Etkinlik bilgileri e-bülten şablonuna aktarıldı.');
+  });
+
+  $('#nlBlastForm')?.addEventListener('submit',e=>{
+    e.preventDefault();
+    const seg=$('#nlBlastSegment').value;
+    const subj=$('#nlBlastSubject').value.trim();
+    const body=$('#nlBlastBody').value.trim();
+    const subs=getNewsletterSubs().filter(s=>{
+      if((s.status||'Aktif')!=='Aktif') return false;
+      if(seg==='all') return true;
+      return Array.isArray(s.interests)&&s.interests.includes(seg);
+    });
+    if(!subs.length){
+      showToast('Bu segmente ait aktif abone bulunamadı.');
+      return;
+    }
+    const bcc=subs.map(s=>s.email).join(',');
+    window.location.href=`mailto:info@koruflorya.com?bcc=${encodeURIComponent(bcc)}&subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
+    showToast(`✓ ${subs.length} aktif aboneye gönderim için e-posta istemcisi açıldı.`);
+  });
+
+  $('#nlCopyBlastBtn')?.addEventListener('click',()=>{
+    const subj=$('#nlBlastSubject').value.trim()||'Koru Florya AVM E-Bülten';
+    const body=$('#nlBlastBody').value.trim();
+    const text=`Konu: ${subj}\n\n${body}`;
+    if(navigator.clipboard) navigator.clipboard.writeText(text);
+    showToast('✓ Bülten metni panoya kopyalandı.');
+  });
+
+  $('#nlAddSubForm')?.addEventListener('submit',e=>{
+    e.preventDefault();
+    const name=$('#nlSubName').value.trim()||'Ziyaretçi';
+    const email=$('#nlSubEmail').value.trim().toLowerCase();
+    const cat=$('#nlSubInterest').value;
+    if(!email) return;
+    const list=getNewsletterSubs();
+    const existing=list.find(x=>(x.email||'').toLowerCase()===email);
+    if(existing){
+      existing.name=name||existing.name;
+      existing.status='Aktif';
+      existing.interests=cat==='Tümü'?['Etkinlik & Kültür','Mağaza Kampanyaları','Gastronomi & Yeni Markalar']:[cat];
+      showToast('✓ Mevcut abone bilgileri güncellendi.');
+    }else{
+      list.unshift({
+        id:'nl-'+Date.now(),
+        name,
+        email,
+        interests:cat==='Tümü'?['Etkinlik & Kültür','Mağaza Kampanyaları','Gastronomi & Yeni Markalar']:[cat],
+        status:'Aktif',
+        source:'Admin Manuel Kayıt',
+        createdAt:new Date().toLocaleString('tr-TR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+      });
+      showToast('✓ Yeni e-bülten abonesi eklendi.');
+    }
+    localStorage.setItem('kf_cms_newsletter',JSON.stringify(list));
+    $('#nlAddSubForm').reset();
+    syncCustomSelect($('#nlSubInterest'));
+    renderNewsletter();
+  });
+
+  $('#nlFilters')?.addEventListener('click',e=>{
+    const btn=e.target.closest('[data-nl-filter]');
+    if(!btn) return;
+    $$('#nlFilters .filter-pill').forEach(b=>b.classList.toggle('is-active',b===btn));
+    currentNlFilter=btn.dataset.nlFilter;
+    renderNewsletter();
+  });
+
+  $('#nlSearch')?.addEventListener('input',e=>{
+    currentNlSearch=e.target.value;
+    renderNewsletter();
+  });
+
+  $('#cmsNewsList')?.addEventListener('change',e=>{
+    const sel=e.target.closest('[data-nl-status]');
+    if(!sel) return;
+    const id=sel.dataset.nlStatus;
+    const list=getNewsletterSubs();
+    const item=list.find(x=>x.id===id);
+    if(item){
+      item.status=sel.value;
+      localStorage.setItem('kf_cms_newsletter',JSON.stringify(list));
+      renderNewsletter();
+      showToast(`✓ Abone durumu "${sel.value}" olarak güncellendi.`);
+    }
+  });
+
+  $('#cmsNewsList')?.addEventListener('click',e=>{
+    const del=e.target.closest('[data-del-nl]');
+    if(del){
+      const id=del.dataset.delNl;
+      const list=getNewsletterSubs().filter(x=>x.id!==id);
+      localStorage.setItem('kf_cms_newsletter',JSON.stringify(list));
+      renderNewsletter();
+      showToast('Abone kaydı silindi.');
+    }
+  });
+
+  $('#exportCsvNewsBtn')?.addEventListener('click',()=>{
+    const list=getNewsletterSubs();
+    const rows=[
+      ['Ad Soyad','E-Posta','Durum','İlgi Alanları','Kayıt Kaynağı','Kayıt Tarihi'],
+      ...list.map(s=>[
+        s.name||'Ziyaretçi',
+        s.email||'',
+        s.status||'Aktif',
+        (Array.isArray(s.interests)?s.interests.join(' | '):''),
+        s.source||'Site Footer',
+        s.createdAt||''
+      ])
+    ];
+    const csv='\uFEFF'+rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(';')).join('\r\n');
+    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='koru-florya-ebulten-aboneleri.csv';
+    a.click();
+    showToast('✓ Abone listesi Excel/CSV olarak indirildi.');
+  });
+
   /* Export JSON */
   $('#exportJsonBtn').addEventListener('click',()=>{
     const payload={
       exportedAt:new Date().toISOString(),
       events:getAllEventsMerged(),
       hero:getHeroConfig(),
-      lostAndFound:getLostItems()
+      lostAndFound:getLostItems(),
+      newsletter:getNewsletterSubs()
     };
     const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
     const a=document.createElement('a');
@@ -1743,6 +2093,7 @@
   renderEvents();
   renderHeroPanel();
   renderLost();
+  renderNewsletter();
   enhanceSelects(document);
 })();
 </script>
